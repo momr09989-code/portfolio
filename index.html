@@ -3,40 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Omar Ebied — Computer Science & IT student, aspiring Big Data Engineer." />
+    <title>Omar Ebied | Data Engineer &amp; Cybersecurity</title>
+    <meta name="description" content="Portfolio of Omar Ebied, a Computer Science student specializing in Big Data, Data Engineering, and secure systems." />
+    <meta name="author" content="Omar Ebied" />
+    <meta name="keywords" content="Omar Ebied, Data Engineer, Cybersecurity, Big Data, SQL, Python, Helwan National University, Portfolio" />
     <meta name="theme-color" content="#081012" />
-    <title>Omar Ebied | Aspiring Big Data Engineer</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://omarebied.github.io/portfolio/" />
+
+    <!-- Open Graph (og:) / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Omar Ebied Portfolio" />
+    <meta property="og:url" content="https://omarebied.github.io/portfolio/" />
+    <meta property="og:title" content="Omar Ebied | Data Engineer &amp; Cybersecurity" />
+    <meta property="og:description" content="Portfolio of Omar Ebied, a Computer Science student specializing in Big Data, Data Engineering, and secure systems." />
+    <meta property="og:image" content="https://omarebied.github.io/portfolio/og-image.png" />
+    <meta property="og:image:secure_url" content="https://omarebied.github.io/portfolio/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Omar Ebied | Data Engineer &amp; Cybersecurity" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://omarebied.github.io/portfolio/" />
+    <meta name="twitter:title" content="Omar Ebied | Data Engineer &amp; Cybersecurity" />
+    <meta name="twitter:description" content="Portfolio of Omar Ebied, a Computer Science student specializing in Big Data, Data Engineering, and secure systems." />
+    <meta name="twitter:image" content="https://omarebied.github.io/portfolio/og-image.png" />
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="og-image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page-noise" aria-hidden="true"></div>
-    <div class="orb orb-one" aria-hidden="true"></div>
-    <div class="orb orb-two" aria-hidden="true"></div>
+    <div class="bg-decorations" aria-hidden="true">
+      <div class="page-noise"></div>
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+    </div>
 
-    <header class="site-header">
-      <a href="#home" class="brand" aria-label="Omar Ebied — home">
-        <span class="brand-mark">OE<span>.</span></span>
-        <span class="brand-name">Omar Ebied</span>
-      </a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a class="active" href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch color theme">
-        <span class="theme-icon">☀</span>
-      </button>
-    </header>
+    <div class="site-wrapper">
+      <header class="site-header">
+        <a href="#home" class="brand" aria-label="Omar Ebied — home">
+          <span class="brand-mark">OE<span>.</span></span>
+          <span class="brand-name">Omar Ebied</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a class="active" href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch color theme">
+          <span class="theme-icon">☀</span>
+        </button>
+      </header>
 
-    <main>
+      <main class="main-container">
       <!-- 1. Home / Hero -->
       <section id="home" class="hero section-shell">
         <div class="hero-copy reveal">
@@ -48,6 +81,7 @@
           <p class="hero-ar" lang="ar" dir="rtl">أساعد الشركات الناشئة على استخراج رؤى دقيقة من بياناتهم وتأمين أنظمتهم من خلال تحليل البيانات المعتمد على أسس أمان قوية.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">View My Work <span aria-hidden="true">↗</span></a>
+            <button class="button button-ghost" type="button" data-open-modal="modal-cv" aria-haspopup="dialog" aria-label="Open CV preview modal">View CV <span aria-hidden="true">⤢</span></button>
             <a class="button button-ghost" href="#contact">Contact Me <span aria-hidden="true">→</span></a>
           </div>
           <div class="hero-meta">
@@ -77,7 +111,7 @@
           <div class="about-content reveal">
             <p>I’m a Computer Science &amp; Information Technology student at <strong>Helwan National University</strong>, developing the technical foundation to turn complex information into useful, reliable systems.</p>
             <p>My focus sits at the intersection of <strong>Data Engineering, Big Data, and Cybersecurity</strong>—where well-designed data foundations and strong security practices help organizations grow with confidence.</p>
-            <a class="text-link" href="#education">My education <span>→</span></a>
+            <a class="text-link" href="#education">My education &amp; certificates <span>→</span></a>
           </div>
         </div>
         <div class="stats-row reveal">
@@ -87,11 +121,13 @@
         </div>
       </section>
 
-      <!-- 3. Education -->
+      <!-- 3. Education & Certificates -->
       <section id="education" class="section section-shell education-section">
-        <div class="section-label reveal"><span>02</span> Education</div>
+        <div class="section-label reveal"><span>02</span> Education &amp; Certificates</div>
         <div class="education-card reveal">
-          <div class="education-stamp">HNU</div>
+          <div class="education-stamp" title="Helwan National University">
+            <img src="hnu_logo.png" alt="Helwan National University Logo" class="education-logo-img" width="84" height="84" />
+          </div>
           <div class="education-main">
             <p class="card-kicker">2024 — 2028 <span>•</span> Cairo, Egypt</p>
             <h2>Bachelor of Computer Science &amp; Information Technology <span>(CSIT)</span></h2>
@@ -100,6 +136,180 @@
           <div class="coursework">
             <p class="card-kicker">Selected coursework</p>
             <div class="tag-list"><span>Database Systems</span><span>Algorithms</span><span>Programming</span><span>Networks</span><span>Operating Systems</span></div>
+          </div>
+        </div>
+
+        <div class="certificates-block reveal">
+          <div class="certificates-header">
+            <p class="card-kicker">Verified Credentials &amp; Certifications</p>
+            <h3 class="certificates-title">Professional Certifications</h3>
+          </div>
+          <div class="certificates-grid">
+            <!-- 1. HackerRank SQL (Basic) Card -->
+            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-sql-basic" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Basic) Certificate modal">
+              <div class="cert-card-media">
+                <img src="hackerrank_sql_basic.png" alt="HackerRank SQL (Basic) Certificate preview" class="cert-thumbnail" />
+                <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> Click to View Image</span>
+              </div>
+              <div class="cert-card-body">
+                <div class="cert-header">
+                  <div class="cert-badge-icon hr-icon">
+                    <img src="hackerrank_icon.png" alt="HackerRank logo" class="cert-org-logo" />
+                  </div>
+                  <div class="cert-meta">
+                    <p class="card-kicker">HackerRank <span>•</span> October 2026</p>
+                    <h4 class="cert-name">SQL (Basic)</h4>
+                  </div>
+                </div>
+                <p class="cert-desc">Covers fundamental relational database operations including query structure, joins, filtering, aggregations, and data retrieval.</p>
+                <div class="cert-id-row">
+                  <span class="cert-id-label">Credential ID:</span>
+                  <code class="cert-id-code">E25E7E2FC547</code>
+                </div>
+                <div class="cert-actions">
+                  <button class="button button-ghost button-sm cert-btn" type="button" data-open-modal="cert-modal-sql-basic">
+                    <span>View Certificate</span>
+                    <span class="btn-arrow" aria-hidden="true">⤢</span>
+                  </button>
+                  <a class="button button-primary button-sm cert-btn" href="https://www.hackerrank.com/certificates/iframe/E25E7E2FC547" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                    <span>Verify Online</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. HackerRank SQL (Advanced) Card -->
+            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-sql-advanced" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Advanced) Certificate modal">
+              <div class="cert-card-media">
+                <img src="hackerrank_sql_advanced.png" alt="HackerRank SQL (Advanced) Certificate preview" class="cert-thumbnail" />
+                <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> Click to View Image</span>
+              </div>
+              <div class="cert-card-body">
+                <div class="cert-header">
+                  <div class="cert-badge-icon hr-icon">
+                    <img src="hackerrank_icon.png" alt="HackerRank logo" class="cert-org-logo" />
+                  </div>
+                  <div class="cert-meta">
+                    <p class="card-kicker">HackerRank <span>•</span> October 2026</p>
+                    <h4 class="cert-name">SQL (Advanced)</h4>
+                  </div>
+                </div>
+                <p class="cert-desc">Covers advanced SQL queries, window functions, recursive CTEs, subquery optimization, and complex relational modeling.</p>
+                <div class="cert-id-row">
+                  <span class="cert-id-label">Credential ID:</span>
+                  <code class="cert-id-code">27a561ca8d0f</code>
+                </div>
+                <div class="cert-actions">
+                  <button class="button button-ghost button-sm cert-btn" type="button" data-open-modal="cert-modal-sql-advanced">
+                    <span>View Certificate</span>
+                    <span class="btn-arrow" aria-hidden="true">⤢</span>
+                  </button>
+                  <a class="button button-primary button-sm cert-btn" href="https://www.hackerrank.com/certificates/iframe/27a561ca8d0f" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                    <span>Verify Online</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 3. Kaggle Python Card -->
+            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-kaggle-python" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Python Certificate modal">
+              <div class="cert-card-media">
+                <img src="kaggle_python_certificate.png" alt="Kaggle Python Certificate preview" class="cert-thumbnail" />
+                <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> Click to View Image</span>
+              </div>
+              <div class="cert-card-body">
+                <div class="cert-header">
+                  <div class="cert-badge-icon kaggle-icon">
+                    <img src="kaggle_icon.png" alt="Kaggle logo" class="cert-org-logo" />
+                  </div>
+                  <div class="cert-meta">
+                    <p class="card-kicker">Kaggle <span>•</span> Verified Credential</p>
+                    <h4 class="cert-name">Python</h4>
+                  </div>
+                </div>
+                <p class="cert-desc">Demonstrates core Python programming competency: syntax, variable types, functions, booleans, conditionals, lists, loops, and external libraries.</p>
+                <div class="cert-id-row">
+                  <span class="cert-id-label">Credential:</span>
+                  <code class="cert-id-code">omarebied / python</code>
+                </div>
+                <div class="cert-actions">
+                  <button class="button button-ghost button-sm cert-btn" type="button" data-open-modal="cert-modal-kaggle-python">
+                    <span>View Certificate</span>
+                    <span class="btn-arrow" aria-hidden="true">⤢</span>
+                  </button>
+                  <a class="button button-primary button-sm cert-btn" href="https://www.kaggle.com/learn/certification/omarebied/python" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                    <span>Verify Online</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 4. Kaggle Pandas Card -->
+            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-kaggle-pandas" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Pandas Certificate modal">
+              <div class="cert-card-media">
+                <img src="kaggle_pandas_certificate.png" alt="Kaggle Pandas Certificate preview" class="cert-thumbnail" />
+                <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> Click to View Image</span>
+              </div>
+              <div class="cert-card-body">
+                <div class="cert-header">
+                  <div class="cert-badge-icon kaggle-icon">
+                    <img src="kaggle_icon.png" alt="Kaggle logo" class="cert-org-logo" />
+                  </div>
+                  <div class="cert-meta">
+                    <p class="card-kicker">Kaggle <span>•</span> Verified Credential</p>
+                    <h4 class="cert-name">Pandas</h4>
+                  </div>
+                </div>
+                <p class="cert-desc">Hands-on data manipulation and analysis using Pandas: DataFrame indexing, grouping, sorting, summary functions, and handling missing values.</p>
+                <div class="cert-id-row">
+                  <span class="cert-id-label">Credential:</span>
+                  <code class="cert-id-code">omarebied / pandas</code>
+                </div>
+                <div class="cert-actions">
+                  <button class="button button-ghost button-sm cert-btn" type="button" data-open-modal="cert-modal-kaggle-pandas">
+                    <span>View Certificate</span>
+                    <span class="btn-arrow" aria-hidden="true">⤢</span>
+                  </button>
+                  <a class="button button-primary button-sm cert-btn" href="https://www.kaggle.com/learn/certification/omarebied/pandas" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                    <span>Verify Online</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 5. NTI Cybersecurity Card -->
+            <article class="certificate-card cert-interactive cert-physical cert-span-2" data-open-modal="cert-modal-nti" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open NTI Cybersecurity Physical Certificate modal">
+              <div class="cert-card-media">
+                <img src="nti_cybersecurity_certificate.jpeg" alt="NTI Cybersecurity Physical Certificate preview" class="cert-thumbnail" id="nti-thumb-preview" />
+                <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> Click to View Image</span>
+              </div>
+              <div class="cert-card-body">
+                <div class="cert-header">
+                  <div class="cert-badge-icon nti-icon">
+                    <img src="nti_icon.png" alt="NTI logo" class="cert-org-logo" />
+                  </div>
+                  <div class="cert-meta">
+                    <p class="card-kicker">National Telecommunication Institute <span>•</span> Sep 2025</p>
+                    <h4 class="cert-name">NTI Cybersecurity Certification</h4>
+                  </div>
+                </div>
+                <p class="cert-desc">60 technical hours of practical training in network defense, reconnaissance, traffic packet analysis, and security fundamentals.</p>
+                <div class="cert-status-row">
+                  <span class="physical-cert-tag">◈ Physical Certificate</span>
+                </div>
+                <div class="cert-actions">
+                  <button class="button button-ghost button-sm cert-btn" type="button" data-open-modal="cert-modal-nti">
+                    <span>View Physical Certificate</span>
+                    <span class="btn-arrow" aria-hidden="true">⤢</span>
+                  </button>
+                  <span class="cert-no-link-note">(No online link required)</span>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -159,15 +369,54 @@
         <div class="project-list">
           <article class="project-card project-featured reveal">
             <div class="project-visual visual-sql"><span>01</span><div class="sql-window"><i></i><i></i><i></i><code>SELECT insights<br>FROM data<br>WHERE impact = true;</code></div></div>
-            <div class="project-details"><p class="card-kicker">Data &amp; Databases <span>•</span> MS SQL Server</p><h3>SQL Database Project</h3><div class="project-breakdown"><p><b>Problem</b>Organize connected information in a scalable, logical way.</p><p><b>Role</b>Database designer &amp; developer.</p><p><b>Solution</b>Designed a relational database with structured entities, relationships, and SQL queries.</p><p><b>Tools</b>MS SQL Server · SQL · RDBMS concepts.</p><p><b>Result</b>A solid database foundation that supports accurate storage and retrieval.</p></div><a class="text-link" href="#contact">Ask about this project <span>→</span></a></div>
+            <div class="project-details">
+              <p class="card-kicker">Data &amp; Databases <span>•</span> MS SQL Server</p>
+              <h3>SQL Database Project</h3>
+              <div class="project-breakdown">
+                <p class="role-item"><b>Role:</b> <span>Solo Database Designer / Developer.</span></p>
+                <p><b>Challenge</b>Organize connected information in a scalable, logical way.</p>
+                <p><b>Action</b>Designed a relational database with structured entities, relationships, and SQL queries.</p>
+                <p><b>Tools</b>MS SQL Server · SQL · RDBMS concepts.</p>
+                <p><b>Result</b>A solid database foundation that supports accurate storage and retrieval.</p>
+              </div>
+              <div class="project-actions">
+                <a class="text-link" href="#contact">Ask about this project <span>→</span></a>
+              </div>
+            </div>
           </article>
           <article class="project-card reveal">
             <div class="project-visual visual-mitm"><span>02</span><div class="network-nodes"><i></i><i></i><i></i><b></b><b></b></div></div>
-            <div class="project-details"><p class="card-kicker">Cybersecurity Lab <span>•</span> Network Analysis</p><h3>MITM Lab — Man-in-the-Middle Attack</h3><div class="project-breakdown"><p><b>Problem</b>Understand how intercepted network traffic can expose risk.</p><p><b>Role</b>Security lab researcher.</p><p><b>Solution</b>Simulated ARP spoofing and observed traffic interception in a controlled lab.</p><p><b>Tools</b>Kali Linux · mitmproxy · Wireshark · ARP spoofing.</p><p><b>Result</b>Practical insight into attack behavior and the need for network protections.</p></div></div>
+            <div class="project-details">
+              <p class="card-kicker">Cybersecurity Lab <span>•</span> Network Analysis</p>
+              <h3>MITM Lab — Man-in-the-Middle Attack</h3>
+              <div class="project-breakdown">
+                <p class="role-item"><b>Role:</b> <span>Solo Security Researcher (Executed the full attack simulation independently).</span></p>
+                <p><b>Challenge</b>Understand how intercepted network traffic can expose risk.</p>
+                <p><b>Action</b>Simulated ARP spoofing and observed traffic interception in a controlled lab.</p>
+                <p><b>Tools</b>Kali Linux · mitmproxy · Wireshark · ARP spoofing.</p>
+                <p><b>Result</b>Practical insight into attack behavior and the need for network protections.</p>
+              </div>
+              <div class="project-actions">
+                <a class="text-link" href="#contact">Ask about this project <span>→</span></a>
+              </div>
+            </div>
           </article>
           <article class="project-card reveal">
             <div class="project-visual visual-book"><span>03</span><div class="book-stack"><i></i><i></i><i></i><b>BOOKS</b></div></div>
-            <div class="project-details"><p class="card-kicker">Web Development <span>•</span> Front-end</p><h3>Online Book Store Website</h3><div class="project-breakdown"><p><b>Problem</b>Create an engaging, simple experience for browsing a book catalogue.</p><p><b>Role</b>Front-end developer.</p><p><b>Solution</b>Built an interface for discovering and interacting with an online book store.</p><p><b>Tools</b>HTML · CSS · JavaScript.</p><p><b>Result</b>A responsive web project that demonstrates core front-end skills.</p></div></div>
+            <div class="project-details">
+              <p class="card-kicker">Web Development <span>•</span> Front-end</p>
+              <h3>Online Book Store Website</h3>
+              <div class="project-breakdown">
+                <p class="role-item"><b>Role:</b> <span>Front-End Developer (Responsible for designing and implementing the UI using HTML &amp; CSS).</span></p>
+                <p><b>Challenge</b>Create an engaging, simple experience for browsing a book catalogue.</p>
+                <p><b>Action</b>Built an interface for discovering and interacting with an online book store.</p>
+                <p><b>Tools</b>HTML · CSS · JavaScript.</p>
+                <p><b>Result</b>A responsive web project that demonstrates core front-end skills.</p>
+              </div>
+              <div class="project-actions">
+                <a class="text-link" href="#contact">Ask about this project <span>→</span></a>
+              </div>
+            </div>
           </article>
         </div>
       </section>
@@ -177,8 +426,19 @@
         <div class="section-heading reveal"><div class="section-label"><span>07</span> Achievements</div><h2 class="section-title">Milestones that keep me <em>moving forward.</em></h2></div>
         <div class="achievement-grid">
           <article class="achievement-card reveal"><span class="award-icon">✦</span><p class="card-kicker">Data Engineering</p><h3>DEPI Selection</h3><p>Selected for the Microsoft Data Engineer track, advancing focused learning in data science and engineering.</p></article>
-          <article class="achievement-card reveal"><span class="award-icon">◈</span><p class="card-kicker">Cybersecurity</p><h3>NTI Cybersecurity Academy</h3><p>Completed a certification program with <strong>60 technical hours</strong> of cybersecurity training.</p></article>
-          <article class="achievement-card reveal"><span class="award-icon">⌘</span><p class="card-kicker">Build in public</p><h3>GitHub Projects</h3><p>Continuing to document practical work and technical learning through hands-on projects.</p></article>
+          <article class="achievement-card reveal cert-interactive" data-open-modal="cert-modal-nti" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open NTI Cybersecurity Physical Certificate modal">
+            <span class="award-icon">◈</span>
+            <p class="card-kicker">Cybersecurity <span>•</span> Physical</p>
+            <h3>NTI Cybersecurity Academy <span class="tag-subtle">(Physical Certificate)</span></h3>
+            <p>Completed a certification program with <strong>60 technical hours</strong> of cybersecurity training. Issued in-person as an official physical certificate.</p>
+            <div style="margin-top: 14px;">
+              <button class="button button-ghost button-sm cert-btn" type="button" data-open-modal="cert-modal-nti">
+                <span>View Certificate</span>
+                <span class="btn-arrow" aria-hidden="true">⤢</span>
+              </button>
+            </div>
+          </article>
+          <article class="achievement-card reveal"><span class="award-icon">⌘</span><p class="card-kicker">Technical Practice</p><h3>Hands-on Projects</h3><p>Continuously applying computer science theory and security fundamentals through applied technical projects.</p></article>
         </div>
       </section>
 
@@ -193,28 +453,305 @@
         </div>
       </section>
 
-      <!-- 10. Contact & Footer -->
-      <section id="contact" class="contact-section">
-        <div class="section-shell contact-layout">
-          <div class="contact-copy reveal"><div class="section-label"><span>09</span> Contact</div><h2>Let’s make your data <em>work harder.</em></h2><p>Have a project, internship, or collaboration in mind? I’d be glad to hear from you.</p><div class="contact-direct"><a href="mailto:momr09989@gmail.com"><span>✉</span> momr09989@gmail.com</a><a href="tel:01121024708"><span>◌</span> 01121024708</a><a href="https://www.linkedin.com/in/" target="_blank" rel="noreferrer"><span>in</span> LinkedIn profile ↗</a></div></div>
-          <form class="contact-form reveal" id="contact-form" novalidate>
-            <div class="form-row"><label>Name<input type="text" name="name" placeholder="Your name" required /></label><label>Email<input type="email" name="email" placeholder="you@email.com" required /></label></div>
-            <label>Subject<input type="text" name="subject" placeholder="How can I help?" required /></label>
-            <label>Message<textarea name="message" rows="5" placeholder="Tell me a little about your project..." required></textarea></label>
-            <button class="button button-primary" type="submit">Send message <span aria-hidden="true">↗</span></button>
-            <p class="form-status" role="status" aria-live="polite"></p>
+      <!-- 10. Contact -->
+      <section id="contact" class="section section-shell contact-section">
+        <div class="contact-layout">
+          <div class="contact-copy reveal">
+            <div class="section-label"><span>09</span> Contact</div>
+            <h2>Let’s make your data <em>work harder.</em></h2>
+            <p>Have a project, internship, or collaboration in mind? I’d be glad to hear from you.</p>
+            <div class="contact-direct">
+              <a href="mailto:momr09989@gmail.com"><span>✉</span> momr09989@gmail.com</a>
+              <a href="tel:01121024708"><span>◌</span> 01121024708</a>
+              <a href="https://wa.me/201121024708" target="_blank" rel="noreferrer">
+                <span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:middle;">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                  </svg>
+                </span>
+                WhatsApp chat ↗
+              </a>
+              <a href="https://www.linkedin.com/in/omar-ebied-7b92a8357" target="_blank" rel="noreferrer"><span>in</span> LinkedIn profile ↗</a>
+            </div>
+          </div>
+          <form class="contact-form reveal" id="contact-form" action="https://formsubmit.co/momr09989@gmail.com" method="POST" novalidate>
+            <!-- Anti-spam & Backend Forwarding Config -->
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_subject" value="New Portfolio Message from omarebied.github.io" />
+            <input type="hidden" name="access_key" id="web3forms-key" value="" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="form-row">
+              <label for="contact-name">Name
+                <input type="text" id="contact-name" name="name" placeholder="Your name" required />
+              </label>
+              <label for="contact-email">Email
+                <input type="email" id="contact-email" name="email" placeholder="you@email.com" required />
+              </label>
+            </div>
+            <label for="contact-subject">Subject
+              <input type="text" id="contact-subject" name="subject" placeholder="How can I help?" required />
+            </label>
+            <label for="contact-message">Message
+              <textarea id="contact-message" name="message" rows="5" placeholder="Tell me a little about your project..." required></textarea>
+            </label>
+            <button class="button button-primary" type="submit" id="contact-submit-btn">
+              <span class="btn-text">Send message</span> <span class="btn-arrow" aria-hidden="true">↗</span>
+            </button>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
           </form>
         </div>
-        <footer class="site-footer">
-          <div class="section-shell footer-grid">
-            <div class="footer-brand"><a href="#home" class="brand"><span class="brand-mark">OE<span>.</span></span></a><p>Data-minded. Security-aware.<br />Always building.</p></div>
-            <div><p class="footer-label">Navigate</p><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a></div>
-            <div><p class="footer-label">Connect</p><a href="mailto:momr09989@gmail.com">Email</a><a href="https://www.linkedin.com/in/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a></div>
-          </div>
-          <div class="footer-bottom section-shell"><span>© <span id="current-year"></span> Omar Ebied. All rights reserved.</span><a href="#home">Back to top ↑</a></div>
-        </footer>
       </section>
     </main>
+
+    <!-- Footer: Organized strictly into 3 columns -->
+    <footer class="site-footer section-shell">
+      <div class="footer-grid">
+        <!-- Column 1: Direct contact info (Email, Phone, WhatsApp) -->
+        <div class="footer-col footer-col-contact">
+          <p class="footer-label">Direct Contact</p>
+          <ul class="footer-list" role="list">
+            <li>
+              <a href="mailto:momr09989@gmail.com" class="footer-contact-link">
+                <span class="footer-icon" aria-hidden="true">✉</span>
+                <span class="footer-link-text">momr09989@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:01121024708" class="footer-contact-link">
+                <span class="footer-icon" aria-hidden="true">◌</span>
+                <span class="footer-link-text">01121024708</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/201121024708" target="_blank" rel="noreferrer" class="footer-contact-link">
+                <span class="footer-icon footer-wa-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                  </svg>
+                </span>
+                <span class="footer-link-text">WhatsApp ↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: The "OE" logo and social links/icons (LinkedIn, GitHub) -->
+        <div class="footer-col footer-col-brand">
+          <a href="#home" class="brand footer-brand-link" aria-label="Omar Ebied home">
+            <span class="brand-mark">OE<span>.</span></span>
+            <span class="brand-name">Omar Ebied</span>
+          </a>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/omar-ebied-7b92a8357" target="_blank" rel="noreferrer" class="footer-social-btn" aria-label="Omar Ebied on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/omarebied" target="_blank" rel="noreferrer" class="footer-social-btn" aria-label="Omar Ebied on GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 3: A brief "Who Am I" statement -->
+        <div class="footer-col footer-col-whoami">
+          <p class="footer-label">Who Am I</p>
+          <p class="footer-bio">Omar Ebied. Aspiring Big Data Engineer building secure and scalable data solutions.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="current-year"></span> Omar Ebied. All rights reserved.</span>
+        <a href="#home">Back to top ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- CV Preview Modal -->
+  <div id="modal-cv" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-cv" aria-hidden="true">
+    <div class="cert-modal-backdrop" data-close-modal></div>
+    <div class="cert-modal-dialog cv-modal-dialog">
+      <div class="cert-modal-header">
+        <div class="cert-modal-heading">
+          <p class="card-kicker">Curriculum Vitae <span>•</span> Omar Ebied</p>
+          <h3 id="modal-title-cv">Curriculum Vitae (CV) Preview</h3>
+        </div>
+        <button class="cert-modal-close" type="button" aria-label="Close modal" data-close-modal>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="cert-modal-body cv-modal-body">
+        <div class="cert-modal-img-frame cv-modal-frame">
+          <img src="cv_preview.png" alt="Omar Mohamed Ebied - Curriculum Vitae Preview" class="cert-modal-img cv-modal-img" />
+        </div>
+        <div class="cert-modal-footer">
+          <div class="cert-modal-meta">
+            <span class="cert-id-label">Format:</span>
+            <code class="cert-id-code">PDF &amp; DOCX • Verified Version</code>
+          </div>
+          <a class="button button-primary cert-modal-btn" href="https://drive.google.com/drive/folders/1Z2VxGIPEn8gY56Sjb3hl_cMH1secLIpg?usp=sharing" target="_blank" rel="noopener noreferrer">
+            <span>Open in Drive / Download</span>
+            <span class="btn-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Image Modals / Popups -->
+  <!-- 1. HackerRank SQL (Basic) Modal -->
+      <div id="cert-modal-sql-basic" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-sql-basic" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close-modal></div>
+        <div class="cert-modal-dialog">
+          <div class="cert-modal-header">
+            <div class="cert-modal-heading">
+              <p class="card-kicker">HackerRank <span>•</span> Verified Credential</p>
+              <h3 id="modal-title-sql-basic">SQL (Basic) Certificate</h3>
+            </div>
+            <button class="cert-modal-close" type="button" aria-label="Close modal" data-close-modal>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="cert-modal-body">
+            <div class="cert-modal-img-frame">
+              <img src="hackerrank_sql_basic.png" alt="HackerRank SQL (Basic) Certificate - Omar Ebied" class="cert-modal-img" />
+            </div>
+            <div class="cert-modal-footer">
+              <div class="cert-modal-meta">
+                <span class="cert-id-label">Credential ID:</span>
+                <code class="cert-id-code">E25E7E2FC547</code>
+              </div>
+              <a class="button button-primary cert-modal-btn" href="https://www.hackerrank.com/certificates/iframe/E25E7E2FC547" target="_blank" rel="noopener noreferrer">
+                <span>Verify Certificate</span>
+                <span class="btn-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. HackerRank SQL (Advanced) Modal -->
+      <div id="cert-modal-sql-advanced" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-sql-advanced" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close-modal></div>
+        <div class="cert-modal-dialog">
+          <div class="cert-modal-header">
+            <div class="cert-modal-heading">
+              <p class="card-kicker">HackerRank <span>•</span> Verified Credential</p>
+              <h3 id="modal-title-sql-advanced">SQL (Advanced) Certificate</h3>
+            </div>
+            <button class="cert-modal-close" type="button" aria-label="Close modal" data-close-modal>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="cert-modal-body">
+            <div class="cert-modal-img-frame">
+              <img src="hackerrank_sql_advanced.png" alt="HackerRank SQL (Advanced) Certificate - Omar Ebied" class="cert-modal-img" />
+            </div>
+            <div class="cert-modal-footer">
+              <div class="cert-modal-meta">
+                <span class="cert-id-label">Credential ID:</span>
+                <code class="cert-id-code">27a561ca8d0f</code>
+              </div>
+              <a class="button button-primary cert-modal-btn" href="https://www.hackerrank.com/certificates/iframe/27a561ca8d0f" target="_blank" rel="noopener noreferrer">
+                <span>Verify Certificate</span>
+                <span class="btn-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Kaggle Python Modal -->
+      <div id="cert-modal-kaggle-python" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-kaggle-python" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close-modal></div>
+        <div class="cert-modal-dialog">
+          <div class="cert-modal-header">
+            <div class="cert-modal-heading">
+              <p class="card-kicker">Kaggle <span>•</span> Verified Credential</p>
+              <h3 id="modal-title-kaggle-python">Python Certificate</h3>
+            </div>
+            <button class="cert-modal-close" type="button" aria-label="Close modal" data-close-modal>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="cert-modal-body">
+            <div class="cert-modal-img-frame">
+              <img src="kaggle_python_certificate.png" alt="Kaggle Python Certificate - Omar Ebied" class="cert-modal-img" />
+            </div>
+            <div class="cert-modal-footer">
+              <div class="cert-modal-meta">
+                <span class="cert-id-label">Learner:</span>
+                <code class="cert-id-code">omarebied / python</code>
+              </div>
+              <a class="button button-primary cert-modal-btn" href="https://www.kaggle.com/learn/certification/omarebied/python" target="_blank" rel="noopener noreferrer">
+                <span>Verify Certificate</span>
+                <span class="btn-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Kaggle Pandas Modal -->
+      <div id="cert-modal-kaggle-pandas" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-kaggle-pandas" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close-modal></div>
+        <div class="cert-modal-dialog">
+          <div class="cert-modal-header">
+            <div class="cert-modal-heading">
+              <p class="card-kicker">Kaggle <span>•</span> Verified Credential</p>
+              <h3 id="modal-title-kaggle-pandas">Pandas Certificate</h3>
+            </div>
+            <button class="cert-modal-close" type="button" aria-label="Close modal" data-close-modal>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="cert-modal-body">
+            <div class="cert-modal-img-frame">
+              <img src="kaggle_pandas_certificate.png" alt="Kaggle Pandas Certificate - Omar Ebied" class="cert-modal-img" />
+            </div>
+            <div class="cert-modal-footer">
+              <div class="cert-modal-meta">
+                <span class="cert-id-label">Learner:</span>
+                <code class="cert-id-code">omarebied / pandas</code>
+              </div>
+              <a class="button button-primary cert-modal-btn" href="https://www.kaggle.com/learn/certification/omarebied/pandas" target="_blank" rel="noopener noreferrer">
+                <span>Verify Certificate</span>
+                <span class="btn-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. NTI Cybersecurity Modal -->
+      <div id="cert-modal-nti" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-nti" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close-modal></div>
+        <div class="cert-modal-dialog">
+          <div class="cert-modal-header">
+            <div class="cert-modal-heading">
+              <p class="card-kicker">National Telecommunication Institute <span>•</span> Physical Certificate</p>
+              <h3 id="modal-title-nti">NTI Cybersecurity Certification</h3>
+            </div>
+            <button class="cert-modal-close" type="button" aria-label="Close modal" data-close-modal>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="cert-modal-body">
+            <div class="cert-modal-img-frame">
+              <img src="nti_cybersecurity_certificate.jpeg" alt="NTI Cybersecurity Physical Certificate - Omar Ebied" class="cert-modal-img" id="nti-modal-img" />
+            </div>
+            <div class="cert-modal-footer cert-modal-footer-centered">
+              <span class="physical-cert-tag">◈ Physical Paper Certificate (Issued In-Person)</span>
+              <p class="cert-modal-note">60 technical hours of practical training in network defense, reconnaissance, traffic packet analysis, and security fundamentals at NTI Cybersecurity Academy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="script.js"></script>
   </body>
 </html>

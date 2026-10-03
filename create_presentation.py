@@ -707,9 +707,10 @@ def main():
             "num": "PROJECT 01",
             "cat": "DATA & DATABASES",
             "title": "SQL Database Project",
+            "role": "Solo Database Designer / Developer.",
             "tools": "MS SQL Server · Relational Modeling · T-SQL",
-            "problem": "Organize connected business entities in a scalable, strictly normalized format.",
-            "solution": "Engineered a relational database schema with structured primary/foreign keys, complex JOIN queries, and constraints.",
+            "challenge": "Organize connected business entities in a scalable, strictly normalized format.",
+            "action": "Engineered a relational database schema with structured primary/foreign keys, complex JOIN queries, and constraints.",
             "result": "Reliable data foundation ensuring zero duplication and fast querying.",
             "accent": CYAN
         },
@@ -717,9 +718,10 @@ def main():
             "num": "PROJECT 02",
             "cat": "CYBERSECURITY LAB",
             "title": "MITM Lab (Man-in-the-Middle)",
+            "role": "Solo Security Researcher (Executed full attack simulation independently).",
             "tools": "Kali Linux · Wireshark · mitmproxy · ARP Spoofing",
-            "problem": "Examine how unencrypted network traffic and spoofed ARP frames compromise integrity.",
-            "solution": "Simulated ARP cache poisoning in a controlled sandbox to observe packet flow and credential leakage.",
+            "challenge": "Examine how unencrypted network traffic and spoofed ARP frames compromise integrity.",
+            "action": "Simulated ARP cache poisoning in a controlled sandbox to observe packet flow and credential leakage.",
             "result": "Actionable understanding of attack vectors and essential encryption safeguards.",
             "accent": LIME
         },
@@ -727,9 +729,10 @@ def main():
             "num": "PROJECT 03",
             "cat": "WEB DEVELOPMENT",
             "title": "Online Book Store Website",
+            "role": "Front-End Developer (UI design & implementation via HTML/CSS).",
             "tools": "HTML5 · CSS3 · Modern JavaScript · Responsive UI",
-            "problem": "Build an engaging, accessible catalog browsing experience for book lovers.",
-            "solution": "Developed an interactive client-side web interface with catalog filtering and responsive design.",
+            "challenge": "Build an engaging, accessible catalog browsing experience for book lovers.",
+            "action": "Developed an interactive client-side web interface with catalog filtering and responsive design.",
             "result": "Smooth, polished front-end product demonstrating modern web engineering standards.",
             "accent": TEXT_WHITE
         }
@@ -740,7 +743,7 @@ def main():
         card_x = Inches(0.9) + Inches(i * 3.9)
         add_card(slide7, card_x, Inches(2.0), card_w, Inches(4.6), SURFACE_COLOR, BORDER_COLOR)
 
-        p_box = slide7.shapes.add_textbox(card_x + Inches(0.3), Inches(2.2), card_w - Inches(0.6), Inches(4.2))
+        p_box = slide7.shapes.add_textbox(card_x + Inches(0.28), Inches(2.15), card_w - Inches(0.56), Inches(4.3))
         tf_p = p_box.text_frame
         tf_p.word_wrap = True
         tf_p.margin_left = tf_p.margin_top = tf_p.margin_right = tf_p.margin_bottom = 0
@@ -748,45 +751,51 @@ def main():
         p_head = tf_p.paragraphs[0]
         p_head.text = f"{proj['num']}  •  {proj['cat']}"
         p_head.font.name = FONT_MONO
-        p_head.font.size = Pt(10)
+        p_head.font.size = Pt(9.5)
         p_head.font.bold = True
         p_head.font.color.rgb = proj["accent"]
 
         p_title = tf_p.add_paragraph()
         p_title.text = proj["title"]
         p_title.font.name = FONT_HEADING
-        p_title.font.size = Pt(17)
+        p_title.font.size = Pt(16.5)
         p_title.font.bold = True
         p_title.font.color.rgb = TEXT_WHITE
-        p_title.space_before = Pt(4)
+        p_title.space_before = Pt(3)
 
-        p_tools = tf_p.add_paragraph()
-        p_tools.text = proj["tools"]
-        p_tools.font.name = FONT_MONO
-        p_tools.font.size = Pt(9.5)
-        p_tools.font.color.rgb = CYAN
-        p_tools.space_before = Pt(4)
-        p_tools.space_after = Pt(10)
+        p_role_lbl = tf_p.add_paragraph()
+        p_role_lbl.text = "Role:"
+        p_role_lbl.font.name = FONT_HEADING
+        p_role_lbl.font.size = Pt(10)
+        p_role_lbl.font.bold = True
+        p_role_lbl.font.color.rgb = CYAN
+        p_role_lbl.space_before = Pt(3)
 
-        # Problem / Solution / Result
+        p_role_val = tf_p.add_paragraph()
+        p_role_val.text = proj["role"]
+        p_role_val.font.name = FONT_BODY
+        p_role_val.font.size = Pt(9.5)
+        p_role_val.font.color.rgb = TEXT_WHITE
+
+        # Challenge / Action / Result
         sections = [
-            ("Problem", proj["problem"]),
-            ("Solution", proj["solution"]),
+            ("Challenge", proj["challenge"]),
+            ("Action", proj["action"]),
             ("Result", proj["result"])
         ]
         for sec_name, sec_val in sections:
             p_sn = tf_p.add_paragraph()
             p_sn.text = f"{sec_name}:"
             p_sn.font.name = FONT_HEADING
-            p_sn.font.size = Pt(10.5)
+            p_sn.font.size = Pt(10)
             p_sn.font.bold = True
             p_sn.font.color.rgb = LIME
-            p_sn.space_before = Pt(4)
+            p_sn.space_before = Pt(3)
 
             p_sv = tf_p.add_paragraph()
             p_sv.text = sec_val
             p_sv.font.name = FONT_BODY
-            p_sv.font.size = Pt(10.5)
+            p_sv.font.size = Pt(9.5)
             p_sv.font.color.rgb = TEXT_MUTED
 
     add_footer_tag(slide7)
@@ -796,37 +805,37 @@ def main():
     # =========================================================================
     slide8 = prs.slides.add_slide(blank_layout)
     add_slide_background(slide8)
-    add_header(slide8, "07", "Achievements", "Milestones that keep me moving forward.", "Key accomplishments reflecting technical commitment, specialized training, and dedication.")
+    add_header(slide8, "07", "Achievements & Certifications", "Milestones that keep me moving forward.", "Key accomplishments reflecting technical commitment, specialized training, and dedication.")
 
     achievements = [
         {
             "icon": "✦",
-            "kicker": "DATA ENGINEERING",
-            "title": "DEPI Selection",
-            "sub": "Microsoft Data Engineer Track",
-            "desc": "Competitively selected for the prestigious Digital Egypt Pioneers Initiative (DEPI). Undergoing intensive specialized training in big data pipelines, enterprise analytics, and cloud databases.",
-            "stat": "Top Tier",
-            "stat_label": "Selection Cohort",
+            "kicker": "SQL CERTIFICATION",
+            "title": "SQL (Basic) Certificate",
+            "sub": "HackerRank  •  ID: E25E7E2FC547",
+            "desc": "Officially certified in relational database queries, complex filtering, joins, aggregations, and data retrieval. Verified credential on HackerRank.",
+            "stat": "Verified",
+            "stat_label": "HackerRank Credential",
             "color": CYAN
         },
         {
             "icon": "◈",
             "kicker": "CYBERSECURITY ACADEMY",
             "title": "NTI Cybersecurity Certification",
-            "sub": "National Telecommunication Institute",
+            "sub": "National Telecommunication Institute (Physical Certificate)",
             "desc": "Successfully completed an intensive 60 technical hours cybersecurity training academy covering networking, reconnaissance, vulnerability assessment, and defense fundamentals.",
             "stat": "60 Hours",
-            "stat_label": "Technical Training",
+            "stat_label": "Physical Certificate",
             "color": LIME
         },
         {
             "icon": "⌘",
-            "kicker": "OPEN SOURCE & BUILDING",
-            "title": "Build in Public & GitHub",
-            "sub": "Independent Code Architecture",
-            "desc": "Continuously applying computer science theory into real-world code. Publishing and documenting codebases, security labs, and database designs on GitHub for transparency and collaboration.",
-            "stat": "3+ Labs",
-            "stat_label": "Hands-On Repos",
+            "kicker": "DATA ENGINEERING",
+            "title": "DEPI Selection Track",
+            "sub": "Microsoft Data Engineer Track",
+            "desc": "Competitively selected for the prestigious Digital Egypt Pioneers Initiative (DEPI). Undergoing intensive specialized training in big data pipelines, enterprise analytics, and cloud databases.",
+            "stat": "Top Tier",
+            "stat_label": "Selection Cohort",
             "color": TEXT_WHITE
         }
     ]
@@ -931,7 +940,7 @@ def main():
     contacts = [
         ("EMAIL ADDRESS", "momr09989@gmail.com", "Direct correspondence for inquiries and project discussions", "✉", LIME),
         ("PHONE NUMBER", "01121024708  /  (+20) 1121024708", "Call or WhatsApp for immediate communication", "✆", CYAN),
-        ("PROFESSIONAL PROFILES", "LinkedIn  •  GitHub", "Connect for career updates and inspect open source repositories", "◈", TEXT_WHITE),
+        ("PROFESSIONAL PROFILES", "linkedin.com/in/omar-ebied-7b92a8357", "Connect for career updates and professional discussions", "◈", TEXT_WHITE),
         ("LOCATION & STATUS", "Cairo, Egypt  •  Helwan National University", "Open to on-site, hybrid, and remote opportunities", "⌖", LIME)
     ]
 
