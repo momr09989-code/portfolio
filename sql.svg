@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="sqlCylGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="sqlPlate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#70f0df"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <!-- Top cylinder cap -->
+  <ellipse cx="32" cy="14" rx="24" ry="8" fill="url(#sqlPlate)"/>
+  <!-- Top disk layer -->
+  <path d="M8 14v10c0 4.418 10.745 8 24 8s24-3.582 24-8V14" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <!-- Middle disk layer -->
+  <path d="M8 26v10c0 4.418 10.745 8 24 8s24-3.582 24-8V26" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round"/>
+  <!-- Bottom disk layer filled -->
+  <path d="M8 38v10c0 4.418 10.745 8 24 8s24-3.582 24-8V38" fill="url(#sqlCylGrad)"/>
+  <ellipse cx="32" cy="38" rx="24" ry="8" fill="#0369a1"/>
+  <!-- SQL Text Badge -->
+  <rect x="18" y="24" width="28" height="15" rx="4" fill="#0b1b24" stroke="#70f0df" stroke-width="1.5"/>
+  <text x="32" y="35" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="10" fill="#c9f76c" letter-spacing="1">SQL</text>
+</svg>

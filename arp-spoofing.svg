@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Client (Top Left) -->
+  <rect x="8" y="10" width="14" height="14" rx="3" fill="#0f262d" stroke="#38bdf8" stroke-width="1.8"/>
+  <path d="M12 21h6" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Gateway / Router (Top Right) -->
+  <rect x="42" y="10" width="14" height="14" rx="3" fill="#0f262d" stroke="#38bdf8" stroke-width="1.8"/>
+  <circle cx="49" cy="17" r="2" fill="#38bdf8"/>
+  <!-- Legitimate Direct Connection (Dotted/Severed) -->
+  <line x1="22" y1="17" x2="42" y2="17" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="30" y1="14" x2="34" y2="20" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Attacker / Spoofing Node (Bottom Center) -->
+  <circle cx="32" cy="46" r="10" fill="#2a1215" stroke="#f43f5e" stroke-width="2"/>
+  <path d="M28 43l8 6M36 43l-8 6" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Poisoned Redirection Arcs -->
+  <path d="M16 24v12a4 4 0 0 0 4 4h4" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M48 24v12a4 4 0 0 1-4 4h-4" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Warning Flash -->
+  <polygon points="32,32 30,36 34,36" fill="#fbbf24"/>
+</svg>

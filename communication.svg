@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Primary Speech Bubble -->
+  <path d="M10 16a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4h-8l-7 6v-6h-9a4 4 0 0 1-4-4V16z" fill="#0e2a38" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Speech Dots in Primary -->
+  <circle cx="19" cy="23" r="2" fill="#70f0df"/>
+  <circle cx="26" cy="23" r="2" fill="#70f0df"/>
+  <circle cx="33" cy="23" r="2" fill="#70f0df"/>
+
+  <!-- Secondary Responsive Speech Bubble -->
+  <path d="M54 30a3 3 0 0 0-3-3H38a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h4v5l6-5h6a3 3 0 0 0 3-3V30z" fill="#14342b" stroke="#34d399" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Response lines -->
+  <line x1="41" y1="36" x2="49" y2="36" stroke="#c9f76c" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
