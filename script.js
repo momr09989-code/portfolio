@@ -982,4 +982,19 @@
       }
     });
   }
+
+  // Graceful Image Fallback Handler for GitHub Pages & Local Paths
+  document.querySelectorAll('.skill-tech-icon, .freelance-platform-img, .footer-btn-icon').forEach((img) => {
+    img.addEventListener('error', function () {
+      if (this.dataset.fallbackTried) return;
+      this.dataset.fallbackTried = 'true';
+      const src = this.getAttribute('src');
+      if (!src) return;
+      if (src.startsWith('icons/') || src.startsWith('./icons/')) {
+        this.src = src.replace(/^(\.\/)?icons\//, '');
+      } else {
+        this.src = 'icons/' + src.replace(/^\.\//, '');
+      }
+    });
+  });
 })();
