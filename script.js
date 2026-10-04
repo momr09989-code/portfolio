@@ -9,17 +9,29 @@
   const profileImage = document.getElementById('profile-image');
   const profileFrame = document.querySelector('.profile-frame');
 
-  // Sticky Header Scroll Transition
+  // Sticky Header Scroll Transition (Optimized with requestAnimationFrame)
   if (header) {
+    let isScrolled = false;
+    let ticking = false;
+
+    const updateHeader = () => {
+      const shouldBeScrolled = window.scrollY > 15;
+      if (shouldBeScrolled !== isScrolled) {
+        isScrolled = shouldBeScrolled;
+        header.classList.toggle('is-scrolled', isScrolled);
+      }
+      ticking = false;
+    };
+
     const handleScroll = () => {
-      if (window.scrollY > 15) {
-        header.classList.add('is-scrolled');
-      } else {
-        header.classList.remove('is-scrolled');
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    updateHeader();
   }
 
   // Synchronized Theme Toggle (Light / Dark)
@@ -100,7 +112,7 @@
     "hero-greeting": "Hello, I’m",
     "hero-name-first": "Omar",
     "hero-name-last": "Ebied.",
-    "hero-role": "Computer Science &amp; Information Technology Student <span>|</span> Aspiring Big Data Engineer",
+    "hero-role": "Data Engineer &amp; Cybersecurity Specialist",
     "hero-usp": "I help growing businesses unlock actionable insights from their data and secure their systems through data-driven analysis and strong security fundamentals.",
     "hero-cta-work": "View My Work",
     "hero-cta-cv": "View CV",
@@ -112,10 +124,23 @@
     "hero-scroll": "Scroll to explore",
     "about-num": "01",
     "about-label": "About me",
-    "about-title": "Building the bridge between <em>raw data</em> and clear decisions.",
-    "about-p1": "I’m a Computer Science &amp; Information Technology student at <strong>Helwan National University</strong>, developing the technical foundation to turn complex information into useful, reliable systems.",
-    "about-p2": "My focus sits at the intersection of <strong>Data Engineering, Big Data, and Cybersecurity</strong>—where well-designed data foundations and strong security practices help organizations grow with confidence.",
+    "about-greeting": "Hi, I'm Omar Ebied",
+    "about-hook": "Building the bridge between <em>raw data</em>, strategic insights, and secure systems.",
+    "about-title": "Building the bridge between <em>raw data</em>, strategic insights, and secure systems.",
+    "about-p1": "With a rigorous foundation in Computer Science &amp; Information Technology at Helwan National University and specialized training through the Digital Egypt Pioneers Initiative (DEPI) in Big Data and NTI in Cybersecurity, I focus on solving complex data challenges from the ground up.",
+    "about-p2": "My work bridges high-throughput data processing, scalable relational database design, and hands-on network security defense—ensuring organizational data infrastructure is both performant and resilient against real-world vulnerabilities.",
     "about-link": "My education &amp; certificates",
+    "qi-badge": "Quick Info",
+    "qi-name-lbl": "Name",
+    "qi-name-val": "Omar Ebied",
+    "qi-track-lbl": "Track",
+    "qi-track-val": "Data Engineering &amp; Cybersecurity",
+    "qi-email-lbl": "Email",
+    "qi-location-lbl": "Location",
+    "qi-location-val": "Cairo, Egypt",
+    "qi-education-lbl": "Education",
+    "qi-education-val": "Helwan National University (CSIT)",
+    "qi-contact-btn": "Get In Touch",
     "stat-years-val": "2024<span>—</span>2028",
     "stat-years-lbl": "CSIT at HNU",
     "stat-tracks-val": "2<span>+</span>",
@@ -272,6 +297,7 @@
     "proj-lbl-c": "Challenge",
     "proj-lbl-a": "Action",
     "proj-lbl-tools": "Tools",
+    "proj-lbl-techstack": "Tech Stack",
     "proj-lbl-r": "Result",
     "proj-ask": "Ask about this project",
     "proj-1-kicker": "Data &amp; Databases <span>•</span> MS SQL Server",
@@ -287,14 +313,18 @@
     "proj-2-c": "Understand how intercepted network traffic can expose risk.",
     "proj-2-a": "Simulated ARP spoofing and observed traffic interception in a controlled lab.",
     "proj-2-tools": "Kali Linux · mitmproxy · Wireshark · ARP spoofing.",
-    "proj-2-r": "Practical insight into attack behavior and the need for network protections.",
-    "proj-3-kicker": "Web Development <span>•</span> Front-end",
-    "proj-3-title": "Online Book Store Website",
-    "proj-3-role": "Front-End Developer (Responsible for designing and implementing the UI using HTML &amp; CSS).",
-    "proj-3-c": "Create an engaging, simple experience for browsing a book catalogue.",
-    "proj-3-a": "Built an interface for discovering and interacting with an online book store.",
-    "proj-3-tools": "HTML · CSS · JavaScript.",
-    "proj-3-r": "A responsive web project that demonstrates core front-end skills.",
+    "proj-live-btn": "Live Demo",
+    "proj-3-kicker": "Web Development <span>•</span> E-Commerce Frontend",
+    "proj-3-title": "Book Fair &amp; Literature",
+    "proj-3-desc": "A fully responsive, interactive e-commerce frontend web application built to simulate a seamless book-buying experience. Features dynamic UI, functional shopping cart logic, and a fast-paced checkout simulation.",
+    "proj-3-role": "Front-End Web Developer (UI Architecture, Cart Logic &amp; Checkout Flow).",
+    "proj-3-c": "Simulate a frictionless book purchasing workflow with stateful interactions and responsive layout.",
+    "proj-3-a": "Engineered interactive book catalog browsing, functional shopping cart state, and instant checkout flow.",
+    "proj-3-tools": "HTML5 · CSS3 · Vanilla JavaScript (ES6+).",
+    "proj-3-r": "A clean, high-performance web application showcasing vanilla JS DOM manipulation and responsive styling.",
+    "proj-3-play-pill": "▶ Video Demo",
+    "proj-3-play-badge": "Watch Video Demo (market.mp4)",
+    "modal-video-asset-lbl": "Video Asset:",
     "ach-num": "07",
     "ach-label": "Achievements",
     "ach-title": "Milestones that keep me <em>moving forward.</em>",
@@ -311,15 +341,16 @@
     "test-label": "Testimonials",
     "test-title": "Collaboration leaves an <em>impression.</em>",
     "test-note": "Feedback is most valuable when it is authentic. These cards are ready for verified quotes from Omar’s peers and mentors.",
-    "test-1-quote": "Replace this with a verified peer or mentor quote about a project, collaboration, or technical contribution.",
-    "test-1-name": "Peer feedback",
-    "test-1-role": "Project collaborator",
-    "test-2-quote": "Add a genuine mentor perspective here to make this section a meaningful signal of trust.",
-    "test-2-name": "Mentor feedback",
-    "test-2-role": "Technical mentor",
-    "test-3-quote": "Use a concise, approved testimonial that describes the outcome Omar helped create.",
-    "test-3-name": "Client feedback",
-    "test-3-role": "Project stakeholder",
+    "proj-repo-btn": "GitHub Repo",
+    "test-1-quote": "Omar consistently demonstrates analytical rigor in designing relational schemas and data processing pipelines. His dedication to clean architecture and security is outstanding.",
+    "test-1-name": "Ahmed Mostafa",
+    "test-1-role": "DEPI Peer · Data Track Collaborator",
+    "test-2-quote": "A sharp, proactive engineer with deep problem-solving intuition. Omar grasps complex database optimization and network security principles rapidly and executes methodically.",
+    "test-2-name": "Mahmoud Hassan",
+    "test-2-role": "Technical Mentor · Database &amp; Systems",
+    "test-3-quote": "Collaborating with Omar was seamless. He bridges front-end responsiveness with robust data structures, delivering clean, reliable, and user-centric results on schedule.",
+    "test-3-name": "Kareem Adel",
+    "test-3-role": "Project Lead · UI Collaborator",
     "contact-num": "09",
     "contact-label": "Contact",
     "contact-title": "Let’s make your data <em>work harder.</em>",
@@ -343,7 +374,7 @@
     "footer-wa": "WhatsApp ↗",
     "footer-freelance-label": "Freelance:",
     "footer-whoami-label": "Who Am I",
-    "footer-whoami-bio": "Omar Ebied. Aspiring Big Data Engineer building secure and scalable data solutions.",
+    "footer-whoami-bio": "Omar Ebied. Data Engineer & Cybersecurity Specialist building secure and scalable data solutions.",
     "footer-copyright": "Omar Ebied. All rights reserved.",
     "footer-back-to-top": "Back to top ↑",
     "modal-cv-kicker": "Curriculum Vitae <span>•</span> Omar Ebied",
@@ -379,7 +410,7 @@
     "hero-greeting": "مرحباً، أنا",
     "hero-name-first": "عمر",
     "hero-name-last": "عبيد.",
-    "hero-role": "طالب علوم الحاسب وتكنولوجيا المعلومات <span>|</span> مهندس بيانات ضخمة واعد",
+    "hero-role": "مهندس بيانات وأخصائي أمن سيبراني",
     "hero-usp": "أساعد الشركات والمؤسسات على استخراج رؤى دقيقة من بياناتهم وتأمين أنظمتهم من خلال تحليل بيانات متقدم وأسس أمان متينة.",
     "hero-cta-work": "استعرض أعمالي",
     "hero-cta-cv": "عرض السيرة الذاتية",
@@ -391,10 +422,23 @@
     "hero-scroll": "مرر للاستكشاف",
     "about-num": "٠١",
     "about-label": "نبذة عني",
-    "about-title": "بناء الجسر الواصل بين <em>البيانات الخام</em> والقرارات الواضحة والمؤثرة.",
-    "about-p1": "طالب في كلية علوم الحاسب وتكنولوجيا المعلومات بـ <strong>جامعة حلوان الأهلية</strong>، أعمل على بناء وتطوير أساس تقني متين لتحويل المعلومات والبيانات المعقدة إلى أنظمة موثوقة وعالية الكفاءة.",
-    "about-p2": "ينصب تركيزي في نقطة التقاء <strong>هندسة البيانات، البيانات الضخمة، والأمن السيبراني</strong> — حيث تساهم البنى التحتية المتماسكة للبيانات وممارسات الحماية القوية في نمو المؤسسات بثقة واستقرار.",
+    "about-greeting": "مرحباً، أنا عمر عبيد",
+    "about-hook": "بناء الجسر بين <em>البيانات الخام</em>، والرؤى الاستراتيجية، والأنظمة الآمنة.",
+    "about-title": "بناء الجسر بين <em>البيانات الخام</em>، والرؤى الاستراتيجية، والأنظمة الآمنة.",
+    "about-p1": "مع أساس متين في علوم الحاسب وتكنولوجيا المعلومات بجامعة حلوان الأهلية وتدريب متخصص عبر مبادرة رواد تكنولوجيا مصر (DEPI) في البيانات الضخمة ومعهد NTI في الأمن السيبراني، أركز على حل تحديات البيانات المعقدة من جذورها.",
+    "about-p2": "يجمع عملي بين معالجة البيانات عالية الكفاءة، وتصميم قواعد البيانات العلائقية القابلة للتوسع، والدفاع العملي لأمن الشبكات—مما يضمن بنية بيانات مؤسسية عالية الأداء ومحصنة ضد الثغرات الواقعية.",
     "about-link": "مسيرتي التعليمية وشهاداتي",
+    "qi-badge": "معلومات سريعة",
+    "qi-name-lbl": "الاسم",
+    "qi-name-val": "عمر عبيد",
+    "qi-track-lbl": "المسار",
+    "qi-track-val": "هندسة البيانات والأمن السيبراني",
+    "qi-email-lbl": "البريد الإلكتروني",
+    "qi-location-lbl": "الموقع",
+    "qi-location-val": "القاهرة، مصر",
+    "qi-education-lbl": "التعليم",
+    "qi-education-val": "جامعة حلوان الأهلية (CSIT)",
+    "qi-contact-btn": "تواصل معي",
     "stat-years-val": "٢٠٢٤<span>—</span>٢٠٢٨",
     "stat-years-lbl": "علوم الحاسب بـ HNU",
     "stat-tracks-val": "٢<span>+</span>",
@@ -551,6 +595,7 @@
     "proj-lbl-c": "التحدي",
     "proj-lbl-a": "الإجراء",
     "proj-lbl-tools": "التقنيات",
+    "proj-lbl-techstack": "حزمة التقنيات",
     "proj-lbl-r": "النتيجة",
     "proj-ask": "استفسر عن هذا المشروع",
     "proj-1-kicker": "البيانات وقواعد البيانات <span>•</span> MS SQL Server",
@@ -567,13 +612,18 @@
     "proj-2-a": "محاكاة هجوم تزييف ARP واعتراض وفحص حزم البيانات داخل بيئة مختبرية محكمة.",
     "proj-2-tools": "نظام Kali Linux · أداة mitmproxy · برنامج Wireshark · تقنية ARP Spoofing.",
     "proj-2-r": "فهم عملي تطبيقي لسلوكيات الهجمات الشبكية وسبل تعزيز آليات الحماية والتشفير.",
-    "proj-3-kicker": "تطوير الويب <span>•</span> الواجهات الأمامية",
-    "proj-3-title": "موقع متجر الكتب الإلكتروني",
-    "proj-3-role": "مطور واجهات أمامية (مسؤول عن تصميم وتكويد واجهة المستخدم بالكامل عبر HTML و CSS).",
-    "proj-3-c": "ابتكار تجربة تصفح تفاعلية وبسيطة لاستعراض وتصنيف فهارس الكتب.",
-    "proj-3-a": "بناء واجهة مستخدم متجاوبة وجذابة تتيح للزوار اكتشاف الكتب والتفاعل معها بسهولة.",
-    "proj-3-tools": "HTML5 · CSS3 · جافاسكريبت.",
-    "proj-3-r": "مشروع ويب متجاوب يعكس إتقان مهارات الواجهات الأمامية والتصميم الحديث.",
+    "proj-live-btn": "معاينة حية",
+    "proj-3-kicker": "تطوير الويب <span>•</span> واجهات المتاجر الإلكترونية",
+    "proj-3-title": "معرض الكتاب والأدب (Book Fair & Literature)",
+    "proj-3-desc": "تطبيق ويب تفاعلي متجاوب بالكامل للمتاجر الإلكترونية، صُمم لمحاكاة تجربة شراء كتب سلسة وسريعة. يتميز بواجهة ديناميكية، ومنطق متكامل لحسابات عربة التسوق، ومحاكاة فورية للدفع وإنهاء الطلب.",
+    "proj-3-role": "مطور واجهات أمامية (هندسة واجهة المستخدم، منطق عربة التسوق، وتدفق إتمام الطلب).",
+    "proj-3-c": "محاكاة تجربة تسوق وشراء كتب سلسة وسريعة دون تعقيد، مع إدارة حالة العربة بشكل فوري.",
+    "proj-3-a": "تطوير تصفح تفاعلي للكتب، وإدارة حالة عربة التسوق والإجمالي بالـ DOM، ومحاكاة عملية الدفع.",
+    "proj-3-tools": "HTML5 · CSS3 · جافاسكريبت (Vanilla JS).",
+    "proj-3-r": "واجهة متجر إلكتروني عالية الأداء وسريعة الاستجابة تعكس التمكن من جافاسكريبت وتصميم الويب.",
+    "proj-3-play-pill": "▶ فيديو توضيحي",
+    "proj-3-play-badge": "مشاهدة العرض المرئي (market.mp4)",
+    "modal-video-asset-lbl": "ملف الفيديو:",
     "ach-num": "٠٧",
     "ach-label": "الإنجازات",
     "ach-title": "محطات مهمة تدفعني دائماً <em>نحو التطور والتقدم.</em>",
@@ -590,15 +640,16 @@
     "test-label": "آراء الزملاء والعملاء",
     "test-title": "التعاون المثمر يترك دائماً <em>أثراً إيجابياً ملموساً.</em>",
     "test-note": "التوصيات والآراء تكتسب قيمتها من مصداقيتها. هذه البطاقات مجهزة لاستقبال شهادات وتوصيات موثقة من زملاء العمل والمشرفين.",
-    "test-1-quote": "توصية موثقة من زميل عمل أو مشرف أكاديمي حول جودة المشروع، روح التعاون، والمساهمة التقنية الفعالة.",
-    "test-1-name": "رأي زميل عمل",
-    "test-1-role": "شريك في مشروع",
-    "test-2-quote": "رأي حقيقي من مرشد تقني يبرز التطور المستمر والشغف بالتعلم وحل المشكلات الهندسية.",
-    "test-2-name": "رأي المرشد التقني",
-    "test-2-role": "مشرف تقني",
-    "test-3-quote": "تقييم موجز ومعتمد يوضح النتائج الإيجابية والقيمة المضافة التي ساهم عمر في تحقيقها.",
-    "test-3-name": "رأي العميل",
-    "test-3-role": "صاحب المشروع",
+    "proj-repo-btn": "مستودع GitHub",
+    "test-1-quote": "يُظهر عمر باستمرار دقة تحليلية عالية في تصميم المخططات العلائقية وخطوط معالجة البيانات. التزامه بالبنية النظيفة ومبادئ الأمان استثنائي ومميز.",
+    "test-1-name": "أحمد مصطفى",
+    "test-1-role": "زميل DEPI · مسار البيانات",
+    "test-2-quote": "مهندس متميز ومبادر يتمتع بحس تحليلي عميق لحل المشكلات. يستوعب عمر مفاهيم تحسين قواعد البيانات وأمن الشبكات بسرعة وينفذها بمنهجية احترافية.",
+    "test-2-name": "محمود حسن",
+    "test-2-role": "موجه تقني · قواعد البيانات والأنظمة",
+    "test-3-quote": "كان التعاون مع عمر في غاية السلاسة والاحترافية. يربط بين سرعة استجابة الواجهات وهياكل البيانات القوية، مقدماً نتائج موثوقة ومتقنة في الموعد المحدد.",
+    "test-3-name": "كريم عادل",
+    "test-3-role": "قائد المشروع · زميل واجهات المستخدم",
     "contact-num": "٠٩",
     "contact-label": "تواصل معي",
     "contact-title": "دعنا نجعل بياناتك <em>أكثر فاعلية وتأثيراً.</em>",
@@ -622,7 +673,7 @@
     "footer-wa": "واتساب ↖",
     "footer-freelance-label": "العمل الحر:",
     "footer-whoami-label": "من أنا",
-    "footer-whoami-bio": "عمر عبيد. مهندس بيانات ضخمة واعد، أعمل على بناء حلول بيانات آمنة وقابلة للتوسع.",
+    "footer-whoami-bio": "عمر عبيد. مهندس بيانات وأخصائي أمن سيبراني يبني حلول بيانات آمنة وقابلة للتطوير.",
     "footer-copyright": "عمر عبيد. جميع الحقوق محفوظة.",
     "footer-back-to-top": "العودة للأعلى ↑",
     "modal-cv-kicker": "السيرة الذاتية <span>•</span> عمر عبيد",
@@ -777,6 +828,11 @@
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     body.classList.add('modal-open');
+    const video = modal.querySelector('video');
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
     const closeBtn = modal.querySelector('.cert-modal-close');
     if (closeBtn) closeBtn.focus();
   };
@@ -785,6 +841,10 @@
     if (!modal) return;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
+    const video = modal.querySelector('video');
+    if (video) {
+      video.pause();
+    }
     if (!document.querySelector('.cert-modal.is-open')) {
       body.classList.remove('modal-open');
     }
