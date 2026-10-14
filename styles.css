@@ -654,6 +654,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   border-color: var(--cyan);
   color: var(--cyan);
 }
+.verify-btn:hover,
+.verify-btn:hover *,
 .cert-btn.button-primary:hover,
 .button-primary.cert-btn:hover,
 .cert-actions .button-primary:hover,
