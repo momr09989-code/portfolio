@@ -151,7 +151,7 @@
     "edu-label": "Education &amp; Certificates",
     "edu-kicker": "2024 — 2028 <span>•</span> Cairo, Egypt",
     "edu-degree": "Bachelor of Computer Science &amp; Information Technology <span>(CSIT)</span>",
-    "edu-school": '<a href="https://www.hnu.edu.eg/" target="_blank" rel="noopener noreferrer" class="hnu-link" style="text-decoration: underline; color: inherit;">Helwan National University</a> <span class="abbr">HNU</span>',
+    "edu-school": 'Helwan National University <span class="abbr">HNU</span>',
     "edu-cw-title": "Selected coursework",
     "edu-cw-db": "Database Systems",
     "edu-cw-algo": "Algorithms",
@@ -449,7 +449,7 @@
     "edu-label": "التعليم والشهادات",
     "edu-kicker": "٢٠٢٤ — ٢٠٢٨ <span>•</span> القاهرة، مصر",
     "edu-degree": "بكالوريوس علوم الحاسب وتكنولوجيا المعلومات <span>(CSIT)</span>",
-    "edu-school": '<a href="https://www.hnu.edu.eg/" target="_blank" rel="noopener noreferrer" class="hnu-link" style="text-decoration: underline; color: inherit;">جامعة حلوان الأهلية</a> <span class="abbr">HNU</span>',
+    "edu-school": 'جامعة حلوان الأهلية <span class="abbr">HNU</span>',
     "edu-cw-title": "المقررات الأكاديمية المختارة",
     "edu-cw-db": "أنظمة قواعد البيانات",
     "edu-cw-algo": "الخوارزميات",
@@ -883,7 +883,7 @@
 
   document.getElementById('current-year').textContent = new Date().getFullYear();
 
-  // Certificate Image Modals / Popups
+  // Certificate & CV Modals / Popups
   let lastFocusedElement = null;
 
   const openCertModal = (modalId) => {
@@ -905,7 +905,7 @@
       video.currentTime = 0;
       video.play().catch(() => {});
     }
-    const closeBtn = modal.querySelector('.cert-modal-close');
+    const closeBtn = modal.querySelector('.cert-modal-close, .modal-close');
     if (closeBtn) closeBtn.focus();
   };
 
@@ -917,7 +917,7 @@
     if (video) {
       video.pause();
     }
-    if (!document.querySelector('.cert-modal.is-open')) {
+    if (!document.querySelector('.cert-modal.is-open, .modal.is-open')) {
       body.classList.remove('modal-open');
     }
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
@@ -946,18 +946,30 @@
     });
   });
 
-  document.querySelectorAll('.cert-modal [data-close-modal]').forEach((btn) => {
+  // Dedicated smooth trigger for View CV button
+  const heroCvBtn = document.querySelector('.hero-cv-btn');
+  if (heroCvBtn) {
+    heroCvBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openCertModal('cv-modal');
+    });
+  }
+
+  // Handle close buttons inside any modal
+  document.querySelectorAll('.cert-modal [data-close-modal], .modal [data-close-modal], .cert-modal-close, .modal-close').forEach((btn) => {
     btn.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      const modal = btn.closest('.cert-modal');
+      const modal = btn.closest('.cert-modal, .modal');
       closeCertModal(modal);
     });
   });
 
-  document.querySelectorAll('.cert-modal').forEach((modal) => {
+  // Handle backdrop clicks and trap focus inside modals
+  document.querySelectorAll('.cert-modal, .modal').forEach((modal) => {
     modal.addEventListener('click', (event) => {
-      if (event.target === modal) {
+      if (event.target === modal || event.target.hasAttribute('data-close-modal') || event.target.classList.contains('cert-modal-backdrop') || event.target.classList.contains('modal-backdrop')) {
         closeCertModal(modal);
       }
     });
@@ -978,9 +990,10 @@
     });
   });
 
+  // Global Escape key to close any active modal
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      const activeModal = document.querySelector('.cert-modal.is-open');
+      const activeModal = document.querySelector('.cert-modal.is-open, .modal.is-open');
       if (activeModal) closeCertModal(activeModal);
     }
   });
