@@ -656,7 +656,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .cert-btn.button-primary:hover,
 .button-primary.cert-btn:hover,
-.cert-modal-btn.button-primary:hover {
+.cert-actions .button-primary:hover,
+.certificate-card .button-primary:hover,
+.cert-modal-btn.button-primary:hover,
+.certificate-card a.button-primary:hover,
+.cert-btn.button-primary:hover *,
+.button-primary.cert-btn:hover *,
+.cert-actions .button-primary:hover *,
+.certificate-card .button-primary:hover *,
+.cert-modal-btn.button-primary:hover * {
   background-color: var(--lime) !important;
   color: #000000 !important;
   border-color: var(--lime) !important;
