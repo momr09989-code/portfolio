@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Table 1 (Users / Left) -->
+  <rect x="6" y="8" width="22" height="24" rx="3" fill="#0f262d" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="6" y="8" width="22" height="7" rx="3" fill="#38bdf8"/>
+  <line x1="9" y1="12" x2="20" y2="12" stroke="#0b181b" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="11" cy="20" r="1.8" fill="#c9f76c"/>
+  <line x1="16" y1="20" x2="24" y2="20" stroke="#70f0df" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="11" cy="26" r="1.8" fill="#94a3b8"/>
+  <line x1="16" y1="26" x2="23" y2="26" stroke="#64748b" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Table 2 (Orders / Right) -->
+  <rect x="36" y="28" width="22" height="28" rx="3" fill="#0f262d" stroke="#70f0df" stroke-width="2"/>
+  <rect x="36" y="28" width="22" height="7" rx="3" fill="#70f0df"/>
+  <line x1="39" y1="32" x2="50" y2="32" stroke="#0b181b" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="41" cy="40" r="1.8" fill="#c9f76c"/>
+  <line x1="46" y1="40" x2="54" y2="40" stroke="#c9f76c" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="41" cy="46" r="1.8" fill="#38bdf8"/>
+  <line x1="46" y1="46" x2="53" y2="46" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="41" cy="51" r="1.8" fill="#94a3b8"/>
+  <line x1="46" y1="51" x2="52" y2="51" stroke="#64748b" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Relational link connecting PK to FK -->
+  <path d="M28 20h4a4 4 0 0 1 4 4v16" fill="none" stroke="#c9f76c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Key / Relation diamond -->
+  <polygon points="36,40 33,43 36,46 39,43" fill="#c9f76c"/>
+</svg>

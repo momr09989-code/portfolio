@@ -121,7 +121,7 @@
     "hero-grad": "<i>◈</i> HNU • Class of 2028",
     "chip-data": "DATA",
     "chip-sec": "SECURE",
-    "hero-scroll": "Scroll to explore",
+    "hero-scroll": "<span>SCROLL</span><span>TO</span><span>EXPLORE</span>",
     "about-num": "01",
     "about-label": "About me",
     "about-greeting": "Hi, I'm Omar Ebied",
@@ -151,7 +151,7 @@
     "edu-label": "Education &amp; Certificates",
     "edu-kicker": "2024 — 2028 <span>•</span> Cairo, Egypt",
     "edu-degree": "Bachelor of Computer Science &amp; Information Technology <span>(CSIT)</span>",
-    "edu-school": "Helwan National University <span class=\"abbr\">HNU</span>",
+    "edu-school": '<a href="https://www.hnu.edu.eg/" target="_blank" rel="noopener noreferrer" class="hnu-link">Helwan National University <span class="abbr">HNU</span></a>',
     "edu-cw-title": "Selected coursework",
     "edu-cw-db": "Database Systems",
     "edu-cw-algo": "Algorithms",
@@ -419,7 +419,7 @@
     "hero-grad": "<i>◈</i> جامعة حلوان الأهلية • دفعة ٢٠٢٨",
     "chip-data": "بيانات",
     "chip-sec": "أمان",
-    "hero-scroll": "مرر للاستكشاف",
+    "hero-scroll": "<span>مرر</span><span>إلى</span><span>الأسفل</span>",
     "about-num": "٠١",
     "about-label": "نبذة عني",
     "about-greeting": "مرحباً، أنا عمر عبيد",
@@ -449,7 +449,7 @@
     "edu-label": "التعليم والشهادات",
     "edu-kicker": "٢٠٢٤ — ٢٠٢٨ <span>•</span> القاهرة، مصر",
     "edu-degree": "بكالوريوس علوم الحاسب وتكنولوجيا المعلومات <span>(CSIT)</span>",
-    "edu-school": "جامعة حلوان الأهلية <span class=\"abbr\">HNU</span>",
+    "edu-school": '<a href="https://www.hnu.edu.eg/" target="_blank" rel="noopener noreferrer" class="hnu-link">جامعة حلوان الأهلية <span class="abbr">HNU</span></a>',
     "edu-cw-title": "المقررات الأكاديمية المختارة",
     "edu-cw-db": "أنظمة قواعد البيانات",
     "edu-cw-algo": "الخوارزميات",
@@ -799,15 +799,87 @@
   document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
   const navLinks = [...nav.querySelectorAll('a')];
-  const sections = navLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+  const mobileNavLinks = [...document.querySelectorAll('.mobile-nav-link')];
+
+  function setActiveNav(id) {
+    if (!id) return;
+    navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+    mobileNavLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+  }
+
+  // Smooth click tracking to avoid flickering during smooth scroll
+  let isNavClicking = false;
+  let navClickTimeout = null;
+  [...navLinks, ...mobileNavLinks].forEach((link) => {
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const id = href.slice(1);
+        setActiveNav(id);
+        isNavClicking = true;
+        clearTimeout(navClickTimeout);
+        navClickTimeout = setTimeout(() => {
+          isNavClicking = false;
+        }, 800);
       }
     });
-  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
-  sections.forEach((section) => sectionObserver.observe(section));
+  });
+
+  // Accurate Scroll Spy with distinct bounding calculation for nested #certificates
+  const navTargetIds = ['home', 'about', 'skills', 'education', 'projects', 'certificates', 'contact'];
+
+  function updateScrollSpy() {
+    if (isNavClicking) return;
+    const scrollY = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // Bottom reached -> Contact is active
+    if (scrollY + viewportHeight >= docHeight - 80) {
+      setActiveNav('contact');
+      return;
+    }
+
+    // Top reached -> Home is active
+    if (scrollY < 120) {
+      setActiveNav('home');
+      return;
+    }
+
+    const triggerPoint = scrollY + 160;
+
+    // Collect elements with their document top coordinates
+    const targets = navTargetIds.map((id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      const top = rect.top + scrollY;
+      return { id, top };
+    }).filter(Boolean).sort((a, b) => a.top - b.top);
+
+    let activeId = targets[0]?.id || 'home';
+    for (let i = 0; i < targets.length; i++) {
+      if (triggerPoint >= targets[i].top) {
+        activeId = targets[i].id;
+      } else {
+        break;
+      }
+    }
+    setActiveNav(activeId);
+  }
+
+  let scrollSpyRaf = null;
+  window.addEventListener('scroll', () => {
+    if (!scrollSpyRaf) {
+      scrollSpyRaf = requestAnimationFrame(() => {
+        updateScrollSpy();
+        scrollSpyRaf = null;
+      });
+    }
+  }, { passive: true });
+
+  updateScrollSpy();
+  window.addEventListener('resize', updateScrollSpy, { passive: true });
 
   document.getElementById('current-year').textContent = new Date().getFullYear();
 
