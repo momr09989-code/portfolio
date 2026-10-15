@@ -55,12 +55,12 @@
 
   themeToggles.forEach((t) => {
     t.addEventListener('click', () => {
-      // Button Click Animation: Trigger 360-degree rotation and scale pop
+      // Button Click Animation: Trigger soft emerald glow pulse and 360-degree spin on the moon/sun icon
       themeToggles.forEach((btn) => {
-        btn.classList.remove('is-rotating');
+        btn.classList.remove('is-animating', 'is-rotating');
         void btn.offsetWidth;
-        btn.classList.add('is-rotating');
-        setTimeout(() => btn.classList.remove('is-rotating'), 500);
+        btn.classList.add('is-animating');
+        setTimeout(() => btn.classList.remove('is-animating'), 500);
       });
 
       const nextTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
