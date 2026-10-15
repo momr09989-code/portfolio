@@ -220,6 +220,22 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .lang-toggle { height: 37px; min-width: 52px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--text); border: 1px solid var(--line); border-radius: 9px; background: var(--surface); font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .05em; transition: transform .2s, background .2s, border-color .2s, color .2s, box-shadow .2s; }
 .lang-toggle:hover { transform: translateY(-1px); background: var(--surface-raised); border-color: var(--cyan); color: var(--cyan); box-shadow: 0 4px 12px var(--shadow); }
 .lang-icon { font-size: 13px; line-height: 1; }
+/* Ensure Theme Toggle Buttons are completely flat and level in all states */
+.theme-toggle,
+.theme-toggle:hover,
+.theme-toggle:focus,
+.theme-toggle:focus-visible,
+.mobile-toggle-btn,
+.mobile-toggle-btn:hover,
+.mobile-toggle-btn:focus,
+.mobile-toggle-btn:focus-visible,
+.mobile-toggle-btn.theme-toggle,
+.mobile-toggle-btn.theme-toggle:hover,
+.mobile-toggle-btn.theme-toggle:focus,
+.mobile-toggle-btn.theme-toggle:focus-visible {
+  transform: translateY(0) rotate(0deg) scale(1) !important;
+}
+
 .theme-toggle {
   height: 37px;
   width: 37px;
@@ -229,20 +245,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   border: 1px solid var(--line);
   border-radius: 9px;
   background: var(--surface);
-  transform: none;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s ease;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 .theme-toggle:hover {
-  transform: none;
   background: var(--surface-raised);
   border-color: var(--cyan);
-}
-
-.theme-toggle:active,
-.mobile-toggle-btn:active {
-  transform: scale(0.95);
-  transition: transform 0.1s ease;
 }
 
 .theme-icon {
@@ -254,17 +262,25 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   transform-origin: center center;
 }
 
-/* Emerald glow pulse and icon 360-degree spin keyframes */
-@keyframes emeraldGlowPulse {
+/* @keyframes themePop - pulse and glow animation */
+@keyframes themePop {
   0% {
+    transform: translateY(0) rotate(0deg) scale(1);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
     border-color: #10b981;
   }
-  50% {
-    box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.25), 0 0 14px rgba(16, 185, 129, 0.35);
+  30% {
+    transform: translateY(0) rotate(0deg) scale(0.92);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4);
+    border-color: #10b981;
+  }
+  65% {
+    transform: translateY(0) rotate(0deg) scale(1.04);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.25), 0 0 14px rgba(16, 185, 129, 0.35);
     border-color: #10b981;
   }
   100% {
+    transform: translateY(0) rotate(0deg) scale(1);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
     border-color: var(--line);
   }
@@ -279,17 +295,23 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   }
 }
 
-/* Click animation: soft emerald glow pulse on button border, 360 spin ONLY on the moon/sun icon */
+/* Click animation: smooth pulse and glow, 360 spin ONLY on the moon/sun icon */
+.theme-toggle.theme-pop,
 .theme-toggle.is-animating,
+.mobile-toggle-btn.theme-toggle.theme-pop,
 .mobile-toggle-btn.theme-toggle.is-animating {
-  animation: emeraldGlowPulse 0.5s ease-out forwards;
+  animation: themePop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
 }
 
+.theme-toggle.theme-pop .theme-icon,
+.theme-toggle.theme-pop .toggle-icon,
+.mobile-toggle-btn.theme-toggle.theme-pop .theme-icon,
+.mobile-toggle-btn.theme-toggle.theme-pop .toggle-icon,
 .theme-toggle.is-animating .theme-icon,
-.mobile-toggle-btn.theme-toggle.is-animating .theme-icon,
 .theme-toggle.is-animating .toggle-icon,
+.mobile-toggle-btn.theme-toggle.is-animating .theme-icon,
 .mobile-toggle-btn.theme-toggle.is-animating .toggle-icon {
-  animation: iconSpin360 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: iconSpin360 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
 }
 .menu-toggle { display: none; }
 
@@ -1505,13 +1527,15 @@ body.menu-open {
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s ease, box-shadow 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
   cursor: pointer;
-  transform: none;
+  transform: translateY(0) rotate(0deg) scale(1) !important;
 }
 
-.mobile-toggle-btn:hover {
-  transform: none;
+.mobile-toggle-btn:hover,
+.mobile-toggle-btn:focus,
+.mobile-toggle-btn:focus-visible {
+  transform: translateY(0) rotate(0deg) scale(1) !important;
   border-color: var(--cyan);
   color: var(--cyan);
 }
@@ -2753,54 +2777,49 @@ body.menu-open {
 }
 
 .modal-footer-actions {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  flex-wrap: nowrap;
-  align-items: center;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .modal-footer-actions .button,
 .modal-footer-actions .cert-modal-btn,
 .modal-footer-actions .modal-demo-btn,
 .modal-footer-actions .modal-repo-btn {
-  flex: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  line-height: 1.2;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  gap: 6px;
-  min-height: 38px;
-  white-space: nowrap;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  min-height: auto !important;
+  height: auto !important;
+  padding: 8px 6px !important;
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  gap: 4px !important;
 }
 
 .modal-footer-actions .button span,
 .modal-footer-actions .cert-modal-btn span {
-  font-size: 0.85rem;
-  white-space: nowrap;
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  text-align: center !important;
 }
 
 .modal-footer-actions .btn-arrow {
   flex-shrink: 0;
-  font-size: 12px;
-}
-
-@media (max-width: 380px) {
-  .modal-footer-actions {
-    flex-wrap: wrap;
-  }
-  .modal-footer-actions .button,
-  .modal-footer-actions .cert-modal-btn {
-    width: 100%;
-    flex: 1 1 100%;
-  }
+  font-size: 11px !important;
+  margin-inline-start: 2px !important;
 }
 
 @media (max-width: 700px) {

@@ -54,13 +54,23 @@
   if (savedTheme) setTheme(savedTheme);
 
   themeToggles.forEach((t) => {
-    t.addEventListener('click', () => {
-      // Button Click Animation: Trigger soft emerald glow pulse and 360-degree spin on the moon/sun icon
+    t.addEventListener('click', (e) => {
+      // Immediate blur to prevent sticking in :focus on touch screens
+      if (t && typeof t.blur === 'function') t.blur();
+      if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+      }
+
+      // Trigger temporary themePop animation, then remove after 400ms and blur
       themeToggles.forEach((btn) => {
-        btn.classList.remove('is-animating', 'is-rotating');
+        btn.classList.remove('theme-pop', 'is-animating');
         void btn.offsetWidth;
-        btn.classList.add('is-animating');
-        setTimeout(() => btn.classList.remove('is-animating'), 500);
+        btn.classList.add('theme-pop', 'is-animating');
+        setTimeout(() => {
+          btn.classList.remove('theme-pop', 'is-animating');
+          if (typeof btn.blur === 'function') btn.blur();
+        }, 400);
       });
 
       const nextTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
