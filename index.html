@@ -40,6 +40,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preload" as="image" href="profile.jpg" />
     <link rel="preload" as="image" href="man in the middle.jpg" />
     <link rel="preload" as="image" href="porto.png" />
@@ -151,7 +152,7 @@
         <div class="hero-copy reveal">
           <p class="eyebrow"><span class="status-dot"></span> <span data-i18n="hero-status">Available for opportunities</span></p>
           <p class="greeting" data-i18n="hero-greeting">Hello, I’m</p>
-          <h1><span data-i18n="hero-name-first">Omar</span> <em data-i18n="hero-name-last">Ebied.</em></h1>
+          <h1 data-aos="zoom-in"><span data-i18n="hero-name-first">Omar</span> <em data-i18n="hero-name-last">Ebied.</em></h1>
           <p class="hero-role" data-i18n="hero-role">Data Engineer &amp; Cybersecurity Specialist</p>
           <p class="hero-usp" data-i18n="hero-usp">I help growing businesses unlock actionable insights from their data and secure their systems through data-driven analysis and strong security fundamentals.</p>
           <div class="hero-actions">
@@ -165,10 +166,10 @@
             <span data-i18n="hero-grad"><i>◈</i> HNU • Class of 2028</span>
           </div>
         </div>
-        <div class="hero-visual reveal reveal-delay" aria-label="Portrait of Omar Ebied">
+        <div class="hero-visual reveal reveal-delay" data-aos="zoom-in" data-aos-delay="200" aria-label="Portrait of Omar Ebied">
           <div class="orbit orbit-outer"><span class="satellite satellite-a"></span></div>
           <div class="orbit orbit-inner"><span class="satellite satellite-b"></span></div>
-          <div class="profile-frame">
+          <div class="profile-frame" data-aos="zoom-in" data-aos-delay="300">
             <img src="profile.jpg" alt="Omar Ebied" id="profile-image" width="1065" height="1065" loading="lazy" />
             <span class="profile-initials" aria-hidden="true">OE</span>
           </div>
@@ -194,7 +195,7 @@
         <div class="about-layout">
           <div class="about-narrative reveal">
             <p class="about-greeting"><span class="wave-icon" aria-hidden="true">👋</span> <span data-i18n="about-greeting">Hi, I'm Omar Ebied</span></p>
-            <h2 class="section-title about-hook" data-i18n="about-hook">Building the bridge between <em>raw data</em>, strategic insights, and secure systems.</h2>
+            <h2 class="section-title about-hook" data-i18n="about-hook" data-aos="fade-up">Building the bridge between <em>raw data</em>, strategic insights, and secure systems.</h2>
             <div class="about-details">
               <p class="about-p" data-i18n="about-p1">With a rigorous foundation in Computer Science &amp; Information Technology at Helwan National University and specialized training through the Digital Egypt Pioneers Initiative (DEPI) in Big Data and NTI in Cybersecurity, I focus on solving complex data challenges from the ground up.</p>
               <p class="about-p" data-i18n="about-p2">My work bridges high-throughput data processing, scalable relational database design, and hands-on network security defense—ensuring organizational data infrastructure is both performant and resilient against real-world vulnerabilities.</p>
@@ -256,7 +257,7 @@
           </div>
           <div class="education-main">
             <p class="card-kicker" data-i18n="edu-kicker">2024 — 2028 <span>•</span> Cairo, Egypt</p>
-            <h2 data-i18n="edu-degree">Bachelor of Computer Science &amp; Information Technology <span>(CSIT)</span></h2>
+            <h2 data-i18n="edu-degree" data-aos="fade-up">Bachelor of Computer Science &amp; Information Technology <span>(CSIT)</span></h2>
             <p data-i18n="edu-school">Helwan National University <span class="abbr">HNU</span></p>
             <a href="https://myu.hnu.edu.eg/login?redirect=/transcript" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; margin-top: 10px; padding: 6px 14px; border: 1px solid #14532d; border-radius: 6px; color: #14532d; font-size: 14px; text-decoration: none; font-weight: 600; transition: 0.3s;">Visit University Website ↗</a>
           </div>
@@ -269,11 +270,11 @@
         <div class="certificates-block reveal" id="certificates">
           <div class="certificates-header">
             <p class="card-kicker" data-i18n="cert-sec-kicker">Verified Credentials &amp; Certifications</p>
-            <h3 class="certificates-title" data-i18n="cert-sec-title">Professional Certifications</h3>
+            <h3 class="certificates-title" data-i18n="cert-sec-title" data-aos="fade-up">Professional Certifications</h3>
           </div>
           <div class="certificates-grid">
             <!-- 1. HackerRank SQL (Basic) Card -->
-            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-sql-basic" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Basic) Certificate modal">
+            <article class="certificate-card cert-interactive" data-aos="fade-up" data-open-modal="cert-modal-sql-basic" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Basic) Certificate modal">
               <div class="cert-card-media">
                 <img src="hackerrank_sql_basic.png" alt="HackerRank SQL (Basic) Certificate preview" class="cert-thumbnail" width="1600" height="1200" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
@@ -307,7 +308,7 @@
             </article>
 
             <!-- 2. HackerRank SQL (Advanced) Card -->
-            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-sql-advanced" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Advanced) Certificate modal">
+            <article class="certificate-card cert-interactive" data-aos="fade-up" data-aos-delay="100" data-open-modal="cert-modal-sql-advanced" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Advanced) Certificate modal">
               <div class="cert-card-media">
                 <img src="hackerrank_sql_advanced.png" alt="HackerRank SQL (Advanced) Certificate preview" class="cert-thumbnail" width="1600" height="1200" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
@@ -341,7 +342,7 @@
             </article>
 
             <!-- 3. Kaggle Python Card -->
-            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-kaggle-python" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Python Certificate modal">
+            <article class="certificate-card cert-interactive" data-aos="fade-up" data-aos-delay="150" data-open-modal="cert-modal-kaggle-python" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Python Certificate modal">
               <div class="cert-card-media">
                 <img src="kaggle_python_certificate.png" alt="Kaggle Python Certificate preview" class="cert-thumbnail" width="4800" height="2960" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
@@ -375,7 +376,7 @@
             </article>
 
             <!-- 4. Kaggle Pandas Card -->
-            <article class="certificate-card cert-interactive" data-open-modal="cert-modal-kaggle-pandas" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Pandas Certificate modal">
+            <article class="certificate-card cert-interactive" data-aos="fade-up" data-aos-delay="200" data-open-modal="cert-modal-kaggle-pandas" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Pandas Certificate modal">
               <div class="cert-card-media">
                 <img src="kaggle_pandas_certificate.png" alt="Kaggle Pandas Certificate preview" class="cert-thumbnail" width="4800" height="2960" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
@@ -409,7 +410,7 @@
             </article>
 
             <!-- 5. NTI Cybersecurity Card -->
-            <article class="certificate-card cert-interactive cert-physical cert-span-2" data-open-modal="cert-modal-nti" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open NTI Cybersecurity Physical Certificate modal">
+            <article class="certificate-card cert-interactive cert-physical cert-span-2" data-aos="fade-up" data-aos-delay="250" data-open-modal="cert-modal-nti" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open NTI Cybersecurity Physical Certificate modal">
               <div class="cert-card-media">
                 <img src="nti_cybersecurity_certificate.jpeg" alt="NTI Cybersecurity Physical Certificate preview" class="cert-thumbnail" id="nti-thumb-preview" width="1280" height="896" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
@@ -445,7 +446,7 @@
       <section id="skills" class="section section-shell skills-section">
         <div class="section-heading reveal">
           <div class="section-label"><span data-i18n="skills-num">03</span> <span data-i18n="skills-label">Skills</span></div>
-          <h2 class="section-title" data-i18n="skills-title">A practical, <em>growing toolkit.</em></h2>
+          <h2 class="section-title" data-i18n="skills-title" data-aos="fade-up">A practical, <em>growing toolkit.</em></h2>
           <p class="section-subtitle" data-i18n="skills-sub">Categorized technical expertise and core engineering competencies based on hands-on academic training and practical lab experience.</p>
         </div>
 
@@ -750,7 +751,7 @@
       <section id="experience" class="section section-shell experience-section">
         <div class="section-heading reveal">
           <div class="section-label"><span data-i18n="exp-num">04</span> <span data-i18n="exp-label">Experience</span></div>
-          <h2 class="section-title" data-i18n="exp-title">Learning by solving <em>real problems.</em></h2>
+          <h2 class="section-title" data-i18n="exp-title" data-aos="fade-up">Learning by solving <em>real problems.</em></h2>
         </div>
         <div class="experience-list">
           <article class="experience-item reveal">
@@ -788,7 +789,7 @@
 
       <!-- 6. Services -->
       <section id="services" class="section section-shell services-section">
-        <div class="section-heading reveal"><div class="section-label"><span data-i18n="serv-num">05</span> <span data-i18n="serv-label">Services</span></div><h2 class="section-title" data-i18n="serv-title">Useful technical work, <em>without the noise.</em></h2></div>
+        <div class="section-heading reveal"><div class="section-label"><span data-i18n="serv-num">05</span> <span data-i18n="serv-label">Services</span></div><h2 class="section-title" data-i18n="serv-title" data-aos="fade-up">Useful technical work, <em>without the noise.</em></h2></div>
         <div class="services-grid">
           <article class="service-card reveal"><span class="service-icon">⌁</span><h3 data-i18n="serv-1-title">Data Analysis &amp; Engineering</h3><p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-1-prob">Business data is scattered, unclear, or hard to use.</span></p><p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-1-res">A cleaner path from raw data to actionable insights and informed decisions.</span></p></article>
           <article class="service-card reveal"><span class="service-icon">▣</span><h3 data-i18n="serv-2-title">Database Design</h3><p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-2-prob">Information needs a reliable, organized home.</span></p><p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-2-res">A structured relational database design built for clarity, consistency, and growth.</span></p></article>
@@ -800,11 +801,11 @@
       <section id="projects" class="section section-shell projects-section">
         <div class="section-heading reveal">
           <div class="section-label"><span data-i18n="proj-num">06</span> <span data-i18n="proj-label">Selected work</span></div>
-          <h2 class="section-title" data-i18n="proj-title">Projects with a <em>purpose.</em></h2>
+          <h2 class="section-title" data-i18n="proj-title" data-aos="fade-up">Projects with a <em>purpose.</em></h2>
           <p class="section-intro" data-i18n="proj-intro">A selection of work across data, cybersecurity, and the web.</p>
         </div>
         <div class="project-list">
-          <article class="project-card project-featured reveal">
+          <article class="project-card project-featured reveal" data-aos="fade-up">
             <div class="project-visual visual-sql">
               <span class="project-index" aria-hidden="true">01</span>
               <!-- Browser / Laptop Device Mockup Frame -->
@@ -853,7 +854,7 @@
               </div>
             </div>
           </article>
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-aos="fade-up" data-aos-delay="100">
             <div class="project-visual visual-book">
               <span class="project-index" aria-hidden="true">02</span>
               <!-- Browser Mockup Frame (Click to open market.mp4 demo) -->
@@ -923,7 +924,7 @@
               </div>
             </div>
           </article>
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-aos="fade-up" data-aos-delay="200">
             <div class="project-visual visual-mitm visual-mitm-lab">
               <span class="project-index" aria-hidden="true">03</span>
               <!-- Browser Mockup Frame (Click to open man in the middle video.mp4 demo) -->
@@ -998,7 +999,7 @@
 
       <!-- 8. Achievements -->
       <section id="achievements" class="section section-shell achievements-section">
-        <div class="section-heading reveal"><div class="section-label"><span data-i18n="ach-num">07</span> <span data-i18n="ach-label">Achievements</span></div><h2 class="section-title" data-i18n="ach-title">Milestones that keep me <em>moving forward.</em></h2></div>
+        <div class="section-heading reveal"><div class="section-label"><span data-i18n="ach-num">07</span> <span data-i18n="ach-label">Achievements</span></div><h2 class="section-title" data-i18n="ach-title" data-aos="fade-up">Milestones that keep me <em>moving forward.</em></h2></div>
         <div class="achievement-grid">
           <article class="achievement-card reveal">
             <span class="award-icon award-icon-logo" title="Digital Egypt Pioneers Initiative (DEPI)">
@@ -1028,7 +1029,7 @@
 
       <!-- 9. Testimonials -->
       <section id="testimonials" class="section section-shell testimonials-section">
-        <div class="section-heading reveal"><div class="section-label"><span data-i18n="test-num">08</span> <span data-i18n="test-label">Testimonials</span></div><h2 class="section-title" data-i18n="test-title">Collaboration leaves an <em>impression.</em></h2></div>
+        <div class="section-heading reveal"><div class="section-label"><span data-i18n="test-num">08</span> <span data-i18n="test-label">Testimonials</span></div><h2 class="section-title" data-i18n="test-title" data-aos="fade-up">Collaboration leaves an <em>impression.</em></h2></div>
         <div class="testimonial-note reveal" data-i18n="test-note">Feedback is most valuable when it is authentic. These cards are ready for verified quotes from Omar’s peers and mentors.</div>
         <div class="testimonial-grid">
           <article class="testimonial-card reveal">
@@ -1099,7 +1100,7 @@
         <div class="contact-layout">
           <div class="contact-copy reveal">
             <div class="section-label"><span data-i18n="contact-num">09</span> <span data-i18n="contact-label">Contact</span></div>
-            <h2 data-i18n="contact-title">Let’s make your data <em>work harder.</em></h2>
+            <h2 data-i18n="contact-title" data-aos="fade-up">Let’s make your data <em>work harder.</em></h2>
             <p data-i18n="contact-sub">Have a project, internship, or collaboration in mind? I’d be glad to hear from you.</p>
             <div class="contact-direct">
               <a href="mailto:momr09989@gmail.com"><span>✉</span> momr09989@gmail.com</a>
@@ -1451,5 +1452,7 @@
         </div>
       </div>
     <script src="script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 800, once: true, offset: 100 });</script>
   </body>
 </html>
