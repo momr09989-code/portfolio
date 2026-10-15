@@ -333,6 +333,8 @@
     "proj-4-c": "Analyze vulnerabilities in local network ARP tables and demonstrate unencrypted traffic interception.",
     "proj-4-a": "Conducted bidirectional ARP cache poisoning, routed traffic through mitmproxy, and dissected packets in Wireshark.",
     "proj-4-r": "Validated effective network defense strategies, ARP inspection (DAI), and HTTPS encryption countermeasures.",
+    "proj-4-play-pill": "▶ Video Demo",
+    "proj-4-play-badge": "Watch Video Demo (man in the middle video.mp4)",
     "modal-video-asset-lbl": "Video Asset:",
     "ach-num": "07",
     "ach-label": "Achievements",
@@ -641,6 +643,8 @@
     "proj-4-c": "تحليل الثغرات الأمنية في جداول ARP على الشبكة المحلية وملاحظة اعتراض حركة المرور غير المشفرة.",
     "proj-4-a": "تنفيذ تسميم ذاكرة التخزين المؤقت لـ ARP وتوجيه البيانات عبر mitmproxy وتحليل الحزم في Wireshark.",
     "proj-4-r": "التحقق من استراتيجيات الدفاع الفعالة عن الشبكة كفحص ARP الديناميكي (DAI) وتدابير التشفير HTTPS.",
+    "proj-4-play-pill": "▶ فيديو توضيحي",
+    "proj-4-play-badge": "مشاهدة العرض المرئي (man in the middle video.mp4)",
     "modal-video-asset-lbl": "ملف الفيديو:",
     "ach-num": "٠٧",
     "ach-label": "الإنجازات",
@@ -904,9 +908,78 @@
   // Certificate & CV Modals / Popups
   let lastFocusedElement = null;
 
-  const openCertModal = (modalId) => {
+  const openCertModal = (modalId, trigger = null) => {
     const modal = document.getElementById(modalId);
     if (!modal) return;
+
+    // Dynamically configure video modal when triggered from a video mockup element
+    if (trigger && (modalId === 'project-video-modal' || modal.classList.contains('project-video-modal'))) {
+      const videoSrc = trigger.getAttribute('data-video');
+      const posterSrc = trigger.getAttribute('data-poster');
+      const title = trigger.getAttribute('data-title');
+      const titleI18n = trigger.getAttribute('data-title-i18n');
+      const kicker = trigger.getAttribute('data-kicker');
+      const kickerI18n = trigger.getAttribute('data-kicker-i18n');
+      const asset = trigger.getAttribute('data-asset');
+      const demoUrl = trigger.getAttribute('data-demo-url');
+      const demoLabel = trigger.getAttribute('data-demo-label') || 'Live Demo';
+      const demoI18n = trigger.getAttribute('data-demo-i18n');
+      const repoUrl = trigger.getAttribute('data-repo-url');
+
+      const video = modal.querySelector('video');
+      if (video && videoSrc) {
+        const source = video.querySelector('source');
+        if (source) {
+          source.src = videoSrc;
+        }
+        video.src = videoSrc;
+        if (posterSrc) video.poster = posterSrc;
+        video.load();
+      }
+
+      const kickerEl = modal.querySelector('.cert-modal-heading .card-kicker');
+      if (kickerEl) {
+        if (kickerI18n) kickerEl.setAttribute('data-i18n', kickerI18n);
+        if (kicker) kickerEl.innerHTML = kicker;
+      }
+
+      const titleEl = modal.querySelector('#modal-title-project-video, .cert-modal-heading h3');
+      if (titleEl) {
+        if (titleI18n) titleEl.setAttribute('data-i18n', titleI18n);
+        if (title) titleEl.textContent = title;
+      }
+
+      const assetEl = modal.querySelector('.cert-id-code');
+      if (assetEl && asset) {
+        assetEl.textContent = asset;
+      }
+
+      const demoBtn = modal.querySelector('.modal-demo-btn, .modal-footer-actions .button-primary');
+      if (demoBtn) {
+        if (demoUrl) {
+          demoBtn.href = demoUrl;
+          demoBtn.style.display = 'inline-flex';
+        } else {
+          demoBtn.style.display = 'none';
+        }
+        const demoSpan = demoBtn.querySelector('span:first-child');
+        if (demoSpan) {
+          if (demoI18n) demoSpan.setAttribute('data-i18n', demoI18n);
+          demoSpan.textContent = demoLabel;
+        }
+      }
+
+      const repoBtn = modal.querySelector('.modal-repo-btn, .modal-footer-actions .button-ghost');
+      if (repoBtn) {
+        if (repoUrl) {
+          repoBtn.href = repoUrl;
+          repoBtn.style.display = 'inline-flex';
+        } else {
+          repoBtn.style.display = 'none';
+        }
+      }
+    }
+
     const currentLang = document.documentElement.lang || 'en';
     modal.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
@@ -934,6 +1007,7 @@
     const video = modal.querySelector('video');
     if (video) {
       video.pause();
+      video.currentTime = 0;
     }
     if (!document.querySelector('.cert-modal.is-open, .modal.is-open')) {
       body.classList.remove('modal-open');
@@ -950,7 +1024,7 @@
       event.preventDefault();
       event.stopPropagation();
       const targetId = trigger.getAttribute('data-open-modal');
-      if (targetId) openCertModal(targetId);
+      if (targetId) openCertModal(targetId, trigger);
     });
 
     trigger.addEventListener('keydown', (event) => {
@@ -959,7 +1033,7 @@
         event.preventDefault();
         event.stopPropagation();
         const targetId = trigger.getAttribute('data-open-modal');
-        if (targetId) openCertModal(targetId);
+        if (targetId) openCertModal(targetId, trigger);
       }
     });
   });
