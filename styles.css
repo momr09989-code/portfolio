@@ -674,23 +674,43 @@ a[href*="hnu.edu.eg"]:hover {
 }
 
 /* =========================================================================
-   "Verify Online" Button Redesign (No glow, flat solid colors)
+   Targeted Buttons: Live Demo, Send Message, and Online Verification
+   Soft, eye-friendly professional emerald green theme (no harsh neon/cyan/lime)
    ========================================================================= */
+
+/* 1. Base Default State */
+.project-live-btn,
+.modal-demo-btn,
+#contact-submit-btn,
+.contact-form button[type="submit"],
 .verify-btn,
 a.verify-btn,
 .button.verify-btn,
 .button-primary.verify-btn,
 .cert-btn.verify-btn,
 .cert-actions .verify-btn,
-.certificate-card .verify-btn {
-  background: #f8fafc !important;
-  background-color: #f8fafc !important;
-  color: #14532d !important;
-  border: 1px solid rgba(20, 83, 45, 0.25) !important;
-  box-shadow: none !important;
+.certificate-card .verify-btn,
+.modal-verify-btn,
+.cert-modal-btn.modal-verify-btn {
+  background: #059669 !important;
+  background-color: #059669 !important;
+  border: 1px solid #059669 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.22) !important;
   text-shadow: none !important;
+  transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease, color .25s ease !important;
 }
 
+/* Ensure inner text, labels, and arrows are crisp white without neon/cyan/lime */
+.project-live-btn *,
+.project-live-btn span,
+.modal-demo-btn *,
+.modal-demo-btn span,
+#contact-submit-btn *,
+#contact-submit-btn span,
+.contact-form button[type="submit"] *,
+.contact-form button[type="submit"] span,
 .verify-btn *,
 .verify-btn span,
 a.verify-btn *,
@@ -704,136 +724,105 @@ a.verify-btn span,
 .cert-actions .verify-btn *,
 .cert-actions .verify-btn span,
 .certificate-card .verify-btn *,
-.certificate-card .verify-btn span {
-  color: #14532d !important;
-  text-shadow: none !important;
-}
-
-.verify-btn:hover,
-.verify-btn:focus,
-.verify-btn:active,
-a.verify-btn:hover,
-a.verify-btn:focus,
-a.verify-btn:active,
-.button.verify-btn:hover,
-.button.verify-btn:focus,
-.button.verify-btn:active,
-.button-primary.verify-btn:hover,
-.button-primary.verify-btn:focus,
-.button-primary.verify-btn:active,
-.cert-btn.verify-btn:hover,
-.cert-btn.verify-btn:focus,
-.cert-btn.verify-btn:active,
-.cert-actions .verify-btn:hover,
-.cert-actions .verify-btn:focus,
-.cert-actions .verify-btn:active,
-.certificate-card .verify-btn:hover,
-.certificate-card .verify-btn:focus,
-.certificate-card .verify-btn:active {
-  background: #14532d !important;
-  background-color: #14532d !important;
-  color: #ffffff !important;
-  border-color: #14532d !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  transform: translateY(-2px);
-}
-
-.verify-btn:hover *,
-.verify-btn:hover span,
-.verify-btn:focus *,
-.verify-btn:focus span,
-.verify-btn:active *,
-.verify-btn:active span,
-a.verify-btn:hover *,
-a.verify-btn:hover span,
-a.verify-btn:focus *,
-a.verify-btn:focus span,
-a.verify-btn:active *,
-a.verify-btn:active span,
-.button.verify-btn:hover *,
-.button.verify-btn:hover span,
-.button.verify-btn:focus *,
-.button.verify-btn:focus span,
-.button.verify-btn:active *,
-.button.verify-btn:active span,
-.button-primary.verify-btn:hover *,
-.button-primary.verify-btn:hover span,
-.button-primary.verify-btn:focus *,
-.button-primary.verify-btn:focus span,
-.button-primary.verify-btn:active *,
-.button-primary.verify-btn:active span,
-.cert-btn.verify-btn:hover *,
-.cert-btn.verify-btn:hover span,
-.cert-btn.verify-btn:focus *,
-.cert-btn.verify-btn:focus span,
-.cert-btn.verify-btn:active *,
-.cert-btn.verify-btn:active span,
-.cert-actions .verify-btn:hover *,
-.cert-actions .verify-btn:hover span,
-.cert-actions .verify-btn:focus *,
-.cert-actions .verify-btn:focus span,
-.cert-actions .verify-btn:active *,
-.cert-actions .verify-btn:active span,
-.certificate-card .verify-btn:hover *,
-.certificate-card .verify-btn:hover span,
-.certificate-card .verify-btn:focus *,
-.certificate-card .verify-btn:focus span,
-.certificate-card .verify-btn:active *,
-.certificate-card .verify-btn:active span {
+.certificate-card .verify-btn span,
+.modal-verify-btn *,
+.modal-verify-btn span,
+.cert-modal-btn.modal-verify-btn *,
+.cert-modal-btn.modal-verify-btn span {
   color: #ffffff !important;
   text-shadow: none !important;
 }
 
-/* =========================================================================
-   Professional Emerald Green Button Styling
-   Replaces neon greens with eye-friendly emerald & forest greens
-   ========================================================================= */
-.button-primary:not(.verify-btn),
-.btn-primary:not(.verify-btn),
-.cta-button,
-.project-live-btn,
-.modal-demo-btn,
-.cert-modal-btn.button-primary {
-  background-color: #059669 !important;
-  border-color: #059669 !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 18px rgba(5, 150, 105, 0.28) !important;
-}
-
-.button-primary:not(.verify-btn):hover,
-.button-primary:not(.verify-btn):focus,
-.btn-primary:not(.verify-btn):hover,
-.btn-primary:not(.verify-btn):focus,
-.cta-button:hover,
-.cta-button:focus,
+/* 2. Hover & Focus States: Darker Emerald #047857 with high contrast and no harsh glow */
 .project-live-btn:hover,
 .project-live-btn:focus,
 .modal-demo-btn:hover,
 .modal-demo-btn:focus,
-.cert-modal-btn.button-primary:hover,
-.cert-modal-btn.button-primary:focus,
 #contact-submit-btn:hover,
-#contact-submit-btn:focus {
+#contact-submit-btn:focus,
+.contact-form button[type="submit"]:hover,
+.contact-form button[type="submit"]:focus,
+.verify-btn:hover,
+.verify-btn:focus,
+a.verify-btn:hover,
+a.verify-btn:focus,
+.button.verify-btn:hover,
+.button.verify-btn:focus,
+.button-primary.verify-btn:hover,
+.button-primary.verify-btn:focus,
+.cert-btn.verify-btn:hover,
+.cert-btn.verify-btn:focus,
+.cert-actions .verify-btn:hover,
+.cert-actions .verify-btn:focus,
+.certificate-card .verify-btn:hover,
+.certificate-card .verify-btn:focus,
+.modal-verify-btn:hover,
+.modal-verify-btn:focus,
+.cert-modal-btn.modal-verify-btn:hover,
+.cert-modal-btn.modal-verify-btn:focus {
+  background: #047857 !important;
   background-color: #047857 !important;
   border-color: #047857 !important;
   color: #ffffff !important;
-  box-shadow: 0 8px 25px rgba(4, 120, 87, 0.38) !important;
+  box-shadow: 0 6px 18px rgba(4, 120, 87, 0.32) !important;
+  text-shadow: none !important;
+  transform: translateY(-2px);
 }
 
-.button-primary:not(.verify-btn) *,
-.button-primary:not(.verify-btn) span,
-.btn-primary:not(.verify-btn) *,
-.btn-primary:not(.verify-btn) span,
-.cta-button *,
-.cta-button span,
-.project-live-btn *,
-.project-live-btn span,
-.modal-demo-btn *,
-.modal-demo-btn span,
-.cert-modal-btn.button-primary *,
-.cert-modal-btn.button-primary span {
+.project-live-btn:hover *,
+.project-live-btn:hover span,
+.project-live-btn:focus *,
+.project-live-btn:focus span,
+.modal-demo-btn:hover *,
+.modal-demo-btn:hover span,
+.modal-demo-btn:focus *,
+.modal-demo-btn:focus span,
+#contact-submit-btn:hover *,
+#contact-submit-btn:hover span,
+#contact-submit-btn:focus *,
+#contact-submit-btn:focus span,
+.contact-form button[type="submit"]:hover *,
+.contact-form button[type="submit"]:hover span,
+.contact-form button[type="submit"]:focus *,
+.contact-form button[type="submit"]:focus span,
+.verify-btn:hover *,
+.verify-btn:hover span,
+.verify-btn:focus *,
+.verify-btn:focus span,
+a.verify-btn:hover *,
+a.verify-btn:hover span,
+a.verify-btn:focus *,
+a.verify-btn:focus span,
+.button.verify-btn:hover *,
+.button.verify-btn:hover span,
+.button.verify-btn:focus *,
+.button.verify-btn:focus span,
+.button-primary.verify-btn:hover *,
+.button-primary.verify-btn:hover span,
+.button-primary.verify-btn:focus *,
+.button-primary.verify-btn:focus span,
+.cert-btn.verify-btn:hover *,
+.cert-btn.verify-btn:hover span,
+.cert-btn.verify-btn:focus *,
+.cert-btn.verify-btn:focus span,
+.cert-actions .verify-btn:hover *,
+.cert-actions .verify-btn:hover span,
+.cert-actions .verify-btn:focus *,
+.cert-actions .verify-btn:focus span,
+.certificate-card .verify-btn:hover *,
+.certificate-card .verify-btn:hover span,
+.certificate-card .verify-btn:focus *,
+.certificate-card .verify-btn:focus span,
+.modal-verify-btn:hover *,
+.modal-verify-btn:hover span,
+.modal-verify-btn:focus *,
+.modal-verify-btn:focus span,
+.cert-modal-btn.modal-verify-btn:hover *,
+.cert-modal-btn.modal-verify-btn:hover span,
+.cert-modal-btn.modal-verify-btn:focus *,
+.cert-modal-btn.modal-verify-btn:focus span {
   color: #ffffff !important;
+  text-shadow: none !important;
 }
 .cert-no-link-note {
   font-family: var(--mono);
