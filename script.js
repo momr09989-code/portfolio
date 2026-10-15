@@ -37,12 +37,13 @@
   // Synchronized Theme Toggle (Light / Dark)
   const setTheme = (theme) => {
     const isLight = theme === 'light';
+    const isArabic = document.documentElement.lang === 'ar';
     body.classList.toggle('light-mode', isLight);
     themeToggles.forEach((t) => {
       const icon = t.querySelector('.theme-icon');
       if (icon) icon.textContent = isLight ? '☾' : '☀';
       const text = t.querySelector('.theme-text');
-      if (text) text.textContent = isLight ? 'Light' : 'Dark';
+      if (text) text.textContent = isLight ? (isArabic ? 'فاتح' : 'Light') : (isArabic ? 'داكن' : 'Dark');
       t.setAttribute('aria-label', `Switch to ${isLight ? 'dark' : 'light'} mode`);
     });
     const metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -54,9 +55,25 @@
 
   themeToggles.forEach((t) => {
     t.addEventListener('click', () => {
-      const theme = body.classList.contains('light-mode') ? 'dark' : 'light';
-      localStorage.setItem('omar-theme', theme);
-      setTheme(theme);
+      // Button Click Animation: Trigger 360-degree rotation and scale pop
+      themeToggles.forEach((btn) => {
+        btn.classList.remove('is-rotating');
+        void btn.offsetWidth;
+        btn.classList.add('is-rotating');
+        setTimeout(() => btn.classList.remove('is-rotating'), 500);
+      });
+
+      const nextTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
+      localStorage.setItem('omar-theme', nextTheme);
+
+      // Smooth Page Theme Morphing Transition (View Transitions API or CSS transitions)
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          setTheme(nextTheme);
+        });
+      } else {
+        setTheme(nextTheme);
+      }
     });
   });
 
@@ -747,6 +764,12 @@
       if (text) text.textContent = isArabic ? 'EN' : 'AR';
       btn.setAttribute('aria-label', isArabic ? 'Switch language to English' : 'Switch language to Arabic');
       btn.setAttribute('title', isArabic ? 'تبديل إلى الإنجليزية' : 'Switch to Arabic');
+    });
+
+    const isLight = body.classList.contains('light-mode');
+    themeToggles.forEach((t) => {
+      const text = t.querySelector('.theme-text');
+      if (text) text.textContent = isLight ? (isArabic ? 'فاتح' : 'Light') : (isArabic ? 'داكن' : 'Dark');
     });
   };
 

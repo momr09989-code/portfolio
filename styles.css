@@ -52,7 +52,47 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  transition: background .35s ease, color .35s ease;
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* View Transitions API smooth morph */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth Theme Switching Transitions across all components */
+body,
+section,
+.section,
+.navbar,
+.site-header,
+.site-nav,
+.mobile-menu,
+.project-card,
+.certificate-card,
+.skill-item-card,
+.skill-card,
+.service-card,
+.achievement-card,
+.testimonial-card,
+.education-card,
+.experience-item,
+.button,
+.btn,
+.theme-toggle,
+.lang-toggle,
+.modal,
+.modal-dialog,
+.modal-content,
+.cert-modal-dialog,
+.video-modal-dialog,
+.cv-modal-dialog,
+.contact-form,
+.cat-badge,
+.skill-badge-tag {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
@@ -180,9 +220,37 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .lang-toggle { height: 37px; min-width: 52px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--text); border: 1px solid var(--line); border-radius: 9px; background: var(--surface); font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .05em; transition: transform .2s, background .2s, border-color .2s, color .2s, box-shadow .2s; }
 .lang-toggle:hover { transform: translateY(-1px); background: var(--surface-raised); border-color: var(--cyan); color: var(--cyan); box-shadow: 0 4px 12px var(--shadow); }
 .lang-icon { font-size: 13px; line-height: 1; }
-.theme-toggle { height: 37px; width: 37px; display: grid; place-items: center; color: var(--text); border: 1px solid var(--line); border-radius: 9px; background: var(--surface); transition: transform .2s, background .2s, border-color .2s; }
-.theme-toggle:hover { transform: rotate(14deg); background: var(--surface-raised); border-color: var(--cyan); }
-.theme-icon { font-size: 15px; line-height: 1; }
+.theme-toggle {
+  height: 37px;
+  width: 37px;
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.theme-toggle:hover {
+  transform: rotate(14deg);
+  background: var(--surface-raised);
+  border-color: var(--cyan);
+}
+.theme-icon {
+  font-size: 15px;
+  line-height: 1;
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle:not(.mobile-toggle-btn).is-rotating {
+  transform: rotate(360deg) scale(1.1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle.is-rotating .theme-icon {
+  transform: rotate(360deg) scale(1.1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .menu-toggle { display: none; }
 
 .hero { min-height: 720px; width: 100%; max-width: 1160px; padding-top: 50px; padding-bottom: 60px; margin: 0 auto; position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 48px; box-sizing: border-box; }
@@ -1551,7 +1619,7 @@ body.menu-open {
   background: color-mix(in srgb, var(--surface) 75%, transparent);
   border: 1px solid var(--line);
   border-radius: 12px;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
   position: relative;
 }
 
@@ -1559,6 +1627,7 @@ body.menu-open {
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--cyan) 40%, var(--line));
   box-shadow: 0 10px 25px var(--shadow);
+  background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
 }
 
 .skill-item-icon {
@@ -1610,15 +1679,29 @@ body.menu-open {
   color: var(--faint);
   font-weight: 500;
   white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.skill-badge-tag.tag-primary {
+.skill-item-card:hover .skill-badge-tag {
   color: var(--cyan);
   border-color: color-mix(in srgb, var(--cyan) 35%, transparent);
   background: color-mix(in srgb, var(--cyan) 8%, transparent);
 }
 
+.skill-badge-tag.tag-primary,
 .skill-badge-tag.tag-accent {
+  color: var(--faint);
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--surface-raised) 80%, transparent);
+}
+
+.skill-item-card:hover .skill-badge-tag.tag-primary {
+  color: var(--cyan);
+  border-color: color-mix(in srgb, var(--cyan) 35%, transparent);
+  background: color-mix(in srgb, var(--cyan) 8%, transparent);
+}
+
+.skill-item-card:hover .skill-badge-tag.tag-accent {
   color: var(--lime);
   border-color: color-mix(in srgb, var(--lime) 35%, transparent);
   background: color-mix(in srgb, var(--lime) 8%, transparent);
