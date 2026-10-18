@@ -1357,11 +1357,11 @@
   });
 
   // =========================================================================
-  // LENIS SMOOTH SCROLL + GSAP SCROLLTRIGGER + REACT BITS EFFECTS
+  // LENIS SMOOTH SCROLL + GSAP SCROLLTRIGGER + INTERACTIVE PORTFOLIO EFFECTS
   // =========================================================================
 
-  // 1. Mark modals and mobile menu overlay with data-lenis-prevent so inner scrolling works natively
-  document.querySelectorAll('.cert-modal, .modal, .mobile-menu-overlay').forEach((el) => {
+  // 1. Mark modals and overlay menus with data-lenis-prevent so inner scrolling works natively
+  document.querySelectorAll('.cert-modal, .modal, .mobile-menu-overlay, .curved-overlay-menu').forEach((el) => {
     el.setAttribute('data-lenis-prevent', '');
   });
 
@@ -1372,7 +1372,7 @@
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      prevent: (node) => !!(node && node.closest && node.closest('.cert-modal, .modal, .mobile-menu-overlay'))
+      prevent: (node) => !!(node && node.closest && node.closest('.cert-modal, .modal, .mobile-menu-overlay, .curved-overlay-menu'))
     });
 
     if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
@@ -1389,38 +1389,550 @@
       };
       requestAnimationFrame(raf);
     }
+  }
 
-    // Smooth anchor navigation via Lenis
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        const href = anchor.getAttribute('href');
-        if (!href || href === '#') return;
-        const targetEl = document.querySelector(href);
-        if (targetEl) {
-          e.preventDefault();
-          if (mobileMenu && mobileMenu.classList.contains('is-open')) {
-            setMobileMenu(false);
+  // 3. Hero Drawn SVG Signature Animation (stroke-dashoffset)
+  const sigWrap = document.querySelector('.hero-signature-wrap');
+  const sigPaths = document.querySelectorAll('.hero-signature-svg .sig-path');
+  const sigDot = document.querySelector('.hero-signature-svg .sig-dot');
+
+  const initSignaturePaths = () => {
+    sigPaths.forEach((path) => {
+      if (typeof path.getTotalLength === 'function') {
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = `${len}`;
+        path.style.strokeDashoffset = `${len}`;
+      }
+    });
+    if (sigDot) sigDot.style.opacity = '0';
+  };
+
+  const playSignatureAnimation = () => {
+    if (!sigPaths.length || typeof window.gsap === 'undefined') return;
+    initSignaturePaths();
+    const tl = window.gsap.timeline();
+    sigPaths.forEach((path, idx) => {
+      tl.to(
+        path,
+        {
+          strokeDashoffset: 0,
+          duration: idx === 2 ? 0.55 : 0.75,
+          ease: 'power2.inOut'
+        },
+        idx === 0 ? 0 : '-=0.25'
+      );
+    });
+    if (sigDot) {
+      tl.fromTo(
+        sigDot,
+        { opacity: 0, scale: 0 },
+        { opacity: 1, scale: 1, duration: 0.3, ease: 'back.out(2)' },
+        '-=0.35'
+      );
+    }
+  };
+
+  initSignaturePaths();
+  if (sigWrap) {
+    sigWrap.addEventListener('mouseenter', playSignatureAnimation);
+    sigWrap.addEventListener('click', playSignatureAnimation);
+  }
+
+  // 4. Curved Preloader Reveal ("OMAR EBIED" + 1.2s Curved Pull Up)
+  const preloader = document.getElementById('preloader');
+  const preloaderChars = document.querySelectorAll('.preloader-char');
+  const preloaderBar = document.getElementById('preloader-bar');
+  const preloaderCurvePath = document.getElementById('preloader-curve-path');
+  const heroTitleEl = document.querySelector('.hero h1');
+  const heroRoleEl = document.querySelector('.hero-role');
+
+  let preloaderFinished = false;
+  const finishPreloader = () => {
+    if (preloaderFinished) return;
+    preloaderFinished = true;
+    if (preloader) preloader.classList.add('is-done');
+    if (heroTitleEl) decryptText(heroTitleEl, 800);
+    if (heroRoleEl) decryptText(heroRoleEl, 850);
+    playSignatureAnimation();
+  };
+
+  // Fallback guarantee so preloader never blocks interaction
+  setTimeout(finishPreloader, 2900);
+
+  if (preloader && typeof window.gsap !== 'undefined') {
+    const preTl = window.gsap.timeline({
+      onComplete: finishPreloader
+    });
+
+    preTl
+      .fromTo(
+        preloaderChars,
+        { yPercent: 115, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.55,
+          stagger: 0.04,
+          ease: 'power3.out'
+        }
+      )
+      .to(
+        preloaderBar,
+        {
+          width: '100%',
+          duration: 0.65,
+          ease: 'power2.inOut'
+        },
+        0.1
+      )
+      .to(
+        preloader,
+        {
+          yPercent: -100,
+          duration: 1.2,
+          ease: 'power4.inOut',
+          onStart: () => {
+            setTimeout(() => {
+              if (heroTitleEl) decryptText(heroTitleEl, 800);
+              if (heroRoleEl) decryptText(heroRoleEl, 850);
+              playSignatureAnimation();
+            }, 450);
           }
-          lenis.scrollTo(targetEl, {
-            offset: href === '#home' ? 0 : -78,
-            duration: 1.2
+        },
+        '+=0.12'
+      );
+
+    if (preloaderCurvePath) {
+      preTl.to(
+        preloaderCurvePath,
+        {
+          attr: { d: 'M0,0 L1440,0 L1440,0 Q720,0 0,0 Z' },
+          duration: 1.2,
+          ease: 'power4.inOut'
+        },
+        '-=1.2'
+      );
+    }
+  } else {
+    finishPreloader();
+  }
+
+  // 5. Starfield Background Canvas (Smooth Slow Drift + Dark/Light Mode Adaptive)
+  const starCanvas = document.getElementById('starfield');
+  if (starCanvas && starCanvas.getContext) {
+    const ctx = starCanvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const resizeCanvas = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      starCanvas.width = width * dpr;
+      starCanvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    const starCount = width < 700 ? 55 : 95;
+    const stars = Array.from({ length: starCount }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.45 + 0.45,
+      vx: (Math.random() - 0.5) * 0.14,
+      vy: (Math.random() - 0.5) * 0.14 - 0.05,
+      baseAlpha: Math.random() * 0.55 + 0.2,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.015 + 0.005,
+      isEmerald: Math.random() < 0.38
+    }));
+
+    const renderStars = () => {
+      ctx.clearRect(0, 0, width, height);
+      const isLight = body.classList.contains('light-mode');
+
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.phase += s.speed;
+
+        if (s.x < 0) s.x = width;
+        if (s.x > width) s.x = 0;
+        if (s.y < 0) s.y = height;
+        if (s.y > height) s.y = 0;
+
+        const twinkle = 0.65 + 0.35 * Math.sin(s.phase);
+        const alpha = s.baseAlpha * twinkle * (isLight ? 0.42 : 0.85);
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        if (s.isEmerald) {
+          ctx.fillStyle = isLight
+            ? `rgba(5, 150, 105, ${alpha})`
+            : `rgba(16, 185, 129, ${alpha})`;
+        } else {
+          ctx.fillStyle = isLight
+            ? `rgba(16, 34, 30, ${alpha * 0.65})`
+            : `rgba(220, 242, 235, ${alpha * 0.78})`;
+        }
+        ctx.fill();
+      }
+      requestAnimationFrame(renderStars);
+    };
+    requestAnimationFrame(renderStars);
+  }
+
+  // 6. Custom Glowing Cursor (gsap.quickTo) & Magnetic Buttons (Desktop Only)
+  const customCursor = document.getElementById('custom-cursor');
+  const isDesktopPointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (customCursor && isDesktopPointer && typeof window.gsap !== 'undefined') {
+    const xTo = window.gsap.quickTo(customCursor, 'left', { duration: 0.22, ease: 'power3.out' });
+    const yTo = window.gsap.quickTo(customCursor, 'top', { duration: 0.22, ease: 'power3.out' });
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        if (!customCursor.classList.contains('is-visible')) {
+          customCursor.classList.add('is-visible');
+        }
+        xTo(e.clientX);
+        yTo(e.clientY);
+      },
+      { passive: true }
+    );
+
+    const interactiveSelector = 'a, button, .button, .project-card, .certificate-card, [data-open-modal], .skills-tab, .freelance-card';
+    document.addEventListener(
+      'mouseover',
+      (e) => {
+        if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
+          customCursor.classList.add('is-active');
+        }
+      },
+      { passive: true }
+    );
+    document.addEventListener(
+      'mouseout',
+      (e) => {
+        if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
+          const related = e.relatedTarget;
+          if (!related || !related.closest || !related.closest(interactiveSelector)) {
+            customCursor.classList.remove('is-active');
+          }
+        }
+      },
+      { passive: true }
+    );
+
+    // Magnetic Effect on primary buttons, social buttons, and floating menu button (excluding theme/mobile toggles)
+    const magneticElements = document.querySelectorAll(
+      '.hero-cv-btn, #contact-submit-btn, .qi-cta-btn, .footer-social-btn, .footer-pill-btn, .floating-menu-btn, .site-header .brand'
+    );
+    magneticElements.forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dy = e.clientY - (rect.top + rect.height / 2);
+        window.gsap.to(el, {
+          x: dx * 0.28,
+          y: dy * 0.28,
+          duration: 0.35,
+          ease: 'power2.out'
+        });
+      });
+      el.addEventListener('mouseleave', () => {
+        window.gsap.to(el, {
+          x: 0,
+          y: 0,
+          duration: 0.65,
+          ease: 'elastic.out(1, 0.4)'
+        });
+      });
+    });
+  }
+
+  // 7. Infinite Horizontal Marquee with Scroll Velocity & Direction Control
+  const marqueeTrack = document.getElementById('marquee-track');
+  if (marqueeTrack && typeof window.gsap !== 'undefined') {
+    const marqueeTween = window.gsap.to(marqueeTrack, {
+      xPercent: -50,
+      repeat: -1,
+      duration: 24,
+      ease: 'none'
+    });
+
+    if (typeof window.ScrollTrigger !== 'undefined') {
+      window.ScrollTrigger.create({
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        onUpdate: (self) => {
+          const vel = Math.min(Math.abs(self.getVelocity() / 350), 3.5);
+          const dir = self.direction >= 0 ? 1 : -1;
+          window.gsap.to(marqueeTween, {
+            timeScale: dir * (1 + vel),
+            duration: 0.25,
+            overwrite: true,
+            onComplete: () => {
+              window.gsap.to(marqueeTween, {
+                timeScale: dir,
+                duration: 0.8,
+                ease: 'power2.out'
+              });
+            }
           });
+        }
+      });
+    }
+  }
+
+  // 8. Glowing Scroll-Scrubbed Timeline (Education & Experience)
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+    document.querySelectorAll('.timeline-wrapper').forEach((wrapper) => {
+      const fill = wrapper.querySelector('.timeline-rail-fill');
+      const dot = wrapper.querySelector('.timeline-rail-dot');
+      if (fill) {
+        window.gsap.fromTo(
+          fill,
+          { height: '0%' },
+          {
+            height: '100%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: wrapper,
+              start: 'top 78%',
+              end: 'bottom 45%',
+              scrub: 0.4
+            }
+          }
+        );
+      }
+      if (dot) {
+        window.gsap.fromTo(
+          dot,
+          { top: '0%' },
+          {
+            top: '100%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: wrapper,
+              start: 'top 78%',
+              end: 'bottom 45%',
+              scrub: 0.4
+            }
+          }
+        );
+      }
+    });
+  }
+
+  // 9. Sticky Project Counter (01., 02., 03.) & Floating Hover Preview Image
+  const stickyNumEl = document.getElementById('project-sticky-num');
+  const stickyLabelEl = document.getElementById('project-sticky-label');
+  const stickyDots = document.querySelectorAll('.sticky-dot');
+  const allProjectCards = document.querySelectorAll('.project-card');
+
+  const setActiveProjectCounter = (index, numStr, titleText) => {
+    if (stickyNumEl && stickyNumEl.textContent !== numStr) {
+      if (typeof window.gsap !== 'undefined') {
+        window.gsap.fromTo(
+          stickyNumEl,
+          { y: -14, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.32,
+            ease: 'power2.out',
+            onStart: () => {
+              stickyNumEl.textContent = numStr;
+            }
+          }
+        );
+      } else {
+        stickyNumEl.textContent = numStr;
+      }
+    }
+    if (stickyLabelEl && titleText) {
+      stickyLabelEl.textContent = titleText;
+    }
+    stickyDots.forEach((d, idx) => d.classList.toggle('active', idx === index));
+  };
+
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+    allProjectCards.forEach((card, index) => {
+      const numStr = card.getAttribute('data-project-num') || `0${index + 1}.`;
+      window.ScrollTrigger.create({
+        trigger: card,
+        start: 'top 62%',
+        end: 'bottom 45%',
+        onEnter: () => {
+          const h3 = card.querySelector('h3');
+          setActiveProjectCounter(index, numStr, h3 ? h3.textContent : '');
+        },
+        onEnterBack: () => {
+          const h3 = card.querySelector('h3');
+          setActiveProjectCounter(index, numStr, h3 ? h3.textContent : '');
         }
       });
     });
   }
 
-  // 3. React Bits: Decrypted Text Effect Triggers (Load, ScrollTrigger, Hover)
-  const heroTitleEl = document.querySelector('.hero h1');
-  const heroRoleEl = document.querySelector('.hero-role');
-  const sectionTitles = document.querySelectorAll('h2.section-title, .contact-copy h2');
+  // Floating Hover Image Preview on Project Titles
+  const hoverPreview = document.getElementById('project-hover-preview');
+  const hoverPreviewImg = document.getElementById('project-hover-preview-img');
+  const hoverPreviewTag = document.getElementById('project-hover-preview-tag');
+  const projectHoverTitles = document.querySelectorAll('.project-hover-title');
 
+  if (hoverPreview && isDesktopPointer && typeof window.gsap !== 'undefined') {
+    const previewX = window.gsap.quickTo(hoverPreview, 'left', { duration: 0.28, ease: 'power3.out' });
+    const previewY = window.gsap.quickTo(hoverPreview, 'top', { duration: 0.28, ease: 'power3.out' });
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        if (hoverPreview.classList.contains('is-visible')) {
+          previewX(e.clientX);
+          previewY(e.clientY);
+        }
+      },
+      { passive: true }
+    );
+
+    projectHoverTitles.forEach((titleEl) => {
+      titleEl.addEventListener('mouseenter', (e) => {
+        const imgSrc = titleEl.getAttribute('data-preview-img');
+        const tagText = titleEl.getAttribute('data-preview-tag') || 'View Project ↗';
+        if (hoverPreviewImg && imgSrc) hoverPreviewImg.src = imgSrc;
+        if (hoverPreviewTag) hoverPreviewTag.textContent = tagText;
+        previewX(e.clientX);
+        previewY(e.clientY);
+        hoverPreview.classList.add('is-visible');
+      });
+      titleEl.addEventListener('mouseleave', () => {
+        hoverPreview.classList.remove('is-visible');
+      });
+    });
+  }
+
+  // 10. Curved Fullscreen Overlay Menu (Hamburger Button + Curved Drop + Staggered Links)
+  const floatingMenuBtn = document.getElementById('floating-menu-btn');
+  const curvedOverlayMenu = document.getElementById('curved-overlay-menu');
+  const curvedOverlayClose = document.getElementById('curved-overlay-close');
+  const curvedOverlayPath = document.getElementById('curved-overlay-path');
+  const curvedNavItems = document.querySelectorAll('.curved-nav-item');
+
+  let isCurvedMenuOpen = false;
+  const setCurvedMenu = (open) => {
+    if (!curvedOverlayMenu || isCurvedMenuOpen === open) return;
+    isCurvedMenuOpen = open;
+    if (floatingMenuBtn) {
+      floatingMenuBtn.classList.toggle('is-open', open);
+      floatingMenuBtn.setAttribute('aria-expanded', String(open));
+    }
+    curvedOverlayMenu.setAttribute('aria-hidden', String(!open));
+
+    if (typeof window.gsap !== 'undefined') {
+      if (open) {
+        curvedOverlayMenu.classList.add('is-open');
+        if (curvedOverlayPath) {
+          window.gsap.set(curvedOverlayPath, {
+            attr: { d: 'M0,0 L1440,0 L1440,60 Q720,180 0,60 Z' }
+          });
+        }
+        window.gsap.to(curvedOverlayMenu, {
+          y: '0%',
+          duration: 0.75,
+          ease: 'power4.out'
+        });
+        if (curvedOverlayPath) {
+          window.gsap.to(curvedOverlayPath, {
+            attr: { d: 'M0,0 L1440,0 L1440,0 Q720,0 0,0 Z' },
+            duration: 0.85,
+            ease: 'power3.out'
+          });
+        }
+        window.gsap.fromTo(
+          curvedNavItems,
+          { y: 32, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.055,
+            delay: 0.18,
+            ease: 'power3.out'
+          }
+        );
+      } else {
+        if (curvedOverlayPath) {
+          window.gsap.to(curvedOverlayPath, {
+            attr: { d: 'M0,0 L1440,0 L1440,50 Q720,170 0,50 Z' },
+            duration: 0.35,
+            ease: 'power2.in'
+          });
+        }
+        window.gsap.to(curvedOverlayMenu, {
+          y: '-105%',
+          duration: 0.65,
+          ease: 'power4.inOut',
+          onComplete: () => {
+            curvedOverlayMenu.classList.remove('is-open');
+          }
+        });
+      }
+    } else {
+      curvedOverlayMenu.classList.toggle('is-open', open);
+      curvedOverlayMenu.style.transform = open ? 'translateY(0%)' : 'translateY(-105%)';
+    }
+  };
+
+  if (floatingMenuBtn) {
+    floatingMenuBtn.addEventListener('click', () => setCurvedMenu(!isCurvedMenuOpen));
+  }
+  if (curvedOverlayClose) {
+    curvedOverlayClose.addEventListener('click', () => setCurvedMenu(false));
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isCurvedMenuOpen) {
+      setCurvedMenu(false);
+    }
+  });
+
+  // Smooth anchor navigation via Lenis (closes mobile & curved menus automatically)
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      const targetEl = document.querySelector(href);
+      if (targetEl) {
+        e.preventDefault();
+        if (mobileMenu && mobileMenu.classList.contains('is-open')) {
+          setMobileMenu(false);
+        }
+        if (isCurvedMenuOpen) {
+          setCurvedMenu(false);
+        }
+        if (lenis) {
+          lenis.scrollTo(targetEl, {
+            offset: href === '#home' ? 0 : -78,
+            duration: 1.2
+          });
+        } else {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // 11. React Bits: Decrypted Text Effect Triggers (Hover & ScrollTrigger)
+  const sectionTitles = document.querySelectorAll('h2.section-title, .contact-copy h2');
   if (heroTitleEl) {
-    decryptText(heroTitleEl, 800);
     heroTitleEl.addEventListener('mouseenter', () => decryptText(heroTitleEl, 750));
   }
   if (heroRoleEl) {
-    decryptText(heroRoleEl, 850);
     heroRoleEl.addEventListener('mouseenter', () => decryptText(heroRoleEl, 800));
   }
 
@@ -1436,7 +1948,7 @@
     }
   });
 
-  // 4. React Bits: Spotlight Cards Mouse Tracking (--mouse-x, --mouse-y)
+  // 12. React Bits: Spotlight Cards Mouse Tracking (--mouse-x, --mouse-y)
   const spotlightCards = document.querySelectorAll('.project-card, .skill-item-card, .certificate-card');
   spotlightCards.forEach((card) => {
     card.addEventListener(
@@ -1450,7 +1962,7 @@
     );
   });
 
-  // 5. GSAP + ScrollTrigger Staggered Reveal Animations for Cards
+  // 13. GSAP + ScrollTrigger Staggered Reveal Animations for Cards
   if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     window.gsap.registerPlugin(window.ScrollTrigger);
 

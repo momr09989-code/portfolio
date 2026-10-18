@@ -3076,6 +3076,764 @@ html.lenis body {
 }
 
 /* ==========================================================================
+   INTERACTIVE PORTFOLIO UPGRADES (PRELOADER, STARFIELD, CURSOR, MARQUEE,
+   SVG SIGNATURE, TIMELINE SCRUB, STICKY COUNTER, CURVED OVERLAY MENU)
+   ========================================================================== */
+
+/* 1. Starfield Background Canvas */
+#starfield {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  display: block;
+}
+
+/* 2. Curved Preloader Reveal */
+.preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #050c0e;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #edf4ed;
+  pointer-events: all;
+  will-change: transform;
+}
+
+.preloader.is-done {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.preloader-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #10b981;
+  opacity: 0.9;
+}
+
+.preloader-title {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: clamp(32px, 6.5vw, 76px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  overflow: hidden;
+  padding: 4px 8px;
+}
+
+.preloader-word {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.preloader-word-accent .preloader-char {
+  color: #10b981;
+}
+
+.preloader-dot {
+  color: #c9f76c !important;
+}
+
+.preloader-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.preloader-space {
+  display: inline-block;
+  width: 0.3em;
+}
+
+.preloader-progress-track {
+  width: min(240px, 65vw);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.preloader-progress-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #70f0df);
+  border-radius: 99px;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.7);
+}
+
+.preloader-curve {
+  position: absolute;
+  left: 0;
+  bottom: -140px;
+  width: 100%;
+  height: 145px;
+  pointer-events: none;
+  display: block;
+}
+
+.preloader-curve-path {
+  fill: #050c0e;
+}
+
+/* 3. Custom Glowing Cursor (Desktop Only) */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1.5px solid rgba(16, 185, 129, 0.65);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
+  pointer-events: none;
+  z-index: 99990;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  transition: width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.28s ease,
+              border-color 0.28s ease,
+              box-shadow 0.28s ease,
+              opacity 0.25s ease;
+  opacity: 0;
+  will-change: transform, width, height;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor .cursor-arrow {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  line-height: 1;
+}
+
+.custom-cursor.is-active {
+  width: 54px;
+  height: 54px;
+  background: rgba(16, 185, 129, 0.28);
+  border-color: #10b981;
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.custom-cursor.is-active .cursor-arrow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.light-mode .custom-cursor {
+  background: rgba(5, 150, 105, 0.15);
+  border-color: rgba(5, 150, 105, 0.7);
+  box-shadow: 0 0 16px rgba(5, 150, 105, 0.28);
+}
+
+body.light-mode .custom-cursor.is-active {
+  background: rgba(5, 150, 105, 0.85);
+  border-color: #047857;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 900px) {
+  .custom-cursor,
+  .project-hover-preview {
+    display: none !important;
+  }
+}
+
+/* 4. Hero Drawn SVG Signature */
+.hero-signature-wrap {
+  margin: 18px 0 6px;
+  max-width: 310px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hero-signature-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.22));
+}
+
+.sig-dot {
+  opacity: 0;
+  transform-origin: center;
+}
+
+/* 5. Infinite Horizontal Marquee */
+.marquee-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 20px 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--surface) 88%, transparent), color-mix(in srgb, var(--surface-raised) 92%, transparent), color-mix(in srgb, var(--surface) 88%, transparent));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  direction: ltr;
+  user-select: none;
+  z-index: 3;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.marquee-section:hover .marquee-item {
+  color: #10b981;
+}
+
+.marquee-sep {
+  color: #10b981;
+  font-size: 16px;
+  line-height: 1;
+  display: inline-block;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.55);
+}
+
+/* 6. Glowing Scroll-Scrubbed Timeline (Education & Experience) */
+.timeline-wrapper {
+  position: relative;
+  padding-left: 34px;
+}
+
+[dir="rtl"] .timeline-wrapper {
+  padding-left: 0;
+  padding-right: 34px;
+}
+
+.timeline-rail {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 8px;
+  width: 3px;
+  background: var(--line);
+  border-radius: 99px;
+}
+
+[dir="rtl"] .timeline-rail {
+  left: auto;
+  right: 8px;
+}
+
+.timeline-rail-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, #10b981, #70f0df);
+  border-radius: 99px;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.65);
+}
+
+.timeline-rail-dot {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid var(--bg);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.24), 0 0 18px #10b981;
+  z-index: 2;
+}
+
+@media (max-width: 700px) {
+  .timeline-wrapper {
+    padding-left: 22px;
+  }
+  [dir="rtl"] .timeline-wrapper {
+    padding-left: 0;
+    padding-right: 22px;
+  }
+  .timeline-rail {
+    left: 4px;
+  }
+  [dir="rtl"] .timeline-rail {
+    left: auto;
+    right: 4px;
+  }
+}
+
+/* 7. Sticky Project Counter & Floating Cursor Image Preview */
+.projects-sticky-layout {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.projects-sticky-counter {
+  position: sticky;
+  top: 110px;
+  z-index: 4;
+}
+
+.sticky-counter-box {
+  padding: 22px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface-raised) 80%, transparent));
+  box-shadow: 0 14px 32px var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.sticky-counter-kicker {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #10b981;
+  margin-bottom: 8px;
+}
+
+.sticky-counter-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1;
+}
+
+.sticky-counter-num {
+  font-family: var(--mono);
+  font-size: clamp(44px, 4.5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #10b981;
+  text-shadow: 0 0 24px rgba(16, 185, 129, 0.32);
+  display: inline-block;
+}
+
+.sticky-counter-total {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--faint);
+  font-weight: 600;
+}
+
+.sticky-counter-label {
+  margin: 12px 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  min-height: 36px;
+}
+
+.sticky-counter-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.sticky-dot {
+  height: 5px;
+  flex: 1;
+  border-radius: 99px;
+  background: var(--line);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sticky-dot.active {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+@media (max-width: 1020px) {
+  .projects-sticky-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .projects-sticky-counter {
+    position: static;
+  }
+  .sticky-counter-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 18px;
+  }
+  .sticky-counter-kicker {
+    margin-bottom: 0;
+  }
+  .sticky-counter-num {
+    font-size: 32px;
+  }
+  .sticky-counter-label {
+    margin: 0;
+    min-height: 0;
+  }
+  .sticky-counter-dots {
+    width: 90px;
+  }
+}
+
+.project-hover-title {
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.project-hover-title:hover {
+  color: #10b981;
+}
+
+.project-hover-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 158px;
+  pointer-events: none;
+  z-index: 99980;
+  opacity: 0;
+  transform: translate(-50%, -120%) scale(0.84);
+  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.project-hover-preview.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -115%) scale(1);
+}
+
+.project-hover-preview-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid #10b981;
+  background: #071214;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.65), 0 0 24px rgba(16, 185, 129, 0.35);
+  position: relative;
+}
+
+.project-hover-preview-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-hover-preview-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(6, 15, 17, 0.88);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #10b981;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+/* 8. Floating Circular Hamburger Button & Curved Fullscreen Overlay Menu */
+.floating-menu-btn {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #059669;
+  border: 1.5px solid rgba(112, 240, 223, 0.45);
+  color: #ffffff;
+  box-shadow: 0 10px 28px rgba(5, 150, 105, 0.42), 0 0 18px rgba(16, 185, 129, 0.3);
+  display: grid;
+  place-items: center;
+  z-index: 3200;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[dir="rtl"] .floating-menu-btn {
+  right: auto;
+  left: 26px;
+}
+
+.floating-menu-btn:hover {
+  background: #047857;
+  border-color: #70f0df;
+  box-shadow: 0 12px 34px rgba(4, 120, 87, 0.58), 0 0 24px rgba(16, 185, 129, 0.45);
+}
+
+.floating-menu-lines {
+  width: 20px;
+  height: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.floating-menu-lines span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.floating-menu-btn.is-open .floating-menu-lines span:first-child {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.floating-menu-btn.is-open .floating-menu-lines span:last-child {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.curved-overlay-menu {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: color-mix(in srgb, var(--bg) 96%, #041210);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 3100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateY(-105%);
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.curved-overlay-menu.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.curved-overlay-inner {
+  width: 100%;
+  max-width: 1120px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 28px 28px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.curved-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.curved-overlay-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.curved-overlay-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.curved-overlay-close:hover {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.curved-overlay-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 32px;
+  margin: auto 0;
+  padding: 24px 0;
+}
+
+.curved-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.curved-nav-item:hover {
+  border-color: #10b981;
+  background: color-mix(in srgb, #10b981 12%, var(--surface));
+  transform: translateX(6px);
+}
+
+[dir="rtl"] .curved-nav-item:hover {
+  transform: translateX(-6px);
+}
+
+.curved-nav-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.curved-nav-text {
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  flex: 1;
+}
+
+.curved-nav-arrow {
+  font-size: 18px;
+  color: #10b981;
+  transition: transform 0.25s ease;
+}
+
+.curved-nav-item:hover .curved-nav-arrow {
+  transform: translate(3px, -3px);
+}
+
+.curved-overlay-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.curved-overlay-footer a {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.curved-overlay-svg {
+  position: absolute;
+  left: 0;
+  bottom: -110px;
+  width: 100%;
+  height: 115px;
+  pointer-events: none;
+  display: block;
+}
+
+.curved-overlay-path {
+  fill: color-mix(in srgb, var(--bg) 96%, #041210);
+}
+
+@media (max-width: 700px) {
+  .curved-overlay-nav {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .curved-nav-item {
+    padding: 11px 14px;
+  }
+  .curved-nav-text {
+    font-size: 18px;
+  }
+  .floating-menu-btn {
+    bottom: 18px;
+    right: 18px;
+    width: 48px;
+    height: 48px;
+  }
+  [dir="rtl"] .floating-menu-btn {
+    right: auto;
+    left: 18px;
+  }
+  .curved-overlay-controls .theme-toggle {
+    display: grid !important;
+  }
+}
+
+/* ==========================================================================
    STRICT MOBILE MODAL & PROJECT ACTION BUTTONS OVERFLOW FIX & THEME TOGGLE
    ========================================================================== */
 .modal-footer-actions {
