@@ -1651,49 +1651,10 @@
     requestAnimationFrame(renderStars);
   }
 
-  // 6. Custom Glowing Cursor (gsap.quickTo) & Magnetic Buttons (Desktop Only)
-  const customCursor = document.getElementById('custom-cursor');
+  // 6. Magnetic Buttons (Desktop Only)
   const isDesktopPointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  if (customCursor && isDesktopPointer && typeof window.gsap !== 'undefined') {
-    const xTo = window.gsap.quickTo(customCursor, 'left', { duration: 0.22, ease: 'power3.out' });
-    const yTo = window.gsap.quickTo(customCursor, 'top', { duration: 0.22, ease: 'power3.out' });
-
-    window.addEventListener(
-      'mousemove',
-      (e) => {
-        if (!customCursor.classList.contains('is-visible')) {
-          customCursor.classList.add('is-visible');
-        }
-        xTo(e.clientX);
-        yTo(e.clientY);
-      },
-      { passive: true }
-    );
-
-    const interactiveSelector = 'a, button, .button, .project-card, .certificate-card, [data-open-modal], .skills-tab, .freelance-card';
-    document.addEventListener(
-      'mouseover',
-      (e) => {
-        if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
-          customCursor.classList.add('is-active');
-        }
-      },
-      { passive: true }
-    );
-    document.addEventListener(
-      'mouseout',
-      (e) => {
-        if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
-          const related = e.relatedTarget;
-          if (!related || !related.closest || !related.closest(interactiveSelector)) {
-            customCursor.classList.remove('is-active');
-          }
-        }
-      },
-      { passive: true }
-    );
-
+  if (isDesktopPointer && typeof window.gsap !== 'undefined') {
     // Magnetic Effect on primary buttons, social buttons, and floating menu button (excluding theme/lang/mobile toggles)
     const magneticElements = document.querySelectorAll(
       '.hero-cv-btn, #contact-submit-btn, .qi-cta-btn, .footer-social-btn, .footer-pill-btn, .floating-menu-btn, .site-header .brand'
