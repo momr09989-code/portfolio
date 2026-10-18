@@ -1502,13 +1502,23 @@
     sigWrap.addEventListener('click', playSignatureAnimation);
   }
 
-  // 4. Curved Preloader Reveal ("OMAR EBIED" + 1.2s Curved Pull Up)
+  // 4. Curved Preloader Reveal ("OMAR EBIED" + OE Logo Stroke Draw + 1.2s Curved Pull Up)
   const preloader = document.getElementById('preloader');
   const preloaderChars = document.querySelectorAll('.preloader-char');
+  const preloaderLogoPaths = document.querySelectorAll('.preloader-logo-path');
+  const preloaderLogoNodes = document.querySelectorAll('.preloader-logo-node');
   const preloaderBar = document.getElementById('preloader-bar');
   const preloaderCurvePath = document.getElementById('preloader-curve-path');
   const heroTitleEl = document.querySelector('.hero h1');
   const heroRoleEl = document.querySelector('.hero-role');
+
+  preloaderLogoPaths.forEach((path) => {
+    if (typeof path.getTotalLength === 'function') {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = `${len}`;
+      path.style.strokeDashoffset = `${len}`;
+    }
+  });
 
   let preloaderFinished = false;
   const finishPreloader = () => {
@@ -1531,6 +1541,34 @@
       onComplete: finishPreloader
     });
 
+    if (preloaderLogoPaths.length) {
+      preTl.to(
+        preloaderLogoPaths,
+        {
+          strokeDashoffset: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.inOut'
+        },
+        0
+      );
+    }
+
+    if (preloaderLogoNodes.length) {
+      preTl.fromTo(
+        preloaderLogoNodes,
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.35,
+          stagger: 0.04,
+          ease: 'back.out(2)'
+        },
+        0.25
+      );
+    }
+
     preTl
       .fromTo(
         preloaderChars,
@@ -1541,13 +1579,14 @@
           duration: 0.55,
           stagger: 0.04,
           ease: 'power3.out'
-        }
+        },
+        0.15
       )
       .to(
         preloaderBar,
         {
           width: '100%',
-          duration: 0.65,
+          duration: 0.75,
           ease: 'power2.inOut'
         },
         0.1

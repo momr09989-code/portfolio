@@ -213,8 +213,29 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: 0 8px 24px var(--shadow);
 }
 
-.brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.brand-mark { color: var(--text); letter-spacing: -1.8px; font-weight: 800; font-size: 20px; line-height: 1; }.brand-mark span { color: var(--lime); }.brand-name { font-size: 13px; color: var(--muted); font-weight: 700; }
+.brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; }
+.brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; line-height: 1; flex-shrink: 0; }
+.brand-logo-svg { width: 34px; height: 34px; display: block; overflow: visible; transition: filter 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.brand-logo-outer { transform-origin: 20px 20px; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease; }
+.brand-logo-hex { fill: rgba(16, 185, 129, 0.1); stroke: #10b981; stroke-width: 2; stroke-linejoin: round; transition: fill 0.3s ease, stroke 0.3s ease; }
+.brand-logo-node { fill: #10b981; transition: fill 0.3s ease, transform 0.3s ease; }
+.brand-logo-node-alt { fill: #70f0df; }
+.brand-logo-monogram { transform-origin: 20px 20px; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.brand-logo-o { fill: none; stroke: var(--text); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s ease; }
+.brand-logo-e { fill: none; stroke: #10b981; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s ease; }
+.brand-logo-dot { fill: var(--lime); transition: fill 0.3s ease; }
+.brand:hover .brand-logo-svg { filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.45)); }
+.brand:hover .brand-logo-outer { transform: rotate(30deg) scale(1.06); }
+.brand:hover .brand-logo-hex { fill: rgba(16, 185, 129, 0.2); stroke: #70f0df; }
+.brand:hover .brand-logo-monogram { transform: scale(1.03); }
+.brand:hover .brand-name { color: var(--text); }
+body.light-mode .brand-logo-hex { fill: rgba(5, 150, 105, 0.1); stroke: #059669; }
+body.light-mode .brand-logo-node { fill: #059669; }
+body.light-mode .brand-logo-node-alt { fill: #007c71; }
+body.light-mode .brand-logo-e { stroke: #059669; }
+body.light-mode .brand:hover .brand-logo-svg { filter: drop-shadow(0 0 10px rgba(5, 150, 105, 0.35)); }
+body.light-mode .brand:hover .brand-logo-hex { fill: rgba(5, 150, 105, 0.18); stroke: #047857; }
+.brand-name { font-size: 13.5px; color: var(--muted); font-weight: 700; transition: color 0.25s ease; }
 .site-nav { display: flex; align-items: center; gap: 26px; margin: 0 auto; }.site-nav a { color: var(--muted); font-size: 13px; font-weight: 700; position: relative; transition: color .2s; }.site-nav a:hover, .site-nav a.active { color: var(--text); }.site-nav a::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--lime); position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%) scale(0); transition: transform .2s; }.site-nav a.active::after { transform: translateX(-50%) scale(1); }
 
 .header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
@@ -3122,6 +3143,20 @@ html.lenis body {
   z-index: 2;
   padding: 0 20px;
   text-align: center;
+}
+
+.preloader-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.preloader-logo-svg {
+  width: 66px;
+  height: 66px;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.4));
 }
 
 .preloader-eyebrow {
