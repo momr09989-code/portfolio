@@ -8,7 +8,7 @@
   const nav = document.querySelector('.site-nav');
   const profileImage = document.getElementById('profile-image');
   const profileFrame = document.querySelector('.profile-frame');
-  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+  const prefersReducedMotion = false;
 
   // Sticky Header Scroll Transition (Optimized with requestAnimationFrame)
   if (header) {
@@ -1429,32 +1429,60 @@
     });
   }
 
+  // Continuous GSAP breathing + shimmer loop on Hero name ("Omar Ebied.")
+  let heroNameLoopStarted = false;
+  const startHeroNameLoop = () => {
+    if (heroNameLoopStarted || typeof window.gsap === 'undefined') return;
+    heroNameLoopStarted = true;
+    const heroNameFx = document.querySelector('.hero-name-fx');
+    const heroNameLast = document.querySelector('.hero-name-last, .hero h1 em');
+    if (heroNameFx) {
+      window.gsap.fromTo(
+        heroNameFx,
+        { y: 0, scale: 1 },
+        {
+          y: -6,
+          scale: 1.022,
+          duration: 1.4,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        }
+      );
+    }
+    if (heroNameLast) {
+      window.gsap.fromTo(
+        heroNameLast,
+        { backgroundPosition: '0% 50%' },
+        {
+          backgroundPosition: '220% 50%',
+          duration: 2.8,
+          ease: 'none',
+          repeat: -1
+        }
+      );
+    }
+  };
+  startHeroNameLoop();
+
   let heroTextRevealed = false;
   const revealHeroText = () => {
     if (heroTextRevealed) return;
     heroTextRevealed = true;
     if (typeof window.gsap !== 'undefined' && heroTextEls.length) {
-      if (prefersReducedMotion) {
-        window.gsap.set(heroTextEls, {
-          opacity: 1,
-          y: 0,
-          filter: 'none',
-          clearProps: 'transform,filter'
-        });
-      } else {
-        window.gsap.to(heroTextEls, {
-          opacity: 1,
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 0.85,
-          stagger: 0.12,
-          ease: 'power3.out',
-          overwrite: true,
-          clearProps: 'filter,transform'
-        });
-      }
+      window.gsap.to(heroTextEls, {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        duration: 0.85,
+        stagger: 0.12,
+        ease: 'power3.out',
+        overwrite: true,
+        clearProps: 'filter,transform'
+      });
     }
-    if (!prefersReducedMotion) playSignatureAnimation();
+    startHeroNameLoop();
+    playSignatureAnimation();
   };
 
   let preloaderFinished = false;

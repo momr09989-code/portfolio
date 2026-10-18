@@ -514,7 +514,6 @@ a[href*="hnu.edu.eg"]:hover {
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr .8fr; gap: 28px; }.hero-visual { transform: scale(.86); transform-origin: right center; }.education-card { grid-template-columns: 90px 1fr; }.coursework { grid-column: 2; }.project-card { grid-template-columns: 36% 1fr; }.project-details { padding: 29px; }.project-breakdown { grid-template-columns: 1fr; gap: 9px; }.experience-item { grid-template-columns: 120px .75fr 1.35fr; gap: 20px; }.contact-layout { gap: 55px; }.footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }.footer-col-whoami { grid-column: span 2; }.footer-bio { max-width: 100%; } }
 @media (max-width: 700px) { .site-wrapper { padding: 0 16px; }.site-header { height: 62px; top: 10px !important; margin: 0 auto; width: calc(100% - 32px); padding: 0 14px; border-radius: 14px; border: 1px solid var(--line); }.brand-name { display: none; }.menu-toggle { width: 38px; height: 38px; display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; color: var(--text); }.menu-toggle span { width: 18px; height: 2px; display: block; background: var(--text); border-radius: 1px; transition: transform .2s, opacity .2s; }.menu-toggle[aria-expanded='true'] span:first-child { transform: translateY(3.5px) rotate(45deg); }.menu-toggle[aria-expanded='true'] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }.site-nav { display: none !important; }.header-actions { gap: 6px; }.lang-toggle { min-width: 44px; padding: 0 8px; height: 36px; font-size: 11px; }.theme-toggle { display: none; }/* theme toggle is placed prominently at bottom of mobile menu overlay */.hero { min-height: auto; padding-top: 104px; padding-bottom: 50px; display: flex; flex-direction: column; align-items: flex-start; gap: 26px; }.hero h1 { font-size: clamp(34px, 10.5vw, 54px); }.hero-role { font-size: 15px; }.hero-usp { font-size: 13.5px; }.hero-visual { width: 100%; height: 310px; order: -1; transform: none; overflow: hidden; }.profile-frame { width: 190px; }.orbit-outer { width: 280px; height: 280px; }.orbit-inner { width: 235px; height: 140px; }.chip-data { left: 3%; top: 18%; }.chip-security { right: 3%; bottom: 14%; }.scroll-hint { display: none; }.section { padding: 75px 0; }.section-title { font-size: 34px; }.about-layout, .contact-layout { grid-template-columns: 1fr; gap: 28px; }.about-content { padding-top: 0; }.stats-row { padding-top: 30px; margin-top: 36px; }.stats-row > div { padding-left: 13px; }.stats-row strong { font-size: 17px; }.stats-row small { font-size: 10px; }.education-section, .skills-section, .services-section, .testimonials-section { padding-top: 65px; }.education-card { grid-template-columns: 1fr; gap: 20px; padding: 22px; }.coursework { grid-column: auto; padding: 18px 0 0; border-top: 1px solid var(--line); border-left: 0; }.section-heading { margin-bottom: 30px; }.skills-grid { grid-template-columns: 1fr; }.skill-card { min-height: 140px; }.skill-card h3 { margin-top: 21px; }.experience-item { grid-template-columns: 1fr; gap: 14px; padding: 25px 0; }.experience-role h3 { font-size: 19px; }.services-grid, .achievement-grid, .testimonial-grid { grid-template-columns: 1fr; }.service-card { padding: 22px; }.projects-section { padding-top: 75px; }.project-list { gap: 15px; }.project-card { grid-template-columns: 1fr; }.project-visual { min-height: 205px; }.project-details { padding: 24px 20px 26px; }.project-details h3 { font-size: 23px; }.project-breakdown { grid-template-columns: 1fr; }.achievement-card { min-height: 0; }.testimonial-card { min-height: 200px; }.contact-section { padding-top: 75px; }.contact-layout { padding-bottom: 60px; }.contact-copy h2 { font-size: 38px; }.contact-form { padding: 20px; }.form-row { grid-template-columns: 1fr; }.footer-grid { grid-template-columns: 1fr; gap: 28px; padding: 36px 0 26px; }.footer-col-whoami { grid-column: auto; }.footer-bio { max-width: 100%; }.footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; font-size: 10px; } }
 @media (max-width: 390px) { .hero-actions { flex-direction: column; align-items: stretch; }.button { width: 100%; }.hero-meta { display: grid; gap: 8px; }.footer-grid { grid-template-columns: 1fr; gap: 24px; }.hero-visual { transform: scale(.88); transform-origin: center; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 
 /* Final layout safeguards for content-heavy cards and compact viewports. */
 .experience-item { grid-template-columns: 150px minmax(180px, .85fr) minmax(0, 1.55fr); }
@@ -546,8 +545,8 @@ a[href*="hnu.edu.eg"]:hover {
 }
 
 @media (min-width: 701px) and (max-width: 860px) {
-  .hero { min-height: auto; grid-template-columns: 1fr; gap: 8px; padding-top: 130px; padding-bottom: 82px; }
-  .hero-visual { height: 365px; order: -1; transform: none; }
+  .hero { min-height: auto; grid-template-columns: 1fr; gap: 8px; padding-top: 105px; padding-bottom: 20px; }
+  .hero-visual { height: 340px; order: -1; transform: none; }
   .profile-frame { width: 240px; }
   .project-card { grid-template-columns: 1fr; }
   .project-visual { min-height: 235px; }
@@ -573,10 +572,6 @@ a[href*="hnu.edu.eg"]:hover {
 @media (hover: none) {
   .button:hover, .project-card:hover, .service-card:hover, .skill-card:hover { transform: none; }
   .project-card:hover { border-color: var(--line); box-shadow: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: .01ms !important; }
 }
 
 /* Square Hero avatar: a centered, responsive crop of profile.jpg. */
@@ -4223,87 +4218,146 @@ body.light-mode .directional-btn.button-ghost::before,
 }
 
 /* ==========================================================================
-   HERO NAME: CONTINUOUS SHIMMER + FLOAT/GLOW (pure CSS, no text mutation)
+   HERO NAME: CONTINUOUS GLOWING, BREATHING & SHIMMER ANIMATION
    ========================================================================== */
+.hero h1,
+.hero .hero-name-heading {
+  position: relative;
+  z-index: 2;
+}
+
 .hero h1 .hero-name-fx {
   display: inline-block;
   max-width: 100%;
-  animation: nameFloatGlow 3s ease-in-out infinite;
+  animation: nameFloatGlow 2.8s ease-in-out infinite !important;
   will-change: transform, filter;
 }
 
-.hero h1 .hero-name-fx em {
-  font-style: normal;
-  background: linear-gradient(90deg, #10b981 0%, #6ee7b7 25%, #ffffff 50%, #34d399 75%, #10b981 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: nameShimmer 3.5s linear infinite;
+.hero h1 .hero-name-first {
+  display: inline-block;
+  animation: firstNamePulse 2.8s ease-in-out infinite !important;
 }
 
+.hero h1 em,
+.hero h1 .hero-name-fx em,
+.hero h1 .hero-name-last {
+  display: inline-block;
+  font-style: normal;
+  background: linear-gradient(
+    90deg,
+    #10b981 0%,
+    #6ee7b7 20%,
+    #ffffff 45%,
+    #c9f76c 65%,
+    #34d399 82%,
+    #10b981 100%
+  ) !important;
+  background-size: 220% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  animation: nameShimmer 2.8s linear infinite !important;
+}
+
+body.light-mode .hero h1 em,
 body.light-mode .hero h1 .hero-name-fx em,
-[data-theme="light"] .hero h1 .hero-name-fx em {
-  background: linear-gradient(90deg, #047857 0%, #10b981 25%, #065f46 50%, #34d399 75%, #047857 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+body.light-mode .hero h1 .hero-name-last,
+[data-theme="light"] .hero h1 em,
+[data-theme="light"] .hero h1 .hero-name-fx em,
+[data-theme="light"] .hero h1 .hero-name-last {
+  background: linear-gradient(
+    90deg,
+    #047857 0%,
+    #10b981 22%,
+    #064e3b 48%,
+    #059669 75%,
+    #047857 100%
+  ) !important;
+  background-size: 220% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  animation: nameShimmer 2.8s linear infinite !important;
 }
 
 body.light-mode .hero h1 .hero-name-fx,
 [data-theme="light"] .hero h1 .hero-name-fx {
-  animation-name: nameFloatGlowLight;
+  animation: nameFloatGlowLight 2.8s ease-in-out infinite !important;
+}
+
+body.light-mode .hero h1 .hero-name-first,
+[data-theme="light"] .hero h1 .hero-name-first {
+  animation: firstNamePulseLight 2.8s ease-in-out infinite !important;
 }
 
 @keyframes nameShimmer {
-  from { background-position: 0% center; }
-  to { background-position: 200% center; }
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 220% 50%;
+  }
 }
 
 @keyframes nameFloatGlow {
   0%, 100% {
-    transform: translateY(0px);
-    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.12));
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.28));
   }
   50% {
-    transform: translateY(-5px);
-    filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.45));
+    transform: translateY(-6px) scale(1.022);
+    filter: drop-shadow(0 0 22px rgba(16, 185, 129, 0.72)) drop-shadow(0 0 42px rgba(112, 240, 223, 0.38));
   }
 }
 
 @keyframes nameFloatGlowLight {
   0%, 100% {
-    transform: translateY(0px);
-    filter: drop-shadow(0 0 3px rgba(4, 120, 87, 0.1));
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 6px rgba(4, 120, 87, 0.18));
   }
   50% {
-    transform: translateY(-5px);
-    filter: drop-shadow(0 0 14px rgba(4, 120, 87, 0.32));
+    transform: translateY(-6px) scale(1.022);
+    filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.5)) drop-shadow(0 0 32px rgba(4, 120, 87, 0.28));
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero h1 .hero-name-fx,
-  .hero h1 .hero-name-fx em {
-    animation: none !important;
+@keyframes firstNamePulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.15);
+  }
+  50% {
+    text-shadow: 0 0 22px rgba(16, 185, 129, 0.55), 0 0 40px rgba(112, 240, 223, 0.28);
+  }
+}
+
+@keyframes firstNamePulseLight {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(4, 120, 87, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
   }
 }
 
 /* ==========================================================================
-   COMPACT VERTICAL SPACING BETWEEN ALL SECTIONS
+   MASTER VERTICAL SPACING OVERRIDE BLOCK (AT VERY BOTTOM OF STYLES.CSS)
    ========================================================================== */
-.hero {
-  min-height: auto !important;
-  padding-top: 110px !important;
-  padding-bottom: 32px !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
+section,
 .section,
+body > section,
+main > section,
+.main-container > section,
+#about,
+#education,
+#skills,
+#experience,
+#services,
+#projects,
+#achievements,
+#testimonials,
+#contact,
 .about-section,
 .education-section,
 .skills-section,
@@ -4315,48 +4369,167 @@ body.light-mode .hero h1 .hero-name-fx,
 .contact-section {
   min-height: 0 !important;
   height: auto !important;
-  padding-top: 36px !important;
-  padding-bottom: 36px !important;
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
-.section-heading,
-.section-header,
-.certificates-header {
-  margin-bottom: 24px !important;
+#home,
+#hero,
+.hero,
+.hero-section,
+main > section.hero,
+.main-container > section.hero {
+  min-height: auto !important;
+  height: auto !important;
+  padding-top: 105px !important;
+  padding-bottom: 20px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  gap: 28px !important;
 }
 
-.section-title,
-.section-heading h2,
-.section-header h2 {
-  margin-bottom: 0;
+.hero-visual {
+  height: 380px !important;
+}
+
+.eyebrow {
+  margin-bottom: 12px !important;
+}
+
+.hero-role {
+  margin: 14px 0 8px !important;
+}
+
+.hero-signature-wrap {
+  margin: 10px 0 4px !important;
+  height: 48px !important;
+}
+
+.hero-actions {
+  margin-top: 16px !important;
+}
+
+.hero-meta {
+  margin-top: 16px !important;
+}
+
+.scroll-hint,
+.hero-scroll {
+  bottom: 6px !important;
+  gap: 6px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  height: auto !important;
+}
+
+.scroll-hint-track {
+  height: 22px !important;
+}
+
+.scroll-hint-words {
+  flex-direction: row !important;
+  gap: 5px !important;
+  font-size: 0.65rem !important;
+  line-height: 1 !important;
+}
+
+section > .container,
+.section > .container,
+.section-wrapper,
+.section-inner {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.section-header,
+.section-heading,
+.projects-heading,
+.certificates-header,
+.section-title-wrapper,
+section h2,
+.section-title {
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
 }
 
 .section-label {
-  margin-bottom: 14px;
+  margin-bottom: 8px !important;
+}
+
+.section-intro {
+  margin-top: 6px !important;
+  margin-bottom: 0 !important;
+}
+
+.about-layout,
+.contact-layout {
+  gap: 32px !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .stats-row {
-  padding-top: 32px !important;
-  margin-top: 32px !important;
+  padding-top: 18px !important;
+  margin-top: 18px !important;
 }
 
 .certificates-block {
-  margin-top: 28px !important;
+  margin-top: 20px !important;
 }
 
-.contact-layout {
-  padding-bottom: 24px !important;
+.skills-tabs-container {
+  margin-top: 16px !important;
+}
+
+.skills-tab-nav {
+  margin-bottom: 14px !important;
+}
+
+.skills-category-info {
+  padding: 16px 22px !important;
+  margin-bottom: 14px !important;
+}
+
+.experience-item {
+  padding: 20px 4px !important;
+}
+
+.testimonial-note {
+  margin: -6px 0 14px !important;
+}
+
+.freelance-block {
+  margin-top: 20px !important;
+  padding-top: 16px !important;
+}
+
+.footer-grid {
+  padding: 24px 0 20px !important;
+}
+
+.footer-bottom {
+  padding: 14px 0 18px !important;
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding-top: 104px !important;
-    padding-bottom: 24px !important;
-  }
-
+  section,
   .section,
+  body > section,
+  main > section,
+  .main-container > section,
+  #about,
+  #education,
+  #skills,
+  #experience,
+  #services,
+  #projects,
+  #achievements,
+  #testimonials,
+  #contact,
   .about-section,
   .education-section,
   .skills-section,
@@ -4366,26 +4539,42 @@ body.light-mode .hero h1 .hero-name-fx,
   .achievements-section,
   .testimonials-section,
   .contact-section {
-    padding-top: 24px !important;
-    padding-bottom: 24px !important;
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
   }
 
-  .section-heading,
+  #home,
+  #hero,
+  .hero,
+  .hero-section,
+  main > section.hero,
+  .main-container > section.hero {
+    padding-top: 90px !important;
+    padding-bottom: 16px !important;
+    gap: 16px !important;
+  }
+
+  .hero-visual {
+    height: 265px !important;
+  }
+
   .section-header,
-  .certificates-header {
-    margin-bottom: 18px !important;
+  .section-heading,
+  .projects-heading,
+  .certificates-header,
+  .section-title-wrapper,
+  section h2,
+  .section-title {
+    margin-bottom: 14px !important;
   }
 
   .stats-row {
-    padding-top: 22px !important;
-    margin-top: 22px !important;
+    padding-top: 14px !important;
+    margin-top: 14px !important;
   }
 
   .certificates-block {
-    margin-top: 20px !important;
-  }
-
-  .contact-layout {
-    padding-bottom: 16px !important;
+    margin-top: 16px !important;
   }
 }
+
