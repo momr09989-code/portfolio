@@ -1992,9 +1992,35 @@
     });
   }
 
-  // 12. Spotlight Mouse Tracking for Skill & Certificate Cards (--mouse-x, --mouse-y in %)
-  const otherSpotlightCards = document.querySelectorAll('.skill-item-card, .certificate-card');
-  otherSpotlightCards.forEach((card) => {
+  // 12. Top Scroll Progress Bar (Smooth scaleX from 0 to 1)
+  const scrollProgressBar = document.getElementById('scroll-progress-bar');
+  if (scrollProgressBar) {
+    let progressRaf = null;
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const progress = Math.max(0, Math.min(1, scrollTop / docHeight));
+      scrollProgressBar.style.transform = `scaleX(${progress})`;
+      progressRaf = null;
+    };
+
+    const onScrollProgress = () => {
+      if (!progressRaf) {
+        progressRaf = requestAnimationFrame(updateScrollProgress);
+      }
+    };
+
+    window.addEventListener('scroll', onScrollProgress, { passive: true });
+    window.addEventListener('resize', onScrollProgress, { passive: true });
+    if (lenis && typeof lenis.on === 'function') {
+      lenis.on('scroll', onScrollProgress);
+    }
+    updateScrollProgress();
+  }
+
+  // 13. Spotlight Mouse Tracking & Smooth 3D Perspective Tilt on Skill & Certificate Cards (Desktop Only)
+  const skillCardsForSpotlight = document.querySelectorAll('.skill-item-card');
+  skillCardsForSpotlight.forEach((card) => {
     card.addEventListener(
       'mousemove',
       (e) => {
@@ -2008,7 +2034,51 @@
     );
   });
 
-  // 13. Projects Section Scroll Reveal (Repeatable GSAP ScrollTrigger + AOS Sync, Never Stuck Hidden)
+  const certificateCardsForTilt = document.querySelectorAll('.certificate-card');
+  certificateCardsForTilt.forEach((card) => {
+    card.addEventListener(
+      'mousemove',
+      (e) => {
+        const rect = card.getBoundingClientRect();
+        const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+        const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${mouseX}%`);
+        card.style.setProperty('--mouse-y', `${mouseY}%`);
+
+        if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
+          const rotateY = Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2));
+          const rotateX = Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2));
+          window.gsap.to(card, {
+            y: -4,
+            rotateX,
+            rotateY,
+            transformPerspective: 1000,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+      },
+      { passive: true }
+    );
+
+    card.addEventListener('mouseleave', () => {
+      if (isDesktopPointer && typeof window.gsap !== 'undefined') {
+        window.gsap.to(card, {
+          y: 0,
+          rotateX: 0,
+          rotateY: 0,
+          transformPerspective: 1000,
+          duration: 0.5,
+          ease: 'power3.out',
+          overwrite: 'auto',
+          clearProps: 'transform'
+        });
+      }
+    });
+  });
+
+  // 14. Projects Section Scroll Reveal (Repeatable GSAP ScrollTrigger + AOS Sync, Never Stuck Hidden)
   const projectsSection = document.getElementById('projects');
   const projectCards = document.querySelectorAll('#projects .project-card');
 
@@ -2058,22 +2128,22 @@
     });
   }
 
-  // 14. Interactive Hover, 3D Tilt, Thumbnail Zoom & Spotlight Effect on Project Cards
+  // 15. Interactive Hover, 3D Perspective Tilt, Thumbnail Zoom & Spotlight Effect on Project Cards (Desktop Only Tilt)
   projectCards.forEach((card) => {
     const visualTargets = card.querySelectorAll('.mockup-porto-img, .device-mockup');
 
     card.addEventListener('mouseenter', () => {
-      if (typeof window.gsap !== 'undefined') {
+      if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
         window.gsap.to(card, {
-          y: -10,
-          scale: 1.02,
+          y: -8,
+          scale: 1.015,
           duration: 0.3,
           ease: 'power2.out',
           overwrite: 'auto'
         });
         if (visualTargets.length) {
           window.gsap.to(visualTargets, {
-            scale: 1.04,
+            scale: 1.035,
             duration: 0.35,
             ease: 'power2.out',
             overwrite: 'auto'
@@ -2091,9 +2161,9 @@
         card.style.setProperty('--mouse-x', `${mouseX}%`);
         card.style.setProperty('--mouse-y', `${mouseY}%`);
 
-        if (isDesktopPointer && typeof window.gsap !== 'undefined') {
-          const rotateY = ((mouseX - 50) / 50) * 3.5;
-          const rotateX = ((50 - mouseY) / 50) * 3.5;
+        if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
+          const rotateY = Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2));
+          const rotateX = Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2));
           window.gsap.to(card, {
             rotateX,
             rotateY,
@@ -2114,15 +2184,17 @@
           scale: 1,
           rotateX: 0,
           rotateY: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-          overwrite: 'auto'
+          transformPerspective: 1000,
+          duration: 0.5,
+          ease: 'power3.out',
+          overwrite: 'auto',
+          clearProps: 'transform'
         });
         if (visualTargets.length) {
           window.gsap.to(visualTargets, {
             scale: 1,
-            duration: 0.4,
-            ease: 'power2.out',
+            duration: 0.45,
+            ease: 'power3.out',
             overwrite: 'auto'
           });
         }
@@ -2130,7 +2202,73 @@
     });
   });
 
-  // 15. GSAP + ScrollTrigger Staggered Reveal Animations for Skills & Certificates
+  // 16. Directional Button Hover Fill (Magnetic Ripple from Cursor Entry)
+  const directionalBtns = document.querySelectorAll(
+    '.hero-cv-btn, .project-live-btn, .project-repo-btn, #contact-submit-btn, .qi-cta-btn, .cert-btn, .cert-modal-btn'
+  );
+  directionalBtns.forEach((btn) => {
+    btn.classList.add('directional-btn');
+    const updateBtnCoords = (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      btn.style.setProperty('--btn-x', `${x}px`);
+      btn.style.setProperty('--btn-y', `${y}px`);
+    };
+    btn.addEventListener('mouseenter', updateBtnCoords, { passive: true });
+    btn.addEventListener('mousemove', updateBtnCoords, { passive: true });
+  });
+
+  // 17. Animated Number Counters on Scroll (Stats & Skill Tab Counts; Excludes Project Index & Terminal Code)
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+    const arDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    const formatCountVal = (num, useArabicDigits) => {
+      const str = String(Math.round(num));
+      if (!useArabicDigits) return str;
+      return str.replace(/\d/g, (d) => arDigits[Number(d)] || d);
+    };
+
+    const countElements = document.querySelectorAll('[data-count-target]');
+    countElements.forEach((el) => {
+      const targetVal = parseFloat(el.getAttribute('data-count-target') || '0');
+      if (isNaN(targetVal) || targetVal <= 0) return;
+      const suffixHtml = el.getAttribute('data-count-suffix') || '';
+      const i18nKey = el.getAttribute('data-i18n');
+
+      const counterState = { val: 0 };
+      window.ScrollTrigger.create({
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          const isAr = document.documentElement.lang === 'ar' && !!i18nKey;
+          window.gsap.fromTo(
+            counterState,
+            { val: 0 },
+            {
+              val: targetVal,
+              duration: 1.4,
+              ease: 'power2.out',
+              onUpdate: () => {
+                const useAr = document.documentElement.lang === 'ar' && !!i18nKey;
+                el.innerHTML = `${formatCountVal(counterState.val, useAr)}${suffixHtml}`;
+              },
+              onComplete: () => {
+                const lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+                if (i18nKey && i18n[lang] && i18n[lang][i18nKey] !== undefined) {
+                  el.innerHTML = i18n[lang][i18nKey];
+                } else {
+                  el.innerHTML = `${formatCountVal(targetVal, isAr)}${suffixHtml}`;
+                }
+              }
+            }
+          );
+        }
+      });
+    });
+  }
+
+  // 18. GSAP + ScrollTrigger Staggered Reveal Animations for Skills & Certificates
   if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     // Active skill panel cards staggered reveal
     const activeSkillCards = window.gsap.utils.toArray('.skills-panel.active .skill-item-card');
@@ -2208,3 +2346,4 @@
     );
   }
 })();
+

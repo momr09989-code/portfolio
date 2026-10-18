@@ -4025,3 +4025,159 @@ body.light-mode .video-modal-dialog,
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18) !important;
 }
 
+/* ==========================================================================
+   INTERACTIVE PORTFOLIO ANIMATIONS (SCROLL PROGRESS BAR, BORDER BEAM,
+   3D PERSPECTIVE TILT, DIRECTIONAL BUTTON HOVER FILL)
+   ========================================================================== */
+
+/* 1. Top Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #059669, #10b981, #34d399);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+  z-index: 10001;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* 2. Border Beam Effect on Cards (React Bits Style) */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes borderBeamSpin {
+  0% {
+    --beam-angle: 0deg;
+  }
+  100% {
+    --beam-angle: 360deg;
+  }
+}
+
+.project-card,
+.skill-item-card,
+.certificate-card {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.project-card::before,
+.skill-item-card::before,
+.certificate-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 245deg,
+    rgba(16, 185, 129, 0.28) 280deg,
+    #10b981 325deg,
+    #34d399 348deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+body.light-mode .project-card::before,
+body.light-mode .skill-item-card::before,
+body.light-mode .certificate-card::before,
+[data-theme="light"] .project-card::before,
+[data-theme="light"] .skill-item-card::before,
+[data-theme="light"] .certificate-card::before {
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 240deg,
+    rgba(5, 150, 105, 0.32) 275deg,
+    #059669 320deg,
+    #10b981 348deg,
+    transparent 360deg
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover::before,
+  .skill-item-card:hover::before,
+  .certificate-card:hover::before {
+    opacity: 1;
+    animation: borderBeamSpin 2.6s linear infinite;
+  }
+}
+
+/* 3. Directional Button Hover Fill (Magnetic Ripple from Cursor Entry) */
+.directional-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.directional-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.directional-btn::before {
+  content: "";
+  position: absolute;
+  top: var(--btn-y, 50%);
+  left: var(--btn-x, 50%);
+  width: 150%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(52, 211, 153, 0.34) 0%,
+    rgba(16, 185, 129, 0.22) 55%,
+    transparent 74%
+  );
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.directional-btn.button-ghost::before {
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.26) 0%,
+    rgba(16, 185, 129, 0.14) 58%,
+    transparent 76%
+  );
+}
+
+body.light-mode .directional-btn.button-ghost::before,
+[data-theme="light"] .directional-btn.button-ghost::before {
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.22) 0%,
+    rgba(16, 185, 129, 0.12) 58%,
+    transparent 76%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .directional-btn:hover::before {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 1;
+  }
+}
