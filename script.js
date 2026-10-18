@@ -2054,6 +2054,21 @@
 
   const certificateCardsForTilt = document.querySelectorAll('.certificate-card');
   certificateCardsForTilt.forEach((card) => {
+    const canTilt = isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion;
+    let tiltX = null;
+    let tiltY = null;
+    let lift = null;
+
+    card.addEventListener('mouseenter', () => {
+      if (!canTilt) return;
+      card.classList.add('is-tilting');
+      window.gsap.killTweensOf(card, 'rotateX,rotateY,y');
+      window.gsap.set(card, { transformPerspective: 1000 });
+      tiltX = window.gsap.quickTo(card, 'rotateX', { duration: 0.15, ease: 'power2.out' });
+      tiltY = window.gsap.quickTo(card, 'rotateY', { duration: 0.15, ease: 'power2.out' });
+      lift = window.gsap.quickTo(card, 'y', { duration: 0.2, ease: 'power2.out' });
+    });
+
     card.addEventListener(
       'mousemove',
       (e) => {
@@ -2063,36 +2078,30 @@
         card.style.setProperty('--mouse-x', `${mouseX}%`);
         card.style.setProperty('--mouse-y', `${mouseY}%`);
 
-        if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
-          const rotateY = Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2));
-          const rotateX = Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2));
-          window.gsap.to(card, {
-            y: -4,
-            rotateX,
-            rotateY,
-            transformPerspective: 1000,
-            duration: 0.3,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          });
+        if (canTilt && tiltX && tiltY && lift) {
+          tiltY(Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2)));
+          tiltX(Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2)));
+          lift(-4);
         }
       },
       { passive: true }
     );
 
     card.addEventListener('mouseleave', () => {
-      if (isDesktopPointer && typeof window.gsap !== 'undefined') {
-        window.gsap.to(card, {
-          y: 0,
-          rotateX: 0,
-          rotateY: 0,
-          transformPerspective: 1000,
-          duration: 0.5,
-          ease: 'power3.out',
-          overwrite: 'auto',
-          clearProps: 'transform'
-        });
-      }
+      if (!canTilt) return;
+      tiltX = tiltY = lift = null;
+      window.gsap.to(card, {
+        y: 0,
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.5,
+        ease: 'power3.out',
+        overwrite: 'auto',
+        onComplete: () => {
+          window.gsap.set(card, { clearProps: 'transform' });
+          card.classList.remove('is-tilting');
+        }
+      });
     });
   });
 
@@ -2149,24 +2158,30 @@
   // 15. Interactive Hover, 3D Perspective Tilt, Thumbnail Zoom & Spotlight Effect on Project Cards (Desktop Only Tilt)
   projectCards.forEach((card) => {
     const visualTargets = card.querySelectorAll('.mockup-porto-img, .device-mockup');
+    const canTilt = isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion;
+    let tiltX = null;
+    let tiltY = null;
 
     card.addEventListener('mouseenter', () => {
-      if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
-        window.gsap.to(card, {
-          y: -8,
-          scale: 1.015,
-          duration: 0.3,
+      if (!canTilt) return;
+      card.classList.add('is-tilting');
+      window.gsap.killTweensOf(card, 'rotateX,rotateY,y,scale');
+      window.gsap.set(card, { transformPerspective: 1000 });
+      tiltX = window.gsap.quickTo(card, 'rotateX', { duration: 0.15, ease: 'power2.out' });
+      tiltY = window.gsap.quickTo(card, 'rotateY', { duration: 0.15, ease: 'power2.out' });
+      window.gsap.to(card, {
+        y: -8,
+        scale: 1.015,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+      if (visualTargets.length) {
+        window.gsap.to(visualTargets, {
+          scale: 1.035,
+          duration: 0.35,
           ease: 'power2.out',
           overwrite: 'auto'
         });
-        if (visualTargets.length) {
-          window.gsap.to(visualTargets, {
-            scale: 1.035,
-            duration: 0.35,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          });
-        }
       }
     });
 
@@ -2179,43 +2194,37 @@
         card.style.setProperty('--mouse-x', `${mouseX}%`);
         card.style.setProperty('--mouse-y', `${mouseY}%`);
 
-        if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
-          const rotateY = Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2));
-          const rotateX = Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2));
-          window.gsap.to(card, {
-            rotateX,
-            rotateY,
-            transformPerspective: 1000,
-            duration: 0.3,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          });
+        if (canTilt && tiltX && tiltY) {
+          tiltY(Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2)));
+          tiltX(Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2)));
         }
       },
       { passive: true }
     );
 
     card.addEventListener('mouseleave', () => {
-      if (typeof window.gsap !== 'undefined') {
-        window.gsap.to(card, {
-          y: 0,
-          scale: 1,
-          rotateX: 0,
-          rotateY: 0,
-          transformPerspective: 1000,
-          duration: 0.5,
-          ease: 'power3.out',
-          overwrite: 'auto',
-          clearProps: 'transform'
-        });
-        if (visualTargets.length) {
-          window.gsap.to(visualTargets, {
-            scale: 1,
-            duration: 0.45,
-            ease: 'power3.out',
-            overwrite: 'auto'
-          });
+      if (typeof window.gsap === 'undefined') return;
+      tiltX = tiltY = null;
+      window.gsap.to(card, {
+        y: 0,
+        scale: 1,
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.5,
+        ease: 'power3.out',
+        overwrite: 'auto',
+        onComplete: () => {
+          window.gsap.set(card, { clearProps: 'transform' });
+          card.classList.remove('is-tilting');
         }
+      });
+      if (visualTargets.length) {
+        window.gsap.to(visualTargets, {
+          scale: 1,
+          duration: 0.45,
+          ease: 'power3.out',
+          overwrite: 'auto'
+        });
       }
     });
   });

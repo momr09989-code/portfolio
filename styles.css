@@ -76,19 +76,11 @@ body::-webkit-scrollbar {
   height: 100vh;
   pointer-events: none; /* Crucial so it doesn't block clicks */
   z-index: 0; /* Keeps it behind text but visible on the background */
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-    rgba(16, 185, 129, 0.05),
-    transparent 40%
-  );
+  background: radial-gradient(600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(16, 185, 129, 0.12), transparent 50%);
   transition: background 0.1s ease;
 }
 body.light-mode #global-mouse-glow {
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-    rgba(16, 185, 129, 0.07),
-    transparent 40%
-  );
+  background: radial-gradient(600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(16, 185, 129, 0.14), transparent 50%);
 }
 @media (hover: none), (pointer: coarse) {
   #global-mouse-glow { display: none; }
@@ -4105,6 +4097,15 @@ body.light-mode .video-modal-dialog,
 .certificate-card {
   position: relative;
   transform-style: preserve-3d;
+}
+
+/* Let JS (GSAP) handle tilt movement instantly — no CSS transform transition fighting it */
+.project-card:hover,
+.certificate-card:hover,
+.project-card.is-tilting,
+.certificate-card.is-tilting {
+  transition: transform 0s, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease !important;
+  will-change: transform;
 }
 
 .project-card::before,
