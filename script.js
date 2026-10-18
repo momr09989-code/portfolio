@@ -8,6 +8,7 @@
   const nav = document.querySelector('.site-nav');
   const profileImage = document.getElementById('profile-image');
   const profileFrame = document.querySelector('.profile-frame');
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 
   // Sticky Header Scroll Transition (Optimized with requestAnimationFrame)
   if (header) {
@@ -1305,7 +1306,17 @@
     el.setAttribute('data-lenis-prevent', '');
   });
 
-  // 2. Initialize Lenis & Sync with GSAP ScrollTrigger
+  // 2. Initialize AOS (Animate On Scroll) & Lenis + Sync with GSAP ScrollTrigger
+  if (typeof window.AOS !== 'undefined') {
+    window.AOS.init({
+      duration: 800,
+      once: false,
+      mirror: true,
+      offset: 80,
+      easing: 'ease-out-cubic'
+    });
+  }
+
   if (typeof window.Lenis !== 'undefined') {
     lenis = new window.Lenis({
       duration: 1.15,
@@ -1316,7 +1327,9 @@
 
     if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
       window.gsap.registerPlugin(window.ScrollTrigger);
-      lenis.on('scroll', window.ScrollTrigger.update);
+      lenis.on('scroll', () => {
+        window.ScrollTrigger.update();
+      });
       window.gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
       });
@@ -1337,17 +1350,21 @@
 
   const initSignaturePaths = () => {
     sigPaths.forEach((path) => {
-      if (typeof path.getTotalLength === 'function') {
-        const len = path.getTotalLength();
-        path.style.strokeDasharray = `${len}`;
-        path.style.strokeDashoffset = `${len}`;
+      if (typeof path.getTotalLength !== 'function') return;
+      if (prefersReducedMotion) {
+        path.style.strokeDasharray = 'none';
+        path.style.strokeDashoffset = '0';
+        return;
       }
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = `${len}`;
+      path.style.strokeDashoffset = `${len}`;
     });
-    if (sigDot) sigDot.style.opacity = '0';
+    if (sigDot) sigDot.style.opacity = prefersReducedMotion ? '1' : '0';
   };
 
   const playSignatureAnimation = () => {
-    if (!sigPaths.length || typeof window.gsap === 'undefined') return;
+    if (prefersReducedMotion || !sigPaths.length || typeof window.gsap === 'undefined') return;
     initSignaturePaths();
     const tl = window.gsap.timeline();
     sigPaths.forEach((path, idx) => {
@@ -1377,15 +1394,17 @@
     sigWrap.addEventListener('click', playSignatureAnimation);
   }
 
-  // 4. Curved Preloader Reveal ("OMAR EBIED" + OE Monogram Badge + 1.2s Curved Pull Up + Smooth Hero Blur-Slide)
+  // 4. Curved Preloader Reveal with the standalone OE monogram draw sequence
   const preloader = document.getElementById('preloader');
   const preloaderChars = document.querySelectorAll('.preloader-char');
   const preloaderLogoSvg = document.querySelector('.preloader-logo-svg');
+  const preloaderLogoPaths = preloader ? preloader.querySelectorAll('.preloader-logo-path') : [];
+  const preloaderLogoNodes = preloader ? preloader.querySelectorAll('.preloader-logo-node') : [];
   const preloaderBar = document.getElementById('preloader-bar');
   const preloaderCurvePath = document.getElementById('preloader-curve-path');
   const heroTextEls = document.querySelectorAll('.hero h1, .hero-role, .hero-usp');
 
-  if (typeof window.gsap !== 'undefined' && heroTextEls.length) {
+  if (typeof window.gsap !== 'undefined' && heroTextEls.length && !prefersReducedMotion) {
     window.gsap.set(heroTextEls, {
       opacity: 0,
       y: 25,
@@ -1398,18 +1417,27 @@
     if (heroTextRevealed) return;
     heroTextRevealed = true;
     if (typeof window.gsap !== 'undefined' && heroTextEls.length) {
-      window.gsap.to(heroTextEls, {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        duration: 0.85,
-        stagger: 0.12,
-        ease: 'power3.out',
-        overwrite: true,
-        clearProps: 'filter,transform'
-      });
+      if (prefersReducedMotion) {
+        window.gsap.set(heroTextEls, {
+          opacity: 1,
+          y: 0,
+          filter: 'none',
+          clearProps: 'transform,filter'
+        });
+      } else {
+        window.gsap.to(heroTextEls, {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.85,
+          stagger: 0.12,
+          ease: 'power3.out',
+          overwrite: true,
+          clearProps: 'filter,transform'
+        });
+      }
     }
-    playSignatureAnimation();
+    if (!prefersReducedMotion) playSignatureAnimation();
   };
 
   let preloaderFinished = false;
@@ -1421,15 +1449,29 @@
     if (typeof window.ScrollTrigger !== 'undefined') {
       setTimeout(() => window.ScrollTrigger.refresh(), 80);
     }
+    if (typeof window.AOS !== 'undefined') {
+      setTimeout(() => window.AOS.refreshHard(), 100);
+    }
   };
 
-  // Fallback guarantee so preloader never blocks interaction
-  setTimeout(finishPreloader, 2900);
+  if (preloader && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
+    preloader.classList.add('is-active');
+    // Hard timeout keeps a failed timeline from blocking the page.
+    setTimeout(finishPreloader, 2900);
 
-  if (preloader && typeof window.gsap !== 'undefined') {
     const preTl = window.gsap.timeline({
       onComplete: finishPreloader
     });
+
+    preloaderLogoPaths.forEach((path) => {
+      if (typeof path.getTotalLength !== 'function') return;
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = `${length}`;
+      path.style.strokeDashoffset = `${length}`;
+    });
+    if (preloaderLogoNodes.length) {
+      window.gsap.set(preloaderLogoNodes, { opacity: 0, scale: 0.2 });
+    }
 
     if (preloaderLogoSvg) {
       preTl.fromTo(
@@ -1443,6 +1485,21 @@
           ease: 'power3.out'
         },
         0
+      );
+    }
+
+    if (preloaderLogoPaths.length) {
+      preTl.to(
+        preloaderLogoPaths,
+        { strokeDashoffset: 0, duration: 0.45, stagger: 0.08, ease: 'power2.inOut' },
+        0.06
+      );
+    }
+    if (preloaderLogoNodes.length) {
+      preTl.to(
+        preloaderLogoNodes,
+        { opacity: 1, scale: 1, duration: 0.22, stagger: 0.035, ease: 'back.out(1.7)' },
+        0.58
       );
     }
 
@@ -1653,11 +1710,11 @@
       if (typeof window.gsap !== 'undefined') {
         window.gsap.fromTo(
           stickyNumEl,
-          { y: -10, opacity: 0 },
+          { y: -14, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.28,
+            duration: 0.32,
             ease: 'power2.out',
             onStart: () => {
               stickyNumEl.textContent = numStr;
@@ -1840,7 +1897,7 @@
         }
         if (lenis) {
           lenis.scrollTo(targetEl, {
-            offset: href === '#home' ? 0 : -78,
+            offset: href === '#home' ? 0 : -92,
             duration: 1.2
           });
         } else {
@@ -1874,7 +1931,7 @@
           scrollTrigger: {
             trigger: heading,
             start: 'top 88%',
-            once: true
+            toggleActions: 'play none none reverse'
           }
         }
       );
@@ -1897,58 +1954,54 @@
     );
   });
 
-  // 13. Projects Section Scroll Reveal (IntersectionObserver + GSAP ScrollTrigger Fallback, Runs Once)
+  // 13. Projects Section Scroll Reveal (Repeatable GSAP ScrollTrigger + AOS Sync, Never Stuck Hidden)
   const projectsSection = document.getElementById('projects');
   const projectCards = document.querySelectorAll('#projects .project-card');
-  let projectsRevealed = false;
 
-  if (typeof window.gsap !== 'undefined' && projectCards.length) {
-    window.gsap.set(projectCards, {
-      opacity: 0,
-      y: 55,
-      scale: 0.95,
-      filter: 'blur(6px)'
-    });
-
-    const revealProjects = () => {
-      if (projectsRevealed) return;
-      projectsRevealed = true;
-      window.gsap.to(projectCards, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: 'blur(0px)',
-        duration: 0.8,
-        stagger: 0.18,
-        ease: 'power3.out',
-        overwrite: true,
-        clearProps: 'filter'
-      });
-    };
-
-    if ('IntersectionObserver' in window && projectsSection) {
-      const projectsObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              revealProjects();
-              projectsObserver.disconnect();
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-      projectsObserver.observe(projectsSection);
-    }
-
-    if (typeof window.ScrollTrigger !== 'undefined' && projectsSection) {
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined' && projectCards.length && !prefersReducedMotion) {
+    projectCards.forEach((card, index) => {
       window.ScrollTrigger.create({
-        trigger: projectsSection,
-        start: 'top 85%',
-        once: true,
-        onEnter: revealProjects
+        trigger: card,
+        start: 'top 88%',
+        end: 'bottom 15%',
+        onEnter: () => {
+          window.gsap.fromTo(
+            card,
+            { opacity: 0, y: 42, scale: 0.96 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.75,
+              delay: index * 0.06,
+              ease: 'power3.out',
+              overwrite: 'auto',
+              clearProps: 'transform'
+            }
+          );
+        },
+        onEnterBack: () => {
+          window.gsap.fromTo(
+            card,
+            { opacity: 0, y: -32, scale: 0.97 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.65,
+              ease: 'power3.out',
+              overwrite: 'auto',
+              clearProps: 'transform'
+            }
+          );
+        }
       });
-    }
+    });
+  } else if (projectCards.length) {
+    projectCards.forEach((card) => {
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    });
   }
 
   // 14. Interactive Hover, 3D Tilt, Thumbnail Zoom & Spotlight Effect on Project Cards

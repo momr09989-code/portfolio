@@ -39,7 +39,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=11" />
+    <link rel="stylesheet" href="styles.css?v=12" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="preload" as="image" href="profile.jpg" />
     <link rel="preload" as="image" href="man in the middle.jpg" />
     <link rel="preload" as="image" href="porto.png" />
@@ -49,17 +50,22 @@
     <div class="preloader" id="preloader" aria-hidden="true">
       <div class="preloader-content">
         <div class="preloader-logo-wrap">
-          <svg class="brand-logo-svg preloader-logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer Rounded Badge -->
-            <rect x="2" y="2" width="36" height="36" rx="10" fill="#0b1512" stroke="#10b981" stroke-width="2"/>
-            <!-- Inner Subtle Frame -->
-            <rect x="6" y="6" width="28" height="28" rx="7" fill="#10b981" fill-opacity="0.08"/>
-            <!-- Geometric "O" -->
-            <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#ffffff"/>
-            <!-- Geometric "E" -->
-            <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#10b981"/>
-            <!-- Cyber / Data Accent Dot -->
-            <circle cx="33.5" cy="10.5" r="2" fill="#10b981"/>
+          <svg class="brand-logo-svg preloader-logo-svg" width="96" height="74" viewBox="150 200 650 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g class="preloader-logo-group">
+              <path class="preloader-logo-path preloader-logo-o" d="M 338.9,282.2 C 452.7,273.5 499.4,315.7 508.5,435.7 C 517.7,555.7 478.0,604.6 364.2,613.3 C 250.3,622.0 203.7,579.7 194.5,459.7 C 185.3,339.7 225.0,290.9 338.9,282.2 Z" />
+              <path class="preloader-logo-path preloader-logo-e" d="M 501.7,435.8 C 556.6,435.8 573.7,336.9 573.7,282.0 L 738.5,282.0" />
+              <path class="preloader-logo-path preloader-logo-e" d="M 561.5,439.5 L 688.5,439.5" />
+              <path class="preloader-logo-path preloader-logo-e" d="M 561.5,439.5 L 561.5,597.2 L 738.5,597.2" />
+              <circle class="preloader-logo-node" cx="339.4" cy="238.0" r="9.8" />
+              <circle class="preloader-logo-node" cx="481.0" cy="238.5" r="9.8" />
+              <circle class="preloader-logo-node" cx="678.7" cy="238.0" r="9.8" />
+              <circle class="preloader-logo-node" cx="199.0" cy="434.6" r="9.8" />
+              <circle class="preloader-logo-node" cx="479.7" cy="434.6" r="9.8" />
+              <circle class="preloader-logo-node" cx="501.7" cy="435.8" r="9.8" />
+              <circle class="preloader-logo-node" cx="637.2" cy="439.5" r="9.8" />
+              <circle class="preloader-logo-node" cx="478.5" cy="642.1" r="9.8" />
+              <circle class="preloader-logo-node" cx="678.7" cy="643.1" r="9.8" />
+            </g>
           </svg>
         </div>
         <span class="preloader-eyebrow">PORTFOLIO // INITIALIZING</span>
@@ -110,18 +116,7 @@
         <div class="curved-overlay-header">
           <a href="#home" class="brand curved-menu-link">
             <span class="brand-mark" aria-hidden="true">
-              <svg class="brand-logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer Rounded Badge -->
-                <rect x="2" y="2" width="36" height="36" rx="10" fill="#0b1512" stroke="#10b981" stroke-width="2"/>
-                <!-- Inner Subtle Frame -->
-                <rect x="6" y="6" width="28" height="28" rx="7" fill="#10b981" fill-opacity="0.08"/>
-                <!-- Geometric "O" -->
-                <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#ffffff"/>
-                <!-- Geometric "E" -->
-                <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#10b981"/>
-                <!-- Cyber / Data Accent Dot -->
-                <circle cx="33.5" cy="10.5" r="2" fill="#10b981"/>
-              </svg>
+              <img class="brand-logo-svg" src="oe-monogram.svg" width="38" height="30" alt="" aria-hidden="true" />
             </span>
             <span class="brand-name">Omar Ebied</span>
           </a>
@@ -194,18 +189,7 @@
       <header class="site-header" id="site-header">
         <a href="#home" class="brand" aria-label="Omar Ebied — home">
           <span class="brand-mark" aria-hidden="true">
-            <svg class="brand-logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Outer Rounded Badge -->
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="#0b1512" stroke="#10b981" stroke-width="2"/>
-              <!-- Inner Subtle Frame -->
-              <rect x="6" y="6" width="28" height="28" rx="7" fill="#10b981" fill-opacity="0.08"/>
-              <!-- Geometric "O" -->
-              <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#ffffff"/>
-              <!-- Geometric "E" -->
-              <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#10b981"/>
-              <!-- Cyber / Data Accent Dot -->
-              <circle cx="33.5" cy="10.5" r="2" fill="#10b981"/>
-            </svg>
+            <img class="brand-logo-svg" src="oe-monogram.svg" width="38" height="30" alt="" aria-hidden="true" />
           </span>
           <span class="brand-name">Omar Ebied</span>
         </a>
@@ -239,18 +223,7 @@
           <div class="mobile-menu-header">
             <div class="brand">
               <span class="brand-mark" aria-hidden="true">
-                <svg class="brand-logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Outer Rounded Badge -->
-                  <rect x="2" y="2" width="36" height="36" rx="10" fill="#0b1512" stroke="#10b981" stroke-width="2"/>
-                  <!-- Inner Subtle Frame -->
-                  <rect x="6" y="6" width="28" height="28" rx="7" fill="#10b981" fill-opacity="0.08"/>
-                  <!-- Geometric "O" -->
-                  <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#ffffff"/>
-                  <!-- Geometric "E" -->
-                  <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#10b981"/>
-                  <!-- Cyber / Data Accent Dot -->
-                  <circle cx="33.5" cy="10.5" r="2" fill="#10b981"/>
-                </svg>
+                <img class="brand-logo-svg" src="oe-monogram.svg" width="38" height="30" alt="" aria-hidden="true" />
               </span>
               <span class="brand-name">Omar Ebied</span>
             </div>
@@ -350,7 +323,7 @@
           <div class="orbit orbit-outer"><span class="satellite satellite-a"></span></div>
           <div class="orbit orbit-inner"><span class="satellite satellite-b"></span></div>
           <div class="profile-frame" data-aos="zoom-in" data-aos-delay="300">
-            <img src="profile.jpg" alt="Omar Ebied" id="profile-image" width="1065" height="1065" loading="lazy" />
+            <img src="profile.jpg" alt="Omar Ebied" id="profile-image" width="1065" height="1065" loading="eager" fetchpriority="high" />
             <span class="profile-initials" aria-hidden="true">OE</span>
           </div>
           <div class="floating-chip chip-data"><span>↯</span> <span data-i18n="chip-data">DATA</span></div>
@@ -991,9 +964,9 @@
 
       <!-- 7. Projects -->
       <section id="projects" class="section section-shell projects-section">
-        <div class="section-heading projects-heading">
+        <div class="section-heading projects-heading reveal">
           <div class="section-label"><span data-i18n="proj-num">06</span> <span data-i18n="proj-label">Selected work</span></div>
-          <h2 class="section-title" data-i18n="proj-title">Projects with a <em>purpose.</em></h2>
+          <h2 class="section-title" data-i18n="proj-title" data-aos="fade-up">Projects with a <em>purpose.</em></h2>
           <p class="section-intro" data-i18n="proj-intro">A selection of work across data, cybersecurity, and the web.</p>
         </div>
         <div class="projects-sticky-layout">
@@ -1013,7 +986,7 @@
             </div>
           </aside>
           <div class="project-list">
-            <article class="project-card project-featured" data-project-num="01." data-project-title="SQL Database Project" data-preview-img="og-image.png">
+            <article class="project-card project-featured reveal" data-aos="fade-up" data-aos-delay="100" data-project-num="01." data-project-title="SQL Database Project" data-preview-img="og-image.png">
               <div class="project-visual visual-sql">
                 <span class="project-index" aria-hidden="true">01</span>
                 <!-- Browser / Laptop Device Mockup Frame -->
@@ -1062,7 +1035,7 @@
                 </div>
               </div>
             </article>
-            <article class="project-card" data-project-num="02." data-project-title="Book Fair &amp; Literature" data-preview-img="porto.png">
+            <article class="project-card reveal" data-aos="fade-up" data-aos-delay="150" data-project-num="02." data-project-title="Book Fair &amp; Literature" data-preview-img="porto.png">
               <div class="project-visual visual-book">
                 <span class="project-index" aria-hidden="true">02</span>
                 <!-- Browser Mockup Frame (Click to open market.mp4 demo) -->
@@ -1132,7 +1105,7 @@
                 </div>
               </div>
             </article>
-            <article class="project-card" data-project-num="03." data-project-title="NTI MITM Lab — ARP Spoofing" data-preview-img="man%20in%20the%20middle.jpg">
+            <article class="project-card reveal" data-aos="fade-up" data-aos-delay="200" data-project-num="03." data-project-title="NTI MITM Lab — ARP Spoofing" data-preview-img="man%20in%20the%20middle.jpg">
               <div class="project-visual visual-mitm visual-mitm-lab">
                 <span class="project-index" aria-hidden="true">03</span>
                 <!-- Browser Mockup Frame (Click to open man in the middle video.mp4 demo) -->
@@ -1392,18 +1365,7 @@
         <div class="footer-col footer-col-brand">
           <a href="#home" class="brand footer-brand-link" aria-label="Omar Ebied home">
             <span class="brand-mark" aria-hidden="true">
-              <svg class="brand-logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer Rounded Badge -->
-                <rect x="2" y="2" width="36" height="36" rx="10" fill="#0b1512" stroke="#10b981" stroke-width="2"/>
-                <!-- Inner Subtle Frame -->
-                <rect x="6" y="6" width="28" height="28" rx="7" fill="#10b981" fill-opacity="0.08"/>
-                <!-- Geometric "O" -->
-                <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#ffffff"/>
-                <!-- Geometric "E" -->
-                <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#10b981"/>
-                <!-- Cyber / Data Accent Dot -->
-                <circle cx="33.5" cy="10.5" r="2" fill="#10b981"/>
-              </svg>
+              <img class="brand-logo-svg" src="oe-monogram.svg" width="38" height="30" alt="" aria-hidden="true" />
             </span>
             <span class="brand-name">Omar Ebied</span>
           </a>
@@ -1676,6 +1638,7 @@
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=11" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js?v=12" defer></script>
   </body>
 </html>

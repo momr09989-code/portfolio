@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="150 200 650 500" width="100%" height="100%" fill="none" class="oe-monogram">
+  <defs>
+    <!-- Subtle Emerald Glow Filter -->
+    <filter id="emerald-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <!-- Subtle White Glow Filter -->
+    <filter id="white-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <!-- Active Pulse Filter for Power-on Effect -->
+    <filter id="circuit-pulse" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14" result="pulse-blur" />
+      <feComponentTransfer in="pulse-blur" result="boosted">
+        <feFuncA type="linear" slope="1.8" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boosted" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+<!-- Monogram Graphic Group -->
+  <g id="monogram-group">
+    <!-- 1. White O-Loop (Squircle Path) -->
+    <path id="path-o"
+          d="M 338.9,282.2 C 452.7,273.5 499.4,315.7 508.5,435.7 C 517.7,555.7 478.0,604.6 364.2,613.3 C 250.3,622.0 203.7,579.7 194.5,459.7 C 185.3,339.7 225.0,290.9 338.9,282.2 Z"
+          stroke="#FFFFFF"
+          stroke-width="19.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#white-glow)"
+          class="stroke-o" />
+
+    <!-- 2. Emerald Circuit Traces (E-Monogram) -->
+    <!-- E Upper Flow: Curve from O junction up to top bar -->
+    <path id="path-e-upper"
+          d="M 501.7,435.8 C 556.6,435.8 573.7,336.9 573.7,282.0 L 738.5,282.0"
+          stroke="#00E58B"
+          stroke-width="19.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#emerald-glow)"
+          class="stroke-e stroke-e-upper" />
+
+    <!-- E Middle Arm -->
+    <path id="path-e-mid"
+          d="M 561.5,439.5 L 688.5,439.5"
+          stroke="#00E58B"
+          stroke-width="19.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#emerald-glow)"
+          class="stroke-e stroke-e-mid" />
+
+    <!-- E Lower Spine & Bottom Arm -->
+    <path id="path-e-lower"
+          d="M 561.5,439.5 L 561.5,597.2 L 738.5,597.2"
+          stroke="#00E58B"
+          stroke-width="19.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#emerald-glow)"
+          class="stroke-e stroke-e-lower" />
+
+    <!-- 3. Circuit Nodes (Electronic Connection Points) -->
+    <!-- Top Row -->
+    <circle id="node-top-o" cx="339.4" cy="238.0" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-top" />
+    <circle id="node-top-mid" cx="481.0" cy="238.5" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-top" />
+    <circle id="node-top-e" cx="678.7" cy="238.0" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-top" />
+
+    <!-- Middle Row / Junctions -->
+    <circle id="node-left-o" cx="199.0" cy="434.6" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-mid" />
+    <circle id="node-inner-o" cx="479.7" cy="434.6" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-mid" />
+    <circle id="node-junction" cx="501.7" cy="435.8" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-junction" />
+    <circle id="node-mid-e" cx="637.2" cy="439.5" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-mid" />
+
+    <!-- Bottom Row -->
+    <circle id="node-bot-o" cx="478.5" cy="642.1" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-bot" />
+    <circle id="node-bot-e" cx="678.7" cy="643.1" r="9.8" fill="#00E58B" filter="url(#emerald-glow)" class="circuit-node node-bot" />
+  </g>
+</svg>
