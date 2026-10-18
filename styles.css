@@ -224,16 +224,27 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .theme-toggle,
 .theme-toggle:hover,
 .theme-toggle:focus,
+.theme-toggle:active,
 .theme-toggle:focus-visible,
+body.light-mode .theme-toggle,
+body.light-mode .theme-toggle:hover,
+body.light-mode .theme-toggle:focus,
+body.light-mode .theme-toggle:active,
+[data-theme="light"] .theme-toggle,
 .mobile-toggle-btn,
 .mobile-toggle-btn:hover,
 .mobile-toggle-btn:focus,
+.mobile-toggle-btn:active,
 .mobile-toggle-btn:focus-visible,
 .mobile-toggle-btn.theme-toggle,
 .mobile-toggle-btn.theme-toggle:hover,
 .mobile-toggle-btn.theme-toggle:focus,
-.mobile-toggle-btn.theme-toggle:focus-visible {
+.mobile-toggle-btn.theme-toggle:active,
+.mobile-toggle-btn.theme-toggle:focus-visible,
+body.light-mode .mobile-toggle-btn.theme-toggle,
+[data-theme="light"] .mobile-toggle-btn.theme-toggle {
   transform: translateY(0) rotate(0deg) scale(1) !important;
+  rotate: 0deg !important;
 }
 
 .theme-toggle {
@@ -253,30 +264,31 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   border-color: var(--cyan);
 }
 
-.theme-icon {
+.theme-icon,
+.mobile-toggle-btn .toggle-icon {
   font-size: 15px;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform-origin: center center;
+  transform: rotate(0deg) !important;
 }
 
-/* @keyframes themePop - pulse and glow animation */
-@keyframes themePop {
+/* @keyframes themePulse - temporary 400ms scale & glow pulse returning to flat resting state */
+@keyframes themePulse {
   0% {
     transform: translateY(0) rotate(0deg) scale(1);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55);
     border-color: #10b981;
   }
-  30% {
-    transform: translateY(0) rotate(0deg) scale(0.92);
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4);
+  35% {
+    transform: translateY(0) rotate(0deg) scale(0.94);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.38);
     border-color: #10b981;
   }
-  65% {
-    transform: translateY(0) rotate(0deg) scale(1.04);
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.25), 0 0 14px rgba(16, 185, 129, 0.35);
+  70% {
+    transform: translateY(0) rotate(0deg) scale(1.03);
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0.22), 0 0 14px rgba(16, 185, 129, 0.32);
     border-color: #10b981;
   }
   100% {
@@ -286,32 +298,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   }
 }
 
-@keyframes iconSpin360 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Click animation: smooth pulse and glow, 360 spin ONLY on the moon/sun icon */
+.theme-toggle.theme-pulse,
 .theme-toggle.theme-pop,
 .theme-toggle.is-animating,
+.mobile-toggle-btn.theme-toggle.theme-pulse,
 .mobile-toggle-btn.theme-toggle.theme-pop,
 .mobile-toggle-btn.theme-toggle.is-animating {
-  animation: themePop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
-}
-
-.theme-toggle.theme-pop .theme-icon,
-.theme-toggle.theme-pop .toggle-icon,
-.mobile-toggle-btn.theme-toggle.theme-pop .theme-icon,
-.mobile-toggle-btn.theme-toggle.theme-pop .toggle-icon,
-.theme-toggle.is-animating .theme-icon,
-.theme-toggle.is-animating .toggle-icon,
-.mobile-toggle-btn.theme-toggle.is-animating .theme-icon,
-.mobile-toggle-btn.theme-toggle.is-animating .toggle-icon {
-  animation: iconSpin360 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  animation: themePulse 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
 }
 .menu-toggle { display: none; }
 
@@ -3028,5 +3021,179 @@ body.menu-open {
   }
 }
 
+/* ==========================================================================
+   LENIS SMOOTH SCROLL
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
 
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
 
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   REACT BITS: SPOTLIGHT CARDS EFFECT
+   ========================================================================== */
+.project-card,
+.skill-item-card,
+.certificate-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after,
+.skill-item-card::after,
+.certificate-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(16, 185, 129, 0.14),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.project-card:hover::after,
+.skill-item-card:hover::after,
+.certificate-card:hover::after {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   STRICT MOBILE MODAL & PROJECT ACTION BUTTONS OVERFLOW FIX & THEME TOGGLE
+   ========================================================================== */
+.modal-footer-actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.modal-footer-actions a,
+.modal-footer-actions button,
+.modal-footer-actions .btn,
+.modal-footer-actions .button,
+.modal-footer-actions .cert-modal-btn,
+.modal-footer-actions .modal-demo-btn,
+.modal-footer-actions .modal-repo-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 38px !important;
+  padding: 8px 6px !important;
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  gap: 4px !important;
+}
+
+@media (max-width: 700px) {
+  .project-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .project-actions a.button,
+  .project-actions button,
+  .project-actions .btn,
+  .project-actions .button,
+  .project-actions .project-live-btn,
+  .project-actions .project-repo-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 38px !important;
+    padding: 8px 6px !important;
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    gap: 4px !important;
+  }
+
+  .project-actions a.button span,
+  .project-actions .project-live-btn span,
+  .project-actions .project-repo-btn span {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+
+  .project-actions .text-link {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
+  }
+}
+
+/* Mobile Toggles Row & Theme Toggle Strict Alignment Fix */
+.mobile-toggles-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.mobile-toggle-btn,
+.mobile-toggle-btn.theme-toggle,
+.mobile-toggle-btn.lang-toggle,
+.mobile-toggle-btn:hover,
+.mobile-toggle-btn:focus,
+.mobile-toggle-btn:active,
+.mobile-toggle-btn:focus-visible,
+body.light-mode .mobile-toggle-btn,
+body.light-mode .mobile-toggle-btn.theme-toggle,
+body.light-mode .mobile-toggle-btn.lang-toggle,
+[data-theme="light"] .mobile-toggle-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  margin: 0 !important;
+  padding: 8px 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  transform: translateY(0) rotate(0deg) scale(1) !important;
+  rotate: 0deg !important;
+}

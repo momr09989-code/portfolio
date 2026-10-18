@@ -54,21 +54,22 @@
   if (savedTheme) setTheme(savedTheme);
 
   themeToggles.forEach((t) => {
-    t.addEventListener('click', (e) => {
-      // Immediate blur to prevent sticking in :focus on touch screens
+    t.addEventListener('click', function (e) {
+      // Immediate blur to prevent sticking in :focus/:hover on mobile touch screens
+      if (this && typeof this.blur === 'function') this.blur();
       if (t && typeof t.blur === 'function') t.blur();
       if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
       if (document.activeElement && typeof document.activeElement.blur === 'function') {
         document.activeElement.blur();
       }
 
-      // Trigger temporary themePop animation, then remove after 400ms and blur
+      // Trigger temporary 400ms themePulse animation, then remove and blur
       themeToggles.forEach((btn) => {
-        btn.classList.remove('theme-pop', 'is-animating');
+        btn.classList.remove('theme-pulse', 'theme-pop', 'is-animating');
         void btn.offsetWidth;
-        btn.classList.add('theme-pop', 'is-animating');
+        btn.classList.add('theme-pulse', 'theme-pop', 'is-animating');
         setTimeout(() => {
-          btn.classList.remove('theme-pop', 'is-animating');
+          btn.classList.remove('theme-pulse', 'theme-pop', 'is-animating');
           if (typeof btn.blur === 'function') btn.blur();
         }, 400);
       });
@@ -746,7 +747,89 @@
 }
   };
 
+  // React Bits Style: Decrypted Text Effect (preserves child HTML elements and data-i18n)
+  const DECRYPT_GLYPHS = '01@#$%&*ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const activeDecryptions = new Set();
+
+  function cancelAllDecryptions() {
+    activeDecryptions.forEach((cancelFn) => cancelFn());
+    activeDecryptions.clear();
+  }
+
+  function decryptText(element, duration = 800) {
+    if (!element) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Restore original text if an animation is already running on this element
+    if (typeof element._decryptCancel === 'function') {
+      element._decryptCancel();
+    }
+
+    // Collect only pure text nodes inside element so child HTML tags (<em>, <span>, icons) are never destroyed
+    const textNodes = [];
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
+    let currentNode = walker.nextNode();
+    while (currentNode) {
+      if (currentNode.nodeValue && currentNode.nodeValue.trim().length > 0) {
+        textNodes.push({
+          node: currentNode,
+          original: currentNode.nodeValue
+        });
+      }
+      currentNode = walker.nextNode();
+    }
+
+    if (!textNodes.length) return;
+
+    let rafId = null;
+    const startTime = performance.now();
+
+    const restore = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      textNodes.forEach(({ node, original }) => {
+        node.nodeValue = original;
+      });
+      activeDecryptions.delete(restore);
+      element._decryptCancel = null;
+    };
+
+    element._decryptCancel = restore;
+    activeDecryptions.add(restore);
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      textNodes.forEach(({ node, original }) => {
+        const len = original.length;
+        const resolvedCount = Math.floor(progress * len);
+        let nextStr = '';
+        for (let i = 0; i < len; i++) {
+          const ch = original[i];
+          if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') {
+            nextStr += ch;
+          } else if (i < resolvedCount) {
+            nextStr += ch;
+          } else {
+            nextStr += DECRYPT_GLYPHS[Math.floor(Math.random() * DECRYPT_GLYPHS.length)];
+          }
+        }
+        node.nodeValue = nextStr;
+      });
+
+      if (progress < 1) {
+        rafId = requestAnimationFrame(step);
+      } else {
+        restore();
+      }
+    };
+
+    rafId = requestAnimationFrame(step);
+  }
+
   const setLanguage = (lang) => {
+    cancelAllDecryptions();
+
     const isArabic = lang === 'ar';
     document.documentElement.lang = isArabic ? 'ar' : 'en';
     document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
@@ -787,10 +870,15 @@
   if (savedLang === 'ar') setLanguage('ar');
 
   langToggles.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', function () {
+      if (this && typeof this.blur === 'function') this.blur();
       const newLang = document.documentElement.lang === 'ar' ? 'en' : 'ar';
       localStorage.setItem('omar-lang', newLang);
       setLanguage(newLang);
+      const heroTitle = document.querySelector('.hero h1');
+      const heroRole = document.querySelector('.hero-role');
+      if (heroTitle) decryptText(heroTitle, 750);
+      if (heroRole) decryptText(heroRole, 800);
     });
   });
 
@@ -1267,4 +1355,192 @@
       }
     });
   });
+
+  // =========================================================================
+  // LENIS SMOOTH SCROLL + GSAP SCROLLTRIGGER + REACT BITS EFFECTS
+  // =========================================================================
+
+  // 1. Mark modals and mobile menu overlay with data-lenis-prevent so inner scrolling works natively
+  document.querySelectorAll('.cert-modal, .modal, .mobile-menu-overlay').forEach((el) => {
+    el.setAttribute('data-lenis-prevent', '');
+  });
+
+  // 2. Initialize Lenis & Sync with GSAP ScrollTrigger
+  let lenis = null;
+  if (typeof window.Lenis !== 'undefined') {
+    lenis = new window.Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      prevent: (node) => !!(node && node.closest && node.closest('.cert-modal, .modal, .mobile-menu-overlay'))
+    });
+
+    if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      lenis.on('scroll', window.ScrollTrigger.update);
+      window.gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      window.gsap.ticker.lagSmoothing(0);
+    } else {
+      const raf = (time) => {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      };
+      requestAnimationFrame(raf);
+    }
+
+    // Smooth anchor navigation via Lenis
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          e.preventDefault();
+          if (mobileMenu && mobileMenu.classList.contains('is-open')) {
+            setMobileMenu(false);
+          }
+          lenis.scrollTo(targetEl, {
+            offset: href === '#home' ? 0 : -78,
+            duration: 1.2
+          });
+        }
+      });
+    });
+  }
+
+  // 3. React Bits: Decrypted Text Effect Triggers (Load, ScrollTrigger, Hover)
+  const heroTitleEl = document.querySelector('.hero h1');
+  const heroRoleEl = document.querySelector('.hero-role');
+  const sectionTitles = document.querySelectorAll('h2.section-title, .contact-copy h2');
+
+  if (heroTitleEl) {
+    decryptText(heroTitleEl, 800);
+    heroTitleEl.addEventListener('mouseenter', () => decryptText(heroTitleEl, 750));
+  }
+  if (heroRoleEl) {
+    decryptText(heroRoleEl, 850);
+    heroRoleEl.addEventListener('mouseenter', () => decryptText(heroRoleEl, 800));
+  }
+
+  sectionTitles.forEach((heading) => {
+    heading.addEventListener('mouseenter', () => decryptText(heading, 750));
+    if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+      window.ScrollTrigger.create({
+        trigger: heading,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => decryptText(heading, 800)
+      });
+    }
+  });
+
+  // 4. React Bits: Spotlight Cards Mouse Tracking (--mouse-x, --mouse-y)
+  const spotlightCards = document.querySelectorAll('.project-card, .skill-item-card, .certificate-card');
+  spotlightCards.forEach((card) => {
+    card.addEventListener(
+      'mousemove',
+      (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      },
+      { passive: true }
+    );
+  });
+
+  // 5. GSAP + ScrollTrigger Staggered Reveal Animations for Cards
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+
+    // Project cards staggered reveal
+    const projectCards = window.gsap.utils.toArray('.project-card');
+    projectCards.forEach((card, i) => {
+      window.gsap.fromTo(
+        card,
+        { opacity: 0, y: 36 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          delay: (i % 2) * 0.08,
+          ease: 'power3.out',
+          clearProps: 'transform',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // Active skill panel cards staggered reveal
+    const activeSkillCards = window.gsap.utils.toArray('.skills-panel.active .skill-item-card');
+    if (activeSkillCards.length) {
+      window.gsap.fromTo(
+        activeSkillCards,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.06,
+          ease: 'power2.out',
+          clearProps: 'transform',
+          scrollTrigger: {
+            trigger: '.skills-tabs-container',
+            start: 'top 86%',
+            once: true
+          }
+        }
+      );
+    }
+
+    // Stagger skill cards when switching tabs
+    skillsTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetPanelId = tab.getAttribute('aria-controls');
+        const panel = targetPanelId ? document.getElementById(targetPanelId) : null;
+        if (panel) {
+          const cards = panel.querySelectorAll('.skill-item-card');
+          window.gsap.fromTo(
+            cards,
+            { opacity: 0, y: 16 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              stagger: 0.04,
+              ease: 'power2.out',
+              clearProps: 'transform'
+            }
+          );
+        }
+      });
+    });
+
+    // Certificate cards staggered reveal
+    const certCards = window.gsap.utils.toArray('.certificate-card');
+    if (certCards.length) {
+      window.gsap.fromTo(
+        certCards,
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'transform',
+          scrollTrigger: {
+            trigger: '.certificates-grid',
+            start: 'top 88%',
+            once: true
+          }
+        }
+      );
+    }
+  }
 })();
