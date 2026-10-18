@@ -3264,14 +3264,33 @@ html.lenis body {
   transform-origin: center;
 }
 
-/* Prevent AOS / CSS .reveal conflicts with GSAP ScrollTrigger */
-[data-aos] {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
+/* Project Cards: Preserve 3D, Smooth Hover Elevation, Emerald Border & Image Zoom */
+.project-card {
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease,
+              box-shadow 0.45s ease;
 }
 
-.project-card.reveal,
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: 0 18px 38px var(--shadow), 0 0 24px rgba(16, 185, 129, 0.14);
+}
+
+.project-card .mockup-porto-img,
+.project-card .device-mockup {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.project-card:hover .mockup-porto-img {
+  transform: scale(1.05);
+}
+
+.project-card:hover .device-mockup {
+  transform: scale(1.03);
+}
+
 .certificate-card.reveal,
 .skill-item-card.reveal {
   transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;

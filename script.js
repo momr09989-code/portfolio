@@ -2012,31 +2012,62 @@
     );
   });
 
-  // 13. GSAP + ScrollTrigger Staggered Reveal Animations for Cards
+  // 13. GSAP + ScrollTrigger Staggered Reveal Animations for Projects, Skills & Certificates
   if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     window.gsap.registerPlugin(window.ScrollTrigger);
 
-    // Project cards staggered reveal
-    const projectCards = window.gsap.utils.toArray('.project-card');
-    projectCards.forEach((card, i) => {
+    // Projects Section Header Animation + Decrypted Text trigger
+    const projectsHeaderEls = window.gsap.utils.toArray(
+      '#projects .section-label, #projects .section-title, #projects .section-intro'
+    );
+    const projectsTitleEl = document.querySelector('#projects .section-title');
+    if (projectsHeaderEls.length) {
       window.gsap.fromTo(
-        card,
-        { opacity: 0, y: 36 },
+        projectsHeaderEls,
+        { opacity: 0, y: 35 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.75,
-          delay: (i % 2) * 0.08,
+          duration: 0.8,
+          stagger: 0.1,
           ease: 'power3.out',
+          overwrite: 'auto',
           clearProps: 'transform',
           scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-            once: true
+            trigger: '#projects',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+            onEnter: () => {
+              if (projectsTitleEl) decryptText(projectsTitleEl, 800);
+            }
           }
         }
       );
-    });
+    }
+
+    // Project Cards Staggered Reveal
+    const projectCards = window.gsap.utils.toArray('#projects .project-card');
+    if (projectCards.length) {
+      window.gsap.fromTo(
+        projectCards,
+        { opacity: 0, y: 60, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.75,
+          stagger: 0.15,
+          ease: 'power3.out',
+          overwrite: 'auto',
+          clearProps: 'transform',
+          scrollTrigger: {
+            trigger: '#projects',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
 
     // Active skill panel cards staggered reveal
     const activeSkillCards = window.gsap.utils.toArray('.skills-panel.active .skill-item-card');
@@ -2104,5 +2135,13 @@
         }
       );
     }
+
+    window.addEventListener(
+      'load',
+      () => {
+        window.ScrollTrigger.refresh();
+      },
+      { once: true }
+    );
   }
 })();
