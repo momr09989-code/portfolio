@@ -69,18 +69,28 @@ body::-webkit-scrollbar {
 
 /* Global ambient mouse spotlight (halo) */
 #global-mouse-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none; /* Crucial so it doesn't block clicks */
-  z-index: 0; /* Keeps it behind text but visible on the background */
-  background: radial-gradient(600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(16, 185, 129, 0.12), transparent 50%);
-  transition: background 0.1s ease;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important; /* Crucial so it never blocks clicks */
+  z-index: 9990 !important; /* Above opaque section backgrounds */
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    rgba(16, 185, 129, 0.22) 0%,
+    rgba(16, 185, 129, 0.08) 40%,
+    transparent 75%
+  ) !important;
+  transition: none !important;
 }
-body.light-mode #global-mouse-glow {
-  background: radial-gradient(600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(16, 185, 129, 0.14), transparent 50%);
+body.light-mode #global-mouse-glow,
+[data-theme="light"] #global-mouse-glow {
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    rgba(16, 185, 129, 0.16) 0%,
+    rgba(16, 185, 129, 0.05) 40%,
+    transparent 75%
+  ) !important;
 }
 @media (hover: none), (pointer: coarse) {
   #global-mouse-glow { display: none; }
@@ -4097,15 +4107,6 @@ body.light-mode .video-modal-dialog,
 .certificate-card {
   position: relative;
   transform-style: preserve-3d;
-}
-
-/* Let JS (GSAP) handle tilt movement instantly — no CSS transform transition fighting it */
-.project-card:hover,
-.certificate-card:hover,
-.project-card.is-tilting,
-.certificate-card.is-tilting {
-  transition: transform 0s, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease !important;
-  will-change: transform;
 }
 
 .project-card::before,

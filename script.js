@@ -1992,22 +1992,21 @@
     });
   }
 
-  // 11b. Global Ambient Mouse Spotlight (Halo)
+  // 11b. Global Ambient Mouse Spotlight (Halo) — instant, high-priority tracking
   const globalMouseGlow = document.getElementById('global-mouse-glow');
-  if (globalMouseGlow && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let glowRaf = null;
-    let glowX = window.innerWidth / 2;
-    let glowY = window.innerHeight / 2;
-    const applyGlow = () => {
-      globalMouseGlow.style.setProperty('--mouse-x', `${glowX}px`);
-      globalMouseGlow.style.setProperty('--mouse-y', `${glowY}px`);
-      glowRaf = null;
-    };
-    window.addEventListener('mousemove', (e) => {
-      glowX = e.clientX;
-      glowY = e.clientY;
-      if (!glowRaf) glowRaf = requestAnimationFrame(applyGlow);
-    }, { passive: true });
+  if (globalMouseGlow) {
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        const px = e.clientX + 'px';
+        const py = e.clientY + 'px';
+        document.documentElement.style.setProperty('--mouse-x', px);
+        document.documentElement.style.setProperty('--mouse-y', py);
+        globalMouseGlow.style.setProperty('--mouse-x', px);
+        globalMouseGlow.style.setProperty('--mouse-y', py);
+      },
+      { passive: true, capture: true }
+    );
   }
 
   // 12. Top Scroll Progress Bar (Smooth scaleX from 0 to 1)
@@ -2036,72 +2035,73 @@
     updateScrollProgress();
   }
 
-  // 13. Spotlight Mouse Tracking & Smooth 3D Perspective Tilt on Skill & Certificate Cards (Desktop Only)
-  const skillCardsForSpotlight = document.querySelectorAll('.skill-item-card');
-  skillCardsForSpotlight.forEach((card) => {
-    card.addEventListener(
-      'mousemove',
-      (e) => {
-        const rect = card.getBoundingClientRect();
-        const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-        const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mouse-x', `${mouseX}%`);
-        card.style.setProperty('--mouse-y', `${mouseY}%`);
-      },
-      { passive: true }
-    );
-  });
+  // 13. Spotlight Mouse Tracking & Zero-Latency 3D Perspective Tilt on Project, Skill, Certificate, Achievement & Education Cards (Desktop Only)
+  const tiltCardSelector = '.project-card, .skill-item-card, .certificate-card, .achievement-card, .education-card';
+  const tiltCards = document.querySelectorAll(tiltCardSelector);
+  tiltCards.forEach((card) => {
+    const canTilt = isDesktopPointer && !prefersReducedMotion;
+    let resetTimer = null;
 
-  const certificateCardsForTilt = document.querySelectorAll('.certificate-card');
-  certificateCardsForTilt.forEach((card) => {
-    const canTilt = isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion;
-    let tiltX = null;
-    let tiltY = null;
-    let lift = null;
+    const clearInlineTilt = () => {
+      // Hand control back to CSS / GSAP reveal once the card is flat again
+      if (card.matches(':hover')) return;
+      card.style.removeProperty('transform');
+      card.style.removeProperty('transition');
+      card.style.removeProperty('will-change');
+    };
 
     card.addEventListener('mouseenter', () => {
       if (!canTilt) return;
-      card.classList.add('is-tilting');
-      window.gsap.killTweensOf(card, 'rotateX,rotateY,y');
-      window.gsap.set(card, { transformPerspective: 1000 });
-      tiltX = window.gsap.quickTo(card, 'rotateX', { duration: 0.15, ease: 'power2.out' });
-      tiltY = window.gsap.quickTo(card, 'rotateY', { duration: 0.15, ease: 'power2.out' });
-      lift = window.gsap.quickTo(card, 'y', { duration: 0.2, ease: 'power2.out' });
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+        resetTimer = null;
+      }
+      // Kill any active GSAP transform tweens so they can't fight the direct style updates
+      if (window.gsap) window.gsap.killTweensOf(card, 'transform,x,y,scale,rotateX,rotateY,rotation');
+      // Strip the transform transition inline (!important) so CSS / AOS / .reveal cannot delay mouse tracking
+      card.style.setProperty('transition', 'border-color 0.3s ease, box-shadow 0.3s ease', 'important');
+      card.style.setProperty('will-change', 'transform', 'important');
     });
 
     card.addEventListener(
       'mousemove',
       (e) => {
         const rect = card.getBoundingClientRect();
-        const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-        const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mouse-x', `${mouseX}%`);
-        card.style.setProperty('--mouse-y', `${mouseY}%`);
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        // Inner spotlight coordinates
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
 
-        if (canTilt && tiltX && tiltY && lift) {
-          tiltY(Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2)));
-          tiltX(Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2)));
-          lift(-4);
-        }
+        if (!canTilt) return;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -9;
+        const rotateY = ((x - centerX) / centerX) * 9;
+        card.style.setProperty(
+          'transform',
+          'perspective(900px) translateY(-6px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.015, 1.015, 1.015)',
+          'important'
+        );
       },
       { passive: true }
     );
 
     card.addEventListener('mouseleave', () => {
       if (!canTilt) return;
-      tiltX = tiltY = lift = null;
-      window.gsap.to(card, {
-        y: 0,
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.5,
-        ease: 'power3.out',
-        overwrite: 'auto',
-        onComplete: () => {
-          window.gsap.set(card, { clearProps: 'transform' });
-          card.classList.remove('is-tilting');
-        }
-      });
+      // Smooth transition ONLY for the reset back to flat
+      card.style.setProperty(
+        'transition',
+        'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease',
+        'important'
+      );
+      card.style.setProperty(
+        'transform',
+        'perspective(900px) translateY(0px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+        'important'
+      );
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(clearInlineTilt, 520);
     });
   });
 
@@ -2155,27 +2155,13 @@
     });
   }
 
-  // 15. Interactive Hover, 3D Perspective Tilt, Thumbnail Zoom & Spotlight Effect on Project Cards (Desktop Only Tilt)
+  // 15. Thumbnail Zoom on Project Cards (the 3D tilt itself lives in the unified zero-latency handler in section 13)
   projectCards.forEach((card) => {
     const visualTargets = card.querySelectorAll('.mockup-porto-img, .device-mockup');
-    const canTilt = isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion;
-    let tiltX = null;
-    let tiltY = null;
+    if (!visualTargets.length) return;
 
     card.addEventListener('mouseenter', () => {
-      if (!canTilt) return;
-      card.classList.add('is-tilting');
-      window.gsap.killTweensOf(card, 'rotateX,rotateY,y,scale');
-      window.gsap.set(card, { transformPerspective: 1000 });
-      tiltX = window.gsap.quickTo(card, 'rotateX', { duration: 0.15, ease: 'power2.out' });
-      tiltY = window.gsap.quickTo(card, 'rotateY', { duration: 0.15, ease: 'power2.out' });
-      window.gsap.to(card, {
-        y: -8,
-        scale: 1.015,
-        duration: 0.3,
-        ease: 'power2.out'
-      });
-      if (visualTargets.length) {
+      if (isDesktopPointer && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
         window.gsap.to(visualTargets, {
           scale: 1.035,
           duration: 0.35,
@@ -2185,40 +2171,8 @@
       }
     });
 
-    card.addEventListener(
-      'mousemove',
-      (e) => {
-        const rect = card.getBoundingClientRect();
-        const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-        const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mouse-x', `${mouseX}%`);
-        card.style.setProperty('--mouse-y', `${mouseY}%`);
-
-        if (canTilt && tiltX && tiltY) {
-          tiltY(Math.max(-4.5, Math.min(4.5, ((mouseX - 50) / 50) * 4.2)));
-          tiltX(Math.max(-4.5, Math.min(4.5, ((50 - mouseY) / 50) * 4.2)));
-        }
-      },
-      { passive: true }
-    );
-
     card.addEventListener('mouseleave', () => {
-      if (typeof window.gsap === 'undefined') return;
-      tiltX = tiltY = null;
-      window.gsap.to(card, {
-        y: 0,
-        scale: 1,
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.5,
-        ease: 'power3.out',
-        overwrite: 'auto',
-        onComplete: () => {
-          window.gsap.set(card, { clearProps: 'transform' });
-          card.classList.remove('is-tilting');
-        }
-      });
-      if (visualTargets.length) {
+      if (typeof window.gsap !== 'undefined') {
         window.gsap.to(visualTargets, {
           scale: 1,
           duration: 0.45,
