@@ -1992,6 +1992,24 @@
     });
   }
 
+  // 11b. Global Ambient Mouse Spotlight (Halo)
+  const globalMouseGlow = document.getElementById('global-mouse-glow');
+  if (globalMouseGlow && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let glowRaf = null;
+    let glowX = window.innerWidth / 2;
+    let glowY = window.innerHeight / 2;
+    const applyGlow = () => {
+      globalMouseGlow.style.setProperty('--mouse-x', `${glowX}px`);
+      globalMouseGlow.style.setProperty('--mouse-y', `${glowY}px`);
+      glowRaf = null;
+    };
+    window.addEventListener('mousemove', (e) => {
+      glowX = e.clientX;
+      glowY = e.clientY;
+      if (!glowRaf) glowRaf = requestAnimationFrame(applyGlow);
+    }, { passive: true });
+  }
+
   // 12. Top Scroll Progress Bar (Smooth scaleX from 0 to 1)
   const scrollProgressBar = document.getElementById('scroll-progress-bar');
   if (scrollProgressBar) {
