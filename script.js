@@ -98,6 +98,9 @@
       menuButton.setAttribute('aria-expanded', String(isOpen));
       menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
     }
+    if (typeof syncLenisScrollState === 'function') {
+      syncLenisScrollState();
+    }
   };
 
   if (menuButton) {
@@ -747,7 +750,7 @@
 }
   };
 
-  // React Bits Style: Decrypted Text Effect (preserves child HTML elements and data-i18n)
+  // React Bits Style: Decrypted Text Effect (preserves child HTML elements, dataset.originalText, and skips Arabic RTL)
   const DECRYPT_GLYPHS = '01@#$%&*ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const activeDecryptions = new Set();
 
@@ -756,13 +759,39 @@
     activeDecryptions.clear();
   }
 
-  function decryptText(element, duration = 800) {
+  function snapshotElementOriginalText(element) {
+    if (!element) return;
+    element.dataset.originalHtml = element.innerHTML;
+    element.dataset.originalText = element.textContent || '';
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
+    let currentNode = walker.nextNode();
+    while (currentNode) {
+      currentNode._originalText = currentNode.nodeValue;
+      currentNode = walker.nextNode();
+    }
+  }
+
+  function decryptText(element, duration = 750) {
     if (!element) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    // Restore original text if an animation is already running on this element
+    // Immediately stop any active interval/decryption and restore clean original text first
+    if (element._decryptInterval) {
+      clearInterval(element._decryptInterval);
+      element._decryptInterval = null;
+    }
     if (typeof element._decryptCancel === 'function') {
       element._decryptCancel();
+    }
+
+    // Store authentic text in dataset.originalText & dataset.originalHtml if not yet stored
+    if (!element.dataset.originalText) {
+      snapshotElementOriginalText(element);
+    }
+
+    // Do not scramble Arabic cursive letters in RTL mode (prevents disconnected Arabic ligatures)
+    if (document.documentElement.lang === 'ar' || body.classList.contains('rtl-mode')) {
+      return;
     }
 
     // Collect only pure text nodes inside element so child HTML tags (<em>, <span>, icons) are never destroyed
@@ -770,10 +799,15 @@
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
     let currentNode = walker.nextNode();
     while (currentNode) {
-      if (currentNode.nodeValue && currentNode.nodeValue.trim().length > 0) {
+      const cleanVal =
+        typeof currentNode._originalText === 'string'
+          ? currentNode._originalText
+          : currentNode.nodeValue;
+      currentNode._originalText = cleanVal;
+      if (cleanVal && cleanVal.trim().length > 0) {
         textNodes.push({
           node: currentNode,
-          original: currentNode.nodeValue
+          original: cleanVal
         });
       }
       currentNode = walker.nextNode();
@@ -781,13 +815,16 @@
 
     if (!textNodes.length) return;
 
-    let rafId = null;
     const startTime = performance.now();
 
     const restore = () => {
-      if (rafId) cancelAnimationFrame(rafId);
+      if (element._decryptInterval) {
+        clearInterval(element._decryptInterval);
+        element._decryptInterval = null;
+      }
       textNodes.forEach(({ node, original }) => {
         node.nodeValue = original;
+        node._originalText = original;
       });
       activeDecryptions.delete(restore);
       element._decryptCancel = null;
@@ -796,9 +833,14 @@
     element._decryptCancel = restore;
     activeDecryptions.add(restore);
 
-    const step = (now) => {
-      const elapsed = now - startTime;
+    element._decryptInterval = setInterval(() => {
+      const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
+
+      if (progress >= 1 || document.documentElement.lang === 'ar') {
+        restore();
+        return;
+      }
 
       textNodes.forEach(({ node, original }) => {
         const len = original.length;
@@ -816,16 +858,22 @@
         }
         node.nodeValue = nextStr;
       });
-
-      if (progress < 1) {
-        rafId = requestAnimationFrame(step);
-      } else {
-        restore();
-      }
-    };
-
-    rafId = requestAnimationFrame(step);
+    }, 30);
   }
+
+  let lenis = null;
+  let isCurvedMenuOpen = false;
+
+  const syncLenisScrollState = () => {
+    if (!lenis) return;
+    const anyModalOpen = !!document.querySelector('.cert-modal.is-open, .modal.is-open');
+    const mobileOpen = !!(mobileMenu && mobileMenu.classList.contains('is-open'));
+    if (anyModalOpen || mobileOpen || isCurvedMenuOpen) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  };
 
   const setLanguage = (lang) => {
     cancelAllDecryptions();
@@ -840,7 +888,13 @@
       const key = el.getAttribute('data-i18n');
       if (i18n[lang] && i18n[lang][key] !== undefined) {
         el.innerHTML = i18n[lang][key];
+        snapshotElementOriginalText(el);
       }
+    });
+
+    // Also refresh original text snapshots for hero h1 and section titles
+    document.querySelectorAll('.hero h1, .hero-role, h2.section-title, .contact-copy h2').forEach((el) => {
+      snapshotElementOriginalText(el);
     });
 
     // 2. Input/Textarea placeholders
@@ -864,6 +918,10 @@
       const text = t.querySelector('.theme-text');
       if (text) text.textContent = isLight ? (isArabic ? 'فاتح' : 'Light') : (isArabic ? 'داكن' : 'Dark');
     });
+
+    if (typeof window.ScrollTrigger !== 'undefined') {
+      setTimeout(() => window.ScrollTrigger.refresh(), 60);
+    }
   };
 
   const savedLang = localStorage.getItem('omar-lang') || 'en';
@@ -875,10 +933,12 @@
       const newLang = document.documentElement.lang === 'ar' ? 'en' : 'ar';
       localStorage.setItem('omar-lang', newLang);
       setLanguage(newLang);
-      const heroTitle = document.querySelector('.hero h1');
-      const heroRole = document.querySelector('.hero-role');
-      if (heroTitle) decryptText(heroTitle, 750);
-      if (heroRole) decryptText(heroRole, 800);
+      if (newLang === 'en') {
+        const heroTitle = document.querySelector('.hero h1');
+        const heroRole = document.querySelector('.hero-role');
+        if (heroTitle) decryptText(heroTitle, 750);
+        if (heroRole) decryptText(heroRole, 800);
+      }
     });
   });
 
@@ -1033,6 +1093,9 @@
     const modal = document.getElementById(modalId);
     if (!modal) return;
 
+    const hoverPreviewEl = document.getElementById('project-hover-preview');
+    if (hoverPreviewEl) hoverPreviewEl.classList.remove('is-visible');
+
     // Dynamically configure video modal when triggered from a video mockup element
     if (trigger && (modalId === 'project-video-modal' || modal.classList.contains('project-video-modal'))) {
       const videoSrc = trigger.getAttribute('data-video');
@@ -1112,6 +1175,7 @@
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     body.classList.add('modal-open');
+    syncLenisScrollState();
     const video = modal.querySelector('video');
     if (video) {
       video.currentTime = 0;
@@ -1133,6 +1197,7 @@
     if (!document.querySelector('.cert-modal.is-open, .modal.is-open')) {
       body.classList.remove('modal-open');
     }
+    syncLenisScrollState();
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
       lastFocusedElement.focus();
     }
@@ -1361,12 +1426,11 @@
   // =========================================================================
 
   // 1. Mark modals and overlay menus with data-lenis-prevent so inner scrolling works natively
-  document.querySelectorAll('.cert-modal, .modal, .mobile-menu-overlay, .curved-overlay-menu').forEach((el) => {
+  document.querySelectorAll('.cert-modal, .cert-modal-dialog, .cert-modal-body, .modal, .mobile-menu-overlay, .mobile-menu-drawer, .curved-overlay-menu, .curved-overlay-inner').forEach((el) => {
     el.setAttribute('data-lenis-prevent', '');
   });
 
   // 2. Initialize Lenis & Sync with GSAP ScrollTrigger
-  let lenis = null;
   if (typeof window.Lenis !== 'undefined') {
     lenis = new window.Lenis({
       duration: 1.15,
@@ -1454,6 +1518,9 @@
     if (heroTitleEl) decryptText(heroTitleEl, 800);
     if (heroRoleEl) decryptText(heroRoleEl, 850);
     playSignatureAnimation();
+    if (typeof window.ScrollTrigger !== 'undefined') {
+      setTimeout(() => window.ScrollTrigger.refresh(), 80);
+    }
   };
 
   // Fallback guarantee so preloader never blocks interaction
@@ -1627,69 +1694,42 @@
       { passive: true }
     );
 
-    // Magnetic Effect on primary buttons, social buttons, and floating menu button (excluding theme/mobile toggles)
+    // Magnetic Effect on primary buttons, social buttons, and floating menu button (excluding theme/lang/mobile toggles)
     const magneticElements = document.querySelectorAll(
       '.hero-cv-btn, #contact-submit-btn, .qi-cta-btn, .footer-social-btn, .footer-pill-btn, .floating-menu-btn, .site-header .brand'
     );
     magneticElements.forEach((el) => {
+      if (el.classList.contains('theme-toggle') || el.classList.contains('lang-toggle') || el.classList.contains('mobile-toggle-btn')) {
+        return;
+      }
+      const resetMagnetic = () => {
+        window.gsap.killTweensOf(el);
+        window.gsap.to(el, {
+          x: 0,
+          y: 0,
+          duration: 0.45,
+          ease: 'power3.out',
+          clearProps: 'transform'
+        });
+      };
       el.addEventListener('mousemove', (e) => {
         const rect = el.getBoundingClientRect();
         const dx = e.clientX - (rect.left + rect.width / 2);
         const dy = e.clientY - (rect.top + rect.height / 2);
         window.gsap.to(el, {
-          x: dx * 0.28,
-          y: dy * 0.28,
-          duration: 0.35,
-          ease: 'power2.out'
+          x: dx * 0.24,
+          y: dy * 0.24,
+          duration: 0.3,
+          ease: 'power2.out',
+          overwrite: 'auto'
         });
       });
-      el.addEventListener('mouseleave', () => {
-        window.gsap.to(el, {
-          x: 0,
-          y: 0,
-          duration: 0.65,
-          ease: 'elastic.out(1, 0.4)'
-        });
-      });
+      el.addEventListener('mouseleave', resetMagnetic);
+      el.addEventListener('blur', resetMagnetic);
     });
   }
 
-  // 7. Infinite Horizontal Marquee with Scroll Velocity & Direction Control
-  const marqueeTrack = document.getElementById('marquee-track');
-  if (marqueeTrack && typeof window.gsap !== 'undefined') {
-    const marqueeTween = window.gsap.to(marqueeTrack, {
-      xPercent: -50,
-      repeat: -1,
-      duration: 24,
-      ease: 'none'
-    });
-
-    if (typeof window.ScrollTrigger !== 'undefined') {
-      window.ScrollTrigger.create({
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        onUpdate: (self) => {
-          const vel = Math.min(Math.abs(self.getVelocity() / 350), 3.5);
-          const dir = self.direction >= 0 ? 1 : -1;
-          window.gsap.to(marqueeTween, {
-            timeScale: dir * (1 + vel),
-            duration: 0.25,
-            overwrite: true,
-            onComplete: () => {
-              window.gsap.to(marqueeTween, {
-                timeScale: dir,
-                duration: 0.8,
-                ease: 'power2.out'
-              });
-            }
-          });
-        }
-      });
-    }
-  }
-
-  // 8. Glowing Scroll-Scrubbed Timeline (Education & Experience)
+  // 7. Glowing Scroll-Scrubbed Timeline (Education & Experience)
   if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     document.querySelectorAll('.timeline-wrapper').forEach((wrapper) => {
       const fill = wrapper.querySelector('.timeline-rail-fill');
@@ -1729,7 +1769,7 @@
     });
   }
 
-  // 9. Sticky Project Counter (01., 02., 03.) & Floating Hover Preview Image
+  // 8. Sticky Project Counter (01., 02., 03.) & Floating Hover Preview Image
   const stickyNumEl = document.getElementById('project-sticky-num');
   const stickyLabelEl = document.getElementById('project-sticky-label');
   const stickyDots = document.querySelectorAll('.sticky-dot');
@@ -1740,11 +1780,11 @@
       if (typeof window.gsap !== 'undefined') {
         window.gsap.fromTo(
           stickyNumEl,
-          { y: -14, opacity: 0 },
+          { y: -10, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.32,
+            duration: 0.28,
             ease: 'power2.out',
             onStart: () => {
               stickyNumEl.textContent = numStr;
@@ -1787,8 +1827,8 @@
   const projectHoverTitles = document.querySelectorAll('.project-hover-title');
 
   if (hoverPreview && isDesktopPointer && typeof window.gsap !== 'undefined') {
-    const previewX = window.gsap.quickTo(hoverPreview, 'left', { duration: 0.28, ease: 'power3.out' });
-    const previewY = window.gsap.quickTo(hoverPreview, 'top', { duration: 0.28, ease: 'power3.out' });
+    const previewX = window.gsap.quickTo(hoverPreview, 'left', { duration: 0.25, ease: 'power3.out' });
+    const previewY = window.gsap.quickTo(hoverPreview, 'top', { duration: 0.25, ease: 'power3.out' });
 
     window.addEventListener(
       'mousemove',
@@ -1796,6 +1836,16 @@
         if (hoverPreview.classList.contains('is-visible')) {
           previewX(e.clientX);
           previewY(e.clientY);
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (hoverPreview.classList.contains('is-visible')) {
+          hoverPreview.classList.remove('is-visible');
         }
       },
       { passive: true }
@@ -1817,14 +1867,13 @@
     });
   }
 
-  // 10. Curved Fullscreen Overlay Menu (Hamburger Button + Curved Drop + Staggered Links)
+  // 9. Curved Fullscreen Overlay Menu (Hamburger Button + Curved Drop + Staggered Links)
   const floatingMenuBtn = document.getElementById('floating-menu-btn');
   const curvedOverlayMenu = document.getElementById('curved-overlay-menu');
   const curvedOverlayClose = document.getElementById('curved-overlay-close');
   const curvedOverlayPath = document.getElementById('curved-overlay-path');
   const curvedNavItems = document.querySelectorAll('.curved-nav-item');
 
-  let isCurvedMenuOpen = false;
   const setCurvedMenu = (open) => {
     if (!curvedOverlayMenu || isCurvedMenuOpen === open) return;
     isCurvedMenuOpen = open;
@@ -1833,6 +1882,7 @@
       floatingMenuBtn.setAttribute('aria-expanded', String(open));
     }
     curvedOverlayMenu.setAttribute('aria-hidden', String(!open));
+    syncLenisScrollState();
 
     if (typeof window.gsap !== 'undefined') {
       if (open) {
