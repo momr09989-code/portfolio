@@ -753,6 +753,7 @@
 
   let lenis = null;
   let isCurvedMenuOpen = false;
+  let syncProjectCounterLanguage = null;
 
   const syncLenisScrollState = () => {
     if (!lenis) return;
@@ -801,13 +802,17 @@
       if (text) text.textContent = isLight ? (isArabic ? 'فاتح' : 'Light') : (isArabic ? 'داكن' : 'Dark');
     });
 
+    if (typeof syncProjectCounterLanguage === 'function') {
+      syncProjectCounterLanguage();
+    }
+
     if (typeof window.ScrollTrigger !== 'undefined') {
       setTimeout(() => window.ScrollTrigger.refresh(), 60);
     }
   };
 
   const savedLang = localStorage.getItem('omar-lang') || 'en';
-  if (savedLang === 'ar') setLanguage('ar');
+  setLanguage(savedLang === 'ar' ? 'ar' : 'en');
 
   langToggles.forEach((btn) => {
     btn.addEventListener('click', function () {
@@ -1396,11 +1401,9 @@
 
   // 4. Curved Preloader Reveal with the standalone OE monogram draw sequence
   const preloader = document.getElementById('preloader');
-  const preloaderChars = document.querySelectorAll('.preloader-char');
   const preloaderLogoSvg = document.querySelector('.preloader-logo-svg');
   const preloaderLogoPaths = preloader ? preloader.querySelectorAll('.preloader-logo-path') : [];
   const preloaderLogoNodes = preloader ? preloader.querySelectorAll('.preloader-logo-node') : [];
-  const preloaderBar = document.getElementById('preloader-bar');
   const preloaderCurvePath = document.getElementById('preloader-curve-path');
   const heroTextEls = document.querySelectorAll('.hero h1, .hero-role, .hero-usp');
 
@@ -1457,7 +1460,7 @@
   if (preloader && typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
     preloader.classList.add('is-active');
     // Hard timeout keeps a failed timeline from blocking the page.
-    setTimeout(finishPreloader, 2900);
+    setTimeout(finishPreloader, 3800);
 
     const preTl = window.gsap.timeline({
       onComplete: finishPreloader
@@ -1481,7 +1484,7 @@
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 0.55,
+          duration: 0.75,
           ease: 'power3.out'
         },
         0
@@ -1491,46 +1494,25 @@
     if (preloaderLogoPaths.length) {
       preTl.to(
         preloaderLogoPaths,
-        { strokeDashoffset: 0, duration: 0.45, stagger: 0.08, ease: 'power2.inOut' },
+        { strokeDashoffset: 0, duration: 0.82, stagger: 0.12, ease: 'power2.inOut' },
         0.06
       );
     }
     if (preloaderLogoNodes.length) {
       preTl.to(
         preloaderLogoNodes,
-        { opacity: 1, scale: 1, duration: 0.22, stagger: 0.035, ease: 'back.out(1.7)' },
-        0.58
+        { opacity: 1, scale: 1, duration: 0.32, stagger: 0.045, ease: 'power2.out' },
+        1.15
       );
     }
 
     preTl
-      .fromTo(
-        preloaderChars,
-        { yPercent: 115, opacity: 0 },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 0.55,
-          stagger: 0.04,
-          ease: 'power3.out'
-        },
-        0.12
-      )
-      .to(
-        preloaderBar,
-        {
-          width: '100%',
-          duration: 0.75,
-          ease: 'power2.inOut'
-        },
-        0.1
-      )
       .to(
         preloader,
         {
           yPercent: -100,
-          duration: 1.2,
-          ease: 'power4.inOut',
+          duration: 0.95,
+          ease: 'power3.inOut',
           onStart: () => {
             setTimeout(revealHeroText, 420);
           }
@@ -1543,10 +1525,10 @@
         preloaderCurvePath,
         {
           attr: { d: 'M0,0 L1440,0 L1440,0 Q720,0 0,0 Z' },
-          duration: 1.2,
-          ease: 'power4.inOut'
+          duration: 0.95,
+          ease: 'power3.inOut'
         },
-        '-=1.2'
+        '-=0.95'
       );
     }
   } else {
@@ -1703,18 +1685,42 @@
   const stickyNumEl = document.getElementById('project-sticky-num');
   const stickyLabelEl = document.getElementById('project-sticky-label');
   const stickyDots = document.querySelectorAll('.sticky-dot');
-  const allProjectCards = document.querySelectorAll('.project-card');
+  const allProjectCards = [...document.querySelectorAll('#projects .project-card')];
+  let activeProjectIndex = 0;
 
-  const setActiveProjectCounter = (index, numStr, titleText) => {
+  const getLocalizedProjectTitle = (card) => {
+    if (!card) return '';
+    const h3 = card.querySelector('h3');
+    const i18nKey = h3 ? h3.getAttribute('data-i18n') : null;
+    const currentLang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+    if (i18nKey && i18n[currentLang] && i18n[currentLang][i18nKey]) {
+      return i18n[currentLang][i18nKey];
+    }
+    return h3 ? h3.textContent.trim() : '';
+  };
+
+  const setActiveProjectCounter = (index, forceUpdate = false) => {
+    if (!allProjectCards.length) return;
+    const clampedIdx = Math.max(0, Math.min(allProjectCards.length - 1, index));
+    const card = allProjectCards[clampedIdx];
+    const numStr = card.getAttribute('data-project-num') || `0${clampedIdx + 1}.`;
+    const h3 = card.querySelector('h3');
+    const i18nKey = h3 ? h3.getAttribute('data-i18n') : null;
+    const titleText = getLocalizedProjectTitle(card);
+    const prevIdx = activeProjectIndex;
+    activeProjectIndex = clampedIdx;
+
     if (stickyNumEl && stickyNumEl.textContent !== numStr) {
-      if (typeof window.gsap !== 'undefined') {
+      const slideOffset = clampedIdx >= prevIdx ? -14 : 14;
+      if (typeof window.gsap !== 'undefined' && !prefersReducedMotion) {
+        window.gsap.killTweensOf(stickyNumEl);
         window.gsap.fromTo(
           stickyNumEl,
-          { y: -14, opacity: 0 },
+          { y: slideOffset, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.32,
+            duration: 0.28,
             ease: 'power2.out',
             onStart: () => {
               stickyNumEl.textContent = numStr;
@@ -1725,30 +1731,78 @@
         stickyNumEl.textContent = numStr;
       }
     }
-    if (stickyLabelEl && titleText) {
-      stickyLabelEl.textContent = titleText;
+
+    if (stickyLabelEl) {
+      if (i18nKey) {
+        stickyLabelEl.setAttribute('data-i18n', i18nKey);
+      }
+      if ((titleText && stickyLabelEl.textContent !== titleText) || forceUpdate) {
+        stickyLabelEl.textContent = titleText;
+      }
     }
-    stickyDots.forEach((d, idx) => d.classList.toggle('active', idx === index));
+
+    stickyDots.forEach((d, idx) => d.classList.toggle('active', idx === clampedIdx));
+  };
+
+  const updateProjectIndexFromViewport = (forceUpdate = false) => {
+    if (!allProjectCards.length) return;
+    const viewportCenter = window.innerHeight * 0.5;
+    let bestIndex = activeProjectIndex;
+    let minDistance = Infinity;
+
+    for (let i = 0; i < allProjectCards.length; i++) {
+      const rect = allProjectCards[i].getBoundingClientRect();
+      let distance;
+      if (viewportCenter >= rect.top && viewportCenter <= rect.bottom) {
+        const cardCenter = (rect.top + rect.bottom) * 0.5;
+        distance = Math.abs(cardCenter - viewportCenter) * 0.01;
+      } else {
+        distance = Math.min(Math.abs(rect.top - viewportCenter), Math.abs(rect.bottom - viewportCenter));
+      }
+      if (distance < minDistance) {
+        minDistance = distance;
+        bestIndex = i;
+      }
+    }
+
+    setActiveProjectCounter(bestIndex, forceUpdate);
+  };
+
+  syncProjectCounterLanguage = () => {
+    setActiveProjectCounter(activeProjectIndex, true);
   };
 
   if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     allProjectCards.forEach((card, index) => {
-      const numStr = card.getAttribute('data-project-num') || `0${index + 1}.`;
       window.ScrollTrigger.create({
         trigger: card,
-        start: 'top 62%',
+        start: 'top 55%',
         end: 'bottom 45%',
-        onEnter: () => {
-          const h3 = card.querySelector('h3');
-          setActiveProjectCounter(index, numStr, h3 ? h3.textContent : '');
-        },
-        onEnterBack: () => {
-          const h3 = card.querySelector('h3');
-          setActiveProjectCounter(index, numStr, h3 ? h3.textContent : '');
+        onEnter: () => setActiveProjectCounter(index),
+        onEnterBack: () => setActiveProjectCounter(index),
+        onLeaveBack: () => {
+          if (index > 0) setActiveProjectCounter(index - 1);
         }
       });
     });
   }
+
+  let projectCounterRaf = null;
+  const handleProjectCounterScroll = () => {
+    if (!projectCounterRaf) {
+      projectCounterRaf = requestAnimationFrame(() => {
+        updateProjectIndexFromViewport(false);
+        projectCounterRaf = null;
+      });
+    }
+  };
+
+  window.addEventListener('scroll', handleProjectCounterScroll, { passive: true });
+  window.addEventListener('resize', () => updateProjectIndexFromViewport(true), { passive: true });
+  if (lenis && typeof lenis.on === 'function') {
+    lenis.on('scroll', handleProjectCounterScroll);
+  }
+  updateProjectIndexFromViewport(true);
 
   // Floating Hover Image Preview on Project Titles
   const hoverPreview = document.getElementById('project-hover-preview');
