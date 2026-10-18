@@ -4221,3 +4221,171 @@ body.light-mode .directional-btn.button-ghost::before,
     opacity: 1;
   }
 }
+
+/* ==========================================================================
+   HERO NAME: CONTINUOUS SHIMMER + FLOAT/GLOW (pure CSS, no text mutation)
+   ========================================================================== */
+.hero h1 .hero-name-fx {
+  display: inline-block;
+  max-width: 100%;
+  animation: nameFloatGlow 3s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+.hero h1 .hero-name-fx em {
+  font-style: normal;
+  background: linear-gradient(90deg, #10b981 0%, #6ee7b7 25%, #ffffff 50%, #34d399 75%, #10b981 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: nameShimmer 3.5s linear infinite;
+}
+
+body.light-mode .hero h1 .hero-name-fx em,
+[data-theme="light"] .hero h1 .hero-name-fx em {
+  background: linear-gradient(90deg, #047857 0%, #10b981 25%, #065f46 50%, #34d399 75%, #047857 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+body.light-mode .hero h1 .hero-name-fx,
+[data-theme="light"] .hero h1 .hero-name-fx {
+  animation-name: nameFloatGlowLight;
+}
+
+@keyframes nameShimmer {
+  from { background-position: 0% center; }
+  to { background-position: 200% center; }
+}
+
+@keyframes nameFloatGlow {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.12));
+  }
+  50% {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.45));
+  }
+}
+
+@keyframes nameFloatGlowLight {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 0 3px rgba(4, 120, 87, 0.1));
+  }
+  50% {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 14px rgba(4, 120, 87, 0.32));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .hero-name-fx,
+  .hero h1 .hero-name-fx em {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   COMPACT VERTICAL SPACING BETWEEN ALL SECTIONS
+   ========================================================================== */
+.hero {
+  min-height: auto !important;
+  padding-top: 110px !important;
+  padding-bottom: 32px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.section,
+.about-section,
+.education-section,
+.skills-section,
+.experience-section,
+.services-section,
+.projects-section,
+.achievements-section,
+.testimonials-section,
+.contact-section {
+  min-height: 0 !important;
+  height: auto !important;
+  padding-top: 36px !important;
+  padding-bottom: 36px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.section-heading,
+.section-header,
+.certificates-header {
+  margin-bottom: 24px !important;
+}
+
+.section-title,
+.section-heading h2,
+.section-header h2 {
+  margin-bottom: 0;
+}
+
+.section-label {
+  margin-bottom: 14px;
+}
+
+.stats-row {
+  padding-top: 32px !important;
+  margin-top: 32px !important;
+}
+
+.certificates-block {
+  margin-top: 28px !important;
+}
+
+.contact-layout {
+  padding-bottom: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 104px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .section,
+  .about-section,
+  .education-section,
+  .skills-section,
+  .experience-section,
+  .services-section,
+  .projects-section,
+  .achievements-section,
+  .testimonials-section,
+  .contact-section {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .section-heading,
+  .section-header,
+  .certificates-header {
+    margin-bottom: 18px !important;
+  }
+
+  .stats-row {
+    padding-top: 22px !important;
+    margin-top: 22px !important;
+  }
+
+  .certificates-block {
+    margin-top: 20px !important;
+  }
+
+  .contact-layout {
+    padding-bottom: 16px !important;
+  }
+}

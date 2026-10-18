@@ -1368,19 +1368,29 @@
     if (sigDot) sigDot.style.opacity = prefersReducedMotion ? '1' : '0';
   };
 
+  let sigLoopTl = null;
   const playSignatureAnimation = () => {
     if (prefersReducedMotion || !sigPaths.length || typeof window.gsap === 'undefined') return;
+    if (sigLoopTl) sigLoopTl.kill();
     initSignaturePaths();
-    const tl = window.gsap.timeline();
+    const sigSvg = document.querySelector('.hero-signature-svg');
+    if (sigSvg) window.gsap.set(sigSvg, { opacity: 1 });
+
+    // Loop: draw (2.2s) -> hold (2.5s) -> fade out (0.6s) -> 0.8s pause -> repeat forever
+    const tl = window.gsap.timeline({ repeat: -1, repeatDelay: 0.8 });
+    const drawTimings = [
+      { start: 0, duration: 0.9 },
+      { start: 0.7, duration: 0.9 },
+      { start: 1.5, duration: 0.7 }
+    ];
     sigPaths.forEach((path, idx) => {
-      tl.to(
+      const len = typeof path.getTotalLength === 'function' ? path.getTotalLength() : 0;
+      const timing = drawTimings[Math.min(idx, drawTimings.length - 1)];
+      tl.fromTo(
         path,
-        {
-          strokeDashoffset: 0,
-          duration: idx === 2 ? 0.55 : 0.75,
-          ease: 'power2.inOut'
-        },
-        idx === 0 ? 0 : '-=0.25'
+        { strokeDashoffset: len },
+        { strokeDashoffset: 0, duration: timing.duration, ease: 'power2.inOut' },
+        timing.start
       );
     });
     if (sigDot) {
@@ -1388,9 +1398,13 @@
         sigDot,
         { opacity: 0, scale: 0 },
         { opacity: 1, scale: 1, duration: 0.3, ease: 'back.out(2)' },
-        '-=0.35'
+        1.9
       );
     }
+    if (sigSvg) {
+      tl.fromTo(sigSvg, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: 'power1.inOut' }, 4.7);
+    }
+    sigLoopTl = tl;
   };
 
   initSignaturePaths();
@@ -2326,5 +2340,30 @@
       { once: true }
     );
   }
+
+  // 17. Re-sync scroll-triggered animations with the compact section spacing after layout settles
+  const refreshScrollLayout = () => {
+    if (typeof window.ScrollTrigger !== 'undefined') window.ScrollTrigger.refresh();
+    if (typeof window.AOS !== 'undefined' && typeof window.AOS.refresh === 'function') window.AOS.refresh();
+  };
+  if (document.readyState === 'complete') {
+    setTimeout(refreshScrollLayout, 120);
+  } else {
+    window.addEventListener('load', () => setTimeout(refreshScrollLayout, 120), { once: true });
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => setTimeout(refreshScrollLayout, 60));
+  }
+  // Final safety refresh once the preloader reveal has finished and the hero has its final height
+  setTimeout(refreshScrollLayout, 4200);
+  let refreshResizeTimer = null;
+  window.addEventListener(
+    'resize',
+    () => {
+      clearTimeout(refreshResizeTimer);
+      refreshResizeTimer = setTimeout(refreshScrollLayout, 200);
+    },
+    { passive: true }
+  );
 })();
 
