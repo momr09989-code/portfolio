@@ -67,33 +67,37 @@ body::-webkit-scrollbar {
   height: 0 !important;
 }
 
-/* Global ambient mouse spotlight (halo) */
+/* Global ambient mouse spotlight (halo) — GPU-accelerated translate3d */
 #global-mouse-glow {
   position: fixed !important;
-  inset: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
+  top: -300px !important;
+  left: -300px !important;
+  width: 600px !important;
+  height: 600px !important;
   pointer-events: none !important; /* Crucial so it never blocks clicks */
   z-index: 9990 !important; /* Above opaque section backgrounds */
   background: radial-gradient(
-    420px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-    rgba(16, 185, 129, 0.22) 0%,
-    rgba(16, 185, 129, 0.08) 40%,
-    transparent 75%
+    circle,
+    rgba(16, 185, 129, 0.18) 0%,
+    rgba(16, 185, 129, 0.06) 40%,
+    transparent 70%
   ) !important;
-  transition: none !important;
+  will-change: transform !important;
+  transform: translate3d(-1000px, -1000px, 0);
+  backface-visibility: hidden;
+  transition: opacity 0.25s ease !important;
 }
 body.light-mode #global-mouse-glow,
 [data-theme="light"] #global-mouse-glow {
   background: radial-gradient(
-    420px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-    rgba(16, 185, 129, 0.16) 0%,
-    rgba(16, 185, 129, 0.05) 40%,
-    transparent 75%
+    circle,
+    rgba(16, 185, 129, 0.15) 0%,
+    rgba(16, 185, 129, 0.04) 40%,
+    transparent 70%
   ) !important;
 }
 @media (hover: none), (pointer: coarse) {
-  #global-mouse-glow { display: none; }
+  #global-mouse-glow { display: none !important; }
 }
 
 /* View Transitions API smooth morph */

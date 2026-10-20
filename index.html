@@ -40,10 +40,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20" />
-    <link rel="preload" as="image" href="profile.jpg" />
-    <link rel="preload" as="image" href="man in the middle.jpg" />
-    <link rel="preload" as="image" href="porto.png" />
+    <link rel="stylesheet" href="styles.css?v=21" />
+    <link rel="preload" as="image" href="profile.webp" type="image/webp" />
   </head>
   <body>
     <div id="global-mouse-glow" aria-hidden="true"></div>
@@ -89,7 +87,7 @@
     <!-- Floating Project Hover Image Preview (Desktop Only) -->
     <div class="project-hover-preview" id="project-hover-preview" aria-hidden="true">
       <div class="project-hover-preview-inner">
-        <img src="porto.png" alt="" id="project-hover-preview-img" />
+        <img src="porto.webp" alt="" id="project-hover-preview-img" width="260" height="146" loading="lazy" />
         <span class="project-hover-preview-tag" id="project-hover-preview-tag">View Project ↗</span>
       </div>
     </div>
@@ -314,7 +312,7 @@
           <div class="orbit orbit-outer"><span class="satellite satellite-a"></span></div>
           <div class="orbit orbit-inner"><span class="satellite satellite-b"></span></div>
           <div class="profile-frame" data-aos="zoom-in" data-aos-delay="300">
-            <img src="profile.jpg" alt="Omar Ebied" id="profile-image" width="1065" height="1065" loading="eager" fetchpriority="high" />
+            <img src="profile.webp" alt="Omar Ebied" id="profile-image" width="640" height="640" loading="eager" fetchpriority="high" />
             <span class="profile-initials" aria-hidden="true">OE</span>
           </div>
           <div class="floating-chip chip-data"><span>↯</span> <span data-i18n="chip-data">DATA</span></div>
@@ -402,7 +400,7 @@
           </div>
           <div class="education-card reveal">
             <div class="education-stamp" title="Helwan National University">
-              <img src="hnu_logo.png" alt="Helwan National University Logo" class="education-logo-img" width="84" height="84" loading="lazy" />
+              <img src="hnu_logo.webp" alt="Helwan National University Logo" class="education-logo-img" width="84" height="84" loading="lazy" />
             </div>
             <div class="education-main">
               <p class="card-kicker" data-i18n="edu-kicker">2024 — 2028 <span>•</span> Cairo, Egypt</p>
@@ -426,13 +424,13 @@
             <!-- 1. HackerRank SQL (Basic) Card -->
             <article class="certificate-card cert-interactive" data-aos="fade-up" data-open-modal="cert-modal-sql-basic" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Basic) Certificate modal">
               <div class="cert-card-media">
-                <img src="hackerrank_sql_basic.png" alt="HackerRank SQL (Basic) Certificate preview" class="cert-thumbnail" width="1600" height="1200" loading="lazy" />
+                <img src="hackerrank_sql_basic.webp" alt="HackerRank SQL (Basic) Certificate preview" class="cert-thumbnail" width="1200" height="900" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
               </div>
               <div class="cert-card-body">
                 <div class="cert-header">
                   <div class="cert-badge-icon hr-icon">
-                    <img src="hackerrank_icon.png" alt="HackerRank logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
+                    <img src="hackerrank_icon.webp" alt="HackerRank logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
                   </div>
                   <div class="cert-meta">
                     <p class="card-kicker" data-i18n="cert-sql-basic-kicker">HackerRank <span>•</span> October 2026</p>
@@ -460,13 +458,13 @@
             <!-- 2. HackerRank SQL (Advanced) Card -->
             <article class="certificate-card cert-interactive" data-aos="fade-up" data-aos-delay="100" data-open-modal="cert-modal-sql-advanced" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open HackerRank SQL (Advanced) Certificate modal">
               <div class="cert-card-media">
-                <img src="hackerrank_sql_advanced.png" alt="HackerRank SQL (Advanced) Certificate preview" class="cert-thumbnail" width="1600" height="1200" loading="lazy" />
+                <img src="hackerrank_sql_advanced.webp" alt="HackerRank SQL (Advanced) Certificate preview" class="cert-thumbnail" width="1200" height="900" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
               </div>
               <div class="cert-card-body">
                 <div class="cert-header">
                   <div class="cert-badge-icon hr-icon">
-                    <img src="hackerrank_icon.png" alt="HackerRank logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
+                    <img src="hackerrank_icon.webp" alt="HackerRank logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
                   </div>
                   <div class="cert-meta">
                     <p class="card-kicker" data-i18n="cert-sql-adv-kicker">HackerRank <span>•</span> October 2026</p>
@@ -494,13 +492,13 @@
             <!-- 3. Kaggle Python Card -->
             <article class="certificate-card cert-interactive" data-aos="fade-up" data-aos-delay="150" data-open-modal="cert-modal-kaggle-python" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Python Certificate modal">
               <div class="cert-card-media">
-                <img src="kaggle_python_certificate.png" alt="Kaggle Python Certificate preview" class="cert-thumbnail" width="4800" height="2960" loading="lazy" />
+                <img src="kaggle_python_certificate.webp" alt="Kaggle Python Certificate preview" class="cert-thumbnail" width="1600" height="987" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
               </div>
               <div class="cert-card-body">
                 <div class="cert-header">
                   <div class="cert-badge-icon kaggle-icon">
-                    <img src="kaggle_icon.png" alt="Kaggle logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
+                    <img src="kaggle_icon.webp" alt="Kaggle logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
                   </div>
                   <div class="cert-meta">
                     <p class="card-kicker" data-i18n="cert-kaggle-kicker">Kaggle <span>•</span> Verified Credential</p>
@@ -528,13 +526,13 @@
             <!-- 4. Kaggle Pandas Card -->
             <article class="certificate-card cert-interactive" data-aos="fade-up" data-aos-delay="200" data-open-modal="cert-modal-kaggle-pandas" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Kaggle Pandas Certificate modal">
               <div class="cert-card-media">
-                <img src="kaggle_pandas_certificate.png" alt="Kaggle Pandas Certificate preview" class="cert-thumbnail" width="4800" height="2960" loading="lazy" />
+                <img src="kaggle_pandas_certificate.webp" alt="Kaggle Pandas Certificate preview" class="cert-thumbnail" width="1600" height="987" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
               </div>
               <div class="cert-card-body">
                 <div class="cert-header">
                   <div class="cert-badge-icon kaggle-icon">
-                    <img src="kaggle_icon.png" alt="Kaggle logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
+                    <img src="kaggle_icon.webp" alt="Kaggle logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
                   </div>
                   <div class="cert-meta">
                     <p class="card-kicker" data-i18n="cert-kaggle-kicker">Kaggle <span>•</span> Verified Credential</p>
@@ -562,13 +560,13 @@
             <!-- 5. NTI Cybersecurity Card -->
             <article class="certificate-card cert-interactive cert-physical cert-span-2" data-aos="fade-up" data-aos-delay="250" data-open-modal="cert-modal-nti" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open NTI Cybersecurity Physical Certificate modal">
               <div class="cert-card-media">
-                <img src="nti_cybersecurity_certificate.jpeg" alt="NTI Cybersecurity Physical Certificate preview" class="cert-thumbnail" id="nti-thumb-preview" width="1280" height="896" loading="lazy" />
+                <img src="nti_cybersecurity_certificate.webp" alt="NTI Cybersecurity Physical Certificate preview" class="cert-thumbnail" id="nti-thumb-preview" width="1200" height="840" loading="lazy" />
                 <span class="cert-expand-badge"><span aria-hidden="true">⤢</span> <span data-i18n="cert-view-img">Click to View Image</span></span>
               </div>
               <div class="cert-card-body">
                 <div class="cert-header">
                   <div class="cert-badge-icon nti-icon">
-                    <img src="nti_icon.png" alt="NTI logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
+                    <img src="nti_icon.webp" alt="NTI logo" class="cert-org-logo" width="32" height="32" loading="lazy" />
                   </div>
                   <div class="cert-meta">
                     <p class="card-kicker" data-i18n="cert-nti-kicker">National Telecommunication Institute <span>•</span> Sep 2025</p>
@@ -914,7 +912,7 @@
               <div class="experience-role">
                 <div class="experience-header-wrap">
                   <span class="experience-logo-wrap" title="Digital Egypt Pioneers Initiative (DEPI)">
-                    <img src="depi_logo.png" alt="DEPI Logo" class="experience-logo-img" width="46" height="46" loading="lazy" />
+                    <img src="depi_logo.webp" alt="DEPI Logo" class="experience-logo-img" width="46" height="46" loading="lazy" />
                   </span>
                   <div class="experience-role-text">
                     <p class="card-kicker" data-i18n="exp-depi-kicker">DEPI Trainee · Data Science</p>
@@ -929,7 +927,7 @@
               <div class="experience-role">
                 <div class="experience-header-wrap">
                   <span class="experience-logo-wrap nti-logo-wrap" title="National Telecommunication Institute (NTI)">
-                    <img src="nti_icon.png" alt="NTI Logo" class="experience-logo-img" width="46" height="46" loading="lazy" />
+                    <img src="nti_icon.webp" alt="NTI Logo" class="experience-logo-img" width="46" height="46" loading="lazy" />
                   </span>
                   <div class="experience-role-text">
                     <p class="card-kicker" data-i18n="exp-nti-kicker">NTI Trainee &amp; Freelancer</p>
@@ -977,7 +975,7 @@
             </div>
           </aside>
           <div class="project-list">
-            <article class="project-card project-featured reveal" data-aos="fade-up" data-aos-delay="100" data-project-num="01." data-project-title="SQL Database Project" data-preview-img="og-image.png">
+            <article class="project-card project-featured reveal" data-aos="fade-up" data-aos-delay="100" data-project-num="01." data-project-title="SQL Database Project" data-preview-img="og-image.webp">
               <div class="project-visual visual-sql">
                 <span class="project-index" aria-hidden="true">01</span>
                 <!-- Browser / Laptop Device Mockup Frame -->
@@ -1006,7 +1004,7 @@
               </div>
               <div class="project-details">
                 <p class="card-kicker" data-i18n="proj-1-kicker">Data &amp; Databases <span>•</span> MS SQL Server</p>
-                <h3 class="project-hover-title" data-preview-img="og-image.png" data-preview-tag="MS SQL Server • RDBMS" data-i18n="proj-1-title">SQL Database Project</h3>
+                <h3 class="project-hover-title" data-preview-img="og-image.webp" data-preview-tag="MS SQL Server • RDBMS" data-i18n="proj-1-title">SQL Database Project</h3>
                 <div class="project-breakdown">
                   <p class="role-item"><b data-i18n="proj-lbl-role">Role:</b> <span data-i18n="proj-1-role">Solo Database Designer / Developer.</span></p>
                   <p><b data-i18n="proj-lbl-c">Challenge</b><span data-i18n="proj-1-c">Organize connected information in a scalable, logical way.</span></p>
@@ -1026,14 +1024,14 @@
                 </div>
               </div>
             </article>
-            <article class="project-card reveal" data-aos="fade-up" data-aos-delay="150" data-project-num="02." data-project-title="Book Fair &amp; Literature" data-preview-img="porto.png">
+            <article class="project-card reveal" data-aos="fade-up" data-aos-delay="150" data-project-num="02." data-project-title="Book Fair &amp; Literature" data-preview-img="porto.webp">
               <div class="project-visual visual-book">
                 <span class="project-index" aria-hidden="true">02</span>
                 <!-- Browser Mockup Frame (Click to open market.mp4 demo) -->
                 <div class="device-mockup mockup-web" 
                      data-open-modal="project-video-modal" 
                      data-video="market.mp4" 
-                     data-poster="porto.png"
+                     data-poster="porto.webp"
                      data-title="Book Fair &amp; Literature"
                      data-title-i18n="proj-3-title"
                      data-kicker="Web Development &lt;span&gt;•&lt;/span&gt; E-Commerce Frontend"
@@ -1056,7 +1054,7 @@
                     </div>
                   </div>
                   <div class="mockup-body mockup-porto-body">
-                    <img src="porto.png" alt="Book Fair &amp; Literature (PORTO) Interface Showcase - Click to watch demo" class="mockup-porto-img" width="1672" height="941" loading="lazy" />
+                    <img src="porto.webp" alt="Book Fair &amp; Literature (PORTO) Interface Showcase - Click to watch demo" class="mockup-porto-img" width="1280" height="720" loading="lazy" />
                     <div class="mockup-play-pill-corner" aria-hidden="true">
                       <span data-i18n="proj-3-play-pill">▶ Video Demo</span>
                     </div>
@@ -1071,7 +1069,7 @@
               </div>
               <div class="project-details">
                 <p class="card-kicker" data-i18n="proj-3-kicker">Web Development <span>•</span> E-Commerce Frontend</p>
-                <h3 class="project-hover-title" data-preview-img="porto.png" data-preview-tag="E-Commerce • Live Video Demo" data-i18n="proj-3-title">Book Fair &amp; Literature</h3>
+                <h3 class="project-hover-title" data-preview-img="porto.webp" data-preview-tag="E-Commerce • Live Video Demo" data-i18n="proj-3-title">Book Fair &amp; Literature</h3>
                 <p class="project-desc" data-i18n="proj-3-desc">A fully responsive, interactive e-commerce frontend web application built to simulate a seamless book-buying experience. Features dynamic UI, functional shopping cart logic, and a fast-paced checkout simulation.</p>
                 <div class="project-breakdown">
                   <p class="role-item"><b data-i18n="proj-lbl-role">Role:</b> <span data-i18n="proj-3-role">Front-End Web Developer (UI Architecture, Cart Logic &amp; Checkout Flow).</span></p>
@@ -1096,14 +1094,14 @@
                 </div>
               </div>
             </article>
-            <article class="project-card reveal" data-aos="fade-up" data-aos-delay="200" data-project-num="03." data-project-title="NTI MITM Lab — ARP Spoofing" data-preview-img="man%20in%20the%20middle.jpg">
+            <article class="project-card reveal" data-aos="fade-up" data-aos-delay="200" data-project-num="03." data-project-title="NTI MITM Lab — ARP Spoofing" data-preview-img="man%20in%20the%20middle.webp">
               <div class="project-visual visual-mitm visual-mitm-lab">
                 <span class="project-index" aria-hidden="true">03</span>
                 <!-- Browser Mockup Frame (Click to open man in the middle video.mp4 demo) -->
                 <div class="device-mockup mockup-web" 
                      data-open-modal="project-video-modal" 
                      data-video="man%20in%20the%20middle%20video.mp4" 
-                     data-poster="man%20in%20the%20middle.jpg"
+                     data-poster="man%20in%20the%20middle.webp"
                      data-title="NTI MITM Lab — ARP Spoofing"
                      data-title-i18n="proj-4-title"
                      data-kicker="Cybersecurity &lt;span&gt;•&lt;/span&gt; Kali Linux &lt;span&gt;•&lt;/span&gt; Network Analysis"
@@ -1126,7 +1124,7 @@
                     </div>
                   </div>
                   <div class="mockup-body mockup-porto-body">
-                    <img src="man%20in%20the%20middle.jpg" alt="NTI MITM Lab — ARP Spoofing Network Analysis - Click to watch demo" class="mockup-porto-img" width="1672" height="941" loading="lazy" />
+                    <img src="man%20in%20the%20middle.webp" alt="NTI MITM Lab — ARP Spoofing Network Analysis - Click to watch demo" class="mockup-porto-img" width="1280" height="714" loading="lazy" />
                     <div class="mockup-play-pill-corner" aria-hidden="true">
                       <span data-i18n="proj-4-play-pill">▶ Video Demo</span>
                     </div>
@@ -1141,7 +1139,7 @@
               </div>
               <div class="project-details">
                 <p class="card-kicker" data-i18n="proj-4-kicker">Cybersecurity <span>•</span> Kali Linux <span>•</span> Network Analysis</p>
-                <h3 class="project-hover-title" data-preview-img="man%20in%20the%20middle.jpg" data-preview-tag="Kali Linux • ARP Spoofing Lab" data-i18n="proj-4-title">NTI MITM Lab — ARP Spoofing</h3>
+                <h3 class="project-hover-title" data-preview-img="man%20in%20the%20middle.webp" data-preview-tag="Kali Linux • ARP Spoofing Lab" data-i18n="proj-4-title">NTI MITM Lab — ARP Spoofing</h3>
                 <p class="project-desc" data-i18n="proj-4-desc">A cybersecurity Proof of Concept (PoC) simulating a Man-in-the-Middle attack using ARP spoofing, Kali Linux, Wireshark, and mitmproxy.</p>
                 <div class="project-breakdown">
                   <p class="role-item"><b data-i18n="proj-lbl-role">Role:</b> <span data-i18n="proj-4-role">Security Researcher &amp; Lab Practitioner.</span></p>
@@ -1176,7 +1174,7 @@
         <div class="achievement-grid">
           <article class="achievement-card reveal">
             <span class="award-icon award-icon-logo" title="Digital Egypt Pioneers Initiative (DEPI)">
-              <img src="depi_logo.png" alt="DEPI Logo" class="depi-award-logo" width="40" height="40" loading="lazy" />
+              <img src="depi_logo.webp" alt="DEPI Logo" class="depi-award-logo" width="40" height="40" loading="lazy" />
             </span>
             <p class="card-kicker" data-i18n="ach-1-kicker">Data Engineering</p>
             <h3 data-i18n="ach-1-title">DEPI Selection</h3>
@@ -1184,7 +1182,7 @@
           </article>
           <article class="achievement-card reveal cert-interactive" data-open-modal="cert-modal-nti" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open NTI Cybersecurity Physical Certificate modal">
             <span class="award-icon award-icon-logo nti-award-logo" title="National Telecommunication Institute (NTI)">
-              <img src="nti_icon.png" alt="NTI Logo" class="depi-award-logo" width="40" height="40" loading="lazy" />
+              <img src="nti_icon.webp" alt="NTI Logo" class="depi-award-logo" width="40" height="40" loading="lazy" />
             </span>
             <p class="card-kicker" data-i18n="ach-2-kicker">Cybersecurity <span>•</span> Physical</p>
             <h3 data-i18n="ach-2-title">NTI Cybersecurity Academy <span class="tag-subtle">(Physical Certificate)</span></h3>
@@ -1422,7 +1420,7 @@
         </button>
       </div>
       <div class="cert-modal-body modal-body cv-modal-body" data-lenis-prevent>
-        <iframe src="Omar_Ebied_CV.pdf" style="width: 100%; height: 80vh; border: none; border-radius: 8px;"></iframe>
+        <iframe src="Omar_Ebied_CV.pdf" title="Omar Ebied Curriculum Vitae (CV) PDF Preview" loading="lazy" style="width: 100%; height: 80vh; border: none; border-radius: 8px;"></iframe>
       </div>
     </div>
   </div>
@@ -1443,7 +1441,7 @@
           </div>
           <div class="cert-modal-body" data-lenis-prevent>
             <div class="cert-modal-img-frame">
-              <img src="hackerrank_sql_basic.png" alt="HackerRank SQL (Basic) Certificate - Omar Ebied" class="cert-modal-img" width="1600" height="1200" loading="lazy" />
+              <img src="hackerrank_sql_basic.webp" alt="HackerRank SQL (Basic) Certificate - Omar Ebied" class="cert-modal-img" width="1200" height="900" loading="lazy" />
             </div>
             <div class="cert-modal-footer">
               <div class="cert-modal-meta">
@@ -1474,7 +1472,7 @@
           </div>
           <div class="cert-modal-body" data-lenis-prevent>
             <div class="cert-modal-img-frame">
-              <img src="hackerrank_sql_advanced.png" alt="HackerRank SQL (Advanced) Certificate - Omar Ebied" class="cert-modal-img" width="1600" height="1200" loading="lazy" />
+              <img src="hackerrank_sql_advanced.webp" alt="HackerRank SQL (Advanced) Certificate - Omar Ebied" class="cert-modal-img" width="1200" height="900" loading="lazy" />
             </div>
             <div class="cert-modal-footer">
               <div class="cert-modal-meta">
@@ -1505,7 +1503,7 @@
           </div>
           <div class="cert-modal-body" data-lenis-prevent>
             <div class="cert-modal-img-frame">
-              <img src="kaggle_python_certificate.png" alt="Kaggle Python Certificate - Omar Ebied" class="cert-modal-img" width="4800" height="2960" loading="lazy" />
+              <img src="kaggle_python_certificate.webp" alt="Kaggle Python Certificate - Omar Ebied" class="cert-modal-img" width="1600" height="987" loading="lazy" />
             </div>
             <div class="cert-modal-footer">
               <div class="cert-modal-meta">
@@ -1536,7 +1534,7 @@
           </div>
           <div class="cert-modal-body" data-lenis-prevent>
             <div class="cert-modal-img-frame">
-              <img src="kaggle_pandas_certificate.png" alt="Kaggle Pandas Certificate - Omar Ebied" class="cert-modal-img" width="4800" height="2960" loading="lazy" />
+              <img src="kaggle_pandas_certificate.webp" alt="Kaggle Pandas Certificate - Omar Ebied" class="cert-modal-img" width="1600" height="987" loading="lazy" />
             </div>
             <div class="cert-modal-footer">
               <div class="cert-modal-meta">
@@ -1567,7 +1565,7 @@
           </div>
           <div class="cert-modal-body" data-lenis-prevent>
             <div class="cert-modal-img-frame">
-              <img src="nti_cybersecurity_certificate.jpeg" alt="NTI Cybersecurity Physical Certificate - Omar Ebied" class="cert-modal-img" id="nti-modal-img" width="1280" height="896" loading="lazy" />
+              <img src="nti_cybersecurity_certificate.webp" alt="NTI Cybersecurity Physical Certificate - Omar Ebied" class="cert-modal-img" id="nti-modal-img" width="1200" height="840" loading="lazy" />
             </div>
             <div class="cert-modal-footer cert-modal-footer-centered">
               <span class="physical-cert-tag" data-i18n="modal-nti-tag">◈ Physical Paper Certificate (Issued In-Person)</span>
@@ -1595,12 +1593,11 @@
               <video 
                 class="project-modal-video" 
                 controls 
-                autoplay 
                 muted
                 playsinline 
                 loop
-                preload="auto"
-                poster="porto.png"
+                preload="none"
+                poster="porto.webp"
                 title="Book Fair &amp; Literature project showcase video - market.mp4"
               >
                 <source src="market.mp4" type="video/mp4">
@@ -1630,6 +1627,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js?v=20" defer></script>
+    <script src="script.js?v=21" defer></script>
   </body>
 </html>

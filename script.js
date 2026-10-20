@@ -1583,7 +1583,7 @@
     const ctx = starCanvas.getContext('2d');
     let width = window.innerWidth;
     let height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     const resizeCanvas = () => {
       width = window.innerWidth;
@@ -1639,9 +1639,24 @@
         }
         ctx.fill();
       }
-      requestAnimationFrame(renderStars);
+      if (!document.hidden) {
+        starAnimationId = requestAnimationFrame(renderStars);
+      }
     };
-    requestAnimationFrame(renderStars);
+    let starAnimationId = requestAnimationFrame(renderStars);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (starAnimationId) {
+          cancelAnimationFrame(starAnimationId);
+          starAnimationId = null;
+        }
+      } else {
+        if (!starAnimationId) {
+          starAnimationId = requestAnimationFrame(renderStars);
+        }
+      }
+    });
   }
 
   // 6. Magnetic Buttons (Desktop Only)
@@ -2034,21 +2049,33 @@
     });
   }
 
-  // 11b. Global Ambient Mouse Spotlight (Halo) — instant, high-priority tracking
+  // 11b. Global Ambient Mouse Spotlight (Halo) — GPU-accelerated translate3d
   const globalMouseGlow = document.getElementById('global-mouse-glow');
-  if (globalMouseGlow) {
+  if (globalMouseGlow && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let mouseGlowRaf = null;
+    let targetX = -1000;
+    let targetY = -1000;
+    const updateMouseGlowPos = () => {
+      globalMouseGlow.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+      mouseGlowRaf = null;
+    };
     window.addEventListener(
       'mousemove',
       (e) => {
-        const px = e.clientX + 'px';
-        const py = e.clientY + 'px';
-        document.documentElement.style.setProperty('--mouse-x', px);
-        document.documentElement.style.setProperty('--mouse-y', py);
-        globalMouseGlow.style.setProperty('--mouse-x', px);
-        globalMouseGlow.style.setProperty('--mouse-y', py);
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!mouseGlowRaf) {
+          mouseGlowRaf = requestAnimationFrame(updateMouseGlowPos);
+        }
       },
-      { passive: true, capture: true }
+      { passive: true }
     );
+    document.addEventListener('mouseleave', () => {
+      globalMouseGlow.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      globalMouseGlow.style.opacity = '1';
+    });
   }
 
   // 12. Top Scroll Progress Bar (Smooth scaleX from 0 to 1)
@@ -2092,7 +2119,9 @@
       card.style.removeProperty('will-change');
     };
 
+    let cardRect = null;
     card.addEventListener('mouseenter', () => {
+      cardRect = card.getBoundingClientRect();
       if (!canTilt) return;
       if (resetTimer) {
         clearTimeout(resetTimer);
@@ -2108,16 +2137,16 @@
     card.addEventListener(
       'mousemove',
       (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        if (!cardRect) cardRect = card.getBoundingClientRect();
+        const x = e.clientX - cardRect.left;
+        const y = e.clientY - cardRect.top;
         // Inner spotlight coordinates
         card.style.setProperty('--mouse-x', x + 'px');
         card.style.setProperty('--mouse-y', y + 'px');
 
         if (!canTilt) return;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        const centerX = cardRect.width / 2;
+        const centerY = cardRect.height / 2;
         const rotateX = ((y - centerY) / centerY) * -9;
         const rotateY = ((x - centerX) / centerX) * 9;
         card.style.setProperty(
@@ -2130,6 +2159,7 @@
     );
 
     card.addEventListener('mouseleave', () => {
+      cardRect = null;
       if (!canTilt) return;
       // Smooth transition ONLY for the reset back to flat
       card.style.setProperty(
@@ -2231,15 +2261,20 @@
   );
   directionalBtns.forEach((btn) => {
     btn.classList.add('directional-btn');
-    const updateBtnCoords = (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    let btnRect = null;
+    btn.addEventListener('mouseenter', () => {
+      btnRect = btn.getBoundingClientRect();
+    }, { passive: true });
+    btn.addEventListener('mousemove', (e) => {
+      if (!btnRect) btnRect = btn.getBoundingClientRect();
+      const x = e.clientX - btnRect.left;
+      const y = e.clientY - btnRect.top;
       btn.style.setProperty('--btn-x', `${x}px`);
       btn.style.setProperty('--btn-y', `${y}px`);
-    };
-    btn.addEventListener('mouseenter', updateBtnCoords, { passive: true });
-    btn.addEventListener('mousemove', updateBtnCoords, { passive: true });
+    }, { passive: true });
+    btn.addEventListener('mouseleave', () => {
+      btnRect = null;
+    }, { passive: true });
   });
 
   // 17. Animated Number Counters on Scroll (Stats & Skill Tab Counts; Excludes Project Index & Terminal Code)
