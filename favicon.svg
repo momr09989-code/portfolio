@@ -1,12 +1,12 @@
 <svg class="brand-logo-svg" width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Outer Rounded Badge -->
-  <rect x="2" y="2" width="36" height="36" rx="10" fill="#0b1512" stroke="#10b981" stroke-width="2"/>
+  <rect x="2" y="2" width="36" height="36" rx="10" fill="#051F20" stroke="#8EB69B" stroke-width="2"/>
   <!-- Inner Subtle Frame -->
-  <rect x="6" y="6" width="28" height="28" rx="7" fill="#10b981" fill-opacity="0.08"/>
+  <rect x="6" y="6" width="28" height="28" rx="7" fill="#8EB69B" fill-opacity="0.08"/>
   <!-- Geometric "O" -->
-  <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#ffffff"/>
+  <path d="M14.5 13C11.4624 13 9 15.4624 9 18.5V21.5C9 24.5376 11.4624 27 14.5 27C17.5376 27 20 24.5376 20 21.5V18.5C20 15.4624 17.5376 13 14.5 13ZM17 21.5C17 22.8807 15.8807 24 14.5 24C13.1193 24 12 22.8807 12 21.5V18.5C12 17.1193 13.1193 16 14.5 16C15.8807 16 17 17.1193 17 18.5V21.5Z" fill="#DAF1DE"/>
   <!-- Geometric "E" -->
-  <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#10b981"/>
+  <path d="M23 13H31V15.8H26V18.6H30V21.4H26V24.2H31V27H23V13Z" fill="#8EB69B"/>
   <!-- Cyber / Data Accent Dot -->
-  <circle cx="33.5" cy="10.5" r="2" fill="#10b981"/>
+  <circle cx="33.5" cy="10.5" r="2" fill="#8EB69B"/>
 </svg>

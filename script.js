@@ -48,7 +48,7 @@
       t.setAttribute('aria-label', `Switch to ${isLight ? 'dark' : 'light'} mode`);
     });
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) metaTheme.setAttribute('content', isLight ? '#f3f7f3' : '#081012');
+    if (metaTheme) metaTheme.setAttribute('content', isLight ? '#DAF1DE' : '#051F20');
   };
 
   const savedTheme = localStorage.getItem('omar-theme');
@@ -1274,7 +1274,7 @@
             <span class="status-icon" aria-hidden="true">⚠</span>
             <div class="status-content">
               <strong>Could not complete automated submission.</strong>
-              <p>You can also send directly via email: <a href="${mailtoUrl}" style="color:var(--cyan);text-decoration:underline;">Click here to open your email client ↗</a></p>
+              <p>You can also send directly via email: <a href="${mailtoUrl}" style="color:var(--accent-primary);text-decoration:underline;">Click here to open your email client ↗</a></p>
             </div>
           </div>`;
       } finally {
@@ -1630,12 +1630,12 @@
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         if (s.isEmerald) {
           ctx.fillStyle = isLight
-            ? `rgba(5, 150, 105, ${alpha})`
-            : `rgba(16, 185, 129, ${alpha})`;
+            ? `rgba(35, 83, 71, ${alpha * 0.75})`
+            : `rgba(142, 182, 155, ${alpha})`;
         } else {
           ctx.fillStyle = isLight
-            ? `rgba(16, 34, 30, ${alpha * 0.65})`
-            : `rgba(220, 242, 235, ${alpha * 0.78})`;
+            ? `rgba(5, 31, 32, ${alpha * 0.65})`
+            : `rgba(218, 241, 222, ${alpha * 0.85})`;
         }
         ctx.fill();
       }
