@@ -440,7 +440,7 @@ body.light-mode .mobile-toggle-btn.theme-toggle,
 .hero { min-height: 720px; width: 100%; max-width: 1160px; padding-top: 120px; padding-bottom: 60px; margin: 0 auto; position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: 48px; box-sizing: border-box; }
 .eyebrow, .card-kicker, .section-label, .footer-label { font-family: var(--mono); text-transform: uppercase; letter-spacing: .075em; font-size: 11px; font-weight: 500; color: var(--cyan); }.eyebrow { display: flex; gap: 9px; align-items: center; margin: 0 0 22px; }.status-dot { width: 7px; height: 7px; border-radius: 99px; background: var(--lime); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lime) 12%, transparent); }
 .greeting { color: var(--muted); margin: 0 0 -8px; font-weight: 500; }.hero h1 { font-size: clamp(38px, 6.2vw, 92px); letter-spacing: -.065em; line-height: .98; margin: 0; font-weight: 800; overflow-wrap: break-word; word-break: break-word; }.hero h1 em, .section-title em, .contact-copy h2 em { color: var(--cyan); font-style: normal; }.hero-role { margin: 24px 0 14px; font-size: clamp(16px, 1.75vw, 21px); font-weight: 600; line-height: 1.45; max-width: 650px; }.hero-role span { color: var(--lime); padding-inline: 6px; }.hero-usp { max-width: 620px; color: var(--muted); font-size: 15px; margin: 0; }.hero-ar { max-width: 560px; color: color-mix(in srgb, var(--muted) 90%, var(--cyan)); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 12px; line-height: 2; margin: 19px 0 0; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }.button { min-height: 47px; display: inline-flex; justify-content: center; align-items: center; gap: 11px; border: 1px solid transparent; border-radius: 7px; padding: 0 18px; font-size: 13px; font-weight: 800; transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, background .28s ease, border-color .28s ease; }.button:hover { transform: translateY(-2px); }.button span { font-size: 17px; line-height: 1; }.button-primary { color: #ffffff; background: #235347; border-color: #235347; box-shadow: 0 6px 20px rgba(35, 83, 71, 0.28); }.button-primary:hover { background: #235347; border-color: #235347; color: #ffffff; box-shadow: 0 10px 30px rgba(35, 83, 71, 0.38); }.button-ghost { color: var(--text); border-color: var(--line); background: color-mix(in srgb, var(--surface) 50%, transparent); }.button-ghost:hover { background: var(--surface-raised); border-color: color-mix(in srgb, var(--cyan) 36%, var(--line)); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }.button { min-height: 47px; display: inline-flex; justify-content: center; align-items: center; gap: 11px; border: 1px solid transparent; border-radius: 7px; padding: 0 18px; font-size: 13px; font-weight: 800; transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, background .28s ease, border-color .28s ease; }.button:hover { transform: translateY(-2px); }.button span { font-size: 17px; line-height: 1; }.button-primary { color: #DAF1DE; background: #235347; border-color: #235347; box-shadow: 0 6px 20px rgba(35, 83, 71, 0.28); }.button-primary:hover { background: #235347; border-color: #235347; color: #DAF1DE; box-shadow: 0 10px 30px rgba(35, 83, 71, 0.38); }.button-ghost { color: var(--text); border-color: var(--line); background: color-mix(in srgb, var(--surface) 50%, transparent); }.button-ghost:hover { background: var(--surface-raised); border-color: color-mix(in srgb, var(--cyan) 36%, var(--line)); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 19px; color: var(--faint); font-family: var(--mono); font-size: 10px; margin-top: 37px; }.hero-meta i { color: var(--cyan); font-style: normal; font-size: 13px; margin-right: 5px; }
 .hero-visual { min-width: 0; height: 475px; position: relative; display: grid; place-items: center; isolation: isolate; overflow: hidden; }.profile-frame { width: clamp(220px, 31vw, 332px); aspect-ratio: 4 / 5; position: relative; overflow: hidden; border-radius: 45% 45% 42% 42% / 40% 40% 53% 53%; background: linear-gradient(145deg, #163832, #0B2B26); border: 1px solid rgba(142, 182, 155, .35); box-shadow: 0 0 0 11px rgba(142, 182, 155, .035), 0 0 65px rgba(142, 182, 155, .17); z-index: 2; }.profile-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(150deg, transparent 42%, rgba(142, 182, 155,.12)); pointer-events: none; }.profile-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; position: relative; z-index: 1; }.profile-initials { display: none; position: absolute; inset: 0; z-index: 0; place-items: center; color: var(--cyan); font-size: 70px; letter-spacing: -.08em; font-weight: 800; }.profile-frame.no-image .profile-initials { display: grid; }.profile-frame.no-image img { display: none; }
 .orbit { position: absolute; border: 1px solid rgba(142, 182, 155, 0.25); box-shadow: 0 0 15px rgba(142, 182, 155, 0.08); border-radius: 50%; animation: spin 16s linear infinite; transform: translateZ(0); will-change: transform; }.orbit-outer { width: min(43vw, 450px); height: min(43vw, 450px); }.orbit-inner { width: min(37vw, 385px); height: min(23vw, 230px); transform: rotate(-35deg) translateZ(0); animation-direction: reverse; animation-duration: 13s; }.satellite { position: absolute; width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 12px currentColor; transform: translateZ(0); will-change: transform; }.satellite-a { background: var(--lime); color: var(--lime); top: 12%; left: 17%; }.satellite-b { background: var(--cyan); color: var(--cyan); right: 7%; top: 50%; }.floating-chip { position: absolute; z-index: 3; display: flex; align-items: center; gap: 7px; padding: 7px 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .05em; background: color-mix(in srgb, var(--surface) 85%, transparent); border: 1px solid var(--line); border-radius: 5px; backdrop-filter: blur(8px); box-shadow: 0 9px 20px var(--shadow); }.floating-chip span { color: var(--lime); }.chip-data { left: 4%; top: 24%; }.chip-security { right: 1%; bottom: 20%; }.visual-grid { width: 77%; height: 66%; position: absolute; z-index: -1; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse, black, transparent 68%); }
@@ -916,23 +916,119 @@ a[href*="hnu.edu.eg"]:hover {
 .button-primary.cert-btn:not(.verify-btn):hover *,
 .cert-modal-btn.button-primary:hover * {
   background-color: #235347 !important;
-  color: #ffffff !important;
+  color: #DAF1DE !important;
   border-color: #235347 !important;
   box-shadow: 0 4px 16px rgba(35, 83, 71, 0.35) !important;
 }
 
 /* =========================================================================
-   Targeted Buttons: Live Demo, Send Message, and Online Verification
-   Soft, eye-friendly professional emerald green theme (no harsh neon/cyan/lime)
+   Quiet Luxury Forest & Sage Palette: Primary CTA Buttons ("CV" & "Send Message")
+   Base: Calm, muted deep green #163832 | Text: #DAF1DE | Border: 1px solid rgba(142, 182, 155, 0.2)
+   Hover: Soft transition to #235347 | Shadow: 0 8px 24px rgba(5, 31, 32, 0.4) (Zero neon glowing)
    ========================================================================= */
 
-/* 1. Base Default State */
-.project-live-btn,
-.modal-demo-btn,
+/* 1. Primary CTA Buttons Base State */
+.hero-cv-btn,
 #contact-submit-btn,
 .contact-form button[type="submit"],
+.cv-modal-btn,
+#modal-cv-download-btn,
+.project-live-btn,
+.modal-demo-btn {
+  background: #163832 !important;
+  background-color: #163832 !important;
+  border: 1px solid rgba(142, 182, 155, 0.2) !important;
+  border-color: rgba(142, 182, 155, 0.2) !important;
+  color: #DAF1DE !important;
+  box-shadow: 0 4px 14px rgba(5, 31, 32, 0.25) !important;
+  text-shadow: none !important;
+  transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease, color .25s ease !important;
+}
+
+/* Ensure inner text, labels, and arrows inherit clean Mint Cream #DAF1DE */
+.hero-cv-btn *,
+.hero-cv-btn span,
+#contact-submit-btn *,
+#contact-submit-btn span,
+.contact-form button[type="submit"] *,
+.contact-form button[type="submit"] span,
+.cv-modal-btn *,
+.cv-modal-btn span,
+#modal-cv-download-btn *,
+#modal-cv-download-btn span,
+.project-live-btn *,
+.project-live-btn span,
+.modal-demo-btn *,
+.modal-demo-btn span {
+  color: #DAF1DE !important;
+  text-shadow: none !important;
+}
+
+/* Primary CTA Buttons Hover State: #235347 with soft, elegant depth */
+.hero-cv-btn:hover,
+.hero-cv-btn:focus,
+#contact-submit-btn:hover,
+#contact-submit-btn:focus,
+.contact-form button[type="submit"]:hover,
+.contact-form button[type="submit"]:focus,
+.cv-modal-btn:hover,
+.cv-modal-btn:focus,
+#modal-cv-download-btn:hover,
+#modal-cv-download-btn:focus,
+.project-live-btn:hover,
+.project-live-btn:focus,
+.modal-demo-btn:hover,
+.modal-demo-btn:focus {
+  background: #235347 !important;
+  background-color: #235347 !important;
+  border-color: rgba(142, 182, 155, 0.35) !important;
+  color: #DAF1DE !important;
+  box-shadow: 0 8px 24px rgba(5, 31, 32, 0.4) !important;
+  text-shadow: none !important;
+  transform: translateY(-2px);
+}
+
+.hero-cv-btn:hover *,
+.hero-cv-btn:hover span,
+.hero-cv-btn:focus *,
+.hero-cv-btn:focus span,
+#contact-submit-btn:hover *,
+#contact-submit-btn:hover span,
+#contact-submit-btn:focus *,
+#contact-submit-btn:focus span,
+.contact-form button[type="submit"]:hover *,
+.contact-form button[type="submit"]:hover span,
+.contact-form button[type="submit"]:focus *,
+.contact-form button[type="submit"]:focus span,
+.cv-modal-btn:hover *,
+.cv-modal-btn:hover span,
+.cv-modal-btn:focus *,
+.cv-modal-btn:focus span,
+#modal-cv-download-btn:hover *,
+#modal-cv-download-btn:hover span,
+#modal-cv-download-btn:focus *,
+#modal-cv-download-btn:focus span,
+.project-live-btn:hover *,
+.project-live-btn:hover span,
+.project-live-btn:focus *,
+.project-live-btn:focus span,
+.modal-demo-btn:hover *,
+.modal-demo-btn:hover span,
+.modal-demo-btn:focus *,
+.modal-demo-btn:focus span {
+  color: #DAF1DE !important;
+  text-shadow: none !important;
+}
+
+/* =========================================================================
+   "Verify Online" Buttons & Links (Classy Subtle Pill / Badge)
+   Base: rgba(142, 182, 155, 0.1) | Border: 1px solid rgba(142, 182, 155, 0.3) | Text: #8EB69B
+   Hover: #235347 | Text: #DAF1DE (Zero neon glows, eliminates bright blue/green overrides)
+   ========================================================================= */
+
 .verify-btn,
 a.verify-btn,
+button.verify-btn,
 .button.verify-btn,
 .button-primary.verify-btn,
 .cert-btn.verify-btn,
@@ -940,31 +1036,25 @@ a.verify-btn,
 .certificate-card .verify-btn,
 .modal-verify-btn,
 .cert-modal-btn.modal-verify-btn,
-#contact-submit-btn,
-.hero-cv-btn {
-  background: #DAF1DE !important;
-  background-color: #DAF1DE !important;
-  border: 1px solid #8EB69B !important;
-  border-color: #8EB69B !important;
-  color: #051F20 !important;
-  box-shadow: 0 4px 18px rgba(142, 182, 155, 0.3) !important;
+.cert-modal-footer .verify-btn {
+  background: rgba(142, 182, 155, 0.1) !important;
+  background-color: rgba(142, 182, 155, 0.1) !important;
+  border: 1px solid rgba(142, 182, 155, 0.3) !important;
+  border-color: rgba(142, 182, 155, 0.3) !important;
+  color: #8EB69B !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
   text-shadow: none !important;
+  font-weight: 600 !important;
   transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease, color .25s ease !important;
 }
 
-/* Ensure inner text, labels, and arrows are crisp white without neon/cyan/lime */
-.project-live-btn *,
-.project-live-btn span,
-.modal-demo-btn *,
-.modal-demo-btn span,
-#contact-submit-btn *,
-#contact-submit-btn span,
-.contact-form button[type="submit"] *,
-.contact-form button[type="submit"] span,
 .verify-btn *,
 .verify-btn span,
 a.verify-btn *,
 a.verify-btn span,
+button.verify-btn *,
+button.verify-btn span,
 .button.verify-btn *,
 .button.verify-btn span,
 .button-primary.verify-btn *,
@@ -978,24 +1068,20 @@ a.verify-btn span,
 .modal-verify-btn *,
 .modal-verify-btn span,
 .cert-modal-btn.modal-verify-btn *,
-.cert-modal-btn.modal-verify-btn span {
-  color: #ffffff !important;
+.cert-modal-btn.modal-verify-btn span,
+.cert-modal-footer .verify-btn *,
+.cert-modal-footer .verify-btn span {
+  color: #8EB69B !important;
   text-shadow: none !important;
 }
 
-/* 2. Hover & Focus States: Darker Emerald #235347 with high contrast and no harsh glow */
-.project-live-btn:hover,
-.project-live-btn:focus,
-.modal-demo-btn:hover,
-.modal-demo-btn:focus,
-#contact-submit-btn:hover,
-#contact-submit-btn:focus,
-.contact-form button[type="submit"]:hover,
-.contact-form button[type="submit"]:focus,
+/* "Verify Online" Buttons - Hover State */
 .verify-btn:hover,
 .verify-btn:focus,
 a.verify-btn:hover,
 a.verify-btn:focus,
+button.verify-btn:hover,
+button.verify-btn:focus,
 .button.verify-btn:hover,
 .button.verify-btn:focus,
 .button-primary.verify-btn:hover,
@@ -1010,73 +1096,45 @@ a.verify-btn:focus,
 .modal-verify-btn:focus,
 .cert-modal-btn.modal-verify-btn:hover,
 .cert-modal-btn.modal-verify-btn:focus,
-#contact-submit-btn:hover,
-#contact-submit-btn:focus,
-.hero-cv-btn:hover {
-  background: #8EB69B !important;
-  background-color: #8EB69B !important;
-  border-color: #DAF1DE !important;
-  color: #051F20 !important;
-  box-shadow: 0 0 25px rgba(142, 182, 155, 0.45), 0 6px 20px rgba(5, 31, 32, 0.35) !important;
+.cert-modal-footer .verify-btn:hover,
+.cert-modal-footer .verify-btn:focus {
+  background: #235347 !important;
+  background-color: #235347 !important;
+  border-color: rgba(142, 182, 155, 0.45) !important;
+  color: #DAF1DE !important;
+  box-shadow: 0 4px 14px rgba(5, 31, 32, 0.35) !important;
   text-shadow: none !important;
   transform: translateY(-2px);
 }
 
-.project-live-btn:hover *,
-.project-live-btn:hover span,
-.project-live-btn:focus *,
-.project-live-btn:focus span,
-.modal-demo-btn:hover *,
-.modal-demo-btn:hover span,
-.modal-demo-btn:focus *,
-.modal-demo-btn:focus span,
-#contact-submit-btn:hover *,
-#contact-submit-btn:hover span,
-#contact-submit-btn:focus *,
-#contact-submit-btn:focus span,
-.contact-form button[type="submit"]:hover *,
-.contact-form button[type="submit"]:hover span,
-.contact-form button[type="submit"]:focus *,
-.contact-form button[type="submit"]:focus span,
 .verify-btn:hover *,
 .verify-btn:hover span,
 .verify-btn:focus *,
 .verify-btn:focus span,
 a.verify-btn:hover *,
 a.verify-btn:hover span,
-a.verify-btn:focus *,
-a.verify-btn:focus span,
+button.verify-btn:hover *,
+button.verify-btn:hover span,
 .button.verify-btn:hover *,
 .button.verify-btn:hover span,
-.button.verify-btn:focus *,
-.button.verify-btn:focus span,
 .button-primary.verify-btn:hover *,
 .button-primary.verify-btn:hover span,
-.button-primary.verify-btn:focus *,
-.button-primary.verify-btn:focus span,
 .cert-btn.verify-btn:hover *,
 .cert-btn.verify-btn:hover span,
-.cert-btn.verify-btn:focus *,
-.cert-btn.verify-btn:focus span,
 .cert-actions .verify-btn:hover *,
 .cert-actions .verify-btn:hover span,
-.cert-actions .verify-btn:focus *,
-.cert-actions .verify-btn:focus span,
 .certificate-card .verify-btn:hover *,
 .certificate-card .verify-btn:hover span,
-.certificate-card .verify-btn:focus *,
-.certificate-card .verify-btn:focus span,
 .modal-verify-btn:hover *,
 .modal-verify-btn:hover span,
-.modal-verify-btn:focus *,
-.modal-verify-btn:focus span,
 .cert-modal-btn.modal-verify-btn:hover *,
 .cert-modal-btn.modal-verify-btn:hover span,
-.cert-modal-btn.modal-verify-btn:focus *,
-.cert-modal-btn.modal-verify-btn:focus span {
-  color: #ffffff !important;
+.cert-modal-footer .verify-btn:hover *,
+.cert-modal-footer .verify-btn:hover span {
+  color: #DAF1DE !important;
   text-shadow: none !important;
 }
+
 .cert-no-link-note {
   font-family: var(--mono);
   font-size: 11px;
@@ -1221,16 +1279,16 @@ body.modal-open {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(5, 31, 32, .84);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(5, 31, 32, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   cursor: pointer;
 }
 
 @keyframes modalFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.92);
   }
   to {
     opacity: 1;
@@ -1247,19 +1305,19 @@ body.modal-open {
   max-height: min(92vh, 880px);
   display: flex;
   flex-direction: column;
-  background: var(--surface);
-  border: 1px solid color-mix(in srgb, var(--cyan) 38%, var(--line));
+  background: #0B2B26 !important;
+  border: 1px solid rgba(142, 182, 155, 0.2) !important;
   border-radius: 14px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, .6), 0 0 0 1px color-mix(in srgb, var(--cyan) 20%, transparent), 0 0 45px color-mix(in srgb, var(--cyan) 14%, transparent);
+  box-shadow: 0 24px 60px rgba(5, 31, 32, 0.75), 0 0 0 1px rgba(142, 182, 155, 0.1) !important;
   overflow: hidden;
-  animation: modalFadeIn 0.3s ease-out forwards;
+  animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .cert-modal.is-open .cert-modal-dialog,
 .modal.is-open .modal-dialog,
 .cert-modal.is-open .modal-content,
 .modal.is-open .modal-content {
-  animation: modalFadeIn 0.3s ease-out forwards;
+  animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .cert-modal-header,
@@ -1268,13 +1326,14 @@ body.modal-open {
   align-items: center;
   justify-content: space-between;
   padding: 18px 24px;
-  border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface-raised) 70%, transparent);
+  border-bottom: 1px solid rgba(142, 182, 155, 0.2);
+  background: rgba(5, 31, 32, 0.45);
 }
 
 .cert-modal-heading .card-kicker,
 .modal-heading .card-kicker {
   margin: 0 0 3px;
+  color: #8EB69B;
 }
 
 .cert-modal-heading h3,
@@ -1282,7 +1341,7 @@ body.modal-open {
   margin: 0;
   font-size: 19px;
   letter-spacing: -.03em;
-  color: var(--text);
+  color: #DAF1DE;
   font-weight: 700;
 }
 
@@ -1292,26 +1351,28 @@ body.modal-open {
   height: 38px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(142, 182, 155, 0.25) !important;
   border-radius: 8px;
-  background: var(--surface);
-  color: var(--muted);
+  background: rgba(22, 56, 50, 0.5) !important;
+  color: #8EB69B !important;
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
-  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
 .cert-modal-close:hover,
 .modal-close:hover {
-  background: var(--surface-raised);
-  color: var(--cyan);
-  border-color: var(--cyan);
+  background: #235347 !important;
+  color: #DAF1DE !important;
+  border-color: rgba(142, 182, 155, 0.45) !important;
   transform: rotate(90deg);
+  box-shadow: 0 4px 12px rgba(5, 31, 32, 0.35);
 }
 
-.cert-modal-close:focus-visible {
-  outline: 2px solid var(--cyan);
+.cert-modal-close:focus-visible,
+.modal-close:focus-visible {
+  outline: 2px solid #8EB69B !important;
   outline-offset: 2px;
 }
 
@@ -1327,11 +1388,11 @@ body.modal-open {
   width: 100%;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, #051F20 85%, transparent);
-  border: 1px solid var(--line);
+  background: rgba(5, 31, 32, 0.6) !important;
+  border: 1px solid rgba(142, 182, 155, 0.2) !important;
   border-radius: 10px;
   padding: 12px;
-  box-shadow: inset 0 2px 10px rgba(0, 0, 0, .4);
+  box-shadow: inset 0 2px 10px rgba(5, 31, 32, 0.5);
 }
 
 .cert-modal-img {
@@ -1340,7 +1401,9 @@ body.modal-open {
   width: auto;
   height: auto;
   object-fit: contain;
+  border: 1px solid rgba(142, 182, 155, 0.2) !important;
   border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(5, 31, 32, 0.4);
   display: block;
   margin: 0 auto;
 }
@@ -2381,18 +2444,18 @@ body.menu-open {
   padding: 0 24px;
   font-size: 13.5px;
   gap: 10px;
-  background-color: #DAF1DE !important;
-  color: #051F20 !important;
-  border: 1px solid #8EB69B !important;
-  box-shadow: 0 4px 18px rgba(142, 182, 155, 0.3) !important;
+  background-color: #163832 !important;
+  color: #DAF1DE !important;
+  border: 1px solid rgba(142, 182, 155, 0.2) !important;
+  box-shadow: 0 4px 14px rgba(5, 31, 32, 0.25) !important;
   text-decoration: none;
 }
 
 .hero-cv-btn:hover {
-  background-color: #8EB69B !important;
-  color: #051F20 !important;
-  border-color: #DAF1DE !important;
-  box-shadow: 0 0 25px rgba(142, 182, 155, 0.45) !important;
+  background-color: #235347 !important;
+  color: #DAF1DE !important;
+  border-color: rgba(142, 182, 155, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(5, 31, 32, 0.4) !important;
   transform: translateY(-2px);
 }
 
@@ -3621,7 +3684,7 @@ html.lenis body {
   background: #DAF1DE;
   border: 1.5px solid #8EB69B;
   color: #051F20;
-  box-shadow: 0 10px 28px rgba(5, 31, 32, 0.42), 0 0 25px rgba(142, 182, 155, 0.45);
+  box-shadow: 0 8px 24px rgba(5, 31, 32, 0.4);
   display: grid;
   place-items: center;
   z-index: 10040;
@@ -3638,7 +3701,7 @@ html.lenis body {
   background: #8EB69B;
   border-color: #DAF1DE;
   color: #051F20;
-  box-shadow: 0 12px 34px rgba(5, 31, 32, 0.58), 0 0 30px rgba(142, 182, 155, 0.6);
+  box-shadow: 0 12px 28px rgba(5, 31, 32, 0.5);
 }
 
 .floating-menu-lines {
@@ -4685,11 +4748,13 @@ section h2,
 .modal-dialog,
 .cert-modal-dialog,
 .video-modal-dialog,
-.cv-modal-dialog {
-  background: var(--bg-card) !important;
+.cv-modal-dialog,
+.modal-content {
+  background: #0B2B26 !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid var(--line) !important;
+  border: 1px solid rgba(142, 182, 155, 0.2) !important;
+  box-shadow: 0 24px 60px rgba(5, 31, 32, 0.75), 0 0 0 1px rgba(142, 182, 155, 0.1) !important;
 }
 
 body.light-mode .project-card,
@@ -4768,4 +4833,119 @@ body.light-mode .coursework-badge:hover,
   background: #235347 !important;
   border-color: #235347 !important;
   color: #DAF1DE !important;
+}
+
+/* Light Mode Support for Primary CTA & Verify Online */
+body.light-mode .hero-cv-btn,
+body.light-mode #contact-submit-btn,
+body.light-mode .contact-form button[type="submit"],
+body.light-mode .cv-modal-btn,
+body.light-mode #modal-cv-download-btn,
+body.light-mode .project-live-btn,
+body.light-mode .modal-demo-btn,
+[data-theme="light"] .hero-cv-btn,
+[data-theme="light"] #contact-submit-btn,
+[data-theme="light"] .contact-form button[type="submit"],
+[data-theme="light"] .cv-modal-btn,
+[data-theme="light"] #modal-cv-download-btn,
+[data-theme="light"] .project-live-btn,
+[data-theme="light"] .modal-demo-btn {
+  background: #163832 !important;
+  background-color: #163832 !important;
+  border: 1px solid #163832 !important;
+  color: #DAF1DE !important;
+  box-shadow: 0 4px 14px rgba(5, 31, 32, 0.15) !important;
+}
+
+body.light-mode .hero-cv-btn:hover,
+body.light-mode #contact-submit-btn:hover,
+body.light-mode .contact-form button[type="submit"]:hover,
+body.light-mode .project-live-btn:hover,
+body.light-mode .modal-demo-btn:hover,
+[data-theme="light"] .hero-cv-btn:hover,
+[data-theme="light"] #contact-submit-btn:hover,
+[data-theme="light"] .contact-form button[type="submit"]:hover,
+[data-theme="light"] .project-live-btn:hover,
+[data-theme="light"] .modal-demo-btn:hover {
+  background: #235347 !important;
+  background-color: #235347 !important;
+  border-color: #235347 !important;
+  color: #DAF1DE !important;
+  box-shadow: 0 8px 24px rgba(5, 31, 32, 0.25) !important;
+}
+
+body.light-mode .verify-btn,
+body.light-mode a.verify-btn,
+body.light-mode button.verify-btn,
+body.light-mode .modal-verify-btn,
+[data-theme="light"] .verify-btn,
+[data-theme="light"] a.verify-btn,
+[data-theme="light"] button.verify-btn,
+[data-theme="light"] .modal-verify-btn {
+  background: rgba(35, 83, 71, 0.08) !important;
+  background-color: rgba(35, 83, 71, 0.08) !important;
+  border: 1px solid rgba(35, 83, 71, 0.25) !important;
+  color: #163832 !important;
+}
+
+body.light-mode .verify-btn *,
+body.light-mode a.verify-btn *,
+body.light-mode button.verify-btn *,
+body.light-mode .modal-verify-btn *,
+[data-theme="light"] .verify-btn *,
+[data-theme="light"] a.verify-btn *,
+[data-theme="light"] button.verify-btn *,
+[data-theme="light"] .modal-verify-btn * {
+  color: #163832 !important;
+}
+
+body.light-mode .verify-btn:hover,
+body.light-mode a.verify-btn:hover,
+body.light-mode button.verify-btn:hover,
+body.light-mode .modal-verify-btn:hover,
+[data-theme="light"] .verify-btn:hover,
+[data-theme="light"] a.verify-btn:hover,
+[data-theme="light"] button.verify-btn:hover,
+[data-theme="light"] .modal-verify-btn:hover {
+  background: #235347 !important;
+  background-color: #235347 !important;
+  border-color: #235347 !important;
+  color: #DAF1DE !important;
+  box-shadow: 0 4px 14px rgba(5, 31, 32, 0.2) !important;
+}
+
+body.light-mode .verify-btn:hover *,
+body.light-mode a.verify-btn:hover *,
+body.light-mode button.verify-btn:hover *,
+body.light-mode .modal-verify-btn:hover *,
+[data-theme="light"] .verify-btn:hover *,
+[data-theme="light"] a.verify-btn:hover *,
+[data-theme="light"] button.verify-btn:hover *,
+[data-theme="light"] .modal-verify-btn * {
+  color: #DAF1DE !important;
+}
+
+body.light-mode .cert-modal-backdrop,
+body.light-mode .modal-backdrop,
+[data-theme="light"] .cert-modal-backdrop,
+[data-theme="light"] .modal-backdrop {
+  background: rgba(5, 31, 32, 0.6) !important;
+}
+
+body.light-mode .cert-modal-close,
+body.light-mode .modal-close,
+[data-theme="light"] .cert-modal-close,
+[data-theme="light"] .modal-close {
+  background: rgba(35, 83, 71, 0.1) !important;
+  border: 1px solid rgba(35, 83, 71, 0.25) !important;
+  color: #163832 !important;
+}
+
+body.light-mode .cert-modal-close:hover,
+body.light-mode .modal-close:hover,
+[data-theme="light"] .cert-modal-close:hover,
+[data-theme="light"] .modal-close:hover {
+  background: #235347 !important;
+  color: #DAF1DE !important;
+  border-color: #235347 !important;
 }
