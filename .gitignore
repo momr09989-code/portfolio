@@ -1,0 +1,27 @@
+﻿# Subordinate projects with their own git repos
+fatma_portfolio/
+friend_portfolio/
+
+# Video screen recordings & scratch videos
+porto_hd.webm
+porto.mp4
+video_output/
+record_showcase.*
+
+# Freelancing gig automation & scraper scripts
+*.py
+khamsat_*
+khamsat_screenshots/
+khamsat_diverse_gallery/
+khamsat_gig_draft.txt
+khamsat_update_plan.md
+*draft*.txt
+*_cover.*
+*_port.png
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+.idea/

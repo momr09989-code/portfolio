@@ -1,3 +1,10 @@
+/* ==========================================================================
+   Omar Ebied - Personal Portfolio Stylesheet
+   Theme: Luxury Forest & Sage Green Palette
+   Design System: Deep Slate Forest (#071012, #0d181a), Mint & Sage (#70f0df, #c9f76c),
+                  Muted Sage (#94a9a4, #5e746f), Light-Mode Sage (#f3f7f3, #10221e)
+   ========================================================================== */
+
 :root {
   --bg: #071012;
   --surface: #0d181a;
