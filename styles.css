@@ -4949,3 +4949,88 @@ body.light-mode .modal-close:hover,
   color: #DAF1DE !important;
   border-color: #235347 !important;
 }
+
+/* ==========================================================================
+   CLIENT PROJECTS: FATMA EL-ZAHRAA & MOHAMED HAMDY VISUAL PANELS & TAGS
+   ========================================================================== */
+
+/* 1. Fatma El-Zahraa Visual Background */
+.visual-fatma {
+  background: radial-gradient(circle at 45% 45%, rgba(142, 182, 155, 0.22) 0%, rgba(35, 83, 71, 0.45) 55%, #051F20 100%), linear-gradient(145deg, #163832, #0B2B26);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 18px;
+}
+
+/* 2. Mohamed Hamdy Visual Background */
+.visual-hamdy {
+  background: radial-gradient(circle at 55% 45%, rgba(142, 182, 155, 0.18) 0%, rgba(22, 56, 50, 0.55) 60%, #051F20 100%), linear-gradient(135deg, #0B2B26, #163832);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 18px;
+}
+
+/* 3. Light Mode Parity for New Visuals */
+body.light-mode .project-visual.visual-fatma,
+body.light-mode .project-visual.visual-hamdy,
+[data-theme="light"] .project-visual.visual-fatma,
+[data-theme="light"] .project-visual.visual-hamdy {
+  background: linear-gradient(135deg, rgba(218, 241, 222, 0.4) 0%, rgba(218, 241, 222, 0.15) 100%) !important;
+  border-inline-end: 1px solid rgba(35, 83, 71, 0.2);
+}
+
+/* 4. Project Tech Stack Tags Container */
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 16px;
+}
+
+.project-tech-tags span {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #163832 !important;
+  border: 1px solid #235347 !important;
+  color: #DAF1DE !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-tech-tags span:hover {
+  background: #235347 !important;
+  border-color: #8EB69B !important;
+  color: #DAF1DE !important;
+  transform: translateY(-1px);
+}
+
+body.light-mode .project-tech-tags span,
+[data-theme="light"] .project-tech-tags span {
+  background: #ffffff !important;
+  border: 1px solid rgba(35, 83, 71, 0.2) !important;
+  color: #051F20 !important;
+}
+
+/* 5. Mobile Touch Target Compliance (44px) */
+@media (max-width: 700px) {
+  .project-actions .project-live-btn,
+  .project-actions .project-repo-btn {
+    min-height: 44px;
+  }
+}
+
+/* 6. Sticky Counter Dots Accommodation for 5 Projects */
+@media (max-width: 1020px) {
+  .sticky-counter-dots {
+    width: 115px;
+  }
+}
+
