@@ -43,7 +43,6 @@ Real-world freelance client portfolios designed, engineered, and deployed with b
 
 - **Book Fair & Literature (PORTO E-Commerce Frontend):** Interactive e-commerce bookstore simulation with stateful cart management and instant checkout — [Live Demo](https://momr09989-code.github.io/Book-Store/) | [GitHub Repo](https://github.com/momr09989-code/Book-Store)
 - **NTI MITM Lab — ARP Spoofing:** Network security Proof of Concept (PoC) analyzing ARP cache poisoning, packet dissection in Wireshark, and traffic interception via `mitmproxy` — [GitHub Repo](https://github.com/momr09989-code/NTI-MITM-Lab)
-- **SQL Database Project:** Relational database schema design, normalization (3NF/BCNF), and analytical query optimization in Microsoft SQL Server.
 
 ---
 
