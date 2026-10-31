@@ -38,7 +38,7 @@
     <link rel="apple-touch-icon" href="og-image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=21" />
     <link rel="preload" as="image" href="profile.webp" type="image/webp" />
@@ -1264,11 +1264,11 @@
         <div class="services-nav-tabs" role="tablist" aria-label="Service Category">
           <button type="button" class="services-cat-tab active" id="tab-portfolio-btn" data-category="portfolio" role="tab" aria-selected="true" aria-controls="stage-portfolio">
             <span class="cat-icon">🎨</span>
-            <span class="cat-title" data-i18n="tab-portfolio-title">بناء بورتفوليو احترافي ($10)</span>
+            <span class="cat-title" data-i18n="tab-portfolio-title">Bespoke Portfolio ($10)</span>
           </button>
           <button type="button" class="services-cat-tab" id="tab-data-btn" data-category="data" role="tab" aria-selected="false" aria-controls="stage-data">
             <span class="cat-icon">🧹</span>
-            <span class="cat-title" data-i18n="tab-data-title">تنظيف وتحليل البيانات - Data Cleaning ($10)</span>
+            <span class="cat-title" data-i18n="tab-data-title">Data Cleaning &amp; Analysis ($10)</span>
           </button>
         </div>
 
@@ -1290,70 +1290,85 @@
                     <span class="url-text" id="mini-browser-url">https://fatma-portfolio.dev</span>
                   </div>
                   <span class="services-showcase-badge" id="mini-browser-badge">
-                    <span class="status-pulse-dot"></span>
-                    <span id="mini-badge-text">Preview</span>
+                    <span class="status-pulse-dot static-dot" id="mini-pulse-dot"></span>
+                    <span id="mini-badge-text">● Static HTML</span>
                   </span>
                   <div class="deploy-progress-bar" id="deploy-progress-bar"></div>
                 </div>
 
                 <!-- Live Mini Scoped HTML Viewport -->
                 <div class="mini-fatma-viewport" id="mini-fatma-viewport">
-                  <!-- Mini Navbar -->
-                  <div class="mini-fatma-nav">
-                    <span class="mini-nav-monogram">[ F.E ]</span>
-                    <div class="mini-nav-links">
-                      <span>About</span>
-                      <span>Vision 2030</span>
-                      <span>Honors</span>
-                    </div>
-                  </div>
-
-                  <!-- Mini Hero Section -->
-                  <div class="mini-fatma-hero">
-                    <div class="mini-hero-badge">CLASS OF 2026 (EXCELLENT WITH HONORS)</div>
-                    <h3 class="mini-hero-title" id="mini-fatma-name">Fatma El-Zahraa Mohamed Ebeid</h3>
-                    <p class="mini-hero-subtitle">Economics Graduate | Business Development, Financial Analysis &amp; Diplomatic Affairs</p>
-                    
-                    <div class="mini-hero-actions">
-                      <a href="javascript:void(0)" class="mini-btn-primary" id="mini-cv-btn">Download Full CV</a>
-                      <a href="javascript:void(0)" class="mini-btn-outline">Explore Credentials</a>
-                    </div>
-
-                    <!-- Mini Portrait & Floating Glass Badges -->
-                    <div class="mini-hero-stage">
-                      <div class="mini-portrait-wrap">
-                        <img src="fatma_portfolio/assets/profile.jpg" onerror="this.onerror=null;this.src='fatma_port.png';" alt="Fatma Ebeid" class="mini-portrait-img" width="120" height="120">
-                      </div>
-                      
-                      <div class="mini-float-badge badge-1" id="mini-badge-1">
-                        <span class="badge-icon">🏛️</span>
-                        <div class="badge-text">
-                          <strong>Banque Misr</strong>
-                          <span>Banking Operations</span>
-                        </div>
+                  <div class="fatma-replica-layout">
+                    <!-- Left Column: Editorial Content -->
+                    <div class="fatma-replica-editorial">
+                      <div class="fatma-replica-eyebrow">
+                        <span class="fatma-sparkle">✦</span>
+                        <span>ECONOMICS &amp; POLITICAL SYSTEMS • CLASS OF 2026 (EXCELLENT WITH HONORS)</span>
                       </div>
 
-                      <div class="mini-float-badge badge-2" id="mini-badge-2">
-                        <span class="badge-icon">📜</span>
-                        <div class="badge-text">
-                          <strong>Vision 2030 Research</strong>
-                          <span>Grade: A Distinction</span>
-                        </div>
+                      <h3 class="fatma-title" id="fatma-title">
+                        <span class="fatma-title-first">Fatma El-Zahraa</span>
+                        <span class="fatma-title-last">Mohamed Ebeid</span>
+                      </h3>
+
+                      <p class="fatma-subtitle">
+                        Economics Graduate | Business Development, Financial Analysis &amp; Diplomatic Affairs
+                      </p>
+
+                      <p class="fatma-bio">
+                        Bridging macroeconomic insight, diplomatic grace, and corporate excellence. October 6 University honors graduate with proven banking and advisory expertise.
+                      </p>
+
+                      <div class="fatma-actions-row">
+                        <a href="javascript:void(0)" class="fatma-btn-burgundy" id="fatma-btn-cv">Download Full CV</a>
+                        <a href="javascript:void(0)" class="fatma-btn-pill" id="fatma-btn-creds">Explore Credentials &amp; Honors →</a>
                       </div>
 
-                      <div class="mini-float-badge badge-3" id="mini-badge-3">
-                        <span class="badge-icon">🎖️</span>
-                        <div class="badge-text">
-                          <strong>Excellent with Honors</strong>
-                          <span>B.Sc. in Economics</span>
-                        </div>
+                      <div class="fatma-contact-strip">
+                        <span class="fatma-contact-item">📍 Giza, Egypt</span>
+                        <span class="fatma-contact-sep">•</span>
+                        <span class="fatma-contact-item">✉️ fatmamohamed09089@gmail.com</span>
+                        <span class="fatma-contact-sep">•</span>
+                        <span class="fatma-contact-link">LinkedIn Profile ↗</span>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="mini-gsap-indicator" id="mini-gsap-indicator">
-                    <span class="pulse-indicator"></span>
-                    <span>✨ GSAP 3.12 Engine Active</span>
+                    <!-- Right Column: Arched Portrait & 3 Floating Cards -->
+                    <div class="fatma-replica-visual">
+                      <div class="fatma-arch-wrapper" id="fatma-arch-wrapper">
+                        <div class="fatma-arch-crown">✦</div>
+                        <div class="fatma-arch-outer" id="fatma-arch-outer">
+                          <div class="fatma-arch-inner">
+                            <img src="fatma_portfolio/assets/profile.jpg" onerror="this.onerror=null;this.src='fatma_port.png';" alt="Fatma El-Zahraa Mohamed Ebeid" class="fatma-arch-img" width="145" height="205">
+                          </div>
+                        </div>
+
+                        <!-- 3 Floating White Cards -->
+                        <div class="f-card f-card-1" id="f-card-1">
+                          <div class="f-card-icon">🏛️</div>
+                          <div class="f-card-content">
+                            <strong class="f-card-title">Banque Misr</strong>
+                            <span class="f-card-sub">Banking Operations Intern</span>
+                          </div>
+                        </div>
+
+                        <div class="f-card f-card-2" id="f-card-2">
+                          <div class="f-card-icon">🎓</div>
+                          <div class="f-card-content">
+                            <strong class="f-card-title">Grade: Excellent</strong>
+                            <span class="f-card-sub">Economics &amp; Management (O6U)</span>
+                          </div>
+                        </div>
+
+                        <div class="f-card f-card-3" id="f-card-3">
+                          <div class="f-card-icon">🌍</div>
+                          <div class="f-card-content">
+                            <strong class="f-card-title">Vision 2030 Research</strong>
+                            <span class="f-card-sub">Grade: A (High Distinction)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1380,12 +1395,12 @@
                 <div class="data-studio-viewport">
                   <div class="data-studio-header">
                     <div>
-                      <h4 class="data-studio-title">Raw Dataset Preview (Raw CSV Stream)</h4>
-                      <p class="data-studio-sub">انقر على الزر لتشغيل المعالجة البرمجية وإصلاح القيم التالفة والتكرارات</p>
+                      <h4 class="data-studio-title" data-i18n="srv-data-studio-title">Raw Dataset Preview (Raw CSV Stream)</h4>
+                      <p class="data-studio-sub" data-i18n="srv-data-studio-sub">Click the button to run the Python processing pipeline and fix corrupt values and duplicates.</p>
                     </div>
                     <button type="button" class="btn-clean-data" id="btn-run-clean">
                       <span class="btn-icon">⚡</span>
-                      <span id="btn-run-clean-text">تنظيف البيانات وتصحيح القيم</span>
+                      <span id="btn-run-clean-text" data-i18n="srv-data-studio-btn">Clean Data &amp; Fix Values</span>
                     </button>
                   </div>
 
@@ -1471,35 +1486,35 @@
             <!-- CONFIG CARD 1: Portfolio ($10 Base) -->
             <div class="services-config-card active" id="card-portfolio-config">
               <div class="config-card-header">
-                <span class="config-tag">Mostaql &amp; Khamsat Verified</span>
-                <h3 class="config-title" data-i18n="srv-port-title">بناء بورتفوليو شخصي احترافي متكامل</h3>
+                <span class="config-tag" data-i18n="srv-port-badge">Mostaql &amp; Khamsat Verified</span>
+                <h3 class="config-title" data-i18n="srv-port-title">Bespoke Interactive Personal Portfolio</h3>
                 <p class="config-desc" data-i18n="srv-port-desc">
-                  تصميم وبرمجة صفحة هبوط شخصية سريعة ومتجاوبة بهوية فاخرة (Apple HIG)، كود نظيف وتوافق تام مع شاشات الموبايل والريتينا.
+                  Fast, responsive personal landing page engineered to Apple HIG standards with clean code and full mobile/Retina compatibility.
                 </p>
               </div>
 
               <div class="config-pricing-box">
-                <div class="pricing-label">سعر الخدمة التفاعلي:</div>
+                <div class="pricing-label" data-i18n="srv-price-label">Interactive Service Price:</div>
                 <div class="pricing-val">
                   <span class="currency">$</span>
                   <span class="total-number" id="portfolio-total-price">10</span>
-                  <span class="period">/ مشروع كامل</span>
+                  <span class="period" data-i18n="srv-port-period">/ full project</span>
                 </div>
-                <span class="base-note">السعر الأساسي يبدأ من 10$ فقط</span>
+                <span class="base-note" data-i18n="srv-port-base-note">Base price starts at $10 only</span>
               </div>
 
               <div class="config-addons-section">
-                <h4 class="addons-heading">إضافات وتطويرات الخدمة المتاحة (Add-ons):</h4>
+                <h4 class="addons-heading" data-i18n="srv-addons-header">Available Service Add-ons:</h4>
                 
                 <label class="config-addon-label" id="label-addon-gsap">
                   <input type="checkbox" id="addon-gsap-toggle" class="config-addon-check" data-price="5">
                   <span class="custom-check"></span>
                   <div class="addon-info">
                     <div class="addon-title-row">
-                      <span class="addon-title">إضافة أنيميشن GSAP احترافي</span>
-                      <span class="addon-cost">+ $5</span>
+                      <span class="addon-title" data-i18n="srv-addon-gsap-title">Pro GSAP Motion &amp; Animations</span>
+                      <span class="addon-cost" data-i18n="srv-addon-gsap-cost">+ $5</span>
                     </div>
-                    <p class="addon-sub">حركات تفاعلية سلسة، 3D Levitation للبطاقات، وتأثيرات الإضاءة والنيون لعناصر الموقع.</p>
+                    <p class="addon-sub" data-i18n="srv-addon-gsap-desc">Smooth interactive 3D card levitation, staggered text reveals, and dynamic hover effects.</p>
                   </div>
                 </label>
 
@@ -1508,55 +1523,55 @@
                   <span class="custom-check"></span>
                   <div class="addon-info">
                     <div class="addon-title-row">
-                      <span class="addon-title">رفع واستضافة الموقع على GitHub Pages</span>
-                      <span class="addon-cost">+ $5</span>
+                      <span class="addon-title" data-i18n="srv-addon-deploy-title">Live Deployment on GitHub Pages</span>
+                      <span class="addon-cost" data-i18n="srv-addon-deploy-cost">+ $5</span>
                     </div>
-                    <p class="addon-sub">إعداد مستودع Git، نشر حي فوري على دومين github.io مجاني مع شهادة أمان SSL كاملة.</p>
+                    <p class="addon-sub" data-i18n="srv-addon-deploy-desc">Full Git repository setup and instant live hosting on a github.io domain with free SSL security.</p>
                   </div>
                 </label>
               </div>
 
               <div class="config-card-footer">
                 <a href="#contact" class="btn-order-service" id="btn-order-portfolio">
-                  <span>طلب الخدمة الآن ($<span id="btn-portfolio-price-display">10</span>)</span>
+                  <span id="btn-portfolio-label">Order Service Now ($<span id="btn-portfolio-price-display">10</span>)</span>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <p class="guarantee-text">🛡️ ضمان رضا كامل 100% • كود مفتوح المصدر بدون تكاليف شهرية خفية</p>
+                <p class="guarantee-text" data-i18n="srv-port-guarantee">🛡️ 100% Satisfaction Guaranteed • Open source code with zero hidden monthly fees</p>
               </div>
             </div>
 
             <!-- CONFIG CARD 2: Data Cleaning ($10 Base) -->
             <div class="services-config-card" id="card-data-config" style="display: none;">
               <div class="config-card-header">
-                <span class="config-tag tag-data">Data Engineering &amp; Python</span>
-                <h3 class="config-title" data-i18n="srv-data-title">تنظيف، معالجة وهيكلة البيانات (Data Cleaning)</h3>
+                <span class="config-tag tag-data" data-i18n="srv-data-badge">Data Engineering &amp; Python</span>
+                <h3 class="config-title" data-i18n="srv-data-title">Data Cleaning, Structuring &amp; Pipeline Automation</h3>
                 <p class="config-desc" data-i18n="srv-data-desc">
-                  فحص وتجهيز البيانات الضخمة، التعامل مع القيم المفقودة والتكرار، وتوحيد التنسيقات لجعل البيانات جاهزة 100% للتحليل أو النماذج.
+                  Auditing and preprocessing large datasets, handling missing values &amp; duplicates, and standardizing schemas for immediate analysis or ML.
                 </p>
               </div>
 
               <div class="config-pricing-box">
-                <div class="pricing-label">سعر الخدمة التفاعلي:</div>
+                <div class="pricing-label" data-i18n="srv-price-label">Interactive Service Price:</div>
                 <div class="pricing-val">
                   <span class="currency">$</span>
                   <span class="total-number" id="data-total-price">10</span>
-                  <span class="period">/ حتى 5,000 صف</span>
+                  <span class="period" data-i18n="srv-data-period">/ up to 5,000 rows</span>
                 </div>
-                <span class="base-note">السعر الأساسي يبدأ من 10$ لملفات البيانات حتى 5K صف</span>
+                <span class="base-note" data-i18n="srv-data-base-note">Base price starts at $10 for datasets up to 5K rows</span>
               </div>
 
               <div class="config-addons-section">
-                <h4 class="addons-heading">إضافات وتطويرات الخدمة المتاحة (Add-ons):</h4>
+                <h4 class="addons-heading" data-i18n="srv-addons-header">Available Service Add-ons:</h4>
                 
                 <label class="config-addon-label" id="label-addon-data-dash">
                   <input type="checkbox" id="addon-data-dash-toggle" class="config-addon-check" data-price="10">
                   <span class="custom-check"></span>
                   <div class="addon-info">
                     <div class="addon-title-row">
-                      <span class="addon-title">لوحة بيانات تفاعلية Dashboard (PowerBI / Plotly)</span>
+                      <span class="addon-title" data-i18n="srv-addon-dash-title">Interactive BI Dashboard (PowerBI / Plotly)</span>
                       <span class="addon-cost">+ $10</span>
                     </div>
-                    <p class="addon-sub">تصميم داشبورد تفاعلي لعرض أهم مؤشرات الأداء والرسوم البيانية التوضيحية لاتخاذ القرارات.</p>
+                    <p class="addon-sub" data-i18n="srv-addon-dash-desc">Design interactive dashboards displaying KPIs and actionable business charts for executive decisions.</p>
                   </div>
                 </label>
 
@@ -1565,20 +1580,20 @@
                   <span class="custom-check"></span>
                   <div class="addon-info">
                     <div class="addon-title-row">
-                      <span class="addon-title">أتمتة التنظيف بسكريبت بايثون Python Pipeline</span>
+                      <span class="addon-title" data-i18n="srv-addon-script-title">Python Automation Pipeline Script</span>
                       <span class="addon-cost">+ $5</span>
                     </div>
-                    <p class="addon-sub">تسليم سكريبت Python كامل وموثق لإعادة تطبيق التنظيف على أي ملفات مستقبلية بضغطة زر.</p>
+                    <p class="addon-sub" data-i18n="srv-addon-script-desc">Delivery of a fully documented Python script to re-run data cleaning on any future batch with one command.</p>
                   </div>
                 </label>
               </div>
 
               <div class="config-card-footer">
                 <a href="#contact" class="btn-order-service btn-order-data" id="btn-order-data">
-                  <span>طلب تنظيف البيانات ($<span id="btn-data-price-display">10</span>)</span>
+                  <span id="btn-data-label">Order Data Cleaning ($<span id="btn-data-price-display">10</span>)</span>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <p class="guarantee-text">⚡ دقة مطلقة في الأرقام • تقرير Data Quality تفصيلي مع التسليم</p>
+                <p class="guarantee-text" data-i18n="srv-data-guarantee">⚡ Absolute numerical accuracy • Comprehensive Data Quality report included upon delivery</p>
               </div>
             </div>
           </div>

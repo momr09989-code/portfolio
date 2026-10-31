@@ -6254,195 +6254,328 @@ body.light-mode .showcase-nav-btn.active,
   transition: width 0.1s linear;
 }
 
-/* === 5. Live Mini Fatma Portfolio Replica === */
+/* === 5. Authentic Fatma El-Zahraa Portfolio Replica === */
 .mini-fatma-viewport {
-  padding: 24px 20px;
-  background: radial-gradient(circle at top right, rgba(142, 182, 155, 0.08), transparent 70%), #070c09;
-  min-height: 480px;
+  padding: 24px 22px;
+  background: #F7F4EF !important; /* Warm editorial cream */
+  color: #1C1917;
+  min-height: 490px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-.mini-fatma-nav {
-  display: flex;
-  justify-content: space-between;
+.fatma-replica-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+  gap: 22px;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  font-size: 0.78rem;
-}
-
-.mini-nav-monogram {
-  font-weight: 800;
-  color: #8EB69B;
-  letter-spacing: 0.05em;
-}
-
-.mini-nav-links {
-  display: flex;
-  gap: 14px;
-  color: #94a3b8;
-}
-
-.mini-fatma-hero {
   position: relative;
-}
-
-.mini-hero-badge {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #8EB69B;
-  letter-spacing: 0.06em;
-  background: rgba(142, 182, 155, 0.1);
-  border: 1px solid rgba(142, 182, 155, 0.25);
-  border-radius: 9999px;
-  padding: 4px 12px;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-
-.mini-hero-title {
-  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
-  font-weight: 800;
-  color: #f8fafc;
-  line-height: 1.25;
-  margin-bottom: 8px;
-  transition: all 0.3s ease;
-}
-
-.mini-hero-subtitle {
-  font-size: 0.82rem;
-  color: #94a3b8;
-  line-height: 1.5;
-  margin-bottom: 16px;
-  max-width: 480px;
-}
-
-.mini-hero-actions {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.mini-btn-primary {
-  background: #8EB69B;
-  color: #041009;
-  font-weight: 700;
-  font-size: 0.74rem;
-  padding: 8px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-
-.mini-btn-outline {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #cbd5e1;
-  font-size: 0.74rem;
-  padding: 8px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.mini-hero-stage {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  margin-top: 10px;
-}
-
-.mini-portrait-wrap {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid rgba(142, 182, 155, 0.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  z-index: 2;
-  position: relative;
-}
-
-.mini-portrait-img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
-.mini-float-badge {
-  position: absolute;
-  background: rgba(14, 22, 18, 0.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(142, 182, 155, 0.3);
-  border-radius: 12px;
-  padding: 8px 12px;
+@media (max-width: 900px) {
+  .fatma-replica-layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+/* Left Editorial Column */
+.fatma-replica-editorial {
+  min-width: 0;
+  z-index: 2;
+}
+
+.fatma-replica-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #5B1627;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #C5A059;
+  border-radius: 999px;
+  padding: 4px 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.15);
+  max-width: 100%;
+}
+
+.fatma-sparkle {
+  color: #C5A059;
+  font-size: 0.72rem;
+}
+
+.fatma-title {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.45rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  color: #1C1917;
+  line-height: 1.12;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.015em;
+}
+
+.fatma-title-first {
+  display: block;
+  color: #1C1917;
+}
+
+.fatma-title-last {
+  display: block;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #5B1627;
+  margin-top: 2px;
+}
+
+.fatma-subtitle {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #1C1917;
+  border-left: 3px solid #C5A059;
+  padding-left: 8px;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+}
+
+body.rtl-mode .fatma-subtitle {
+  border-left: 3px solid #C5A059;
+  border-right: none;
+  padding-left: 8px;
+  padding-right: 0;
+  text-align: left;
+  direction: ltr;
+}
+
+.fatma-bio {
+  font-size: 0.72rem;
+  color: #57534E;
+  line-height: 1.55;
+  margin: 0 0 16px 0;
+  max-width: 320px;
+}
+
+.fatma-actions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.fatma-btn-burgundy {
+  background: #5A2A27;
+  color: #FAF7F2 !important;
+  border: 1px solid #C5A059;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(90, 42, 39, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fatma-btn-burgundy:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(90, 42, 39, 0.35);
+}
+
+.fatma-btn-pill {
+  background: #FFFFFF;
+  color: #1C1917 !important;
+  border: 1px solid #C5A059;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.15);
+  transition: transform 0.2s;
+}
+
+.fatma-btn-pill:hover {
+  transform: translateY(-1px);
+  border-color: #5B1627;
+}
+
+.fatma-contact-strip {
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  z-index: 3;
-  font-size: 0.72rem;
-  color: #e2e8f0;
-  will-change: transform;
-  transition: border-color 0.3s;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.64rem;
+  color: #1C1917;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  flex-wrap: wrap;
 }
 
-.mini-float-badge.badge-1 {
-  top: 10px;
-  left: 8px;
+.fatma-contact-item {
+  color: #1C1917;
+  white-space: nowrap;
 }
 
-.mini-float-badge.badge-2 {
-  bottom: 8px;
-  left: 16px;
+.fatma-contact-sep {
+  color: #C5A059;
+  opacity: 0.6;
 }
 
-.mini-float-badge.badge-3 {
-  top: 35px;
-  right: 8px;
-}
-
-.badge-text strong {
-  display: block;
-  color: #f8fafc;
-  font-size: 0.74rem;
-}
-
-.badge-text span {
-  color: #94a3b8;
-  font-size: 0.66rem;
-}
-
-.mini-gsap-indicator {
-  position: absolute;
-  bottom: 12px;
-  right: 14px;
-  background: rgba(142, 182, 155, 0.15);
-  border: 1px solid #8EB69B;
-  color: #8EB69B;
-  font-size: 0.72rem;
+.fatma-contact-link {
+  color: #5B1627;
   font-weight: 700;
-  border-radius: 9999px;
-  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+/* Right Column: The Arched Portrait Frame & Floating Cards */
+.fatma-replica-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 270px;
+}
+
+.fatma-arch-wrapper {
+  position: relative;
+  width: 145px;
+  height: 210px;
+  z-index: 2;
+}
+
+.fatma-arch-crown {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid #C5A059;
   display: flex;
   align-items: center;
-  gap: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
+  justify-content: center;
+  color: #C5A059;
+  font-size: 0.72rem;
+  z-index: 4;
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.3);
 }
 
-.pulse-indicator {
+.fatma-arch-outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  border-radius: 140px 140px 16px 16px;
+  border: 1.5px solid #C5A059;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 100%);
+  box-shadow: 0 10px 24px rgba(197, 160, 89, 0.2);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fatma-arch-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 134px 134px 12px 12px;
+  overflow: hidden;
+  background: #F4EFE6;
+  position: relative;
+  border: 1px solid #D4A373;
+}
+
+.fatma-arch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 12%;
+  display: block;
+}
+
+/* 3 Floating White Cards (ZERO animation by default — 100% STATIC!) */
+.f-card {
+  position: absolute;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  border-radius: 10px;
+  padding: 5px 9px;
+  box-shadow: 0 6px 16px rgba(28, 25, 23, 0.08);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: none !important; /* Strictly static by default */
+  transform: none;
+  will-change: transform;
+}
+
+.f-card-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.f-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-card-title {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #1C1917;
+  line-height: 1.1;
+}
+
+.f-card-sub {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.64rem;
+  color: #5B1627;
+  margin-top: 1px;
+}
+
+.f-card-1 {
+  top: 16px;
+  left: -48px;
+}
+
+.f-card-2 {
+  top: 98px;
+  right: -48px;
+}
+
+.f-card-3 {
+  bottom: 6px;
+  left: -32px;
+}
+
+/* Static Browser Badge */
+.status-pulse-dot.static-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #8EB69B;
-  box-shadow: 0 0 6px #8EB69B;
+  background: #94a3b8;
+  box-shadow: none;
+  animation: none;
 }
 
 /* === 6. Interactive Data Cleaning Studio === */
@@ -6898,43 +7031,41 @@ body.light-mode .services-showcase-url-bar {
   color: #334155;
 }
 
-body.light-mode .mini-fatma-viewport {
-  background: #ffffff;
+/* RTL and LTR Configurator Rules */
+.services-config-card {
+  text-align: left;
+  direction: ltr;
 }
 
-body.light-mode .mini-fatma-nav {
-  border-bottom-color: #e2e8f0;
+body.rtl-mode .services-config-card {
+  text-align: right;
+  direction: rtl;
 }
 
-body.light-mode .mini-nav-links {
-  color: #64748b;
+body.rtl-mode .config-pricing-box {
+  text-align: right;
 }
 
-body.light-mode .mini-hero-title {
-  color: #0f172a;
+body.rtl-mode .pricing-val {
+  direction: ltr;
+  display: inline-flex;
 }
 
-body.light-mode .mini-hero-subtitle {
-  color: #475569;
+body.rtl-mode .config-addon-label {
+  text-align: right;
+  direction: rtl;
 }
 
-body.light-mode .mini-btn-outline {
-  border-color: #cbd5e1;
-  color: #334155;
+body.rtl-mode .addon-title-row {
+  flex-direction: row;
 }
 
-body.light-mode .mini-float-badge {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+body.rtl-mode .btn-order-service svg {
+  transform: rotate(180deg);
 }
 
-body.light-mode .badge-text strong {
-  color: #0f172a;
-}
-
-body.light-mode .badge-text span {
-  color: #64748b;
+body.rtl-mode .guarantee-text {
+  text-align: center;
 }
 
 body.light-mode .data-studio-viewport {

@@ -322,6 +322,39 @@
     "serv-3-title": "Motion &amp; GSAP Experiences",
     "serv-3-prob": "Heavy or unoptimized animations cause stutter and compromise page speed.",
     "serv-3-res": "Infusing dynamic character into web interfaces through lightweight, fluid animations.",
+    "tab-portfolio-title": "Bespoke Portfolio ($10)",
+    "tab-data-title": "Data Cleaning &amp; Analysis ($10)",
+    "serv-badge": "SOLUTIONS &amp; EXPERTISE",
+    "serv-kinetic-sub": "Hover over the letters to assemble • Professional freelance solutions calculated for maximum ROI",
+    "srv-port-badge": "MOSTAQL &amp; KHAMSAT VERIFIED",
+    "srv-port-title": "Bespoke Interactive Personal Portfolio",
+    "srv-port-desc": "Fast, responsive personal landing page engineered to Apple HIG standards with clean code and full mobile/Retina compatibility.",
+    "srv-price-label": "Interactive Service Price:",
+    "srv-port-period": "/ full project",
+    "srv-port-base-note": "Base price starts at $10 only",
+    "srv-addons-header": "Available Service Add-ons:",
+    "srv-addon-gsap-title": "Pro GSAP Motion &amp; Animations",
+    "srv-addon-gsap-cost": "+ $5",
+    "srv-addon-gsap-desc": "Smooth interactive 3D card levitation, staggered text reveals, and dynamic hover effects.",
+    "srv-addon-deploy-title": "Live Deployment on GitHub Pages",
+    "srv-addon-deploy-cost": "+ $5",
+    "srv-addon-deploy-desc": "Full Git repository setup and instant live hosting on a github.io domain with free SSL security.",
+    "srv-port-order-btn": "Order Service Now ($<span id=\"btn-portfolio-price-display\">10</span>)",
+    "srv-port-guarantee": "🛡️ 100% Satisfaction Guaranteed • Open source code with zero hidden monthly fees",
+    "srv-data-badge": "Data Engineering &amp; Python",
+    "srv-data-title": "Data Cleaning, Structuring &amp; Pipeline Automation",
+    "srv-data-desc": "Auditing and preprocessing large datasets, handling missing values &amp; duplicates, and standardizing schemas for immediate analysis or ML.",
+    "srv-data-period": "/ up to 5,000 rows",
+    "srv-data-base-note": "Base price starts at $10 for datasets up to 5K rows",
+    "srv-addon-dash-title": "Interactive BI Dashboard (PowerBI / Plotly)",
+    "srv-addon-dash-desc": "Design interactive dashboards displaying KPIs and actionable business charts for executive decisions.",
+    "srv-addon-script-title": "Python Automation Pipeline Script",
+    "srv-addon-script-desc": "Delivery of a fully documented Python script to re-run data cleaning on any future batch with one command.",
+    "srv-data-order-btn": "Order Data Cleaning ($<span id=\"btn-data-price-display\">10</span>)",
+    "srv-data-guarantee": "⚡ Absolute numerical accuracy • Comprehensive Data Quality report included upon delivery",
+    "srv-data-studio-title": "Raw Dataset Preview (Raw CSV Stream)",
+    "srv-data-studio-sub": "Click the button to run the Python processing pipeline and fix corrupt values and duplicates.",
+    "srv-data-studio-btn": "Clean Data &amp; Fix Values",
     "proj-num": "06",
     "proj-label": "Selected work",
     "proj-title": "Projects with a <em>purpose.</em>",
@@ -649,6 +682,39 @@
     "serv-3-title": "تحريك الواجهات وتجربة المستخدم",
     "serv-3-prob": "الحركات الثقيلة وغير المدروسة تبطئ تصفح الموقع وتشتت انتباه الزوار.",
     "serv-3-res": "إضافة روح تفاعلية للمواقع باستخدام أحدث تقنيات الأنيميشن السلس دون التأثير على سرعة التصفح.",
+    "tab-portfolio-title": "بناء بورتفوليو احترافي ($10)",
+    "tab-data-title": "تنظيف وتحليل البيانات ($10)",
+    "serv-badge": "الحلول والخبرات المهنية",
+    "serv-kinetic-sub": "مرر الفأرة فوق الحروف لتجميع الكلمة • حلول برمجية احترافية لزيادة عوائد أعمالك",
+    "srv-port-badge": "موثق على مستقل وخمسات",
+    "srv-port-title": "بناء بورتفوليو شخصي احترافي متكامل",
+    "srv-port-desc": "تصميم وبرمجة صفحة هبوط شخصية سريعة ومتجاوبة بهوية فاخرة (Apple HIG)، كود نظيف وتوافق تام مع شاشات الموبايل والريتينا.",
+    "srv-price-label": "سعر الخدمة التفاعلي:",
+    "srv-port-period": "/ مشروع كامل",
+    "srv-port-base-note": "السعر الأساسي يبدأ من 10$ فقط",
+    "srv-addons-header": "إضافات وتطويرات الخدمة المتاحة (Add-ons):",
+    "srv-addon-gsap-title": "إضافة أنيميشن GSAP احترافي",
+    "srv-addon-gsap-cost": "+ $5",
+    "srv-addon-gsap-desc": "حركات تفاعلية سلسة، 3D Levitation للبطاقات، وتأثيرات الإضاءة والنيون لعناصر الموقع.",
+    "srv-addon-deploy-title": "رفع واستضافة الموقع على GitHub Pages",
+    "srv-addon-deploy-cost": "+ $5",
+    "srv-addon-deploy-desc": "إعداد مستودع Git، نشر حي فوري على دومين github.io مجاني مع شهادة أمان SSL كاملة.",
+    "srv-port-order-btn": "طلب الخدمة الآن ($<span id=\"btn-portfolio-price-display\">10</span>)",
+    "srv-port-guarantee": "🛡️ ضمان رضا كامل 100% • كود مفتوح المصدر بدون تكاليف شهرية خفية",
+    "srv-data-badge": "هندسة البيانات وبايثون",
+    "srv-data-title": "تنظيف، معالجة وهيكلة البيانات (Data Cleaning)",
+    "srv-data-desc": "فحص وتجهيز البيانات الضخمة، التعامل مع القيم المفقودة والتكرار، وتوحيد التنسيقات لجعل البيانات جاهزة 100% للتحليل أو النماذج.",
+    "srv-data-period": "/ حتى 5,000 صف",
+    "srv-data-base-note": "السعر الأساسي يبدأ من 10$ لملفات البيانات حتى 5K صف",
+    "srv-addon-dash-title": "لوحة بيانات تفاعلية Dashboard (PowerBI / Plotly)",
+    "srv-addon-dash-desc": "تصميم داشبورد تفاعلي لعرض أهم مؤشرات الأداء والرسوم البيانية التوضيحية لاتخاذ القرارات.",
+    "srv-addon-script-title": "أتمتة التنظيف بسكريبت بايثون Python Pipeline",
+    "srv-addon-script-desc": "تسليم سكريبت Python كامل وموثق لإعادة تطبيق التنظيف على أي ملفات مستقبلية بضغطة زر.",
+    "srv-data-order-btn": "طلب تنظيف البيانات ($<span id=\"btn-data-price-display\">10</span>)",
+    "srv-data-guarantee": "⚡ دقة مطلقة في الأرقام • تقرير Data Quality تفصيلي مع التسليم",
+    "srv-data-studio-title": "معاينة البيانات الأولية (Raw CSV Stream)",
+    "srv-data-studio-sub": "انقر على الزر لتشغيل المعالجة البرمجية وإصلاح القيم التالفة والتكرارات",
+    "srv-data-studio-btn": "تنظيف البيانات وتصحيح القيم",
     "proj-num": "٠٦",
     "proj-label": "المشاريع المختارة",
     "proj-title": "مشاريع برمجية ذات <em>هدف وتأثير.</em>",
@@ -840,6 +906,10 @@
 
     if (typeof syncProjectCounterLanguage === 'function') {
       syncProjectCounterLanguage();
+    }
+
+    if (typeof window.syncServicesPrices === 'function') {
+      window.syncServicesPrices();
     }
 
     if (typeof window.ScrollTrigger !== 'undefined') {
@@ -2957,24 +3027,26 @@
     // 3. Portfolio Configurator ($10 Base + Add-on Toggles)
     // -------------------------------------------------------------
     const portfolioTotalPrice = servicesSection.querySelector('#portfolio-total-price');
-    const btnPortfolioPriceDisplay = servicesSection.querySelector('#btn-portfolio-price-display');
     const addonGsapToggle = servicesSection.querySelector('#addon-gsap-toggle');
     const addonDeployToggle = servicesSection.querySelector('#addon-deploy-toggle');
 
-    // Visual Elements inside Fatma's mini replica
-    const miniFatmaName = servicesSection.querySelector('#mini-fatma-name');
-    const miniBadge1 = servicesSection.querySelector('#mini-badge-1');
-    const miniBadge2 = servicesSection.querySelector('#mini-badge-2');
-    const miniBadge3 = servicesSection.querySelector('#mini-badge-3');
-    const miniCvBtn = servicesSection.querySelector('#mini-cv-btn');
-    const miniGsapIndicator = servicesSection.querySelector('#mini-gsap-indicator');
+    // Visual Elements inside authentic Fatma replica
+    const fatmaTitleFirst = servicesSection.querySelector('.fatma-title-first');
+    const fatmaTitleLast = servicesSection.querySelector('.fatma-title-last');
+    const fatmaEyebrow = servicesSection.querySelector('.fatma-replica-eyebrow');
+    const fatmaArchOuter = servicesSection.querySelector('#fatma-arch-outer');
+    const fCard1 = servicesSection.querySelector('#f-card-1');
+    const fCard2 = servicesSection.querySelector('#f-card-2');
+    const fCard3 = servicesSection.querySelector('#f-card-3');
+    const fatmaActions = servicesSection.querySelectorAll('.fatma-actions-row a');
 
     const miniBrowserUrl = servicesSection.querySelector('#mini-browser-url');
     const miniBadgeText = servicesSection.querySelector('#mini-badge-text');
     const miniBrowserBadge = servicesSection.querySelector('#mini-browser-badge');
+    const miniPulseDot = servicesSection.querySelector('#mini-pulse-dot');
     const deployProgressBar = servicesSection.querySelector('#deploy-progress-bar');
 
-    let gsapTweens = [];
+    let gsapActiveTweens = [];
 
     const updatePortfolioPrice = () => {
       let total = 10;
@@ -2982,81 +3054,127 @@
       if (addonDeployToggle && addonDeployToggle.checked) total += 5;
 
       if (portfolioTotalPrice) portfolioTotalPrice.textContent = total;
-      if (btnPortfolioPriceDisplay) btnPortfolioPriceDisplay.textContent = total;
+      const currentPriceDisplays = servicesSection.querySelectorAll('#btn-portfolio-price-display');
+      currentPriceDisplays.forEach(el => { el.textContent = total; });
+    };
+
+    window.syncServicesPrices = () => {
+      updatePortfolioPrice();
+      if (typeof updateDataPrice === 'function') {
+        updateDataPrice();
+      }
+    };
+
+    const stopGsapMotion = () => {
+      if (typeof gsap !== 'undefined') {
+        const targets = [fCard1, fCard2, fCard3, fatmaArchOuter, fatmaTitleFirst, fatmaTitleLast, fatmaEyebrow, ...Array.from(fatmaActions)].filter(Boolean);
+        targets.forEach(el => gsap.killTweensOf(el));
+        gsap.set(targets, { clearProps: 'all' });
+      }
+      gsapActiveTweens = [];
+
+      // Update badge state
+      if (addonDeployToggle && addonDeployToggle.checked) {
+        if (miniBadgeText) miniBadgeText.textContent = '● Live on GitHub';
+        if (miniBrowserBadge) {
+          miniBrowserBadge.style.background = 'rgba(39, 201, 63, 0.18)';
+          miniBrowserBadge.style.borderColor = '#27c93f';
+          miniBrowserBadge.style.color = '#4ade80';
+        }
+        if (miniPulseDot) miniPulseDot.classList.remove('static-dot');
+      } else {
+        if (miniBadgeText) miniBadgeText.textContent = '● Static HTML';
+        if (miniBrowserBadge) {
+          miniBrowserBadge.style.background = '';
+          miniBrowserBadge.style.borderColor = '';
+          miniBrowserBadge.style.color = '';
+        }
+        if (miniPulseDot) miniPulseDot.classList.add('static-dot');
+      }
+    };
+
+    const startGsapMotion = () => {
+      if (typeof gsap === 'undefined') return;
+      stopGsapMotion(); // Ensure clean slate
+
+      // Badge indicator: Glowing green ⚡ GSAP Motion Active
+      if (miniBadgeText) miniBadgeText.textContent = '⚡ GSAP Motion Active';
+      if (miniBrowserBadge) {
+        miniBrowserBadge.style.background = 'rgba(39, 201, 63, 0.22)';
+        miniBrowserBadge.style.borderColor = '#27c93f';
+        miniBrowserBadge.style.color = '#4ade80';
+      }
+      if (miniPulseDot) miniPulseDot.classList.remove('static-dot');
+
+      // 1. Staggered 3D reveal on title words & actions
+      const textEls = [fatmaEyebrow, fatmaTitleFirst, fatmaTitleLast, ...Array.from(fatmaActions)].filter(Boolean);
+      gsap.fromTo(textEls, 
+        { y: 14, opacity: 0.65, rotationX: 12 }, 
+        { y: 0, opacity: 1, rotationX: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' }
+      );
+
+      // 2. Levitation bobbing for 3 floating cards (different speeds & y offsets)
+      if (fCard1) {
+        gsapActiveTweens.push(
+          gsap.to(fCard1, {
+            y: -11,
+            rotationZ: 2,
+            duration: 2.2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          })
+        );
+      }
+
+      if (fCard2) {
+        gsapActiveTweens.push(
+          gsap.to(fCard2, {
+            y: 12,
+            rotationZ: -2.5,
+            duration: 2.8,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          })
+        );
+      }
+
+      if (fCard3) {
+        gsapActiveTweens.push(
+          gsap.to(fCard3, {
+            y: -9,
+            rotationZ: 1.5,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          })
+        );
+      }
+
+      // 3. Arched portrait frame glowing and gentle breathing
+      if (fatmaArchOuter) {
+        gsapActiveTweens.push(
+          gsap.to(fatmaArchOuter, {
+            scale: 1.025,
+            boxShadow: '0 20px 45px rgba(197, 160, 89, 0.45), 0 0 25px rgba(197, 160, 89, 0.35)',
+            duration: 2.3,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          })
+        );
+      }
     };
 
     if (addonGsapToggle) {
       addonGsapToggle.addEventListener('change', () => {
         updatePortfolioPrice();
-
         if (addonGsapToggle.checked) {
-          // Trigger GSAP magic inside Fatma's mini portfolio!
-          if (typeof gsap !== 'undefined') {
-            // Heading glow & subtle letter animation
-            if (miniFatmaName) {
-              gsap.to(miniFatmaName, {
-                color: '#C1E1C1',
-                textShadow: '0 0 18px rgba(142, 182, 155, 0.75)',
-                duration: 0.4
-              });
-            }
-
-            // Floating 3D Levitation for badges
-            const badges = [miniBadge1, miniBadge2, miniBadge3].filter(Boolean);
-            badges.forEach((b, idx) => {
-              gsap.killTweensOf(b);
-              const tween = gsap.to(b, {
-                y: -9,
-                rotationZ: idx % 2 === 0 ? 2 : -2,
-                duration: 1.8 + idx * 0.3,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-              });
-              gsapTweens.push(tween);
-            });
-
-            // Pulse CTA button
-            if (miniCvBtn) {
-              gsap.to(miniCvBtn, {
-                boxShadow: '0 0 15px rgba(142, 182, 155, 0.8)',
-                repeat: -1,
-                yoyo: true,
-                duration: 1.2
-              });
-            }
-
-            // Show indicator
-            if (miniGsapIndicator) {
-              gsap.to(miniGsapIndicator, { opacity: 1, duration: 0.35 });
-            }
-          }
+          startGsapMotion();
         } else {
-          // Turn off GSAP animations
-          if (typeof gsap !== 'undefined') {
-            const badges = [miniBadge1, miniBadge2, miniBadge3].filter(Boolean);
-            badges.forEach((b) => {
-              gsap.killTweensOf(b);
-              gsap.to(b, { y: 0, rotationZ: 0, duration: 0.4 });
-            });
-
-            if (miniFatmaName) {
-              gsap.to(miniFatmaName, {
-                color: '#f8fafc',
-                textShadow: 'none',
-                duration: 0.3
-              });
-            }
-
-            if (miniCvBtn) {
-              gsap.killTweensOf(miniCvBtn);
-              gsap.set(miniCvBtn, { boxShadow: 'none' });
-            }
-
-            if (miniGsapIndicator) {
-              gsap.to(miniGsapIndicator, { opacity: 0, duration: 0.3 });
-            }
-          }
+          stopGsapMotion();
         }
       });
     }
@@ -3079,11 +3197,14 @@
                     miniBrowserUrl.textContent = 'https://fatma-ebied.github.io';
                     miniBrowserUrl.style.color = '#8EB69B';
                   }
-                  if (miniBadgeText) miniBadgeText.textContent = '● Live on GitHub';
-                  if (miniBrowserBadge) {
-                    miniBrowserBadge.style.background = 'rgba(39, 201, 63, 0.18)';
-                    miniBrowserBadge.style.borderColor = '#27c93f';
-                    miniBrowserBadge.style.color = '#4ade80';
+                  if (!addonGsapToggle || !addonGsapToggle.checked) {
+                    if (miniBadgeText) miniBadgeText.textContent = '● Live on GitHub';
+                    if (miniBrowserBadge) {
+                      miniBrowserBadge.style.background = 'rgba(39, 201, 63, 0.18)';
+                      miniBrowserBadge.style.borderColor = '#27c93f';
+                      miniBrowserBadge.style.color = '#4ade80';
+                    }
+                    if (miniPulseDot) miniPulseDot.classList.remove('static-dot');
                   }
                 }
               });
@@ -3096,11 +3217,14 @@
             miniBrowserUrl.textContent = 'https://fatma-portfolio.dev';
             miniBrowserUrl.style.color = '';
           }
-          if (miniBadgeText) miniBadgeText.textContent = 'Preview';
-          if (miniBrowserBadge) {
-            miniBrowserBadge.style.background = '';
-            miniBrowserBadge.style.borderColor = '';
-            miniBrowserBadge.style.color = '';
+          if (!addonGsapToggle || !addonGsapToggle.checked) {
+            if (miniBadgeText) miniBadgeText.textContent = '● Static HTML';
+            if (miniBrowserBadge) {
+              miniBrowserBadge.style.background = '';
+              miniBrowserBadge.style.borderColor = '';
+              miniBrowserBadge.style.color = '';
+            }
+            if (miniPulseDot) miniPulseDot.classList.add('static-dot');
           }
         }
       });
@@ -3149,7 +3273,8 @@
         if (isCleaned) return;
         isCleaned = true;
 
-        if (btnRunCleanText) btnRunCleanText.textContent = 'جاري التنظيف والمعالجة...';
+        const isAr = document.documentElement.lang === 'ar';
+        if (btnRunCleanText) btnRunCleanText.textContent = isAr ? 'جاري التنظيف والمعالجة...' : 'Cleaning & Validating Data...';
 
         // 1. Run Scan Bar
         if (typeof gsap !== 'undefined' && dataScanBar) {
@@ -3205,9 +3330,9 @@
           if (metricNulls) metricNulls.textContent = '0';
           if (metricDupes) metricDupes.textContent = '0';
           if (metricScore) metricScore.textContent = '100%';
-          if (dataStudioStatus) dataStudioStatus.textContent = 'Cleaned & Ready';
+          if (dataStudioStatus) dataStudioStatus.textContent = isAr ? 'جاهز ونظيف' : 'Cleaned & Ready';
 
-          if (btnRunCleanText) btnRunCleanText.textContent = '✓ تم تنظيف وتصحيح البيانات بنجاح';
+          if (btnRunCleanText) btnRunCleanText.textContent = isAr ? '✓ تم تنظيف وتصحيح البيانات بنجاح' : '✓ Data Cleaned & Validated Successfully';
           if (btnRunClean) {
             btnRunClean.style.background = 'linear-gradient(135deg, #10b981, #059669)';
             btnRunClean.style.borderColor = '#34d399';
