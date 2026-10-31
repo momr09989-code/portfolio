@@ -312,15 +312,15 @@
     "serv-title": "Useful technical work, <em>without the noise.</em>",
     "serv-prob-lbl": "Problem:",
     "serv-res-lbl": "Result:",
-    "serv-1-title": "Data Analysis &amp; Engineering",
-    "serv-1-prob": "Business data is scattered, unclear, or hard to use.",
-    "serv-1-res": "A cleaner path from raw data to actionable insights and informed decisions.",
-    "serv-2-title": "Database Design",
-    "serv-2-prob": "Information needs a reliable, organized home.",
-    "serv-2-res": "A structured relational database design built for clarity, consistency, and growth.",
-    "serv-3-title": "Network &amp; Security Basics Assessment",
-    "serv-3-prob": "Basic network risks can remain unnoticed.",
-    "serv-3-res": "Clear visibility into security fundamentals and practical next steps to improve them.",
+    "serv-1-title": "Interactive Web UI/UX",
+    "serv-1-prob": "Static interfaces struggle to engage visitors and convey premium value.",
+    "serv-1-res": "Transforming ideas and concepts into responsive, high-performance digital experiences.",
+    "serv-2-title": "Luxury Personal Portfolios",
+    "serv-2-prob": "Generic templates fail to reflect your professional identity and credibility.",
+    "serv-2-res": "Bespoke, high-end portfolio websites designed to highlight your expertise and convert clients.",
+    "serv-3-title": "Motion &amp; GSAP Experiences",
+    "serv-3-prob": "Heavy or unoptimized animations cause stutter and compromise page speed.",
+    "serv-3-res": "Infusing dynamic character into web interfaces through lightweight, fluid animations.",
     "proj-num": "06",
     "proj-label": "Selected work",
     "proj-title": "Projects with a <em>purpose.</em>",
@@ -621,15 +621,15 @@
     "serv-title": "أعمال تقنية ذات قيمة حقيقية، <em>بدون تعقيد.</em>",
     "serv-prob-lbl": "المشكلة:",
     "serv-res-lbl": "النتيجة:",
-    "serv-1-title": "تحليل وهندسة البيانات",
-    "serv-1-prob": "البيانات متناثرة أو غير واضحة ويصعب استخراج قيمة ملموسة منها.",
-    "serv-1-res": "مسار منظم يحول البيانات الخام إلى رؤى واضحة وقرارات أعمال مدروسة.",
-    "serv-2-title": "تصميم وتطوير قواعد البيانات",
-    "serv-2-prob": "المعلومات بحاجة إلى بنية متماسكة ومنظمة تضمن عدم التكرار وضياع البيانات.",
-    "serv-2-res": "تصميم مخطط علائقي سليم يضمن سلامة البيانات وقابلية التوسع المستقبلي.",
-    "serv-3-title": "تقييم أساسيات الشبكات والأمان",
-    "serv-3-prob": "المخاطر والثغرات البسيطة في الشبكة قد تمر دون ملاحظة وتؤدي لاختراقات.",
-    "serv-3-res": "رؤية شاملة لوضع الأمان الحالي وخطوات عملية واضحة لسد الثغرات وتحصين الأنظمة.",
+    "serv-1-title": "تصميم وتطوير واجهات الويب التفاعلية",
+    "serv-1-prob": "الواجهات التقليدية الثابتة تفتقر للجاذبية وتفشل في تحويل الزوار إلى عملاء.",
+    "serv-1-res": "تحويل الأفكار والتصميمات إلى واجهات رقمية عصرية سريعة الاستجابة.",
+    "serv-2-title": "بناء معارض الأعمال الاحترافية",
+    "serv-2-prob": "القوالب الجاهزة المكررة تعجز عن إبراز مكانتك المهنية ومصداقيتك.",
+    "serv-2-res": "تصميم وبرمجة مواقع شخصية فخمة تبرز هويتك المهنية وتجذب العملاء.",
+    "serv-3-title": "تحريك الواجهات وتجربة المستخدم",
+    "serv-3-prob": "الحركات الثقيلة وغير المدروسة تبطئ تصفح الموقع وتشتت انتباه الزوار.",
+    "serv-3-res": "إضافة روح تفاعلية للمواقع باستخدام أحدث تقنيات الأنيميشن السلس دون التأثير على سرعة التصفح.",
     "proj-num": "٠٦",
     "proj-label": "المشاريع المختارة",
     "proj-title": "مشاريع برمجية ذات <em>هدف وتأثير.</em>",
@@ -2429,4 +2429,168 @@
     { passive: true }
   );
 })();
+
+/* === PHASE 1: SERVICES CANVAS ANIMATION === */
+(() => {
+  const initServicesCanvas = () => {
+    const canvas = document.getElementById('services-canvas');
+    const section = document.getElementById('services');
+    if (!canvas || !section || !canvas.getContext) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width = 0;
+    let height = 0;
+    let animationId = null;
+    let isVisible = false;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    const resize = () => {
+      const rect = section.getBoundingClientRect();
+      width = Math.max(rect.width, 300);
+      height = Math.max(rect.height, 200);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const isMobile = () => window.innerWidth < 768;
+    let particles = [];
+
+    const initParticles = () => {
+      const nodeCount = isMobile() ? 22 : 44;
+      particles = Array.from({ length: nodeCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * (prefersReduced ? 0.08 : 0.35),
+        vy: (Math.random() - 0.5) * (prefersReduced ? 0.08 : 0.35),
+        radius: Math.random() * 1.5 + 1.2,
+        baseAlpha: Math.random() * 0.35 + 0.25
+      }));
+    };
+
+    resize();
+    initParticles();
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+      const isLight = document.body.classList.contains('light-mode');
+      const connectionDist = isMobile() ? 85 : 120;
+
+      // Update & Draw Nodes
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        else if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        else if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = isLight
+          ? `rgba(22, 56, 50, ${p.baseAlpha * 0.7})`
+          : `rgba(142, 182, 155, ${p.baseAlpha})`;
+        ctx.fill();
+
+        // Connect nearby nodes
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < connectionDist) {
+            const lineAlpha = (1 - dist / connectionDist) * (isLight ? 0.12 : 0.2);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = isLight
+              ? `rgba(22, 56, 50, ${lineAlpha})`
+              : `rgba(142, 182, 155, ${lineAlpha})`;
+            ctx.lineWidth = 0.85;
+            ctx.stroke();
+          }
+        }
+      }
+
+      if (isVisible && !document.hidden) {
+        animationId = requestAnimationFrame(render);
+      } else {
+        animationId = null;
+      }
+    };
+
+    const start = () => {
+      if (!animationId && !document.hidden) {
+        animationId = requestAnimationFrame(render);
+      }
+    };
+
+    const stop = () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    };
+
+    // IntersectionObserver to auto-pause when scrolled out of view
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isVisible = entry.isIntersecting;
+            if (isVisible) {
+              start();
+            } else {
+              stop();
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(section);
+    } else {
+      isVisible = true;
+      start();
+    }
+
+    // Auto-pause when browser tab is inactive / minimized
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stop();
+      } else if (isVisible) {
+        start();
+      }
+    });
+
+    // Window resize handler with debounce
+    let resizeTimer = null;
+    window.addEventListener(
+      'resize',
+      () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          resize();
+          initParticles();
+        }, 150);
+      },
+      { passive: true }
+    );
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServicesCanvas);
+  } else {
+    initServicesCanvas();
+  }
+})();
+
 

@@ -5034,3 +5034,199 @@ body.light-mode .project-tech-tags span,
   }
 }
 
+/* === PHASE 1: ANIMATED SERVICES SECTION === */
+/* Scoped luxury styles for animated services section, canvas, cards & icon slots */
+
+.services-section {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  padding-top: 100px;
+  padding-bottom: 90px;
+}
+
+.services-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
+}
+
+body.light-mode .services-canvas,
+[data-theme="light"] .services-canvas {
+  opacity: 0.28 !important;
+}
+
+/* Elevate section content above canvas layer */
+.services-section > .section-heading,
+.services-section > .services-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* 3-Column Luxury Services Grid */
+.services-section .services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* Luxury Glassmorphic Service Card */
+.services-section .service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px;
+  border-radius: 14px;
+  background: rgba(22, 56, 50, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(142, 182, 155, 0.25) !important;
+  box-shadow: 0 16px 40px rgba(5, 31, 32, 0.55), 0 0 0 1px rgba(142, 182, 155, 0.08) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.services-section .service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(142, 182, 155, 0.5) !important;
+  box-shadow: 0 20px 48px rgba(5, 31, 32, 0.7), 0 0 25px rgba(142, 182, 155, 0.18) !important;
+}
+
+body.light-mode .services-section .service-card,
+[data-theme="light"] .services-section .service-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(35, 83, 71, 0.2) !important;
+  box-shadow: 0 12px 30px rgba(5, 31, 32, 0.08) !important;
+}
+
+body.light-mode .services-section .service-card:hover,
+[data-theme="light"] .services-section .service-card:hover {
+  border-color: rgba(35, 83, 71, 0.4) !important;
+  box-shadow: 0 16px 36px rgba(5, 31, 32, 0.12) !important;
+}
+
+/* Canva SVG / PNG Slot Container */
+.service-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  background: rgba(142, 182, 155, 0.12);
+  border: 1px solid rgba(142, 182, 155, 0.25);
+  color: #8EB69B;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.service-icon-box .service-svg,
+.service-icon-box img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.services-section .service-card:hover .service-icon-box {
+  transform: scale(1.08);
+  background: rgba(142, 182, 155, 0.22);
+  border-color: #8EB69B;
+  color: #DAF1DE;
+}
+
+body.light-mode .service-icon-box,
+[data-theme="light"] .service-icon-box {
+  background: rgba(35, 83, 71, 0.08);
+  border-color: rgba(35, 83, 71, 0.2);
+  color: #163832;
+}
+
+body.light-mode .services-section .service-card:hover .service-icon-box,
+[data-theme="light"] .services-section .service-card:hover .service-icon-box {
+  background: rgba(35, 83, 71, 0.15);
+  border-color: #163832;
+  color: #051F20;
+}
+
+/* Card Typography & Layout */
+.services-section .service-card h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text, #DAF1DE);
+  font-family: 'Noto Kufi Arabic', var(--serif, 'Manrope', sans-serif);
+}
+
+.services-section .service-card p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  margin: 0 0 10px;
+  color: var(--muted, #8EB69B);
+  font-family: 'Noto Kufi Arabic', var(--serif, 'Manrope', sans-serif);
+}
+
+.services-section .service-card b {
+  color: var(--text, #DAF1DE);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-inline-end: 4px;
+}
+
+body.light-mode .services-section .service-card h3,
+[data-theme="light"] .services-section .service-card h3 {
+  color: #051F20;
+}
+
+body.light-mode .services-section .service-card p,
+[data-theme="light"] .services-section .service-card p {
+  color: #163832;
+}
+
+body.light-mode .services-section .service-card b,
+[data-theme="light"] .services-section .service-card b {
+  color: #051F20;
+}
+
+/* Responsive Rules for Services Section */
+@media (max-width: 900px) {
+  .services-section .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .services-section {
+    padding-top: 65px;
+    padding-bottom: 60px;
+  }
+  .services-section .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .services-section .service-card {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 375px) {
+  .services-section .service-card {
+    padding: 20px 16px;
+  }
+  .services-section .service-card h3 {
+    font-size: 18px;
+  }
+}
+
+

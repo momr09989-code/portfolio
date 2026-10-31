@@ -943,11 +943,47 @@
 
       <!-- 6. Services -->
       <section id="services" class="section section-shell services-section">
-        <div class="section-heading reveal"><div class="section-label"><span data-i18n="serv-num">05</span> <span data-i18n="serv-label">Services</span></div><h2 class="section-title" data-i18n="serv-title" data-aos="fade-up">Useful technical work, <em>without the noise.</em></h2></div>
+        <canvas id="services-canvas" class="services-canvas" aria-hidden="true"></canvas>
+        <div class="section-heading reveal">
+          <div class="section-label"><span data-i18n="serv-num">05</span> <span data-i18n="serv-label">Services</span></div>
+          <h2 class="section-title" data-i18n="serv-title" data-aos="fade-up">Useful technical work, <em>without the noise.</em></h2>
+        </div>
         <div class="services-grid">
-          <article class="service-card reveal"><span class="service-icon">⌁</span><h3 data-i18n="serv-1-title">Data Analysis &amp; Engineering</h3><p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-1-prob">Business data is scattered, unclear, or hard to use.</span></p><p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-1-res">A cleaner path from raw data to actionable insights and informed decisions.</span></p></article>
-          <article class="service-card reveal"><span class="service-icon">▣</span><h3 data-i18n="serv-2-title">Database Design</h3><p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-2-prob">Information needs a reliable, organized home.</span></p><p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-2-res">A structured relational database design built for clarity, consistency, and growth.</span></p></article>
-          <article class="service-card reveal"><span class="service-icon">◎</span><h3 data-i18n="serv-3-title">Network &amp; Security Basics Assessment</h3><p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-3-prob">Basic network risks can remain unnoticed.</span></p><p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-3-res">Clear visibility into security fundamentals and practical next steps to improve them.</span></p></article>
+          <article class="service-card reveal">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg class="service-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <h3 data-i18n="serv-1-title">Interactive Web UI/UX</h3>
+            <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-1-prob">Static interfaces struggle to engage visitors and convey premium value.</span></p>
+            <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-1-res">Transforming ideas and concepts into responsive, high-performance digital experiences.</span></p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg class="service-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3 data-i18n="serv-2-title">Luxury Personal Portfolios</h3>
+            <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-2-prob">Generic templates fail to reflect your professional identity and credibility.</span></p>
+            <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-2-res">Bespoke, high-end portfolio websites designed to highlight your expertise and convert clients.</span></p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg class="service-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="serv-3-title">Motion &amp; GSAP Experiences</h3>
+            <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-3-prob">Heavy or unoptimized animations cause stutter and compromise page speed.</span></p>
+            <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-3-res">Infusing dynamic character into web interfaces through lightweight, fluid animations.</span></p>
+          </article>
         </div>
       </section>
 
