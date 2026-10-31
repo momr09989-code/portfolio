@@ -2820,3 +2820,123 @@
 
 
 
+
+/* ========================================================================= */
+/* === SERVICES SECTION GSAP TAB INTERACTIVITY (CROSSFADE + SLIDE-IN) === */
+/* ========================================================================= */
+(() => {
+  const initInteractiveServicesTabs = () => {
+    const servicesSection = document.getElementById('services');
+    if (!servicesSection) return;
+
+    const tabBtns = servicesSection.querySelectorAll('.services-tab-btn');
+    const pricingCards = servicesSection.querySelectorAll('.services-pricing-card');
+    const showcaseImg = servicesSection.querySelector('#services-showcase-img');
+    const captionKicker = servicesSection.querySelector('#services-caption-kicker');
+    const captionText = servicesSection.querySelector('#services-caption-text');
+
+    if (!tabBtns.length || !pricingCards.length) return;
+
+    const prefersReduced =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const activateServiceTab = (clickedBtn) => {
+      if (!clickedBtn || clickedBtn.classList.contains('active')) return;
+
+      const targetCardId = clickedBtn.getAttribute('data-service-target');
+      const nextImgSrc = clickedBtn.getAttribute('data-service-img');
+      const nextKicker = clickedBtn.getAttribute('data-service-kicker');
+      const nextCaption = clickedBtn.getAttribute('data-service-caption');
+      const targetCard = servicesSection.querySelector(`#${targetCardId}`);
+
+      // 1. Update ARIA & active states on tabs
+      tabBtns.forEach((btn) => {
+        const isCurrent = btn === clickedBtn;
+        btn.classList.toggle('active', isCurrent);
+        btn.setAttribute('aria-selected', String(isCurrent));
+        btn.setAttribute('tabindex', isCurrent ? '0' : '-1');
+      });
+
+      // 2. Toggle Pricing Cards & Slide In Active Card on the Right
+      pricingCards.forEach((card) => {
+        const isTarget = card === targetCard;
+        card.classList.toggle('is-active', isTarget);
+        if (isTarget) {
+          card.removeAttribute('hidden');
+        } else {
+          card.setAttribute('hidden', '');
+        }
+      });
+
+      if (targetCard && typeof window.gsap !== 'undefined' && !prefersReduced) {
+        window.gsap.killTweensOf(targetCard);
+        window.gsap.fromTo(
+          targetCard,
+          { opacity: 0, x: 28, y: 6 },
+          { opacity: 1, x: 0, y: 0, duration: 0.42, ease: 'power3.out', clearProps: 'transform' }
+        );
+
+        const featureItems = targetCard.querySelectorAll('.spc-feature-item');
+        if (featureItems.length) {
+          window.gsap.killTweensOf(featureItems);
+          window.gsap.fromTo(
+            featureItems,
+            { opacity: 0, y: 8 },
+            { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: 'power2.out', delay: 0.06 }
+          );
+        }
+      }
+
+      // 3. Crossfade & Scale the Visual Showcase Image on the Left
+      if (showcaseImg && nextImgSrc) {
+        if (typeof window.gsap !== 'undefined' && !prefersReduced) {
+          window.gsap.killTweensOf(showcaseImg);
+          window.gsap.to(showcaseImg, {
+            opacity: 0.18,
+            scale: 0.96,
+            duration: 0.18,
+            ease: 'power2.in',
+            onComplete: () => {
+              showcaseImg.src = nextImgSrc;
+              if (captionKicker && nextKicker) captionKicker.textContent = nextKicker;
+              if (captionText && nextCaption) captionText.textContent = nextCaption;
+              window.gsap.fromTo(
+                showcaseImg,
+                { opacity: 0.18, scale: 1.03 },
+                { opacity: 1, scale: 1, duration: 0.42, ease: 'power3.out' }
+              );
+            }
+          });
+        } else {
+          showcaseImg.src = nextImgSrc;
+          if (captionKicker && nextKicker) captionKicker.textContent = nextKicker;
+          if (captionText && nextCaption) captionText.textContent = nextCaption;
+        }
+      }
+    };
+
+    tabBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', () => activateServiceTab(btn));
+
+      // Keyboard Left/Right Arrow Navigation for Accessibility
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const dir = e.key === 'ArrowRight' ? 1 : -1;
+          const nextIdx = (idx + dir + tabBtns.length) % tabBtns.length;
+          const nextBtn = tabBtns[nextIdx];
+          if (nextBtn) {
+            nextBtn.focus();
+            activateServiceTab(nextBtn);
+          }
+        }
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInteractiveServicesTabs);
+  } else {
+    initInteractiveServicesTabs();
+  }
+})();

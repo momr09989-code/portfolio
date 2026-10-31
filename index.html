@@ -942,48 +942,311 @@
       </section>
 
       <!-- 6. Services -->
-      <section id="services" class="section section-shell services-section">
+      <section id="services" class="section section-shell services-section" aria-labelledby="services-heading-title">
         <canvas id="services-canvas" class="services-canvas" aria-hidden="true"></canvas>
-        <div class="section-heading reveal">
+        <div class="section-heading services-heading reveal">
           <div class="section-label"><span data-i18n="serv-num">05</span> <span data-i18n="serv-label">Services</span></div>
-          <h2 class="section-title" data-i18n="serv-title" data-aos="fade-up">Useful technical work, <em>without the noise.</em></h2>
+          <h2 id="services-heading-title" class="section-title services-neon-title" data-aos="fade-up">Services</h2>
+          <p class="section-subtitle services-neon-subtitle" data-i18n="serv-title">Useful technical work, <em>without the noise.</em></p>
         </div>
-        <div class="services-grid">
-          <article class="service-card reveal">
-            <div class="service-icon-box" aria-hidden="true">
-              <svg class="service-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="3" y1="9" x2="21" y2="9"></line>
-                <line x1="9" y1="21" x2="9" y2="9"></line>
-              </svg>
+
+        <div class="services-split-grid reveal">
+          <!-- Left Column: Visual Showcase -->
+          <div class="services-visual-col">
+            <div class="services-showcase-frame">
+              <div class="services-showcase-topbar" aria-hidden="true">
+                <div class="services-window-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <div class="services-showcase-pill" id="services-showcase-pill">mostaql.com/u/omar_ebied10</div>
+                <span class="services-showcase-status">
+                  <span class="services-status-dot"></span>
+                  Verified
+                </span>
+              </div>
+              <div class="services-showcase-viewport">
+                <img
+                  src="assets/mockup/Screenshot 2026-10-30 012445.jpg"
+                  onerror="this.onerror=null;this.src='Screenshot 2026-10-30 012445.jpg';"
+                  alt="Web UI/UX &amp; Interactive Architecture Visual Showcase"
+                  id="services-showcase-img"
+                  class="services-showcase-img"
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                />
+                <div class="services-showcase-caption">
+                  <span class="services-caption-kicker" id="services-caption-kicker">01 / WEB UI/UX</span>
+                  <p class="services-caption-text" id="services-caption-text">Apple-grade interfaces engineered for clarity, speed, and conversion.</p>
+                </div>
+              </div>
             </div>
-            <h3 data-i18n="serv-1-title">تطوير واجهات رقمية متكاملة</h3>
-            <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-1-prob">Static interfaces struggle to engage visitors and convey premium value.</span></p>
-            <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-1-res">Transforming ideas and concepts into responsive, high-performance digital experiences.</span></p>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon-box" aria-hidden="true">
-              <svg class="service-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
+          </div>
+
+          <!-- Right Column: 3 Interactive Tabs + Mostaql-Style Pricing Cards -->
+          <div class="services-interactive-col">
+            <div class="services-tabs-bar" role="tablist" aria-label="Services Categories">
+              <button
+                type="button"
+                class="services-tab-btn active"
+                role="tab"
+                id="srv-tab-uiux"
+                aria-selected="true"
+                aria-controls="srv-card-uiux"
+                tabindex="0"
+                data-service-target="srv-card-uiux"
+                data-service-img="assets/mockup/Screenshot 2026-10-30 012445.jpg"
+                data-service-kicker="01 / WEB UI/UX"
+                data-service-caption="Apple-grade interfaces engineered for clarity, speed, and conversion."
+              >
+                <svg class="services-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <span>Web UI/UX</span>
+              </button>
+
+              <button
+                type="button"
+                class="services-tab-btn"
+                role="tab"
+                id="srv-tab-gsap"
+                aria-selected="false"
+                aria-controls="srv-card-gsap"
+                tabindex="-1"
+                data-service-target="srv-card-gsap"
+                data-service-img="assets/mockup/Screenshot 2026-10-30 012530.png"
+                data-service-kicker="02 / GSAP ANIMATIONS"
+                data-service-caption="60fps hardware-accelerated motion choreography, ScrollTrigger &amp; Lenis."
+              >
+                <svg class="services-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>GSAP Animations</span>
+              </button>
+
+              <button
+                type="button"
+                class="services-tab-btn"
+                role="tab"
+                id="srv-tab-data"
+                aria-selected="false"
+                aria-controls="srv-card-data"
+                tabindex="-1"
+                data-service-target="srv-card-data"
+                data-service-img="assets/mockup/Screenshot 2026-10-30 012548.jpg"
+                data-service-kicker="03 / DATA CLEANING"
+                data-service-caption="Automated Python &amp; Pandas ETL pipelines, SQL normalization &amp; validation."
+              >
+                <svg class="services-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+                <span>Data Cleaning</span>
+              </button>
             </div>
-            <h3 data-i18n="serv-2-title">بناء معارض الأعمال الاحترافية</h3>
-            <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-2-prob">Generic templates fail to reflect your professional identity and credibility.</span></p>
-            <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-2-res">Bespoke, high-end portfolio websites designed to highlight your expertise and convert clients.</span></p>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon-box" aria-hidden="true">
-              <svg class="service-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
-              </svg>
+
+            <!-- Mostaql-Style Pricing Cards Container -->
+            <div class="services-pricing-stage">
+              <!-- Card 1: Web UI/UX -->
+              <article
+                class="services-pricing-card is-active"
+                id="srv-card-uiux"
+                role="tabpanel"
+                aria-labelledby="srv-tab-uiux"
+              >
+                <div class="spc-header">
+                  <div class="spc-title-group">
+                    <div class="spc-platform-badge">
+                      <span class="spc-verified-dot" aria-hidden="true"></span>
+                      <span>Mostaql Featured Package</span>
+                    </div>
+                    <h3 class="spc-title">Bespoke Web UI/UX Architecture</h3>
+                    <p class="spc-subtitle">Executive portfolios, landing pages, and bilingual web systems built to Apple HIG standards.</p>
+                  </div>
+                  <div class="spc-price-box">
+                    <span class="spc-price-label">Starting at</span>
+                    <strong class="spc-price-amount">$150</strong>
+                    <span class="spc-price-unit">per project</span>
+                  </div>
+                </div>
+
+                <div class="spc-meta-strip">
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Delivery: <strong>4–6 Days</strong></span>
+                  </div>
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    <span>Revisions: <strong>Unlimited</strong></span>
+                  </div>
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>Rating: <strong>5.0 ★ (100%)</strong></span>
+                  </div>
+                </div>
+
+                <ul class="spc-features-list">
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Responsive mobile-first CSS Grid &amp; Glassmorphic surface system</span>
+                  </li>
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Full bilingual support (RTL Arabic &amp; LTR English) + Light/Dark modes</span>
+                  </li>
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>WCAG AA accessibility compliance, SEO schema &amp; sub-second LCP</span>
+                  </li>
+                </ul>
+
+                <div class="spc-footer">
+                  <a href="https://mostaql.com/u/omar_ebied10" target="_blank" rel="noopener noreferrer" class="button button-primary spc-cta-btn">
+                    <span>Hire on Mostaql</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                  <a href="#contact" class="button button-ghost spc-secondary-btn">
+                    <span>Request Custom Quote</span>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Card 2: GSAP Animations -->
+              <article
+                class="services-pricing-card"
+                id="srv-card-gsap"
+                role="tabpanel"
+                aria-labelledby="srv-tab-gsap"
+                hidden
+              >
+                <div class="spc-header">
+                  <div class="spc-title-group">
+                    <div class="spc-platform-badge">
+                      <span class="spc-verified-dot" aria-hidden="true"></span>
+                      <span>Motion Engineering Tier</span>
+                    </div>
+                    <h3 class="spc-title">GSAP &amp; Interactive Motion Systems</h3>
+                    <p class="spc-subtitle">Choreographed scroll storytelling, 3D parallax layers, and tactile micro-interactions.</p>
+                  </div>
+                  <div class="spc-price-box">
+                    <span class="spc-price-label">Starting at</span>
+                    <strong class="spc-price-amount">$110</strong>
+                    <span class="spc-price-unit">per module</span>
+                  </div>
+                </div>
+
+                <div class="spc-meta-strip">
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Delivery: <strong>2–4 Days</strong></span>
+                  </div>
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    <span>FPS Target: <strong>Locked 60fps</strong></span>
+                  </div>
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>Rating: <strong>5.0 ★ (100%)</strong></span>
+                  </div>
+                </div>
+
+                <ul class="spc-features-list">
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>GSAP ScrollTrigger timelines, pinned sections &amp; Lenis smooth scroll</span>
+                  </li>
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>3D hardware-accelerated card tilt, magnetic buttons &amp; SVG morphing</span>
+                  </li>
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Zero layout shift (CLS &lt; 0.05) with full <code>prefers-reduced-motion</code> support</span>
+                  </li>
+                </ul>
+
+                <div class="spc-footer">
+                  <a href="https://mostaql.com/u/omar_ebied10" target="_blank" rel="noopener noreferrer" class="button button-primary spc-cta-btn">
+                    <span>Hire on Mostaql</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                  <a href="#contact" class="button button-ghost spc-secondary-btn">
+                    <span>Request Custom Quote</span>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Card 3: Data Cleaning -->
+              <article
+                class="services-pricing-card"
+                id="srv-card-data"
+                role="tabpanel"
+                aria-labelledby="srv-tab-data"
+                hidden
+              >
+                <div class="spc-header">
+                  <div class="spc-title-group">
+                    <div class="spc-platform-badge">
+                      <span class="spc-verified-dot" aria-hidden="true"></span>
+                      <span>Data Engineering Tier</span>
+                    </div>
+                    <h3 class="spc-title">Data Cleaning &amp; SQL ETL Pipelines</h3>
+                    <p class="spc-subtitle">Transforming messy, raw datasets into normalized, analysis-ready relational tables.</p>
+                  </div>
+                  <div class="spc-price-box">
+                    <span class="spc-price-label">Starting at</span>
+                    <strong class="spc-price-amount">$95</strong>
+                    <span class="spc-price-unit">per dataset</span>
+                  </div>
+                </div>
+
+                <div class="spc-meta-strip">
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Delivery: <strong>1–3 Days</strong></span>
+                  </div>
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    <span>Accuracy: <strong>100% Validated</strong></span>
+                  </div>
+                  <div class="spc-meta-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>Stack: <strong>Python · Pandas · SQL</strong></span>
+                  </div>
+                </div>
+
+                <ul class="spc-features-list">
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Automated missing-value imputation, deduplication &amp; outlier detection</span>
+                  </li>
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>3NF/BCNF relational database normalization &amp; MS SQL Server indexing</span>
+                  </li>
+                  <li class="spc-feature-item">
+                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Reproducible Jupyter/Python scripts + clean CSV, Parquet, or SQL exports</span>
+                  </li>
+                </ul>
+
+                <div class="spc-footer">
+                  <a href="https://mostaql.com/u/omar_ebied10" target="_blank" rel="noopener noreferrer" class="button button-primary spc-cta-btn">
+                    <span>Hire on Mostaql</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                  <a href="#contact" class="button button-ghost spc-secondary-btn">
+                    <span>Request Custom Quote</span>
+                  </a>
+                </div>
+              </article>
             </div>
-            <h3 data-i18n="serv-3-title">تحريك الواجهات وتجربة المستخدم</h3>
-            <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-3-prob">Heavy or unoptimized animations cause stutter and compromise page speed.</span></p>
-            <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-3-res">Infusing dynamic character into web interfaces through lightweight, fluid animations.</span></p>
-          </article>
+          </div>
         </div>
       </section>
 
