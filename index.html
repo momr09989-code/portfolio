@@ -299,7 +299,7 @@
           </div>
           <div class="hero-actions">
             <button type="button" class="button button-primary hero-cv-btn magnetic-el" data-open-modal="cv-modal" aria-haspopup="dialog" aria-controls="cv-modal" aria-label="View Omar Ebied's CV">
-              <span data-i18n="hero-cta-cv">View CV</span>
+              <span data-i18n="hero-cta-cv">تحميل السيرة الذاتية</span>
               <span class="btn-arrow" aria-hidden="true">↗</span>
             </button>
           </div>
@@ -376,7 +376,7 @@
               </dl>
               <div class="quick-info-footer">
                 <a class="button button-ghost button-sm qi-cta-btn magnetic-el" href="#contact">
-                  <span data-i18n="qi-contact-btn">Get In Touch</span>
+                  <span data-i18n="qi-contact-btn">تواصل معي لبدء مشروعك</span>
                   <span class="btn-arrow" aria-hidden="true">→</span>
                 </a>
               </div>
@@ -957,7 +957,7 @@
                 <line x1="9" y1="21" x2="9" y2="9"></line>
               </svg>
             </div>
-            <h3 data-i18n="serv-1-title">Interactive Web UI/UX</h3>
+            <h3 data-i18n="serv-1-title">تطوير واجهات رقمية متكاملة</h3>
             <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-1-prob">Static interfaces struggle to engage visitors and convey premium value.</span></p>
             <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-1-res">Transforming ideas and concepts into responsive, high-performance digital experiences.</span></p>
           </article>
@@ -970,7 +970,7 @@
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
             </div>
-            <h3 data-i18n="serv-2-title">Luxury Personal Portfolios</h3>
+            <h3 data-i18n="serv-2-title">بناء معارض الأعمال الاحترافية</h3>
             <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-2-prob">Generic templates fail to reflect your professional identity and credibility.</span></p>
             <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-2-res">Bespoke, high-end portfolio websites designed to highlight your expertise and convert clients.</span></p>
           </article>
@@ -980,7 +980,7 @@
                 <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
               </svg>
             </div>
-            <h3 data-i18n="serv-3-title">Motion &amp; GSAP Experiences</h3>
+            <h3 data-i18n="serv-3-title">تحريك الواجهات وتجربة المستخدم</h3>
             <p class="service-problem"><b data-i18n="serv-prob-lbl">Problem:</b> <span data-i18n="serv-3-prob">Heavy or unoptimized animations cause stutter and compromise page speed.</span></p>
             <p class="service-result"><b data-i18n="serv-res-lbl">Result:</b> <span data-i18n="serv-3-res">Infusing dynamic character into web interfaces through lightweight, fluid animations.</span></p>
           </article>
@@ -994,6 +994,128 @@
           <h2 class="section-title" data-i18n="proj-title" data-aos="fade-up">Projects with a <em>purpose.</em></h2>
           <p class="section-intro" data-i18n="proj-intro">A selection of work across data, cybersecurity, and the web.</p>
         </div>
+
+        <!-- Phase 2: Interactive Layered Portfolio Showcase -->
+        <div class="portfolio-showcase reveal" data-aos="fade-up" data-aos-delay="100">
+          <div class="portfolio-showcase-header">
+            <div class="showcase-badge">
+              <span class="showcase-badge-dot" aria-hidden="true"></span>
+              <span data-i18n="showcase-badge-text">Interactive 3D Showcase</span>
+            </div>
+            <h3 class="showcase-headline" data-i18n="showcase-headline">Full-Stack Digital Ecosystem</h3>
+            <p class="showcase-subtext" data-i18n="showcase-subtext">Hover or tap the interactive hotspots to inspect key architecture, credentials, and performance layers.</p>
+          </div>
+
+          <div class="device-frame showcase-device-frame" id="showcase-device-frame">
+            <!-- macOS Window Header -->
+            <div class="device-topbar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot dot-red"></span>
+                <span class="window-dot dot-yellow"></span>
+                <span class="window-dot dot-green"></span>
+              </div>
+              <div class="device-address-bar">
+                <svg class="address-lock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="address-text" id="showcase-address-text">https://omarebied.github.io/portfolio/showcase</span>
+              </div>
+              <div class="device-topbar-actions" aria-hidden="true">
+                <span class="device-action-pill">macOS Retina</span>
+              </div>
+            </div>
+
+            <!-- Device Screen with Screenshot and Floating Hotspots -->
+            <div class="device-screen">
+              <div class="screenshot-container">
+                <img 
+                  src="assets/mockup/Screenshot 2026-10-30 012445.jpg" 
+                  alt="Omar Ebied - Interactive Layered Showcase" 
+                  class="device-screenshot showcase-screenshot-layer" 
+                  id="showcase-main-img"
+                  width="1920" 
+                  height="1080" 
+                  loading="lazy" 
+                />
+                <div class="screen-glare-overlay" aria-hidden="true"></div>
+              </div>
+
+              <!-- Hotspot 1: Hero Badge & Identity -->
+              <div class="ui-hotspot hotspot-hero" style="--spot-top: 25%; --spot-left: 28%;" data-hotspot-id="hero">
+                <button class="hotspot-pin" type="button" aria-expanded="false" aria-label="Toggle Hero Badge details">
+                  <span class="hotspot-pulse" aria-hidden="true"></span>
+                  <span class="hotspot-core" aria-hidden="true"></span>
+                </button>
+                <div class="hotspot-callout" role="tooltip">
+                  <div class="callout-header">
+                    <span class="callout-badge" data-i18n="spot-1-badge">UI Architecture</span>
+                    <span class="callout-depth-tag">Depth 1.0</span>
+                  </div>
+                  <h4 class="callout-title" data-i18n="spot-1-title">Executive Hero &amp; Positioning</h4>
+                  <p class="callout-desc" data-i18n="spot-1-desc">High-impact typography and bilingual architecture built to capture enterprise client trust immediately.</p>
+                </div>
+              </div>
+
+              <!-- Hotspot 2: Certificates Gallery -->
+              <div class="ui-hotspot hotspot-certificates" style="--spot-top: 62%; --spot-left: 32%;" data-hotspot-id="certificates">
+                <button class="hotspot-pin" type="button" aria-expanded="false" aria-label="Toggle Certificates Gallery details">
+                  <span class="hotspot-pulse" aria-hidden="true"></span>
+                  <span class="hotspot-core" aria-hidden="true"></span>
+                </button>
+                <div class="hotspot-callout" role="tooltip">
+                  <div class="callout-header">
+                    <span class="callout-badge" data-i18n="spot-2-badge">Verified Trust</span>
+                    <span class="callout-depth-tag">Depth 1.0</span>
+                  </div>
+                  <h4 class="callout-title" data-i18n="spot-2-title">Accredited Credentials Gallery</h4>
+                  <p class="callout-desc" data-i18n="spot-2-desc">Interactive certificate modal with live verification credentials from Cisco, NTI, and Mahara-Tech.</p>
+                </div>
+              </div>
+
+              <!-- Hotspot 3: Contact Cards -->
+              <div class="ui-hotspot hotspot-contact" style="--spot-top: 48%; --spot-left: 74%;" data-hotspot-id="contact">
+                <button class="hotspot-pin" type="button" aria-expanded="false" aria-label="Toggle Contact Cards details">
+                  <span class="hotspot-pulse" aria-hidden="true"></span>
+                  <span class="hotspot-core" aria-hidden="true"></span>
+                </button>
+                <div class="hotspot-callout" role="tooltip">
+                  <div class="callout-header">
+                    <span class="callout-badge" data-i18n="spot-3-badge">Conversion Funnel</span>
+                    <span class="callout-depth-tag">Depth 1.0</span>
+                  </div>
+                  <h4 class="callout-title" data-i18n="spot-3-title">Omni-Channel Inquiries</h4>
+                  <p class="callout-desc" data-i18n="spot-3-desc">Direct client inquiry pathways with instant validation, accessible touch targets, and zero friction.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Showcase Interactive Switcher Nav -->
+            <div class="showcase-nav-bar" role="tablist" aria-label="Showcase Screen Selector">
+              <button class="showcase-nav-btn active" role="tab" aria-selected="true" data-screen-src="assets/mockup/Screenshot 2026-10-30 012445.jpg" data-address="https://omarebied.github.io/portfolio/overview">
+                <span class="nav-btn-index">01</span>
+                <span class="nav-btn-label" data-i18n="showcase-tab-1">Overview Hero</span>
+              </button>
+              <button class="showcase-nav-btn" role="tab" aria-selected="false" data-screen-src="assets/mockup/Screenshot 2026-10-30 012516.png" data-address="https://omarebied.github.io/portfolio/education">
+                <span class="nav-btn-index">02</span>
+                <span class="nav-btn-label" data-i18n="showcase-tab-2">Education</span>
+              </button>
+              <button class="showcase-nav-btn" role="tab" aria-selected="false" data-screen-src="assets/mockup/Screenshot 2026-10-30 012530.png" data-address="https://omarebied.github.io/portfolio/skills">
+                <span class="nav-btn-index">03</span>
+                <span class="nav-btn-label" data-i18n="showcase-tab-3">Skills Matrix</span>
+              </button>
+              <button class="showcase-nav-btn" role="tab" aria-selected="false" data-screen-src="assets/mockup/Screenshot 2026-10-30 012548.jpg" data-address="https://omarebied.github.io/portfolio/certificates">
+                <span class="nav-btn-index">04</span>
+                <span class="nav-btn-label" data-i18n="showcase-tab-4">Certificates</span>
+              </button>
+              <button class="showcase-nav-btn" role="tab" aria-selected="false" data-screen-src="assets/mockup/Screenshot 2026-10-30 012606.jpg" data-address="https://omarebied.github.io/portfolio/contact">
+                <span class="nav-btn-index">05</span>
+                <span class="nav-btn-label" data-i18n="showcase-tab-5">Contact Hub</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="projects-sticky-layout">
           <aside class="projects-sticky-counter" aria-hidden="true">
             <div class="sticky-counter-box">
@@ -1068,7 +1190,7 @@
                 </div>
                 <div class="project-actions">
                   <a class="button button-primary button-sm project-live-btn" href="https://momr09989-code.github.io/Book-Store/" target="_blank" rel="noopener noreferrer">
-                    <span data-i18n="proj-live-btn">Live Demo</span>
+                    <span data-i18n="proj-live-btn">تصفح المشروع حيّاً</span>
                     <span class="btn-arrow" aria-hidden="true">↗</span>
                   </a>
                   <a class="button button-ghost button-sm project-repo-btn" href="https://github.com/momr09989-code/Book-Store" target="_blank" rel="noopener noreferrer">
@@ -1194,7 +1316,7 @@
                 </div>
                 <div class="project-actions">
                   <a class="button button-primary button-sm project-live-btn" href="https://momr09989-code.github.io/fatma-portfolio/" target="_blank" rel="noopener noreferrer">
-                    <span data-i18n="proj-live-btn">Live Demo</span>
+                    <span data-i18n="proj-live-btn">تصفح المشروع حيّاً</span>
                     <span class="btn-arrow" aria-hidden="true">↗</span>
                   </a>
                   <a class="button button-ghost button-sm project-repo-btn" href="https://github.com/momr09989-code/fatma-portfolio" target="_blank" rel="noopener noreferrer">
@@ -1250,7 +1372,7 @@
                 </div>
                 <div class="project-actions">
                   <a class="button button-primary button-sm project-live-btn" href="https://momr09989-code.github.io/friend-portfolio/" target="_blank" rel="noopener noreferrer">
-                    <span data-i18n="proj-live-btn">Live Demo</span>
+                    <span data-i18n="proj-live-btn">تصفح المشروع حيّاً</span>
                     <span class="btn-arrow" aria-hidden="true">↗</span>
                   </a>
                   <a class="button button-ghost button-sm project-repo-btn" href="https://github.com/momr09989-code/friend-portfolio" target="_blank" rel="noopener noreferrer">

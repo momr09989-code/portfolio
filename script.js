@@ -437,7 +437,24 @@
     "modal-pandas-title": "Pandas Certificate",
     "modal-nti-title": "NTI Cybersecurity Certification",
     "modal-nti-tag": "◈ Physical Paper Certificate (Issued In-Person)",
-    "modal-nti-note": "60 technical hours of practical training in network defense, reconnaissance, traffic packet analysis, and security fundamentals at NTI Cybersecurity Academy."
+    "modal-nti-note": "60 technical hours of practical training in network defense, reconnaissance, traffic packet analysis, and security fundamentals at NTI Cybersecurity Academy.",
+    "showcase-badge-text": "Interactive 3D Showcase",
+    "showcase-headline": "Full-Stack Digital Ecosystem",
+    "showcase-subtext": "Hover or tap the interactive hotspots to inspect key architecture, credentials, and performance layers.",
+    "spot-1-badge": "UI Architecture",
+    "spot-1-title": "Executive Hero &amp; Positioning",
+    "spot-1-desc": "High-impact typography and bilingual architecture built to capture enterprise client trust immediately.",
+    "spot-2-badge": "Verified Trust",
+    "spot-2-title": "Accredited Credentials Gallery",
+    "spot-2-desc": "Interactive certificate modal with live verification credentials from Cisco, NTI, and Mahara-Tech.",
+    "spot-3-badge": "Conversion Funnel",
+    "spot-3-title": "Omni-Channel Inquiries",
+    "spot-3-desc": "Direct client inquiry pathways with instant validation, accessible touch targets, and zero friction.",
+    "showcase-tab-1": "Overview Hero",
+    "showcase-tab-2": "Education",
+    "showcase-tab-3": "Skills Matrix",
+    "showcase-tab-4": "Certificates",
+    "showcase-tab-5": "Contact Hub"
 },
     ar: {
     "nav-home": "الرئيسية",
@@ -456,7 +473,7 @@
     "hero-role": "مهندس بيانات وأخصائي أمن سيبراني",
     "hero-usp": "أساعد الشركات والمؤسسات على استخراج رؤى دقيقة من بياناتهم وتأمين أنظمتهم من خلال تحليل بيانات متقدم وأسس أمان متينة.",
     "hero-cta-work": "استعرض أعمالي",
-    "hero-cta-cv": "عرض السيرة الذاتية",
+    "hero-cta-cv": "تحميل السيرة الذاتية",
     "hero-cta-contact": "تواصل معي",
     "hero-location": "<i>⌖</i> القاهرة، مصر",
     "hero-grad": "<i>◈</i> جامعة حلوان الأهلية • دفعة ٢٠٢٨",
@@ -481,7 +498,7 @@
     "qi-location-val": "القاهرة، مصر",
     "qi-education-lbl": "التعليم",
     "qi-education-val": "جامعة حلوان الأهلية (CSIT)",
-    "qi-contact-btn": "تواصل معي",
+    "qi-contact-btn": "تواصل معي لبدء مشروعك",
     "stat-years-val": "٢٠٢٤<span>—</span>٢٠٢٨",
     "stat-years-lbl": "علوم الحاسب بـ HNU",
     "stat-tracks-val": "٢<span>+</span>",
@@ -621,7 +638,7 @@
     "serv-title": "أعمال تقنية ذات قيمة حقيقية، <em>بدون تعقيد.</em>",
     "serv-prob-lbl": "المشكلة:",
     "serv-res-lbl": "النتيجة:",
-    "serv-1-title": "تصميم وتطوير واجهات الويب التفاعلية",
+    "serv-1-title": "تطوير واجهات رقمية متكاملة",
     "serv-1-prob": "الواجهات التقليدية الثابتة تفتقر للجاذبية وتفشل في تحويل الزوار إلى عملاء.",
     "serv-1-res": "تحويل الأفكار والتصميمات إلى واجهات رقمية عصرية سريعة الاستجابة.",
     "serv-2-title": "بناء معارض الأعمال الاحترافية",
@@ -655,7 +672,7 @@
     "proj-2-a": "محاكاة هجوم تزييف ARP واعتراض وفحص حزم البيانات داخل بيئة مختبرية محكمة.",
     "proj-2-tools": "نظام Kali Linux · أداة mitmproxy · برنامج Wireshark · تقنية ARP Spoofing.",
     "proj-2-r": "فهم عملي تطبيقي لسلوكيات الهجمات الشبكية وسبل تعزيز آليات الحماية والتشفير.",
-    "proj-live-btn": "معاينة حية",
+    "proj-live-btn": "تصفح المشروع حيّاً",
     "proj-3-kicker": "تطوير الويب <span>•</span> واجهات المتاجر الإلكترونية",
     "proj-3-title": "معرض الكتاب والأدب (Book Fair & Literature)",
     "proj-3-desc": "تطبيق ويب تفاعلي متجاوب بالكامل للمتاجر الإلكترونية، صُمم لمحاكاة تجربة شراء كتب سلسة وسريعة. يتميز بواجهة ديناميكية، ومنطق متكامل لحسابات عربة التسوق، ومحاكاة فورية للدفع وإنهاء الطلب.",
@@ -747,7 +764,24 @@
     "modal-pandas-title": "شهادة بانداس (Pandas)",
     "modal-nti-title": "شهادة الأمن السيبراني من NTI",
     "modal-nti-tag": "◈ شهادة ورقية رسمية معتمدة (مسلمة حضورياً)",
-    "modal-nti-note": "٦٠ ساعة تدريب تقنية في الدفاع عن الشبكات، جمع المعلومات، تحليل حزم المرور، وأساسيات الأمن السيبراني بأكاديمية NTI."
+    "modal-nti-note": "٦٠ ساعة تدريب تقنية في الدفاع عن الشبكات، جمع المعلومات، تحليل حزم المرور، وأساسيات الأمن السيبراني بأكاديمية NTI.",
+    "showcase-badge-text": "عرض تفاعلي ثلاثي الأبعاد",
+    "showcase-headline": "منظومة رقمية متكاملة",
+    "showcase-subtext": "مرر المؤشر أو اضغط على النقاط التفاعلية لاستعراض البنية الهندسية، والاعتمادات الموثقة، وطبقات الأداء.",
+    "spot-1-badge": "هندسة الواجهات",
+    "spot-1-title": "واجهة تنفيذية وهوية احترافية",
+    "spot-1-desc": "تصميم بصري متقن وبنية ثنائية اللغة مصممة لبناء الثقة الفورية لدى عملاء الشركات والمؤسسات.",
+    "spot-2-badge": "اعتمادات موثقة",
+    "spot-2-title": "معرض الشهادات والاعتمادات المهنية",
+    "spot-2-desc": "نافذة عرض تفاعلية للشهادات مع روابط تحقق رسمية ومباشرة للجهات المانحة.",
+    "spot-3-badge": "قنوات التواصل",
+    "spot-3-title": "تواصل معي لبدء مشروعك",
+    "spot-3-desc": "مسارات تواصل مباشرة وسريعة الاستجابة تضمن تجربة سلسة لبدء المشاريع والتعاقدات.",
+    "showcase-tab-1": "الواجهة الرئيسية",
+    "showcase-tab-2": "المسار الأكاديمي",
+    "showcase-tab-3": "مصفوفة المهارات",
+    "showcase-tab-4": "الشهادات المعتمدة",
+    "showcase-tab-5": "مركز التواصل"
 }
   };
 
@@ -2592,5 +2626,197 @@
     initServicesCanvas();
   }
 })();
+
+/* ========================================================================= */
+/* === PHASE 2: GSAP 3D LAYERED PARALLAX === */
+/* ========================================================================= */
+(() => {
+  const initPortfolioShowcaseParallax = () => {
+    const showcase = document.querySelector('.portfolio-showcase');
+    if (!showcase) return;
+
+    const frame = showcase.querySelector('.device-frame') || showcase.querySelector('.showcase-device-frame');
+    const screenshot = showcase.querySelector('.showcase-screenshot-layer');
+    const hotspots = showcase.querySelectorAll('.ui-hotspot');
+    const navBtns = showcase.querySelectorAll('.showcase-nav-btn');
+    const addressText = showcase.querySelector('#showcase-address-text');
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktop = () => window.innerWidth > 768 && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    // ScrollTrigger Entrance & Elevation
+    if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined' && !prefersReduced) {
+      window.ScrollTrigger.create({
+        trigger: showcase,
+        start: 'top 82%',
+        once: true,
+        onEnter: () => {
+          if (frame) {
+            window.gsap.fromTo(
+              frame,
+              { opacity: 0, y: 35, scale: 0.96 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out' }
+            );
+          }
+          if (hotspots.length) {
+            window.gsap.fromTo(
+              hotspots,
+              { opacity: 0, scale: 0.7, y: 15 },
+              { opacity: 1, scale: 1, y: 0, duration: 0.55, stagger: 0.12, delay: 0.3, ease: 'back.out(1.8)' }
+            );
+          }
+        }
+      });
+    }
+
+    // 3D Mouse Parallax Layering (Depth: Frame 0.2, Screenshot 0.5, Hotspots 1.0)
+    if (typeof window.gsap !== 'undefined' && !prefersReduced) {
+      let rect = showcase.getBoundingClientRect();
+      const updateRect = () => {
+        rect = showcase.getBoundingClientRect();
+      };
+
+      window.addEventListener('resize', updateRect, { passive: true });
+      window.addEventListener('scroll', updateRect, { passive: true });
+
+      showcase.addEventListener('mousemove', (e) => {
+        if (!isDesktop()) return;
+
+        const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+        // Depth 0.2: Device Frame tilt & gentle shift
+        if (frame) {
+          window.gsap.to(frame, {
+            rotateY: normX * 4,
+            rotateX: -normY * 4,
+            x: normX * 8,
+            y: normY * 6,
+            duration: 0.35,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+
+        // Depth 0.5: Internal Screenshot layer
+        if (screenshot) {
+          window.gsap.to(screenshot, {
+            x: normX * 14,
+            y: normY * 10,
+            duration: 0.35,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+
+        // Depth 1.0: Floating Hotspots
+        hotspots.forEach((spot, idx) => {
+          const depthMultiplier = 20 + (idx % 3) * 6;
+          window.gsap.to(spot, {
+            x: normX * depthMultiplier,
+            y: normY * depthMultiplier,
+            duration: 0.4,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        });
+      });
+
+      showcase.addEventListener('mouseleave', () => {
+        if (!isDesktop()) return;
+
+        const targets = [frame, screenshot, ...hotspots].filter(Boolean);
+        window.gsap.to(targets, {
+          x: 0,
+          y: 0,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.65,
+          ease: 'power3.out',
+          overwrite: 'auto'
+        });
+      });
+    }
+
+    // Touch & Tap Support for Hotspots
+    hotspots.forEach((spot) => {
+      const pinBtn = spot.querySelector('.hotspot-pin');
+      if (pinBtn) {
+        pinBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isCurrentlyActive = spot.classList.contains('is-active');
+
+          hotspots.forEach((s) => {
+            s.classList.remove('is-active');
+            const p = s.querySelector('.hotspot-pin');
+            if (p) p.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isCurrentlyActive) {
+            spot.classList.add('is-active');
+            pinBtn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.ui-hotspot')) {
+        hotspots.forEach((s) => {
+          s.classList.remove('is-active');
+          const p = s.querySelector('.hotspot-pin');
+          if (p) p.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    // Showcase Screenshot Switcher Nav
+    navBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+
+        navBtns.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const newSrc = btn.getAttribute('data-screen-src');
+        const newAddress = btn.getAttribute('data-address');
+        if (addressText && newAddress) {
+          addressText.textContent = newAddress;
+        }
+
+        if (screenshot && newSrc) {
+          if (typeof window.gsap !== 'undefined') {
+            window.gsap.to(screenshot, {
+              opacity: 0.25,
+              duration: 0.16,
+              ease: 'power1.in',
+              onComplete: () => {
+                screenshot.src = newSrc;
+                window.gsap.to(screenshot, {
+                  opacity: 1,
+                  duration: 0.28,
+                  ease: 'power1.out'
+                });
+              }
+            });
+          } else {
+            screenshot.src = newSrc;
+          }
+        }
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioShowcaseParallax);
+  } else {
+    initPortfolioShowcaseParallax();
+  }
+})();
+
 
 
