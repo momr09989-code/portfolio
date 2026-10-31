@@ -158,8 +158,13 @@
             <span class="curved-nav-text" data-i18n="nav-projects">Projects</span>
             <span class="curved-nav-arrow">↗</span>
           </a>
-          <a href="#contact" class="curved-nav-item curved-menu-link">
+          <a href="#services" class="curved-nav-item curved-menu-link">
             <span class="curved-nav-num">08</span>
+            <span class="curved-nav-text" data-i18n="nav-services">Services</span>
+            <span class="curved-nav-arrow">↗</span>
+          </a>
+          <a href="#contact" class="curved-nav-item curved-menu-link">
+            <span class="curved-nav-num">09</span>
             <span class="curved-nav-text" data-i18n="nav-contact">Contact</span>
             <span class="curved-nav-arrow">↗</span>
           </a>
@@ -189,6 +194,7 @@
           <a href="#certificates" data-i18n="nav-certificates">Certificates</a>
           <a href="#skills" data-i18n="nav-skills">Skills</a>
           <a href="#projects" data-i18n="nav-projects">Projects</a>
+          <a href="#services" data-i18n="nav-services">Services</a>
           <a href="#contact" data-i18n="nav-contact">Contact</a>
         </nav>
         <div class="header-actions">
@@ -251,8 +257,13 @@
               <span class="nav-title" data-i18n="nav-projects">Projects</span>
               <span class="nav-arrow" aria-hidden="true">→</span>
             </a>
-            <a href="#contact" class="mobile-nav-link" data-close-menu>
+            <a href="#services" class="mobile-nav-link" data-close-menu>
               <span class="nav-num">07</span>
+              <span class="nav-title" data-i18n="nav-services">Services</span>
+              <span class="nav-arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="#contact" class="mobile-nav-link" data-close-menu>
+              <span class="nav-num">08</span>
               <span class="nav-title" data-i18n="nav-contact">Contact</span>
               <span class="nav-arrow" aria-hidden="true">→</span>
             </a>
@@ -941,315 +952,6 @@
         </div>
       </section>
 
-      <!-- 6. Services -->
-      <section id="services" class="section section-shell services-section" aria-labelledby="services-heading-title">
-        <canvas id="services-canvas" class="services-canvas" aria-hidden="true"></canvas>
-        <div class="section-heading services-heading reveal">
-          <div class="section-label"><span data-i18n="serv-num">05</span> <span data-i18n="serv-label">Services</span></div>
-          <h2 id="services-heading-title" class="section-title services-neon-title" data-aos="fade-up">Services</h2>
-          <p class="section-subtitle services-neon-subtitle" data-i18n="serv-title">Useful technical work, <em>without the noise.</em></p>
-        </div>
-
-        <div class="services-split-grid reveal">
-          <!-- Left Column: Visual Showcase -->
-          <div class="services-visual-col">
-            <div class="services-showcase-frame">
-              <div class="services-showcase-topbar" aria-hidden="true">
-                <div class="services-window-dots">
-                  <span class="dot-red"></span>
-                  <span class="dot-yellow"></span>
-                  <span class="dot-green"></span>
-                </div>
-                <div class="services-showcase-pill" id="services-showcase-pill">mostaql.com/u/omar_ebied10</div>
-                <span class="services-showcase-status">
-                  <span class="services-status-dot"></span>
-                  Verified
-                </span>
-              </div>
-              <div class="services-showcase-viewport">
-                <img
-                  src="assets/mockup/Screenshot 2026-10-30 012445.jpg"
-                  onerror="this.onerror=null;this.src='Screenshot 2026-10-30 012445.jpg';"
-                  alt="Web UI/UX &amp; Interactive Architecture Visual Showcase"
-                  id="services-showcase-img"
-                  class="services-showcase-img"
-                  width="1280"
-                  height="720"
-                  loading="lazy"
-                />
-                <div class="services-showcase-caption">
-                  <span class="services-caption-kicker" id="services-caption-kicker">01 / WEB UI/UX</span>
-                  <p class="services-caption-text" id="services-caption-text">Apple-grade interfaces engineered for clarity, speed, and conversion.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Column: 3 Interactive Tabs + Mostaql-Style Pricing Cards -->
-          <div class="services-interactive-col">
-            <div class="services-tabs-bar" role="tablist" aria-label="Services Categories">
-              <button
-                type="button"
-                class="services-tab-btn active"
-                role="tab"
-                id="srv-tab-uiux"
-                aria-selected="true"
-                aria-controls="srv-card-uiux"
-                tabindex="0"
-                data-service-target="srv-card-uiux"
-                data-service-img="assets/mockup/Screenshot 2026-10-30 012445.jpg"
-                data-service-kicker="01 / WEB UI/UX"
-                data-service-caption="Apple-grade interfaces engineered for clarity, speed, and conversion."
-              >
-                <svg class="services-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="3"></rect>
-                  <line x1="3" y1="9" x2="21" y2="9"></line>
-                  <line x1="9" y1="21" x2="9" y2="9"></line>
-                </svg>
-                <span>Web UI/UX</span>
-              </button>
-
-              <button
-                type="button"
-                class="services-tab-btn"
-                role="tab"
-                id="srv-tab-gsap"
-                aria-selected="false"
-                aria-controls="srv-card-gsap"
-                tabindex="-1"
-                data-service-target="srv-card-gsap"
-                data-service-img="assets/mockup/Screenshot 2026-10-30 012530.png"
-                data-service-kicker="02 / GSAP ANIMATIONS"
-                data-service-caption="60fps hardware-accelerated motion choreography, ScrollTrigger &amp; Lenis."
-              >
-                <svg class="services-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                <span>GSAP Animations</span>
-              </button>
-
-              <button
-                type="button"
-                class="services-tab-btn"
-                role="tab"
-                id="srv-tab-data"
-                aria-selected="false"
-                aria-controls="srv-card-data"
-                tabindex="-1"
-                data-service-target="srv-card-data"
-                data-service-img="assets/mockup/Screenshot 2026-10-30 012548.jpg"
-                data-service-kicker="03 / DATA CLEANING"
-                data-service-caption="Automated Python &amp; Pandas ETL pipelines, SQL normalization &amp; validation."
-              >
-                <svg class="services-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                </svg>
-                <span>Data Cleaning</span>
-              </button>
-            </div>
-
-            <!-- Mostaql-Style Pricing Cards Container -->
-            <div class="services-pricing-stage">
-              <!-- Card 1: Web UI/UX -->
-              <article
-                class="services-pricing-card is-active"
-                id="srv-card-uiux"
-                role="tabpanel"
-                aria-labelledby="srv-tab-uiux"
-              >
-                <div class="spc-header">
-                  <div class="spc-title-group">
-                    <div class="spc-platform-badge">
-                      <span class="spc-verified-dot" aria-hidden="true"></span>
-                      <span>Mostaql Featured Package</span>
-                    </div>
-                    <h3 class="spc-title">Bespoke Web UI/UX Architecture</h3>
-                    <p class="spc-subtitle">Executive portfolios, landing pages, and bilingual web systems built to Apple HIG standards.</p>
-                  </div>
-                  <div class="spc-price-box">
-                    <span class="spc-price-label">Starting at</span>
-                    <strong class="spc-price-amount">$150</strong>
-                    <span class="spc-price-unit">per project</span>
-                  </div>
-                </div>
-
-                <div class="spc-meta-strip">
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    <span>Delivery: <strong>4–6 Days</strong></span>
-                  </div>
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                    <span>Revisions: <strong>Unlimited</strong></span>
-                  </div>
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span>Rating: <strong>5.0 ★ (100%)</strong></span>
-                  </div>
-                </div>
-
-                <ul class="spc-features-list">
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Responsive mobile-first CSS Grid &amp; Glassmorphic surface system</span>
-                  </li>
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Full bilingual support (RTL Arabic &amp; LTR English) + Light/Dark modes</span>
-                  </li>
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>WCAG AA accessibility compliance, SEO schema &amp; sub-second LCP</span>
-                  </li>
-                </ul>
-
-                <div class="spc-footer">
-                  <a href="https://mostaql.com/u/omar_ebied10" target="_blank" rel="noopener noreferrer" class="button button-primary spc-cta-btn">
-                    <span>Hire on Mostaql</span>
-                    <span class="btn-arrow" aria-hidden="true">↗</span>
-                  </a>
-                  <a href="#contact" class="button button-ghost spc-secondary-btn">
-                    <span>Request Custom Quote</span>
-                  </a>
-                </div>
-              </article>
-
-              <!-- Card 2: GSAP Animations -->
-              <article
-                class="services-pricing-card"
-                id="srv-card-gsap"
-                role="tabpanel"
-                aria-labelledby="srv-tab-gsap"
-                hidden
-              >
-                <div class="spc-header">
-                  <div class="spc-title-group">
-                    <div class="spc-platform-badge">
-                      <span class="spc-verified-dot" aria-hidden="true"></span>
-                      <span>Motion Engineering Tier</span>
-                    </div>
-                    <h3 class="spc-title">GSAP &amp; Interactive Motion Systems</h3>
-                    <p class="spc-subtitle">Choreographed scroll storytelling, 3D parallax layers, and tactile micro-interactions.</p>
-                  </div>
-                  <div class="spc-price-box">
-                    <span class="spc-price-label">Starting at</span>
-                    <strong class="spc-price-amount">$110</strong>
-                    <span class="spc-price-unit">per module</span>
-                  </div>
-                </div>
-
-                <div class="spc-meta-strip">
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    <span>Delivery: <strong>2–4 Days</strong></span>
-                  </div>
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                    <span>FPS Target: <strong>Locked 60fps</strong></span>
-                  </div>
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span>Rating: <strong>5.0 ★ (100%)</strong></span>
-                  </div>
-                </div>
-
-                <ul class="spc-features-list">
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>GSAP ScrollTrigger timelines, pinned sections &amp; Lenis smooth scroll</span>
-                  </li>
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>3D hardware-accelerated card tilt, magnetic buttons &amp; SVG morphing</span>
-                  </li>
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Zero layout shift (CLS &lt; 0.05) with full <code>prefers-reduced-motion</code> support</span>
-                  </li>
-                </ul>
-
-                <div class="spc-footer">
-                  <a href="https://mostaql.com/u/omar_ebied10" target="_blank" rel="noopener noreferrer" class="button button-primary spc-cta-btn">
-                    <span>Hire on Mostaql</span>
-                    <span class="btn-arrow" aria-hidden="true">↗</span>
-                  </a>
-                  <a href="#contact" class="button button-ghost spc-secondary-btn">
-                    <span>Request Custom Quote</span>
-                  </a>
-                </div>
-              </article>
-
-              <!-- Card 3: Data Cleaning -->
-              <article
-                class="services-pricing-card"
-                id="srv-card-data"
-                role="tabpanel"
-                aria-labelledby="srv-tab-data"
-                hidden
-              >
-                <div class="spc-header">
-                  <div class="spc-title-group">
-                    <div class="spc-platform-badge">
-                      <span class="spc-verified-dot" aria-hidden="true"></span>
-                      <span>Data Engineering Tier</span>
-                    </div>
-                    <h3 class="spc-title">Data Cleaning &amp; SQL ETL Pipelines</h3>
-                    <p class="spc-subtitle">Transforming messy, raw datasets into normalized, analysis-ready relational tables.</p>
-                  </div>
-                  <div class="spc-price-box">
-                    <span class="spc-price-label">Starting at</span>
-                    <strong class="spc-price-amount">$95</strong>
-                    <span class="spc-price-unit">per dataset</span>
-                  </div>
-                </div>
-
-                <div class="spc-meta-strip">
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    <span>Delivery: <strong>1–3 Days</strong></span>
-                  </div>
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                    <span>Accuracy: <strong>100% Validated</strong></span>
-                  </div>
-                  <div class="spc-meta-pill">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span>Stack: <strong>Python · Pandas · SQL</strong></span>
-                  </div>
-                </div>
-
-                <ul class="spc-features-list">
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Automated missing-value imputation, deduplication &amp; outlier detection</span>
-                  </li>
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>3NF/BCNF relational database normalization &amp; MS SQL Server indexing</span>
-                  </li>
-                  <li class="spc-feature-item">
-                    <svg class="spc-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Reproducible Jupyter/Python scripts + clean CSV, Parquet, or SQL exports</span>
-                  </li>
-                </ul>
-
-                <div class="spc-footer">
-                  <a href="https://mostaql.com/u/omar_ebied10" target="_blank" rel="noopener noreferrer" class="button button-primary spc-cta-btn">
-                    <span>Hire on Mostaql</span>
-                    <span class="btn-arrow" aria-hidden="true">↗</span>
-                  </a>
-                  <a href="#contact" class="button button-ghost spc-secondary-btn">
-                    <span>Request Custom Quote</span>
-                  </a>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- 7. Projects -->
       <section id="projects" class="section section-shell projects-section">
         <div class="section-heading projects-heading reveal">
@@ -1649,6 +1351,357 @@
                 </div>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- 7. Services (Interactive Mostaql & Khamsat Configurator) -->
+      <section id="services" class="section section-shell services-section" aria-labelledby="services-kinetic-word">
+        <canvas id="services-canvas" class="services-canvas" aria-hidden="true"></canvas>
+
+        <!-- Full-Screen Kinetic SERVICES Entrance -->
+        <div class="services-kinetic-hero">
+          <div class="services-kinetic-kicker">
+            <span class="kinetic-dot"></span>
+            <span data-i18n="serv-badge">SOLUTIONS &amp; EXPERTISE</span>
+          </div>
+          <div class="services-kinetic-word-wrap" id="services-kinetic-word" aria-label="SERVICES">
+            <span class="kinetic-char" data-char="S" data-dx="-38" data-dy="-28" data-rot="-20">S</span>
+            <span class="kinetic-char" data-char="E" data-dx="24" data-dy="-42" data-rot="16">E</span>
+            <span class="kinetic-char" data-char="R" data-dx="-48" data-dy="32" data-rot="-24">R</span>
+            <span class="kinetic-char" data-char="V" data-dx="38" data-dy="36" data-rot="18">V</span>
+            <span class="kinetic-char" data-char="I" data-dx="-16" data-dy="-38" data-rot="-14">I</span>
+            <span class="kinetic-char" data-char="C" data-dx="42" data-dy="-22" data-rot="22">C</span>
+            <span class="kinetic-char" data-char="E" data-dx="-32" data-dy="42" data-rot="-18">E</span>
+            <span class="kinetic-char" data-char="S" data-dx="28" data-dy="-32" data-rot="20">S</span>
+          </div>
+          <p class="services-kinetic-sub" data-i18n="serv-kinetic-sub">
+            Hover over the letters to assemble • Professional freelance solutions calculated for maximum ROI
+          </p>
+        </div>
+
+        <!-- Category Selector Tabs -->
+        <div class="services-nav-tabs" role="tablist" aria-label="Service Category">
+          <button type="button" class="services-cat-tab active" id="tab-portfolio-btn" data-category="portfolio" role="tab" aria-selected="true" aria-controls="stage-portfolio">
+            <span class="cat-icon">🎨</span>
+            <span class="cat-title" data-i18n="tab-portfolio-title">بناء بورتفوليو احترافي ($10)</span>
+          </button>
+          <button type="button" class="services-cat-tab" id="tab-data-btn" data-category="data" role="tab" aria-selected="false" aria-controls="stage-data">
+            <span class="cat-icon">🧹</span>
+            <span class="cat-title" data-i18n="tab-data-title">تنظيف وتحليل البيانات - Data Cleaning ($10)</span>
+          </button>
+        </div>
+
+        <!-- Split Configurator Grid -->
+        <div class="services-split-grid">
+          <!-- Left Column: Live Interactive Stages -->
+          <div class="services-visual-col">
+            <!-- STAGE A: Mini Fatma Portfolio Replica -->
+            <div class="services-stage-wrap stage-portfolio active" id="stage-portfolio">
+              <div class="services-showcase-frame">
+                <div class="services-showcase-topbar" aria-hidden="true">
+                  <div class="services-window-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                  </div>
+                  <div class="services-showcase-url-bar">
+                    <span class="url-lock" id="mini-browser-lock">🔒</span>
+                    <span class="url-text" id="mini-browser-url">https://fatma-portfolio.dev</span>
+                  </div>
+                  <span class="services-showcase-badge" id="mini-browser-badge">
+                    <span class="status-pulse-dot"></span>
+                    <span id="mini-badge-text">Preview</span>
+                  </span>
+                  <div class="deploy-progress-bar" id="deploy-progress-bar"></div>
+                </div>
+
+                <!-- Live Mini Scoped HTML Viewport -->
+                <div class="mini-fatma-viewport" id="mini-fatma-viewport">
+                  <!-- Mini Navbar -->
+                  <div class="mini-fatma-nav">
+                    <span class="mini-nav-monogram">[ F.E ]</span>
+                    <div class="mini-nav-links">
+                      <span>About</span>
+                      <span>Vision 2030</span>
+                      <span>Honors</span>
+                    </div>
+                  </div>
+
+                  <!-- Mini Hero Section -->
+                  <div class="mini-fatma-hero">
+                    <div class="mini-hero-badge">CLASS OF 2026 (EXCELLENT WITH HONORS)</div>
+                    <h3 class="mini-hero-title" id="mini-fatma-name">Fatma El-Zahraa Mohamed Ebeid</h3>
+                    <p class="mini-hero-subtitle">Economics Graduate | Business Development, Financial Analysis &amp; Diplomatic Affairs</p>
+                    
+                    <div class="mini-hero-actions">
+                      <a href="javascript:void(0)" class="mini-btn-primary" id="mini-cv-btn">Download Full CV</a>
+                      <a href="javascript:void(0)" class="mini-btn-outline">Explore Credentials</a>
+                    </div>
+
+                    <!-- Mini Portrait & Floating Glass Badges -->
+                    <div class="mini-hero-stage">
+                      <div class="mini-portrait-wrap">
+                        <img src="fatma_portfolio/assets/profile.jpg" onerror="this.onerror=null;this.src='fatma_port.png';" alt="Fatma Ebeid" class="mini-portrait-img" width="120" height="120">
+                      </div>
+                      
+                      <div class="mini-float-badge badge-1" id="mini-badge-1">
+                        <span class="badge-icon">🏛️</span>
+                        <div class="badge-text">
+                          <strong>Banque Misr</strong>
+                          <span>Banking Operations</span>
+                        </div>
+                      </div>
+
+                      <div class="mini-float-badge badge-2" id="mini-badge-2">
+                        <span class="badge-icon">📜</span>
+                        <div class="badge-text">
+                          <strong>Vision 2030 Research</strong>
+                          <span>Grade: A Distinction</span>
+                        </div>
+                      </div>
+
+                      <div class="mini-float-badge badge-3" id="mini-badge-3">
+                        <span class="badge-icon">🎖️</span>
+                        <div class="badge-text">
+                          <strong>Excellent with Honors</strong>
+                          <span>B.Sc. in Economics</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mini-gsap-indicator" id="mini-gsap-indicator">
+                    <span class="pulse-indicator"></span>
+                    <span>✨ GSAP 3.12 Engine Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STAGE B: Interactive Data Cleaning Studio -->
+            <div class="services-stage-wrap stage-data" id="stage-data" style="display: none;">
+              <div class="services-showcase-frame">
+                <div class="services-showcase-topbar" aria-hidden="true">
+                  <div class="services-window-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                  </div>
+                  <div class="services-showcase-url-bar">
+                    <span class="url-text">pipeline.py — Pandas &amp; Polars Data Studio</span>
+                  </div>
+                  <span class="services-showcase-badge status-ready">
+                    <span class="status-pulse-dot"></span>
+                    <span id="data-studio-status">Ready</span>
+                  </span>
+                </div>
+
+                <div class="data-studio-viewport">
+                  <div class="data-studio-header">
+                    <div>
+                      <h4 class="data-studio-title">Raw Dataset Preview (Raw CSV Stream)</h4>
+                      <p class="data-studio-sub">انقر على الزر لتشغيل المعالجة البرمجية وإصلاح القيم التالفة والتكرارات</p>
+                    </div>
+                    <button type="button" class="btn-clean-data" id="btn-run-clean">
+                      <span class="btn-icon">⚡</span>
+                      <span id="btn-run-clean-text">تنظيف البيانات وتصحيح القيم</span>
+                    </button>
+                  </div>
+
+                  <div class="data-table-wrap">
+                    <table class="data-cleaning-table" id="data-clean-table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Customer</th>
+                          <th>Email</th>
+                          <th>Reg Date</th>
+                          <th>Age</th>
+                          <th>Health</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="row-valid">
+                          <td>#101</td>
+                          <td>Ahmed Ali</td>
+                          <td>ahmed@tech.eg</td>
+                          <td>2024-05-12</td>
+                          <td>28</td>
+                          <td><span class="cell-pill pill-ok">Clean</span></td>
+                        </tr>
+                        <tr class="row-corrupt" id="data-row-dirty-1">
+                          <td>#102</td>
+                          <td>Sarah Omar</td>
+                          <td><span class="cell-null" id="cell-null-email">NULL</span></td>
+                          <td><span class="cell-invalid" id="cell-invalid-date">2024/31/02</span></td>
+                          <td><span class="cell-invalid" id="cell-invalid-age">-4</span></td>
+                          <td><span class="cell-pill pill-err" id="pill-dirty-1">Corrupted</span></td>
+                        </tr>
+                        <tr class="row-duplicate" id="data-row-duplicate">
+                          <td>#102</td>
+                          <td>Sarah Omar</td>
+                          <td>sarah.o@gmail.com</td>
+                          <td>2024-02-28</td>
+                          <td>26</td>
+                          <td><span class="cell-pill pill-warn">Duplicate</span></td>
+                        </tr>
+                        <tr class="row-valid">
+                          <td>#103</td>
+                          <td>Mahmoud K.</td>
+                          <td>m.khalil@corp.com</td>
+                          <td>2024-06-01</td>
+                          <td>35</td>
+                          <td><span class="cell-pill pill-ok">Clean</span></td>
+                        </tr>
+                        <tr class="row-corrupt" id="data-row-dirty-2">
+                          <td>#104</td>
+                          <td>Fatima N.</td>
+                          <td><span class="cell-null" id="cell-null-email2">NaN (Missing)</span></td>
+                          <td>2024-06-03</td>
+                          <td>22</td>
+                          <td><span class="cell-pill pill-err" id="pill-dirty-2">Missing</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="data-scan-bar" id="data-scan-bar"></div>
+                  </div>
+
+                  <div class="data-cleaning-metrics" id="data-clean-metrics">
+                    <div class="metric-box">
+                      <span class="metric-num" id="metric-nulls">2</span>
+                      <span class="metric-label">Missing Values (Nulls)</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-num" id="metric-dupes">1</span>
+                      <span class="metric-label">Duplicate Rows</span>
+                    </div>
+                    <div class="metric-box">
+                      <span class="metric-num" id="metric-score">60%</span>
+                      <span class="metric-label">Data Health Score</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Mostaql / Khamsat Configurator -->
+          <div class="services-config-col">
+            <!-- CONFIG CARD 1: Portfolio ($10 Base) -->
+            <div class="services-config-card active" id="card-portfolio-config">
+              <div class="config-card-header">
+                <span class="config-tag">Mostaql &amp; Khamsat Verified</span>
+                <h3 class="config-title" data-i18n="srv-port-title">بناء بورتفوليو شخصي احترافي متكامل</h3>
+                <p class="config-desc" data-i18n="srv-port-desc">
+                  تصميم وبرمجة صفحة هبوط شخصية سريعة ومتجاوبة بهوية فاخرة (Apple HIG)، كود نظيف وتوافق تام مع شاشات الموبايل والريتينا.
+                </p>
+              </div>
+
+              <div class="config-pricing-box">
+                <div class="pricing-label">سعر الخدمة التفاعلي:</div>
+                <div class="pricing-val">
+                  <span class="currency">$</span>
+                  <span class="total-number" id="portfolio-total-price">10</span>
+                  <span class="period">/ مشروع كامل</span>
+                </div>
+                <span class="base-note">السعر الأساسي يبدأ من 10$ فقط</span>
+              </div>
+
+              <div class="config-addons-section">
+                <h4 class="addons-heading">إضافات وتطويرات الخدمة المتاحة (Add-ons):</h4>
+                
+                <label class="config-addon-label" id="label-addon-gsap">
+                  <input type="checkbox" id="addon-gsap-toggle" class="config-addon-check" data-price="5">
+                  <span class="custom-check"></span>
+                  <div class="addon-info">
+                    <div class="addon-title-row">
+                      <span class="addon-title">إضافة أنيميشن GSAP احترافي</span>
+                      <span class="addon-cost">+ $5</span>
+                    </div>
+                    <p class="addon-sub">حركات تفاعلية سلسة، 3D Levitation للبطاقات، وتأثيرات الإضاءة والنيون لعناصر الموقع.</p>
+                  </div>
+                </label>
+
+                <label class="config-addon-label" id="label-addon-deploy">
+                  <input type="checkbox" id="addon-deploy-toggle" class="config-addon-check" data-price="5">
+                  <span class="custom-check"></span>
+                  <div class="addon-info">
+                    <div class="addon-title-row">
+                      <span class="addon-title">رفع واستضافة الموقع على GitHub Pages</span>
+                      <span class="addon-cost">+ $5</span>
+                    </div>
+                    <p class="addon-sub">إعداد مستودع Git، نشر حي فوري على دومين github.io مجاني مع شهادة أمان SSL كاملة.</p>
+                  </div>
+                </label>
+              </div>
+
+              <div class="config-card-footer">
+                <a href="#contact" class="btn-order-service" id="btn-order-portfolio">
+                  <span>طلب الخدمة الآن ($<span id="btn-portfolio-price-display">10</span>)</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <p class="guarantee-text">🛡️ ضمان رضا كامل 100% • كود مفتوح المصدر بدون تكاليف شهرية خفية</p>
+              </div>
+            </div>
+
+            <!-- CONFIG CARD 2: Data Cleaning ($10 Base) -->
+            <div class="services-config-card" id="card-data-config" style="display: none;">
+              <div class="config-card-header">
+                <span class="config-tag tag-data">Data Engineering &amp; Python</span>
+                <h3 class="config-title" data-i18n="srv-data-title">تنظيف، معالجة وهيكلة البيانات (Data Cleaning)</h3>
+                <p class="config-desc" data-i18n="srv-data-desc">
+                  فحص وتجهيز البيانات الضخمة، التعامل مع القيم المفقودة والتكرار، وتوحيد التنسيقات لجعل البيانات جاهزة 100% للتحليل أو النماذج.
+                </p>
+              </div>
+
+              <div class="config-pricing-box">
+                <div class="pricing-label">سعر الخدمة التفاعلي:</div>
+                <div class="pricing-val">
+                  <span class="currency">$</span>
+                  <span class="total-number" id="data-total-price">10</span>
+                  <span class="period">/ حتى 5,000 صف</span>
+                </div>
+                <span class="base-note">السعر الأساسي يبدأ من 10$ لملفات البيانات حتى 5K صف</span>
+              </div>
+
+              <div class="config-addons-section">
+                <h4 class="addons-heading">إضافات وتطويرات الخدمة المتاحة (Add-ons):</h4>
+                
+                <label class="config-addon-label" id="label-addon-data-dash">
+                  <input type="checkbox" id="addon-data-dash-toggle" class="config-addon-check" data-price="10">
+                  <span class="custom-check"></span>
+                  <div class="addon-info">
+                    <div class="addon-title-row">
+                      <span class="addon-title">لوحة بيانات تفاعلية Dashboard (PowerBI / Plotly)</span>
+                      <span class="addon-cost">+ $10</span>
+                    </div>
+                    <p class="addon-sub">تصميم داشبورد تفاعلي لعرض أهم مؤشرات الأداء والرسوم البيانية التوضيحية لاتخاذ القرارات.</p>
+                  </div>
+                </label>
+
+                <label class="config-addon-label" id="label-addon-data-script">
+                  <input type="checkbox" id="addon-data-script-toggle" class="config-addon-check" data-price="5">
+                  <span class="custom-check"></span>
+                  <div class="addon-info">
+                    <div class="addon-title-row">
+                      <span class="addon-title">أتمتة التنظيف بسكريبت بايثون Python Pipeline</span>
+                      <span class="addon-cost">+ $5</span>
+                    </div>
+                    <p class="addon-sub">تسليم سكريبت Python كامل وموثق لإعادة تطبيق التنظيف على أي ملفات مستقبلية بضغطة زر.</p>
+                  </div>
+                </label>
+              </div>
+
+              <div class="config-card-footer">
+                <a href="#contact" class="btn-order-service btn-order-data" id="btn-order-data">
+                  <span>طلب تنظيف البيانات ($<span id="btn-data-price-display">10</span>)</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <p class="guarantee-text">⚡ دقة مطلقة في الأرقام • تقرير Data Quality تفصيلي مع التسليم</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

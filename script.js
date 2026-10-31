@@ -136,6 +136,7 @@
     "nav-skills": "Skills",
     "nav-education": "Education",
     "nav-projects": "Projects",
+    "nav-services": "Services",
     "nav-certificates": "Certificates",
     "nav-contact": "Contact",
     "toggle-lang": "Lang: <strong class=\"lang-text\">AR</strong>",
@@ -462,6 +463,7 @@
     "nav-skills": "المهارات",
     "nav-education": "التعليم",
     "nav-projects": "المشاريع",
+    "nav-services": "الخدمات",
     "nav-certificates": "الشهادات",
     "nav-contact": "تواصل معي",
     "toggle-lang": "اللغة: <strong class=\"lang-text\">EN</strong>",
@@ -2822,121 +2824,403 @@
 
 
 /* ========================================================================= */
-/* === SERVICES SECTION GSAP TAB INTERACTIVITY (CROSSFADE + SLIDE-IN) === */
+
+
+/* ========================================================================= */
+/* === SERVICES SECTION INTERACTIVE CONFIGURATOR & KINETIC GSAP ENGINE === */
 /* ========================================================================= */
 (() => {
-  const initInteractiveServicesTabs = () => {
+  const initInteractiveServicesConfigurator = () => {
     const servicesSection = document.getElementById('services');
     if (!servicesSection) return;
 
-    const tabBtns = servicesSection.querySelectorAll('.services-tab-btn');
-    const pricingCards = servicesSection.querySelectorAll('.services-pricing-card');
-    const showcaseImg = servicesSection.querySelector('#services-showcase-img');
-    const captionKicker = servicesSection.querySelector('#services-caption-kicker');
-    const captionText = servicesSection.querySelector('#services-caption-text');
+    // -------------------------------------------------------------
+    // 1. Kinetic SERVICES Entrance Animation (Deconstruct & Assemble)
+    // -------------------------------------------------------------
+    const kineticWord = servicesSection.querySelector('#services-kinetic-word');
+    const chars = servicesSection.querySelectorAll('.kinetic-char');
 
-    if (!tabBtns.length || !pricingCards.length) return;
+    if (kineticWord && chars.length) {
+      // Set initial scattered positions
+      chars.forEach((char) => {
+        const dx = parseFloat(char.getAttribute('data-dx')) || 0;
+        const dy = parseFloat(char.getAttribute('data-dy')) || 0;
+        const rot = parseFloat(char.getAttribute('data-rot')) || 0;
 
-    const prefersReduced =
-      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const activateServiceTab = (clickedBtn) => {
-      if (!clickedBtn || clickedBtn.classList.contains('active')) return;
-
-      const targetCardId = clickedBtn.getAttribute('data-service-target');
-      const nextImgSrc = clickedBtn.getAttribute('data-service-img');
-      const nextKicker = clickedBtn.getAttribute('data-service-kicker');
-      const nextCaption = clickedBtn.getAttribute('data-service-caption');
-      const targetCard = servicesSection.querySelector(`#${targetCardId}`);
-
-      // 1. Update ARIA & active states on tabs
-      tabBtns.forEach((btn) => {
-        const isCurrent = btn === clickedBtn;
-        btn.classList.toggle('active', isCurrent);
-        btn.setAttribute('aria-selected', String(isCurrent));
-        btn.setAttribute('tabindex', isCurrent ? '0' : '-1');
-      });
-
-      // 2. Toggle Pricing Cards & Slide In Active Card on the Right
-      pricingCards.forEach((card) => {
-        const isTarget = card === targetCard;
-        card.classList.toggle('is-active', isTarget);
-        if (isTarget) {
-          card.removeAttribute('hidden');
-        } else {
-          card.setAttribute('hidden', '');
-        }
-      });
-
-      if (targetCard && typeof window.gsap !== 'undefined' && !prefersReduced) {
-        window.gsap.killTweensOf(targetCard);
-        window.gsap.fromTo(
-          targetCard,
-          { opacity: 0, x: 28, y: 6 },
-          { opacity: 1, x: 0, y: 0, duration: 0.42, ease: 'power3.out', clearProps: 'transform' }
-        );
-
-        const featureItems = targetCard.querySelectorAll('.spc-feature-item');
-        if (featureItems.length) {
-          window.gsap.killTweensOf(featureItems);
-          window.gsap.fromTo(
-            featureItems,
-            { opacity: 0, y: 8 },
-            { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: 'power2.out', delay: 0.06 }
-          );
-        }
-      }
-
-      // 3. Crossfade & Scale the Visual Showcase Image on the Left
-      if (showcaseImg && nextImgSrc) {
-        if (typeof window.gsap !== 'undefined' && !prefersReduced) {
-          window.gsap.killTweensOf(showcaseImg);
-          window.gsap.to(showcaseImg, {
-            opacity: 0.18,
-            scale: 0.96,
-            duration: 0.18,
-            ease: 'power2.in',
-            onComplete: () => {
-              showcaseImg.src = nextImgSrc;
-              if (captionKicker && nextKicker) captionKicker.textContent = nextKicker;
-              if (captionText && nextCaption) captionText.textContent = nextCaption;
-              window.gsap.fromTo(
-                showcaseImg,
-                { opacity: 0.18, scale: 1.03 },
-                { opacity: 1, scale: 1, duration: 0.42, ease: 'power3.out' }
-              );
-            }
+        if (typeof gsap !== 'undefined') {
+          gsap.set(char, {
+            x: dx,
+            y: dy,
+            rotation: rot,
+            scale: 0.95,
+            opacity: 0.85
           });
-        } else {
-          showcaseImg.src = nextImgSrc;
-          if (captionKicker && nextKicker) captionKicker.textContent = nextKicker;
-          if (captionText && nextCaption) captionText.textContent = nextCaption;
         }
-      }
-    };
+      });
 
-    tabBtns.forEach((btn, idx) => {
-      btn.addEventListener('click', () => activateServiceTab(btn));
+      // Hover In: Snap into assembled SERVICES
+      kineticWord.addEventListener('mouseenter', () => {
+        if (typeof gsap === 'undefined') return;
+        gsap.to(chars, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          scale: 1.05,
+          opacity: 1,
+          duration: 0.55,
+          ease: 'back.out(1.8)',
+          stagger: 0.025,
+          overwrite: true
+        });
+      });
 
-      // Keyboard Left/Right Arrow Navigation for Accessibility
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          const dir = e.key === 'ArrowRight' ? 1 : -1;
-          const nextIdx = (idx + dir + tabBtns.length) % tabBtns.length;
-          const nextBtn = tabBtns[nextIdx];
-          if (nextBtn) {
-            nextBtn.focus();
-            activateServiceTab(nextBtn);
+      // Hover Out: Scatter back into space
+      kineticWord.addEventListener('mouseleave', () => {
+        if (typeof gsap === 'undefined') return;
+        chars.forEach((char, idx) => {
+          const dx = parseFloat(char.getAttribute('data-dx')) || 0;
+          const dy = parseFloat(char.getAttribute('data-dy')) || 0;
+          const rot = parseFloat(char.getAttribute('data-rot')) || 0;
+
+          gsap.to(char, {
+            x: dx,
+            y: dy,
+            rotation: rot,
+            scale: 0.95,
+            opacity: 0.85,
+            duration: 0.65,
+            delay: idx * 0.02,
+            ease: 'power2.out',
+            overwrite: true
+          });
+        });
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 2. Category Tabs Switching (Portfolio vs Data Cleaning)
+    // -------------------------------------------------------------
+    const catTabs = servicesSection.querySelectorAll('.services-cat-tab');
+    const stagePortfolio = servicesSection.querySelector('#stage-portfolio');
+    const stageData = servicesSection.querySelector('#stage-data');
+    const cardPortfolio = servicesSection.querySelector('#card-portfolio-config');
+    const cardData = servicesSection.querySelector('#card-data-config');
+
+    catTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        if (tab.classList.contains('active')) return;
+
+        catTabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const cat = tab.getAttribute('data-category');
+
+        if (cat === 'portfolio') {
+          if (stageData) stageData.style.display = 'none';
+          if (cardData) cardData.style.display = 'none';
+          if (stagePortfolio) {
+            stagePortfolio.style.display = 'block';
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(stagePortfolio, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+            }
+          }
+          if (cardPortfolio) {
+            cardPortfolio.style.display = 'block';
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(cardPortfolio, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+            }
+          }
+        } else if (cat === 'data') {
+          if (stagePortfolio) stagePortfolio.style.display = 'none';
+          if (cardPortfolio) cardPortfolio.style.display = 'none';
+          if (stageData) {
+            stageData.style.display = 'block';
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(stageData, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+            }
+          }
+          if (cardData) {
+            cardData.style.display = 'block';
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(cardData, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+            }
           }
         }
       });
     });
+
+    // -------------------------------------------------------------
+    // 3. Portfolio Configurator ($10 Base + Add-on Toggles)
+    // -------------------------------------------------------------
+    const portfolioTotalPrice = servicesSection.querySelector('#portfolio-total-price');
+    const btnPortfolioPriceDisplay = servicesSection.querySelector('#btn-portfolio-price-display');
+    const addonGsapToggle = servicesSection.querySelector('#addon-gsap-toggle');
+    const addonDeployToggle = servicesSection.querySelector('#addon-deploy-toggle');
+
+    // Visual Elements inside Fatma's mini replica
+    const miniFatmaName = servicesSection.querySelector('#mini-fatma-name');
+    const miniBadge1 = servicesSection.querySelector('#mini-badge-1');
+    const miniBadge2 = servicesSection.querySelector('#mini-badge-2');
+    const miniBadge3 = servicesSection.querySelector('#mini-badge-3');
+    const miniCvBtn = servicesSection.querySelector('#mini-cv-btn');
+    const miniGsapIndicator = servicesSection.querySelector('#mini-gsap-indicator');
+
+    const miniBrowserUrl = servicesSection.querySelector('#mini-browser-url');
+    const miniBadgeText = servicesSection.querySelector('#mini-badge-text');
+    const miniBrowserBadge = servicesSection.querySelector('#mini-browser-badge');
+    const deployProgressBar = servicesSection.querySelector('#deploy-progress-bar');
+
+    let gsapTweens = [];
+
+    const updatePortfolioPrice = () => {
+      let total = 10;
+      if (addonGsapToggle && addonGsapToggle.checked) total += 5;
+      if (addonDeployToggle && addonDeployToggle.checked) total += 5;
+
+      if (portfolioTotalPrice) portfolioTotalPrice.textContent = total;
+      if (btnPortfolioPriceDisplay) btnPortfolioPriceDisplay.textContent = total;
+    };
+
+    if (addonGsapToggle) {
+      addonGsapToggle.addEventListener('change', () => {
+        updatePortfolioPrice();
+
+        if (addonGsapToggle.checked) {
+          // Trigger GSAP magic inside Fatma's mini portfolio!
+          if (typeof gsap !== 'undefined') {
+            // Heading glow & subtle letter animation
+            if (miniFatmaName) {
+              gsap.to(miniFatmaName, {
+                color: '#C1E1C1',
+                textShadow: '0 0 18px rgba(142, 182, 155, 0.75)',
+                duration: 0.4
+              });
+            }
+
+            // Floating 3D Levitation for badges
+            const badges = [miniBadge1, miniBadge2, miniBadge3].filter(Boolean);
+            badges.forEach((b, idx) => {
+              gsap.killTweensOf(b);
+              const tween = gsap.to(b, {
+                y: -9,
+                rotationZ: idx % 2 === 0 ? 2 : -2,
+                duration: 1.8 + idx * 0.3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+              });
+              gsapTweens.push(tween);
+            });
+
+            // Pulse CTA button
+            if (miniCvBtn) {
+              gsap.to(miniCvBtn, {
+                boxShadow: '0 0 15px rgba(142, 182, 155, 0.8)',
+                repeat: -1,
+                yoyo: true,
+                duration: 1.2
+              });
+            }
+
+            // Show indicator
+            if (miniGsapIndicator) {
+              gsap.to(miniGsapIndicator, { opacity: 1, duration: 0.35 });
+            }
+          }
+        } else {
+          // Turn off GSAP animations
+          if (typeof gsap !== 'undefined') {
+            const badges = [miniBadge1, miniBadge2, miniBadge3].filter(Boolean);
+            badges.forEach((b) => {
+              gsap.killTweensOf(b);
+              gsap.to(b, { y: 0, rotationZ: 0, duration: 0.4 });
+            });
+
+            if (miniFatmaName) {
+              gsap.to(miniFatmaName, {
+                color: '#f8fafc',
+                textShadow: 'none',
+                duration: 0.3
+              });
+            }
+
+            if (miniCvBtn) {
+              gsap.killTweensOf(miniCvBtn);
+              gsap.set(miniCvBtn, { boxShadow: 'none' });
+            }
+
+            if (miniGsapIndicator) {
+              gsap.to(miniGsapIndicator, { opacity: 0, duration: 0.3 });
+            }
+          }
+        }
+      });
+    }
+
+    if (addonDeployToggle) {
+      addonDeployToggle.addEventListener('change', () => {
+        updatePortfolioPrice();
+
+        if (addonDeployToggle.checked) {
+          // Animated Deploy Bar
+          if (deployProgressBar) {
+            deployProgressBar.style.width = '0%';
+            if (typeof gsap !== 'undefined') {
+              gsap.to(deployProgressBar, {
+                width: '100%',
+                duration: 0.85,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                  if (miniBrowserUrl) {
+                    miniBrowserUrl.textContent = 'https://fatma-ebied.github.io';
+                    miniBrowserUrl.style.color = '#8EB69B';
+                  }
+                  if (miniBadgeText) miniBadgeText.textContent = '● Live on GitHub';
+                  if (miniBrowserBadge) {
+                    miniBrowserBadge.style.background = 'rgba(39, 201, 63, 0.18)';
+                    miniBrowserBadge.style.borderColor = '#27c93f';
+                    miniBrowserBadge.style.color = '#4ade80';
+                  }
+                }
+              });
+            }
+          }
+        } else {
+          // Revert to Preview
+          if (deployProgressBar) deployProgressBar.style.width = '0%';
+          if (miniBrowserUrl) {
+            miniBrowserUrl.textContent = 'https://fatma-portfolio.dev';
+            miniBrowserUrl.style.color = '';
+          }
+          if (miniBadgeText) miniBadgeText.textContent = 'Preview';
+          if (miniBrowserBadge) {
+            miniBrowserBadge.style.background = '';
+            miniBrowserBadge.style.borderColor = '';
+            miniBrowserBadge.style.color = '';
+          }
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 4. Data Cleaning Configurator & Interactive Studio
+    // -------------------------------------------------------------
+    const dataTotalPrice = servicesSection.querySelector('#data-total-price');
+    const btnDataPriceDisplay = servicesSection.querySelector('#btn-data-price-display');
+    const addonDataDashToggle = servicesSection.querySelector('#addon-data-dash-toggle');
+    const addonDataScriptToggle = servicesSection.querySelector('#addon-data-script-toggle');
+
+    const updateDataPrice = () => {
+      let total = 10;
+      if (addonDataDashToggle && addonDataDashToggle.checked) total += 10;
+      if (addonDataScriptToggle && addonDataScriptToggle.checked) total += 5;
+
+      if (dataTotalPrice) dataTotalPrice.textContent = total;
+      if (btnDataPriceDisplay) btnDataPriceDisplay.textContent = total;
+    };
+
+    if (addonDataDashToggle) addonDataDashToggle.addEventListener('change', updateDataPrice);
+    if (addonDataScriptToggle) addonDataScriptToggle.addEventListener('change', updateDataPrice);
+
+    // Interactive Clean Button Execution
+    const btnRunClean = servicesSection.querySelector('#btn-run-clean');
+    const btnRunCleanText = servicesSection.querySelector('#btn-run-clean-text');
+    const dataScanBar = servicesSection.querySelector('#data-scan-bar');
+    const dataRowDuplicate = servicesSection.querySelector('#data-row-duplicate');
+    const cellNullEmail = servicesSection.querySelector('#cell-null-email');
+    const cellInvalidDate = servicesSection.querySelector('#cell-invalid-date');
+    const cellInvalidAge = servicesSection.querySelector('#cell-invalid-age');
+    const pillDirty1 = servicesSection.querySelector('#pill-dirty-1');
+    const cellNullEmail2 = servicesSection.querySelector('#cell-null-email2');
+    const pillDirty2 = servicesSection.querySelector('#pill-dirty-2');
+    const metricNulls = servicesSection.querySelector('#metric-nulls');
+    const metricDupes = servicesSection.querySelector('#metric-dupes');
+    const metricScore = servicesSection.querySelector('#metric-score');
+    const dataStudioStatus = servicesSection.querySelector('#data-studio-status');
+
+    let isCleaned = false;
+
+    if (btnRunClean) {
+      btnRunClean.addEventListener('click', () => {
+        if (isCleaned) return;
+        isCleaned = true;
+
+        if (btnRunCleanText) btnRunCleanText.textContent = 'جاري التنظيف والمعالجة...';
+
+        // 1. Run Scan Bar
+        if (typeof gsap !== 'undefined' && dataScanBar) {
+          gsap.fromTo(dataScanBar, 
+            { top: '0%', opacity: 1 }, 
+            { top: '100%', opacity: 1, duration: 0.85, ease: 'power1.inOut', onComplete: () => {
+              gsap.to(dataScanBar, { opacity: 0, duration: 0.2 });
+            }}
+          );
+        }
+
+        // 2. Purge Duplicate Row
+        setTimeout(() => {
+          if (dataRowDuplicate && typeof gsap !== 'undefined') {
+            gsap.to(dataRowDuplicate, {
+              opacity: 0,
+              backgroundColor: 'rgba(239, 68, 68, 0.2)',
+              duration: 0.4,
+              onComplete: () => {
+                dataRowDuplicate.style.display = 'none';
+              }
+            });
+          }
+
+          // 3. Fix corrupted / null cells
+          if (cellNullEmail) {
+            cellNullEmail.textContent = 'sarah.o@gmail.com';
+            cellNullEmail.className = 'cell-cleaned';
+          }
+          if (cellInvalidDate) {
+            cellInvalidDate.textContent = '2024-02-28';
+            cellInvalidDate.className = 'cell-cleaned';
+          }
+          if (cellInvalidAge) {
+            cellInvalidAge.textContent = '26';
+            cellInvalidAge.className = 'cell-cleaned';
+          }
+          if (pillDirty1) {
+            pillDirty1.textContent = 'Clean';
+            pillDirty1.className = 'cell-pill pill-ok';
+          }
+
+          if (cellNullEmail2) {
+            cellNullEmail2.textContent = 'fatima.n@univ.edu';
+            cellNullEmail2.className = 'cell-cleaned';
+          }
+          if (pillDirty2) {
+            pillDirty2.textContent = 'Clean';
+            pillDirty2.className = 'cell-pill pill-ok';
+          }
+
+          // 4. Update Metrics
+          if (metricNulls) metricNulls.textContent = '0';
+          if (metricDupes) metricDupes.textContent = '0';
+          if (metricScore) metricScore.textContent = '100%';
+          if (dataStudioStatus) dataStudioStatus.textContent = 'Cleaned & Ready';
+
+          if (btnRunCleanText) btnRunCleanText.textContent = '✓ تم تنظيف وتصحيح البيانات بنجاح';
+          if (btnRunClean) {
+            btnRunClean.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            btnRunClean.style.borderColor = '#34d399';
+          }
+        }, 600);
+      });
+    }
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initInteractiveServicesTabs);
+    document.addEventListener('DOMContentLoaded', initInteractiveServicesConfigurator);
   } else {
-    initInteractiveServicesTabs();
+    initInteractiveServicesConfigurator();
   }
 })();
+
