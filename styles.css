@@ -7161,3 +7161,401 @@ body.light-mode .addon-sub {
   }
 }
 
+
+/* ========================================================================= */
+/* === SERVICES MOBILE RESPONSIVE FIXES (360px – 768px) === */
+/* ========================================================================= */
+
+/* Zero horizontal overflow: clip the section and let grid/flex children shrink */
+#services.services-section {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.services-split-grid,
+.services-visual-col,
+.services-config-col,
+.services-stage-wrap,
+.services-showcase-frame,
+.services-config-card,
+.mini-fatma-viewport,
+.data-studio-viewport {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.services-kinetic-word-wrap {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* "+ $5" must stay left-to-right inside RTL sentences */
+.addon-cost {
+  direction: ltr;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  #services.services-section {
+    padding: 3rem 1rem;
+  }
+
+  /* --- Kinetic SERVICES entrance --- */
+  .services-kinetic-hero {
+    min-height: 32vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 0;
+  }
+
+  .services-kinetic-word-wrap {
+    max-width: 100%;
+    gap: clamp(2px, 1vw, 8px);
+    padding: 12px 0;
+  }
+
+  .kinetic-char {
+    font-size: clamp(2.2rem, 11vw, 7rem);
+    letter-spacing: clamp(0.15rem, 1.5vw, 0.8rem);
+  }
+
+  .services-kinetic-sub {
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+
+  /* --- Category tabs / grid --- */
+  .services-nav-tabs {
+    padding: 0;
+    margin-bottom: 24px;
+  }
+
+  .services-split-grid {
+    padding: 0;
+    gap: 24px;
+    width: 100%;
+  }
+
+  /* --- Browser mockup top bar --- */
+  .services-showcase-topbar {
+    height: 40px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .services-window-dots {
+    gap: 5px;
+  }
+
+  .services-window-dots span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .services-showcase-url-bar {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    padding: 4px 8px;
+    gap: 5px;
+    font-size: 0.7rem;
+    overflow: hidden;
+  }
+
+  .services-showcase-url-bar .url-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .services-showcase-url-bar .url-lock {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+  }
+
+  .services-showcase-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    gap: 4px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* --- Fatma mini-HTML replica: compact single-column editorial layout --- */
+  .mini-fatma-viewport {
+    padding: 16px 14px 18px;
+    min-height: 0;
+  }
+
+  .fatma-replica-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    height: auto;
+  }
+
+  .fatma-replica-eyebrow {
+    font-size: 0.58rem;
+    padding: 3px 8px;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+    line-height: 1.35;
+    border-radius: 12px;
+    white-space: normal;
+  }
+
+  .fatma-title {
+    font-size: 1.35rem;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .fatma-subtitle {
+    font-size: 0.72rem;
+    margin-bottom: 8px;
+  }
+
+  .fatma-bio {
+    font-size: 0.68rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    max-width: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .fatma-actions-row {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .fatma-btn-burgundy,
+  .fatma-btn-pill {
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+
+  .fatma-contact-strip {
+    gap: 4px 6px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    font-size: 0.62rem;
+  }
+
+  .fatma-contact-sep {
+    display: none;
+  }
+
+  .fatma-contact-item,
+  .fatma-contact-link {
+    font-size: 0.62rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
+  /* Arched portrait centered, 3 floating cards kept inside safe bounds */
+  .fatma-replica-visual {
+    display: block;
+    min-height: 0;
+    position: relative;
+  }
+
+  .fatma-arch-wrapper {
+    width: 100%;
+    height: 155px;
+    margin: 1.2rem auto 0.5rem;
+    position: relative;
+  }
+
+  .fatma-arch-outer {
+    width: 130px;
+    height: 155px;
+    margin: 0 auto;
+  }
+
+  .f-card {
+    max-width: 40%;
+    padding: 4px 8px;
+    gap: 5px;
+    font-size: 0.6rem;
+    white-space: normal;
+    border-radius: 8px;
+  }
+
+  .f-card-icon {
+    font-size: 0.75rem;
+  }
+
+  .f-card-title {
+    font-size: 0.6rem;
+  }
+
+  .f-card-sub {
+    font-size: 0.54rem;
+    line-height: 1.15;
+  }
+
+  .f-card-1 {
+    top: 4px;
+    left: 4px;
+    right: auto;
+    bottom: auto;
+  }
+
+  .f-card-2 {
+    top: 62px;
+    right: 4px;
+    left: auto;
+    bottom: auto;
+  }
+
+  .f-card-3 {
+    bottom: 4px;
+    left: 4px;
+    top: auto;
+    right: auto;
+  }
+
+  /* --- Data Cleaning studio --- */
+  .data-studio-viewport {
+    padding: 16px 12px;
+    min-height: 0;
+  }
+
+  .data-studio-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .btn-clean-data {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .data-cleaning-table {
+    font-size: 0.7rem;
+  }
+
+  .data-cleaning-table th,
+  .data-cleaning-table td {
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+
+  .data-cleaning-metrics {
+    gap: 8px;
+  }
+
+  .metric-box {
+    padding: 8px 6px;
+  }
+
+  .metric-label {
+    font-size: 0.62rem;
+  }
+
+  /* --- Configurator card + add-ons --- */
+  .services-config-card {
+    padding: 22px 18px;
+  }
+
+  .addon-info {
+    min-width: 0;
+  }
+
+  .addon-title-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px 8px;
+  }
+
+  .addon-title {
+    flex: 1 1 140px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .addon-cost {
+    flex: 0 0 auto;
+  }
+
+  .pricing-val {
+    flex-wrap: wrap;
+  }
+
+  .pricing-val .period {
+    margin-left: 0;
+    margin-inline-start: 6px;
+  }
+}
+
+@media (max-width: 540px) {
+  .services-nav-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .services-cat-tab {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-height: 48px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-config-card {
+    padding: 1.25rem;
+  }
+
+  .config-title {
+    font-size: 1.2rem;
+  }
+
+  .config-desc {
+    margin-bottom: 18px;
+  }
+
+  .config-pricing-box {
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+
+  .pricing-val {
+    font-size: 2.2rem;
+  }
+
+  .pricing-val .currency {
+    font-size: 1.3rem;
+  }
+
+  .config-addon-label {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .btn-order-service {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+}

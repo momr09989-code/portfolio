@@ -2911,26 +2911,52 @@
     const chars = servicesSection.querySelectorAll('.kinetic-char');
 
     if (kineticWord && chars.length) {
-      // Set initial scattered positions
-      chars.forEach((char) => {
-        const dx = parseFloat(char.getAttribute('data-dx')) || 0;
-        const dy = parseFloat(char.getAttribute('data-dy')) || 0;
-        const rot = parseFloat(char.getAttribute('data-rot')) || 0;
+      const kineticTrigger = servicesSection.querySelector('.services-kinetic-hero') || kineticWord;
+      const isMobile = () => window.innerWidth < 768;
+      const rand = (min, max) =>
+        typeof gsap !== 'undefined' && gsap.utils
+          ? gsap.utils.random(min, max)
+          : min + Math.random() * (max - min);
 
-        if (typeof gsap !== 'undefined') {
-          gsap.set(char, {
-            x: dx,
-            y: dy,
-            rotation: rot,
-            scale: 0.95,
-            opacity: 0.85
-          });
+      // Desktop keeps the authored data-dx / data-dy / data-rot offsets.
+      // Mobile uses a tight random range so letters can never leave the screen.
+      const getScatter = (char) => {
+        if (isMobile()) {
+          return { x: rand(-35, 35), y: rand(-25, 25), rotation: rand(-20, 20) };
         }
-      });
+        return {
+          x: parseFloat(char.getAttribute('data-dx')) || 0,
+          y: parseFloat(char.getAttribute('data-dy')) || 0,
+          rotation: parseFloat(char.getAttribute('data-rot')) || 0
+        };
+      };
 
-      // Hover In: Snap into assembled SERVICES
-      kineticWord.addEventListener('mouseenter', () => {
+      let assembled = false;
+      let lastPointerType = 'mouse';
+      let wasMobile = isMobile();
+
+      const scatterChars = (immediate) => {
         if (typeof gsap === 'undefined') return;
+        assembled = false;
+        chars.forEach((char, idx) => {
+          const t = getScatter(char);
+          const vars = { x: t.x, y: t.y, rotation: t.rotation, scale: 0.95, opacity: 0.85 };
+          if (immediate) {
+            gsap.set(char, vars);
+          } else {
+            gsap.to(char, Object.assign(vars, {
+              duration: 0.65,
+              delay: idx * 0.02,
+              ease: 'power2.out',
+              overwrite: true
+            }));
+          }
+        });
+      };
+
+      const assembleChars = () => {
+        if (typeof gsap === 'undefined') return;
+        assembled = true;
         gsap.to(chars, {
           x: 0,
           y: 0,
@@ -2942,29 +2968,39 @@
           stagger: 0.025,
           overwrite: true
         });
+      };
+
+      // Initial scattered state
+      scatterChars(true);
+
+      // Mouse: hover assembles / leaves scatters (unchanged desktop behavior)
+      kineticWord.addEventListener('pointerdown', (e) => { lastPointerType = e.pointerType || 'mouse'; });
+      kineticWord.addEventListener('pointerenter', (e) => {
+        if (e.pointerType === 'mouse') assembleChars();
+      });
+      kineticWord.addEventListener('pointerleave', (e) => {
+        if (e.pointerType === 'mouse') scatterChars(false);
       });
 
-      // Hover Out: Scatter back into space
-      kineticWord.addEventListener('mouseleave', () => {
-        if (typeof gsap === 'undefined') return;
-        chars.forEach((char, idx) => {
-          const dx = parseFloat(char.getAttribute('data-dx')) || 0;
-          const dy = parseFloat(char.getAttribute('data-dy')) || 0;
-          const rot = parseFloat(char.getAttribute('data-rot')) || 0;
-
-          gsap.to(char, {
-            x: dx,
-            y: dy,
-            rotation: rot,
-            scale: 0.95,
-            opacity: 0.85,
-            duration: 0.65,
-            delay: idx * 0.02,
-            ease: 'power2.out',
-            overwrite: true
-          });
-        });
+      // Touch / pen: tap toggles assembled <-> scattered
+      kineticTrigger.addEventListener('click', () => {
+        if (lastPointerType === 'mouse') return;
+        if (assembled) scatterChars(false);
+        else assembleChars();
       });
+
+      // Re-roll the scatter range when crossing the mobile breakpoint
+      let kineticResizeTimer = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(kineticResizeTimer);
+        kineticResizeTimer = setTimeout(() => {
+          const nowMobile = isMobile();
+          if (nowMobile !== wasMobile) {
+            wasMobile = nowMobile;
+            if (!assembled) scatterChars(false);
+          }
+        }, 150);
+      }, { passive: true });
     }
 
     // -------------------------------------------------------------
@@ -3058,6 +3094,16 @@
       currentPriceDisplays.forEach(el => { el.textContent = total; });
     };
 
+    // On phones the stage sits above the configurator; bring it into view so the
+    // client immediately sees the live animation / deployment effect.
+    const revealPreviewOnMobile = () => {
+      if (window.innerWidth >= 900) return;
+      const stage = servicesSection.querySelector('#stage-portfolio');
+      if (stage && typeof stage.scrollIntoView === 'function') {
+        stage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    };
+
     window.syncServicesPrices = () => {
       updatePortfolioPrice();
       if (typeof updateDataPrice === 'function') {
@@ -3096,9 +3142,11 @@
     const startGsapMotion = () => {
       if (typeof gsap === 'undefined') return;
       stopGsapMotion(); // Ensure clean slate
+      const isMobileView = window.innerWidth <= 768;
+      const bob = isMobileView ? 0.55 : 1; // keep levitation contained on phones
 
       // Badge indicator: Glowing green ⚡ GSAP Motion Active
-      if (miniBadgeText) miniBadgeText.textContent = '⚡ GSAP Motion Active';
+      if (miniBadgeText) miniBadgeText.textContent = window.innerWidth <= 480 ? '⚡ GSAP Motion' : '⚡ GSAP Motion Active';
       if (miniBrowserBadge) {
         miniBrowserBadge.style.background = 'rgba(39, 201, 63, 0.22)';
         miniBrowserBadge.style.borderColor = '#27c93f';
@@ -3109,7 +3157,7 @@
       // 1. Staggered 3D reveal on title words & actions
       const textEls = [fatmaEyebrow, fatmaTitleFirst, fatmaTitleLast, ...Array.from(fatmaActions)].filter(Boolean);
       gsap.fromTo(textEls, 
-        { y: 14, opacity: 0.65, rotationX: 12 }, 
+        { y: isMobileView ? 8 : 14, opacity: 0.65, rotationX: 12 }, 
         { y: 0, opacity: 1, rotationX: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' }
       );
 
@@ -3117,7 +3165,7 @@
       if (fCard1) {
         gsapActiveTweens.push(
           gsap.to(fCard1, {
-            y: -11,
+            y: -11 * bob,
             rotationZ: 2,
             duration: 2.2,
             repeat: -1,
@@ -3130,7 +3178,7 @@
       if (fCard2) {
         gsapActiveTweens.push(
           gsap.to(fCard2, {
-            y: 12,
+            y: 12 * bob,
             rotationZ: -2.5,
             duration: 2.8,
             repeat: -1,
@@ -3143,7 +3191,7 @@
       if (fCard3) {
         gsapActiveTweens.push(
           gsap.to(fCard3, {
-            y: -9,
+            y: -9 * bob,
             rotationZ: 1.5,
             duration: 2.5,
             repeat: -1,
@@ -3157,7 +3205,7 @@
       if (fatmaArchOuter) {
         gsapActiveTweens.push(
           gsap.to(fatmaArchOuter, {
-            scale: 1.025,
+            scale: isMobileView ? 1.02 : 1.025,
             boxShadow: '0 20px 45px rgba(197, 160, 89, 0.45), 0 0 25px rgba(197, 160, 89, 0.35)',
             duration: 2.3,
             repeat: -1,
@@ -3171,6 +3219,7 @@
     if (addonGsapToggle) {
       addonGsapToggle.addEventListener('change', () => {
         updatePortfolioPrice();
+        revealPreviewOnMobile();
         if (addonGsapToggle.checked) {
           startGsapMotion();
         } else {
@@ -3182,6 +3231,7 @@
     if (addonDeployToggle) {
       addonDeployToggle.addEventListener('change', () => {
         updatePortfolioPrice();
+        revealPreviewOnMobile();
 
         if (addonDeployToggle.checked) {
           // Animated Deploy Bar
