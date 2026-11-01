@@ -6263,6 +6263,8 @@ body.light-mode .showcase-nav-btn.active,
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  container-type: inline-size;
+  container-name: fatma-box;
 }
 
 .fatma-replica-layout {
@@ -6502,8 +6504,8 @@ body.rtl-mode .fatma-subtitle {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 84% 38%;
-  transform: scale(1.85);
+  object-position: center 14%;
+  transform: none;
   display: block;
 }
 
@@ -6556,18 +6558,18 @@ body.rtl-mode .fatma-subtitle {
 }
 
 .f-card-1 {
-  top: 16px;
-  left: -48px;
+  top: 14px;
+  left: 0%;
 }
 
 .f-card-2 {
-  top: 98px;
-  right: -48px;
+  top: 44%;
+  right: 0%;
 }
 
 .f-card-3 {
-  bottom: 6px;
-  left: -32px;
+  bottom: 12px;
+  left: 2%;
 }
 
 /* Static Browser Badge */
@@ -7291,10 +7293,11 @@ body.light-mode .addon-sub {
 
   /* --- Fatma mini-HTML replica: compact single-column editorial layout --- */
   .mini-fatma-viewport {
-    padding: 14px 12px;
+    padding: 3cqw;
     min-height: 0;
   }
 
+  .fatma-mini-grid,
   .fatma-replica-layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 6px;
@@ -7302,32 +7305,35 @@ body.light-mode .addon-sub {
   }
 
   .fatma-replica-eyebrow {
-    font-size: 0.52rem;
-    line-height: 1.25;
-    padding: 4px 10px;
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-    border-radius: 12px;
-    white-space: normal;
+    font-size: clamp(0.48rem, 2.2cqw, 0.56rem);
+    line-height: 1.2;
+    padding: 3px 8px;
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .fatma-title {
-    font-size: 1.35rem;
-    line-height: 1.1;
-    margin-bottom: 6px;
+    font-size: clamp(1.1rem, 5.5cqw, 1.4rem);
+    line-height: 1.08;
+    margin-bottom: 5px;
   }
 
   .fatma-subtitle {
-    font-size: 0.65rem;
-    line-height: 1.3;
-    padding-left: 8px;
-    margin-bottom: 6px;
+    font-size: clamp(0.58rem, 2.8cqw, 0.72rem);
+    line-height: 1.25;
+    padding-left: 7px;
+    margin-bottom: 5px;
   }
 
   .fatma-bio {
-    font-size: 0.6rem;
-    line-height: 1.35;
-    margin-bottom: 10px;
+    font-size: clamp(0.54rem, 2.5cqw, 0.65rem);
+    line-height: 1.32;
+    margin-bottom: 8px;
     max-width: none;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -7336,49 +7342,62 @@ body.light-mode .addon-sub {
     overflow: hidden;
   }
 
-  .fatma-actions-row {
+  .fatma-actions-row,
+  .fatma-cta-row {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 6px;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
+    width: 100%;
   }
 
   .fatma-btn-burgundy,
   .fatma-btn-pill {
-    flex: 1 1 auto;
-    font-size: 0.58rem;
-    padding: 6px 10px;
-    white-space: nowrap;
+    font-size: clamp(0.52rem, 2.5cqw, 0.65rem);
+    padding: 5px 8px;
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .fatma-contact-strip {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    gap: 4px 8px;
+    gap: 4px;
     background: #FFFFFF;
-    border-radius: 8px;
-    padding: 5px 8px;
-    font-size: 0.52rem;
-    margin-bottom: 12px;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: clamp(0.45rem, 2.1cqw, 0.54rem);
+    margin-bottom: 4px;
     border: 1px solid rgba(197, 160, 89, 0.35);
-    box-shadow: 0 2px 6px rgba(197, 160, 89, 0.12);
+    box-shadow: 0 2px 6px rgba(197, 160, 89, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .fatma-contact-sep {
     display: inline;
     color: #C5A059;
     opacity: 0.7;
-    font-size: 0.52rem;
+    font-size: 0.48rem;
+    flex-shrink: 0;
   }
 
   .fatma-contact-item,
   .fatma-contact-link {
-    font-size: 0.52rem;
+    font-size: clamp(0.45rem, 2.1cqw, 0.54rem);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     background: transparent;
     border: 0;
     border-radius: 0;
@@ -7386,73 +7405,71 @@ body.light-mode .addon-sub {
     color: #4A3B32;
   }
 
-  /* Arched portrait centered, 3 floating cards kept inside safe bounds */
+  /* Visual Arch Stage: centered arch + 3 floating badges anchored to full stage */
+  .fatma-arch-stage,
   .fatma-replica-visual {
-    height: 175px;
+    width: 100%;
+    height: 155px;
+    min-height: 155px;
     position: relative;
+    margin-top: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4px;
-    min-height: 0;
   }
 
-  .fatma-arch-wrapper {
-    position: relative;
-    width: 115px;
-    height: 150px;
-    margin: 0 auto;
-  }
-
+  .fatma-arch-wrapper,
   .fatma-arch-outer {
-    width: 115px;
-    height: 150px;
+    width: 105px;
+    height: 138px;
     margin: 0 auto;
+    position: relative;
   }
 
   .f-card {
     position: absolute;
-    padding: 4px 7px;
+    max-width: 34cqw;
+    padding: 4px 6px;
+    font-size: clamp(0.46rem, 2.2cqw, 0.56rem);
     border-radius: 8px;
-    max-width: 118px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    gap: 5px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+    gap: 4px;
     white-space: normal;
     z-index: 3;
   }
 
   .f-card-icon {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     flex-shrink: 0;
   }
 
   .f-card-title {
-    font-size: 0.54rem;
-    line-height: 1.15;
+    font-size: clamp(0.46rem, 2.2cqw, 0.56rem);
+    line-height: 1.12;
   }
 
   .f-card-sub {
-    font-size: 0.46rem;
-    line-height: 1.1;
+    font-size: clamp(0.4rem, 1.9cqw, 0.48rem);
+    line-height: 1.08;
   }
 
   .f-card-1 {
-    top: 8px;
-    left: 2%;
+    top: 6px;
+    left: 1%;
     right: auto;
     bottom: auto;
   }
 
   .f-card-2 {
-    top: 42%;
-    right: 2%;
+    top: 38%;
+    right: 1%;
     left: auto;
     bottom: auto;
   }
 
   .f-card-3 {
     bottom: 6px;
-    left: 4%;
+    left: 2%;
     top: auto;
     right: auto;
   }
@@ -7602,5 +7619,164 @@ body.light-mode .addon-sub {
   .btn-order-service {
     padding: 14px 18px;
     font-size: 0.95rem;
+  }
+}
+
+/* === Container Query Engine for Fatma Preview Box (<= 480px) === */
+@container fatma-box (max-width: 480px) {
+  .fatma-mini-grid,
+  .fatma-replica-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    height: auto;
+  }
+
+  .fatma-replica-eyebrow {
+    font-size: clamp(0.48rem, 2.2cqw, 0.56rem);
+    line-height: 1.2;
+    padding: 3px 8px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .fatma-title {
+    font-size: clamp(1.1rem, 5.5cqw, 1.4rem);
+    line-height: 1.08;
+    margin-bottom: 5px;
+  }
+
+  .fatma-subtitle {
+    font-size: clamp(0.58rem, 2.8cqw, 0.72rem);
+    line-height: 1.25;
+    padding-left: 7px;
+    margin-bottom: 5px;
+  }
+
+  .fatma-bio {
+    font-size: clamp(0.54rem, 2.5cqw, 0.65rem);
+    line-height: 1.32;
+    margin-bottom: 8px;
+    max-width: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .fatma-actions-row,
+  .fatma-cta-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-bottom: 7px;
+    width: 100%;
+  }
+
+  .fatma-btn-burgundy,
+  .fatma-btn-pill {
+    font-size: clamp(0.52rem, 2.5cqw, 0.65rem);
+    padding: 5px 8px;
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fatma-contact-strip {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    background: #FFFFFF;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: clamp(0.45rem, 2.1cqw, 0.54rem);
+    margin-bottom: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .fatma-contact-item,
+  .fatma-contact-link {
+    font-size: clamp(0.45rem, 2.1cqw, 0.54rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .fatma-arch-stage,
+  .fatma-replica-visual {
+    width: 100%;
+    height: 155px;
+    min-height: 155px;
+    position: relative;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fatma-arch-wrapper,
+  .fatma-arch-outer {
+    width: 105px;
+    height: 138px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .f-card {
+    position: absolute;
+    max-width: 34cqw;
+    padding: 4px 6px;
+    font-size: clamp(0.46rem, 2.2cqw, 0.56rem);
+    border-radius: 8px;
+    gap: 4px;
+    white-space: normal;
+  }
+
+  .f-card-title {
+    font-size: clamp(0.46rem, 2.2cqw, 0.56rem);
+    line-height: 1.12;
+  }
+
+  .f-card-sub {
+    font-size: clamp(0.4rem, 1.9cqw, 0.48rem);
+    line-height: 1.08;
+  }
+
+  .f-card-icon {
+    font-size: 0.68rem;
+  }
+
+  .f-card-1 {
+    top: 6px;
+    left: 1%;
+    right: auto;
+    bottom: auto;
+  }
+
+  .f-card-2 {
+    top: 38%;
+    right: 1%;
+    left: auto;
+    bottom: auto;
+  }
+
+  .f-card-3 {
+    bottom: 6px;
+    left: 2%;
+    top: auto;
+    right: auto;
   }
 }

@@ -3030,6 +3030,9 @@
           if (cardData) cardData.style.display = 'none';
           if (stagePortfolio) {
             stagePortfolio.style.display = 'block';
+            if (typeof window.fitFatmaPreviewToBox === 'function') {
+              window.fitFatmaPreviewToBox();
+            }
             if (typeof gsap !== 'undefined') {
               gsap.fromTo(stagePortfolio, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
             }
@@ -3067,6 +3070,8 @@
     const addonDeployToggle = servicesSection.querySelector('#addon-deploy-toggle');
 
     // Visual Elements inside authentic Fatma replica
+    const previewBox = servicesSection.querySelector('#mini-fatma-viewport');
+    const fatmaArchStage = servicesSection.querySelector('#fatma-arch-stage');
     const fatmaTitleFirst = servicesSection.querySelector('.fatma-title-first');
     const fatmaTitleLast = servicesSection.querySelector('.fatma-title-last');
     const fatmaEyebrow = servicesSection.querySelector('.fatma-replica-eyebrow');
@@ -3075,6 +3080,39 @@
     const fCard2 = servicesSection.querySelector('#f-card-2');
     const fCard3 = servicesSection.querySelector('#f-card-3');
     const fatmaActions = servicesSection.querySelectorAll('.fatma-actions-row a');
+
+    // Dynamic Box Measurement Engine
+    let measuredBoxScale = 1;
+    const fitFatmaPreviewToBox = () => {
+      if (!previewBox) return { width: 620, height: 490, scale: 1, isCompact: 0 };
+      const rect = previewBox.getBoundingClientRect();
+      const boxW = rect.width > 0 ? rect.width : Math.min(620, Math.max(300, window.innerWidth - 34));
+      const boxH = rect.height;
+      const scale = Math.min(1, +(boxW / 620).toFixed(3));
+      const isCompact = boxW < 480 ? 1 : 0;
+      measuredBoxScale = scale;
+
+      previewBox.style.setProperty('--box-w', `${Math.round(boxW)}px`);
+      previewBox.style.setProperty('--box-scale', `${scale}`);
+      previewBox.style.setProperty('--is-compact', `${isCompact}`);
+      if (stagePortfolio) {
+        stagePortfolio.style.setProperty('--box-w', `${Math.round(boxW)}px`);
+        stagePortfolio.style.setProperty('--box-scale', `${scale}`);
+        stagePortfolio.style.setProperty('--is-compact', `${isCompact}`);
+      }
+      return { width: boxW, height: boxH, scale, isCompact };
+    };
+
+    window.fitFatmaPreviewToBox = fitFatmaPreviewToBox;
+    fitFatmaPreviewToBox();
+
+    if (typeof ResizeObserver !== 'undefined' && previewBox) {
+      const boxObserver = new ResizeObserver(() => {
+        fitFatmaPreviewToBox();
+      });
+      boxObserver.observe(previewBox);
+    }
+    window.addEventListener('resize', fitFatmaPreviewToBox, { passive: true });
 
     const miniBrowserUrl = servicesSection.querySelector('#mini-browser-url');
     const miniBadgeText = servicesSection.querySelector('#mini-badge-text');
@@ -3142,8 +3180,9 @@
     const startGsapMotion = () => {
       if (typeof gsap === 'undefined') return;
       stopGsapMotion(); // Ensure clean slate
-      const isMobileView = window.innerWidth <= 768;
-      const bob = isMobileView ? 0.55 : 1; // keep levitation contained on phones
+      const metrics = fitFatmaPreviewToBox();
+      const isMobileView = window.innerWidth <= 768 || metrics.isCompact === 1;
+      const bob = Math.max(0.38, Math.min(1, metrics.scale)); // strictly scaled to measured box
 
       // Badge indicator: Glowing green ⚡ GSAP Motion Active
       if (miniBadgeText) miniBadgeText.textContent = window.innerWidth <= 480 ? '⚡ GSAP Motion' : '⚡ GSAP Motion Active';
