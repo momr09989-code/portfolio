@@ -6497,11 +6497,13 @@ body.rtl-mode .fatma-subtitle {
   border: 1px solid #D4A373;
 }
 
-.fatma-arch-img {
+.fatma-arch-img,
+.mini-portrait-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 12%;
+  object-position: 84% 38%;
+  transform: scale(1.85);
   display: block;
 }
 
@@ -7289,7 +7291,7 @@ body.light-mode .addon-sub {
 
   /* --- Fatma mini-HTML replica: compact single-column editorial layout --- */
   .mini-fatma-viewport {
-    padding: 16px 14px 18px;
+    padding: 14px 12px;
     min-height: 0;
   }
 
@@ -7300,132 +7302,157 @@ body.light-mode .addon-sub {
   }
 
   .fatma-replica-eyebrow {
-    font-size: 0.58rem;
-    padding: 3px 8px;
+    font-size: 0.52rem;
+    line-height: 1.25;
+    padding: 4px 10px;
     margin-bottom: 8px;
     letter-spacing: 0.05em;
-    line-height: 1.35;
     border-radius: 12px;
     white-space: normal;
   }
 
   .fatma-title {
     font-size: 1.35rem;
-    line-height: 1.15;
-    margin-bottom: 8px;
+    line-height: 1.1;
+    margin-bottom: 6px;
   }
 
   .fatma-subtitle {
-    font-size: 0.72rem;
-    margin-bottom: 8px;
+    font-size: 0.65rem;
+    line-height: 1.3;
+    padding-left: 8px;
+    margin-bottom: 6px;
   }
 
   .fatma-bio {
-    font-size: 0.68rem;
-    line-height: 1.5;
-    margin-bottom: 12px;
+    font-size: 0.6rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
     max-width: none;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     overflow: hidden;
   }
 
   .fatma-actions-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .fatma-btn-burgundy,
   .fatma-btn-pill {
+    flex: 1 1 auto;
+    font-size: 0.58rem;
     padding: 6px 10px;
-    font-size: 0.68rem;
+    white-space: nowrap;
+    text-align: center;
   }
 
   .fatma-contact-strip {
-    gap: 4px 6px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    font-size: 0.62rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 8px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 5px 8px;
+    font-size: 0.52rem;
+    margin-bottom: 12px;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    box-shadow: 0 2px 6px rgba(197, 160, 89, 0.12);
   }
 
   .fatma-contact-sep {
-    display: none;
+    display: inline;
+    color: #C5A059;
+    opacity: 0.7;
+    font-size: 0.52rem;
   }
 
   .fatma-contact-item,
   .fatma-contact-link {
-    font-size: 0.62rem;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(197, 160, 89, 0.35);
-    border-radius: 999px;
-    padding: 2px 8px;
+    font-size: 0.52rem;
+    white-space: nowrap;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    color: #4A3B32;
   }
 
   /* Arched portrait centered, 3 floating cards kept inside safe bounds */
   .fatma-replica-visual {
-    display: block;
-    min-height: 0;
+    height: 175px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+    min-height: 0;
   }
 
   .fatma-arch-wrapper {
-    width: 100%;
-    height: 155px;
-    margin: 1.2rem auto 0.5rem;
     position: relative;
+    width: 115px;
+    height: 150px;
+    margin: 0 auto;
   }
 
   .fatma-arch-outer {
-    width: 130px;
-    height: 155px;
+    width: 115px;
+    height: 150px;
     margin: 0 auto;
   }
 
   .f-card {
-    max-width: 40%;
-    padding: 4px 8px;
-    gap: 5px;
-    font-size: 0.6rem;
-    white-space: normal;
+    position: absolute;
+    padding: 4px 7px;
     border-radius: 8px;
+    max-width: 118px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    gap: 5px;
+    white-space: normal;
+    z-index: 3;
   }
 
   .f-card-icon {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    flex-shrink: 0;
   }
 
   .f-card-title {
-    font-size: 0.6rem;
-  }
-
-  .f-card-sub {
     font-size: 0.54rem;
     line-height: 1.15;
   }
 
+  .f-card-sub {
+    font-size: 0.46rem;
+    line-height: 1.1;
+  }
+
   .f-card-1 {
-    top: 4px;
-    left: 4px;
+    top: 8px;
+    left: 2%;
     right: auto;
     bottom: auto;
   }
 
   .f-card-2 {
-    top: 62px;
-    right: 4px;
+    top: 42%;
+    right: 2%;
     left: auto;
     bottom: auto;
   }
 
   .f-card-3 {
-    bottom: 4px;
-    left: 4px;
+    bottom: 6px;
+    left: 4%;
     top: auto;
     right: auto;
   }
@@ -7524,6 +7551,24 @@ body.light-mode .addon-sub {
 }
 
 @media (max-width: 480px) {
+  .services-showcase-topbar {
+    padding: 8px 10px;
+  }
+
+  .mac-controls {
+    gap: 4px;
+  }
+
+  .mac-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .services-showcase-badge {
+    font-size: 0.58rem;
+    padding: 3px 8px;
+  }
+
   .services-config-card {
     padding: 1.25rem;
   }
