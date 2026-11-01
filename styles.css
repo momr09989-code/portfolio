@@ -7420,15 +7420,15 @@ body.light-mode .addon-sub {
 
   .fatma-arch-wrapper,
   .fatma-arch-outer {
-    width: 105px;
-    height: 138px;
+    width: 96px;
+    height: 134px;
     margin: 0 auto;
     position: relative;
   }
 
   .f-card {
     position: absolute;
-    max-width: 34cqw;
+    max-width: 30.5cqw;
     padding: 4px 6px;
     font-size: clamp(0.46rem, 2.2cqw, 0.56rem);
     border-radius: 8px;
@@ -7455,21 +7455,21 @@ body.light-mode .addon-sub {
 
   .f-card-1 {
     top: 6px;
-    left: 1%;
+    left: 0;
     right: auto;
     bottom: auto;
   }
 
   .f-card-2 {
     top: 38%;
-    right: 1%;
+    right: 0;
     left: auto;
     bottom: auto;
   }
 
   .f-card-3 {
     bottom: 6px;
-    left: 2%;
+    left: 0;
     top: auto;
     right: auto;
   }
@@ -7572,11 +7572,13 @@ body.light-mode .addon-sub {
     padding: 8px 10px;
   }
 
-  .mac-controls {
+  .mac-controls,
+  .services-window-dots {
     gap: 4px;
   }
 
-  .mac-dot {
+  .mac-dot,
+  .services-window-dots span {
     width: 7px;
     height: 7px;
   }
@@ -7729,15 +7731,15 @@ body.light-mode .addon-sub {
 
   .fatma-arch-wrapper,
   .fatma-arch-outer {
-    width: 105px;
-    height: 138px;
+    width: 96px;
+    height: 134px;
     margin: 0 auto;
     position: relative;
   }
 
   .f-card {
     position: absolute;
-    max-width: 34cqw;
+    max-width: 30.5cqw;
     padding: 4px 6px;
     font-size: clamp(0.46rem, 2.2cqw, 0.56rem);
     border-radius: 8px;
@@ -7761,21 +7763,21 @@ body.light-mode .addon-sub {
 
   .f-card-1 {
     top: 6px;
-    left: 1%;
+    left: 0;
     right: auto;
     bottom: auto;
   }
 
   .f-card-2 {
     top: 38%;
-    right: 1%;
+    right: 0;
     left: auto;
     bottom: auto;
   }
 
   .f-card-3 {
     bottom: 6px;
-    left: 2%;
+    left: 0;
     top: auto;
     right: auto;
   }
